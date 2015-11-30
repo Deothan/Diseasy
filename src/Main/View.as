@@ -32,7 +32,8 @@ package Main{
 		}
 		
 		public function LoadScreen(newScreen:Class):void{
-			if(screen != null && contains(screen)){
+			if(screen != null && contains(screen)){		
+				(screen as Screen).Destroy();
 				removeChild(screen, true);
 			}
 			

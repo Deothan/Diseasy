@@ -16,7 +16,7 @@ package Main
 			var screenHeight:int = stage.fullScreenHeight;
 			var viewPort:Rectangle = new Rectangle(0, 0, screenWidth, screenHeight);
 			
-			var starlingInstance:Starling = new Starling(View, stage, viewPort);
+			var starlingInstance:Starling = new Starling(Loader, stage, viewPort);
 			starlingInstance.stage.stageWidth = 480;
 			starlingInstance.stage.stageHeight = 320;
 			starlingInstance.start();
