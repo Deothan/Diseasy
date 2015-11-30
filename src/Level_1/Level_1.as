@@ -2,7 +2,6 @@ package Level_1
 {
 	import flash.filesystem.File;
 	
-	import Common.Entity;
 	import Common.Screen;
 	
 	import Main.View;
