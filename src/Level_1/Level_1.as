@@ -6,6 +6,7 @@ package Level_1
 	import Common.Screen;
 	
 	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
@@ -17,7 +18,7 @@ package Level_1
 		private var testText:TextField;
 		private var loaded:Boolean = false;
 		
-		public function Level_1()		{
+		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
