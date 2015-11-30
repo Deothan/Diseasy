@@ -11,6 +11,8 @@ package Level_1
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
@@ -19,6 +21,7 @@ package Level_1
 		private var assetManager:AssetManager;
 		private var background:Image;
 		private var coinIcon:Image;
+		private var jumpScreen:Image;
 		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
@@ -62,6 +65,12 @@ package Level_1
 			coinIcon.x = 460;
 			coinIcon.y = 12;
 			addChild(coinIcon);
+			
+			jumpScreen = new Image(assetManager.getTexture("transparent"));
+			addEventListener(TouchEvent.TOUCH, Jump);
+			jumpScreen.x = 0;
+			jumpScreen.y = 30;
+			addChild(jumpScreen);
 			
 			exitButton = new Button(assetManager.getTexture("exitButton"), "Exit");
 			exitButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
@@ -123,6 +132,9 @@ package Level_1
 			
 		}
 		
+		/**
+		 * checks the shownLife variable, and updates the number of hearts in the bottom left accordingly.
+		 */
 		private function UpdateHearts():void{
 			while(shownLife > hearts.length){
 				var heart:Image = new Image(assetManager.getTexture("heartIcon"));
@@ -136,28 +148,53 @@ package Level_1
 			}
 		}
 		
+		/**
+		 * Will be called when the transparentScreen is clicked.
+		 */
+		private function Jump(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				trace("jump");
+			}
+		}
+		
+		/**
+		 * Called when the exitButton is pushed.
+		 */
 		private function ExitButtonTriggered():void{
 			View.GetInstance().LoadScreen(Level_1);
 		}
 		
+		/**
+		 * Timer function, set to 24 fps.
+		 */
 		private function Timer():void{
 			time++;
 			var timeString:int = time/24;
 			timeCounterText.text = timeString.toString(10);
 		}
 		
+		/**
+		 * Moves the middle line to indicate progress.
+		 */
 		private function ProgressBar():void{
 			if(progress.x < 390){
 				progress.x += 1;
 			}
 		}
 		
+		/**
+		 * Changes the x coordinate of the entites so they all move, it uses the variable speed decide how many pixels to move.
+		 * To change the speed of the level change the speed variable in the top.
+		 */
 		private function MoveEntities():void{
 			for(var e:Sprite in entities){
 				e.x += speed;
 			}
 		}
 		
+		/**
+		 * Updates the screen.
+		 */
 		public function Update():void{
 			if(loaded){
 				Timer();
@@ -167,6 +204,9 @@ package Level_1
 			}
 		}
 
+		/**
+		 * Called when the screen is changed.
+		 */
 		public function Destroy():void{
 		}
 	}
