@@ -1,5 +1,6 @@
 package Settings{
 	import flash.filesystem.File;
+	import flash.media.SoundTransform;
 	
 	import Common.Screen;
 	
@@ -23,9 +24,8 @@ package Settings{
 		private var soundOn:Boolean = true;
 		private var vibrationOn:Boolean = true;
 		private var soundText:TextField;
-		private var vibrationText:TextField;
 		private var soundOnOffText:TextField;
-		private var vibrationOnOffText:TextField;
+		private var sound:SoundTransform = new SoundTransform;
 		
 		public function Settings(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -66,19 +66,6 @@ package Settings{
 			soundOnOffText.y = 50;
 			soundOnOffText.addEventListener(TouchEvent.TOUCH, SoundTouch);
 			addChild(soundOnOffText);
-			
-			vibrationText = new TextField(100, 30, "Vibration:");
-			vibrationText.color = 0xFFFFFF;
-			vibrationText.x = 35;
-			vibrationText.y = 80;
-			addChild(vibrationText);
-			
-			vibrationOnOffText = new TextField(30, 30, "ON");
-			vibrationOnOffText.color = 0xFFFFFF;
-			vibrationOnOffText.x = 150;
-			vibrationOnOffText.y = 80;
-			vibrationOnOffText.addEventListener(TouchEvent.TOUCH, VibrationTouch);
-			addChild(vibrationOnOffText);
 		}
 		
 		private function SoundTouch(event:TouchEvent):void{
@@ -86,23 +73,12 @@ package Settings{
 				if(soundOn){
 					soundOnOffText.text = "OFF";
 					soundOn = false;
+					sound.volume = 0;
 				}
 				else{
 					soundOnOffText.text = "ON";
 					soundOn = true;
-				}
-			}
-		}
-		
-		private function VibrationTouch(event:TouchEvent):void{
-			if(event.getTouch(this, TouchPhase.BEGAN)){
-				if(vibrationOn){
-					vibrationOnOffText.text = "OFF";
-					vibrationOn = false;
-				}
-				else{
-					vibrationOnOffText.text = "ON";
-					vibrationOn = true;
+					sound.volume = 1;
 				}
 			}
 		}
