@@ -235,6 +235,9 @@ package Level_1{
 			}
 		}
 		
+		/**
+		 * Deleting the bacteria when it leaves the screen.
+		 */
 		private function UpdateBacteria():void{
 			for(var i:int = 0; i < entities.length; i++){
 				if(entities[i] is Bacteria1 && entities[i].x < (0 - entities[i].width)){

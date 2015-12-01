@@ -51,7 +51,6 @@ package Settings{
 			addChild(backButton);
 			
 			soundOnButton = new Button(assetManager.getTexture("sound_off"));
-			soundOnButton.alpha = 0.5;
 			soundOnButton.addEventListener(Event.TRIGGERED, SoundTouch);
 			soundOnButton.x = 350;
 			soundOnButton.y = 50;
@@ -64,8 +63,8 @@ package Settings{
 			addChild(soundOffButton);
 			
 			if(View.GetInstance().GetVolume() == 1){
-				soundOnButton.alpha = 0.5;
-				soundOffButton.alpha = 1;
+				soundOnButton.alpha = 1;
+				soundOffButton.alpha = 0.5;
 				soundOn = true;
 			}
 			else{
