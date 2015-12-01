@@ -130,6 +130,7 @@ package Customize{
 				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
 				
 				input = new String();
+				nameText.text = input;
 			}
 		}
 		
