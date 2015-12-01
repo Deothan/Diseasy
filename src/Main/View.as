@@ -5,6 +5,8 @@ package Main{
 	
 	import Menu.Menu;
 	
+	import Settings.Settings;
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -26,7 +28,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Menu);
+			LoadScreen(Settings);
 		}
 		
 		private function Update(event:Event):void{
