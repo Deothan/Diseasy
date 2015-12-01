@@ -38,7 +38,7 @@ package Level_1
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
-		private var speed:int;
+		private var speed:int = 1;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -59,6 +59,7 @@ package Level_1
 		
 		private function Start():void{
 			background = new Image(assetManager.getTexture("background"));
+			entities.push(background);
 			addChild(background);
 			
 			coinIcon = new Image(assetManager.getTexture("coin"));
@@ -189,8 +190,8 @@ package Level_1
 		 * To change the speed of the level change the speed variable in the top.
 		 */
 		private function MoveEntities():void{
-			for(var e:Sprite in entities){
-				e.x += speed;
+			for(var i:int = 0; i < entities.length; i++){
+				entities[i].x -= 1;
 			}
 		}
 		
