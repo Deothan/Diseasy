@@ -35,7 +35,7 @@ package Level_1
 		private var middle:Quad;
 		private var left:Quad;
 		private var right:Quad;
-		private var exitButton:Button;
+		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
 		private var speed:int;
@@ -58,14 +58,12 @@ package Level_1
 		}
 		
 		private function Start():void{
-			loaded = true;
-			
-			background = new Image(assetManager.getTexture("test"));
+			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			coinIcon = new Image(assetManager.getTexture("coinIcon"));
+			coinIcon = new Image(assetManager.getTexture("coin"));
 			coinIcon.x = 460;
-			coinIcon.y = 12;
+			coinIcon.y = 7;
 			addChild(coinIcon);
 			
 			jumpScreen = new Image(assetManager.getTexture("transparent"));
@@ -74,22 +72,22 @@ package Level_1
 			jumpScreen.y = 30;
 			addChild(jumpScreen);
 			
-			exitButton = new Button(assetManager.getTexture("exitButton"), "Exit");
-			exitButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
-			exitButton.x = 412;
-			exitButton.y = 292;
-			addChild(exitButton);	
+			backButton = new Button(assetManager.getTexture("button_back"));
+			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
+			backButton.x = 370;
+			backButton.y = 265;
+			addChild(backButton);	
 			
 			coinText = new TextField(35, 25, "0 x");
 			coinText.color = 0xFFFFFF;
-			coinText.x = 425;
+			coinText.x = 428;
 			coinText.y = 4;
 			addChild(coinText);
 			
 			lifeText = new TextField(35, 25, "Life:");
 			lifeText.color = 0xFFFFFF;
 			lifeText.x = 5;
-			lifeText.y = 292;
+			lifeText.y = 280;
 			addChild(lifeText);
 			
 			timeText = new TextField(45, 25, "Time:");
@@ -105,26 +103,28 @@ package Level_1
 			addChild(timeCounterText);
 
 			middle = new Quad(100 ,2 ,Color.WHITE);
-			middle.x = 290;
+			middle.x = 270;
 			middle.y = 302;
 			addChild(middle);
 			
 			left = new Quad(2 ,9 ,Color.WHITE);
-			left.x = 290;
+			left.x = 270;
 			left.y = 298;
 			addChild(left);
 			
 			right = new Quad(2 ,9 ,Color.WHITE);
-			right.x = 390;
+			right.x = 370;
 			right.y = 298;
 			addChild(right);
 			
 			progress = new Quad(2 ,9 ,Color.WHITE);
-			progress.x = 290;
+			progress.x = 270;
 			progress.y = 298;
 			addChild(progress);
 			
 			AddEntities();
+			
+			loaded = true;
 		}
 		
 		/**
@@ -139,9 +139,9 @@ package Level_1
 		 */
 		private function UpdateHearts():void{
 			while(shownLife > hearts.length){
-				var heart:Image = new Image(assetManager.getTexture("heartIcon"));
-				heart.x = 45 + (hearts.length*17);
-				heart.y = 298;
+				var heart:Image = new Image(assetManager.getTexture("heart"));
+				heart.x = 45 + (hearts.length*22);
+				heart.y = 285;
 				hearts.push(heart);
 				addChild(heart);
 			}
@@ -162,7 +162,7 @@ package Level_1
 		/**
 		 * Called when the exitButton is pushed.
 		 */
-		private function ExitButtonTriggered():void{
+		private function BackButtonTriggered():void{
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
@@ -179,7 +179,7 @@ package Level_1
 		 * Moves the middle line to indicate progress.
 		 */
 		private function ProgressBar():void{
-			if(progress.x < 390){
+			if(progress.x < 370){
 				progress.x += 1;
 			}
 		}
@@ -210,6 +210,7 @@ package Level_1
 		 * Called when the screen is changed.
 		 */
 		public function Destroy():void{
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 		}
 	}
 }

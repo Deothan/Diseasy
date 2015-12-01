@@ -6,11 +6,13 @@ package Customize{
 	import Main.View;
 	
 	import Map.Map;
-		
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 
@@ -41,7 +43,7 @@ package Customize{
 		}
 		
 		public function Start():void{
-			background = new Image(assetManager.getTexture("test"));
+			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
 			topImage = new Image(assetManager.getTexture("face"));
@@ -59,13 +61,14 @@ package Customize{
 			bottomImage.y = 174;
 			addChild(bottomImage);
 			
-			okButton = new Button(assetManager.getTexture("okButton"), "OK");
+			okButton = new Button(assetManager.getTexture("button_ok"));
 			okButton.addEventListener(Event.TRIGGERED, OkButtonTriggered);
-			okButton.x = 412;
-			okButton.y = 292;
+			okButton.x = 300;
+			okButton.y = 235;
 			addChild(okButton);
 			
 			nameText = new TextField(50, 20, "Name");
+			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
 			nameText.color = 0xFFFFFF;
 			nameText.x = 200;
 			nameText.y = 20;
@@ -74,6 +77,13 @@ package Customize{
 		
 		private function OkButtonTriggered():void{
 			View.GetInstance().LoadScreen(Map);
+		}
+		
+		//Has to get keyboard input, and use it to change the name
+		private function NameTouched(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				nameText.text = "Test";
+			}
 		}
 		
 		public function Update():void{
