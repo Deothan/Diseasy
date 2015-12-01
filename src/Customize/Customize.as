@@ -11,6 +11,7 @@ package Customize{
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.KeyboardEvent;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
@@ -19,12 +20,13 @@ package Customize{
 	public class Customize extends Sprite implements Screen{
 		private var assetManager:AssetManager = new AssetManager();
 		private var background:Image;
-		private var topImage:Image;
-		private var middleImage:Image;
-		private var bottomImage:Image;
+		private var hairButton:Button;
+		private var babbyButton:Button;
+		private var clothesButton:Button;
 		private var backButton:Button;
 		private var okButton:Button;
 		private var nameText:TextField;
+		private var input:String;
 		
 		public function Customize(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -47,20 +49,23 @@ package Customize{
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			topImage = new Image(assetManager.getTexture("button_hair"));
-			topImage.x = 170;
-			topImage.y = 175;
-			addChild(topImage);
+			hairButton = new Button(assetManager.getTexture("button_hair"));
+			hairButton.addEventListener(Event.TRIGGERED, HairButtonTriggered);
+			hairButton.x = 170;
+			hairButton.y = 175;
+			addChild(hairButton);
 			
-			middleImage = new Image(assetManager.getTexture("button_baby"));
-			middleImage.x = 300;
-			middleImage.y = 65;
-			addChild(middleImage);
+			babbyButton = new Button(assetManager.getTexture("button_baby"));
+			babbyButton.addEventListener(Event.TRIGGERED, BabbyButtonTriggered);
+			babbyButton.x = 300;
+			babbyButton.y = 65;
+			addChild(babbyButton);
 			
-			bottomImage = new Image(assetManager.getTexture("button_clothes"));
-			bottomImage.x = 170;
-			bottomImage.y = 65;
-			addChild(bottomImage);
+			clothesButton = new Button(assetManager.getTexture("button_clothes"));
+			clothesButton.addEventListener(Event.TRIGGERED, ClothesButtonTriggered);
+			clothesButton.x = 170;
+			clothesButton.y = 65;
+			addChild(clothesButton);
 			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
@@ -74,9 +79,9 @@ package Customize{
 			okButton.y = 180;
 			addChild(okButton);
 			
-			nameText = new TextField(80, 40, "Name");
-			nameText.fontSize = 20;
+			nameText = new TextField(300, 40, "Name");
 			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
+			nameText.fontSize = 20;
 			nameText.color = 0xFFFFFF;
 			nameText.x = 175;
 			nameText.y = 20;
@@ -92,10 +97,39 @@ package Customize{
 			View.GetInstance().LoadScreen(Map);
 		}
 		
-		//Has to get keyboard input, and use it to change the name
+		private function HairButtonTriggered():void{
+			
+		}
+		
+		private function BabbyButtonTriggered():void{
+			
+		}
+		
+		private function ClothesButtonTriggered():void{
+			
+		}
+		
+		/**
+		 * If "Enter" is hit then the keyboard listener is removed. Untill it is removed it changes the nameText variable.
+		 */
+		private function ReadKey(event:KeyboardEvent):void{
+			if(event.keyCode == 13){
+				removeEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
+			}		
+				
+			var read:String = String.fromCharCode(event.charCode);
+			input += read;
+			nameText.text = input;
+		}
+		
+		/**
+		 * Adds a keyboard listener when the name is clicked, and empties the current input.
+		 */
 		private function NameTouched(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-				nameText.text = "Test";
+				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
+				
+				input = new String();
 			}
 		}
 		
@@ -107,6 +141,9 @@ package Customize{
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
+			hairButton.removeEventListener(Event.TRIGGERED, HairButtonTriggered);
+			babbyButton.removeEventListener(Event.TRIGGERED, BabbyButtonTriggered);
+			clothesButton.removeEventListener(Event.TRIGGERED, ClothesButtonTriggered);
 			assetManager.dispose();
 		}
 	}
