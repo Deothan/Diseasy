@@ -22,6 +22,7 @@ package Customize{
 		private var topImage:Image;
 		private var middleImage:Image;
 		private var bottomImage:Image;
+		private var backButton:Button;
 		private var okButton:Button;
 		private var nameText:TextField;
 		
@@ -46,36 +47,48 @@ package Customize{
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			topImage = new Image(assetManager.getTexture("face"));
-			topImage.x = 185;
-			topImage.y = 60;
+			topImage = new Image(assetManager.getTexture("button_hair"));
+			topImage.x = 170;
+			topImage.y = 175;
 			addChild(topImage);
 			
-			middleImage = new Image(assetManager.getTexture("middle"));
-			middleImage.x = 185;
-			middleImage.y = 125;
+			middleImage = new Image(assetManager.getTexture("button_baby"));
+			middleImage.x = 300;
+			middleImage.y = 65;
 			addChild(middleImage);
 			
-			bottomImage = new Image(assetManager.getTexture("bottom"));
-			bottomImage.x = 185;
-			bottomImage.y = 174;
+			bottomImage = new Image(assetManager.getTexture("button_clothes"));
+			bottomImage.x = 170;
+			bottomImage.y = 65;
 			addChild(bottomImage);
+			
+			backButton = new Button(assetManager.getTexture("button_back"));
+			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
+			backButton.x = 365;
+			backButton.y = 265;
+			addChild(backButton);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
 			okButton.addEventListener(Event.TRIGGERED, OkButtonTriggered);
 			okButton.x = 300;
-			okButton.y = 235;
+			okButton.y = 180;
 			addChild(okButton);
 			
-			nameText = new TextField(50, 20, "Name");
+			nameText = new TextField(80, 40, "Name");
+			nameText.fontSize = 20;
 			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
 			nameText.color = 0xFFFFFF;
-			nameText.x = 200;
+			nameText.x = 175;
 			nameText.y = 20;
 			addChild(nameText);
 		}
 		
+		//Add save functionality
 		private function OkButtonTriggered():void{
+			View.GetInstance().LoadScreen(Map);
+		}
+		
+		private function BackButtonTriggered():void{
 			View.GetInstance().LoadScreen(Map);
 		}
 		
@@ -91,6 +104,7 @@ package Customize{
 		}
 		
 		public function Destroy():void{
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
 			assetManager.dispose();
