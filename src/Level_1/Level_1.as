@@ -37,7 +37,8 @@ package Level_1{
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
-		private var speed:int = 1;
+		private var speed:int = 2;
+		private var progressPos:Number;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -87,7 +88,7 @@ package Level_1{
 			lifeText = new TextField(35, 25, "Life:");
 			lifeText.color = 0xFFFFFF;
 			lifeText.x = 5;
-			lifeText.y = 280;
+			lifeText.y = 283;
 			addChild(lifeText);
 			
 			timeText = new TextField(45, 25, "Time:");
@@ -103,23 +104,23 @@ package Level_1{
 			addChild(timeCounterText);
 
 			middle = new Quad(100 ,2 ,Color.WHITE);
-			middle.x = 270;
-			middle.y = 302;
+			middle.x = 250;
+			middle.y = 292;
 			addChild(middle);
 			
 			left = new Quad(2 ,9 ,Color.WHITE);
-			left.x = 270;
-			left.y = 298;
+			left.x = 250;
+			left.y = 288;
 			addChild(left);
 			
 			right = new Quad(2 ,9 ,Color.WHITE);
-			right.x = 370;
-			right.y = 298;
+			right.x = 350;
+			right.y = 288;
 			addChild(right);
 			
 			progress = new Quad(2 ,9 ,Color.WHITE);
-			progress.x = 270;
-			progress.y = 298;
+			progress.x = 250;
+			progress.y = 288;
 			addChild(progress);
 			
 			AddEntities();
@@ -179,8 +180,8 @@ package Level_1{
 		 * Moves the middle line to indicate progress.
 		 */
 		private function ProgressBar():void{
-			if(progress.x < 370){
-				progress.x += 1;
+			if(progress.x < 350){
+				progress.x += ((1*speed)/20.48);
 			}
 		}
 		
@@ -190,7 +191,7 @@ package Level_1{
 		 */
 		private function MoveEntities():void{
 			for(var i:int = 0; i < entities.length; i++){
-				entities[i].x -= 1;
+				entities[i].x -= speed;
 			}
 		}
 		
