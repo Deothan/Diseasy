@@ -69,7 +69,7 @@ package Level_1
 			addChild(coinIcon);
 			
 			jumpScreen = new Image(assetManager.getTexture("transparent"));
-			addEventListener(TouchEvent.TOUCH, Jump);
+			jumpScreen.addEventListener(TouchEvent.TOUCH, Jump);
 			jumpScreen.x = 0;
 			jumpScreen.y = 30;
 			addChild(jumpScreen);

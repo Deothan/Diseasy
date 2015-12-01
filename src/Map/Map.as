@@ -3,6 +3,8 @@ package Map{
 	
 	import Common.Screen;
 	
+	import Customize.Customize;
+	
 	import Level_1.Level_1;
 	
 	import Main.View;
@@ -47,7 +49,7 @@ package Map{
 			addChild(background);		
 			
 			level1Image = new Image(assetManager.getTexture("transparent"));
-			addEventListener(TouchEvent.TOUCH, Level1Touch);
+			level1Image.addEventListener(TouchEvent.TOUCH, Level1Touch);
 			level1Image.x = 78;
 			level1Image.y = 58;
 			addChild(level1Image);
@@ -78,7 +80,7 @@ package Map{
 		}
 		
 		private function CustomizeButtonTriggered():void{
-			//View.GetInstance().LoadScreen(Customize);
+			View.GetInstance().LoadScreen(Customize);
 		}
 		
 		private function BackButtonTriggered():void{

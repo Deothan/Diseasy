@@ -1,11 +1,7 @@
 package Main{
 	import Common.Screen;
 	
-	import Level_1.Level_1;
-	
 	import Menu.Menu;
-	
-	import Settings.Settings;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -13,7 +9,7 @@ package Main{
 	public class View extends Sprite{
 		private static var instance:View = new View();
 		private var screen:Sprite;
-		
+		private var volume:int;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -33,6 +29,14 @@ package Main{
 		
 		private function Update(event:Event):void{
 			(screen as Screen).Update();
+		}
+		
+		public function SetVolume(volume:int):void{
+			this.volume = volume;
+		}
+		
+		public function GetVolume():int{
+			return volume;
 		}
 		
 		public function LoadScreen(newScreen:Class):void{

@@ -21,8 +21,7 @@ package Settings{
 		private var assetManager:AssetManager = new AssetManager();
 		private var background:Image;
 		private var backButton:Button;
-		private var soundOn:Boolean = true;
-		private var vibrationOn:Boolean = true;
+		private var soundOn:Boolean;
 		private var soundText:TextField;
 		private var soundOnOffText:TextField;
 		private var sound:SoundTransform = new SoundTransform;
@@ -60,7 +59,15 @@ package Settings{
 			soundText.y = 50;
 			addChild(soundText);
 			
-			soundOnOffText = new TextField(30, 30, "ON");
+			if(View.GetInstance().GetVolume() == 1){
+				soundOnOffText = new TextField(30, 30, "ON");
+				soundOn = true;
+			}
+			else{
+				soundOnOffText = new TextField(30, 30, "OFF");
+				soundOn = false;
+			}
+					
 			soundOnOffText.color = 0xFFFFFF;
 			soundOnOffText.x = 150;
 			soundOnOffText.y = 50;
@@ -80,6 +87,7 @@ package Settings{
 					soundOn = true;
 					sound.volume = 1;
 				}
+				View.GetInstance().SetVolume(sound.volume);
 			}
 		}
 		
