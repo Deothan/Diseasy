@@ -23,6 +23,7 @@ package Level_1{
 		private var background:Image;
 		private var coinIcon:Image;
 		private var jumpScreen:Image;
+		private var winImage:Image;
 		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
@@ -38,6 +39,7 @@ package Level_1{
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
 		private var speed:int = 2;
+		private var pictureChange:Number;
 		private var progressPos:Number;
 		
 		public function Level_1(){
@@ -61,6 +63,10 @@ package Level_1{
 			background = new Image(assetManager.getTexture("background"));
 			entities.push(background);
 			addChild(background);
+			
+			winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+			winImage.alpha = 0;
+			addChild(winImage);
 			
 			coinIcon = new Image(assetManager.getTexture("coin"));
 			coinIcon.x = 460;
@@ -123,6 +129,8 @@ package Level_1{
 			progress.y = 288;
 			addChild(progress);
 			
+			pictureChange = progress.x;
+
 			AddEntities();
 			
 			loaded = true;
@@ -182,6 +190,18 @@ package Level_1{
 		private function ProgressBar():void{
 			if(progress.x < 350){
 				progress.x += ((1*speed)/20.48);
+				pictureChange += ((1*speed)/15.68);
+			}
+			if(pictureChange >= 350){
+				winImage.x = 480;
+				winImage.y = 0;
+				winImage.alpha = 1;
+				entities.push(winImage);
+			}
+			if(progress.x >= 350){
+				removeChild(background);
+				entities.pop();
+				//View.GetInstance().LoadScreen(VirusScreen);
 			}
 		}
 		
