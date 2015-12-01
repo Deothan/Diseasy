@@ -11,6 +11,7 @@ package Level_1{
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
+	import starling.display.Stage;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -34,10 +35,12 @@ package Level_1{
 		private var middle:Quad;
 		private var left:Quad;
 		private var right:Quad;
+		private var bacteria1:Bacteria1;
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
 		private var speed:int = 1;
+		private var stage:Stage;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -57,6 +60,8 @@ package Level_1{
 		}
 		
 		private function Start():void{
+			stage = this.stage;
+			
 			background = new Image(assetManager.getTexture("background"));
 			entities.push(background);
 			addChild(background);
@@ -131,7 +136,9 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			
+			bacteria1 = new Bacteria1(stage, 500, 180);
+			entities.push(bacteria1);
+			addChild(bacteria1);
 		}
 		
 		/**
@@ -203,6 +210,16 @@ package Level_1{
 				ProgressBar();
 				MoveEntities();
 				UpdateHearts();
+				UpdateBacteria();
+			}
+		}
+		
+		private function UpdateBacteria():void{
+			for(var i:int = 0; i < entities.length; i++){
+				if(entities[i] is Bacteria1 && entities[i].x < (0 - entities[i].width)){
+					entities[i].destroy();
+					removeChild(entities[i]);
+				}
 			}
 		}
 
