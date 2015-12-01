@@ -6,6 +6,8 @@ package Level_1
 	
 	import Main.View;
 	
+	import Menu.Menu;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -161,7 +163,7 @@ package Level_1
 		 * Called when the exitButton is pushed.
 		 */
 		private function ExitButtonTriggered():void{
-			View.GetInstance().LoadScreen(Level_1);
+			View.GetInstance().LoadScreen(Menu);
 		}
 		
 		/**

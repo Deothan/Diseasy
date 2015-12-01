@@ -28,7 +28,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Settings);
+			LoadScreen(Menu);
 		}
 		
 		private function Update(event:Event):void{

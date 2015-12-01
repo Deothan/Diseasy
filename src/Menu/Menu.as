@@ -9,6 +9,10 @@ package Menu
 	
 	import Main.View;
 	
+	import Map.Map;
+	
+	import Settings.Settings;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -87,14 +91,14 @@ package Menu
 		 * Opens the map screen.
 		 */
 		private function MapButtonTriggered():void{
-			//View.GetInstance().LoadScreen(Map);
+			View.GetInstance().LoadScreen(Map);
 		}
 		
 		/**
 		 * Opens the settings screen.
 		 */
 		private function SettingsButtonTriggered():void{
-			//View.GetInstance().LoadScreen(Settings);
+			View.GetInstance().LoadScreen(Settings);
 		}
 		
 		public function Update():void{
