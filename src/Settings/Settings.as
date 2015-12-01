@@ -100,7 +100,10 @@ package Settings{
 		}
 		
 		public function Destroy():void{
-			
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			soundOnButton.removeEventListener(Event.TRIGGERED, SoundTouch);
+			soundOffButton.removeEventListener(Event.TRIGGERED, SoundTouch);
+			assetManager.dispose();
 		}
 	}
 }

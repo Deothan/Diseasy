@@ -102,11 +102,15 @@ package Menu
 		}
 		
 		public function Update():void{
-			
+
 		}
 		
 		public function Destroy():void{
-			
+			mapButton.removeEventListener(Event.TRIGGERED, MapButtonTriggered);
+			settingsButton.removeEventListener(Event.TRIGGERED, SettingsButtonTriggered);
+			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
+			exitButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			assetManager.dispose();
 		}
 	}
 }

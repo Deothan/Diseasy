@@ -139,6 +139,11 @@ package Map{
 		}
 		
 		public function Destroy():void{
+			level1Button.removeEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			saveButton.removeEventListener(Event.TRIGGERED, SaveButtonTriggered);
+			customizeButton.removeEventListener(Event.TRIGGERED, CustomizeButtonTriggered);
+			assetManager.dispose();
 		}
 	}
 }

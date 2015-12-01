@@ -92,6 +92,8 @@ package Customize{
 		
 		public function Destroy():void{
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
+			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
+			assetManager.dispose();
 		}
 	}
 }

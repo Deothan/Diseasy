@@ -1,5 +1,4 @@
-package Level_1
-{
+package Level_1{
 	import flash.filesystem.File;
 	
 	import Common.Screen;
@@ -212,6 +211,9 @@ package Level_1
 		 */
 		public function Destroy():void{
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			assetManager.dispose();
 		}
 	}
 }
