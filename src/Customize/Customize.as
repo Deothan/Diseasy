@@ -6,9 +6,7 @@ package Customize{
 	import Main.View;
 	
 	import Map.Map;
-	
-	import Menu.Menu;
-	
+		
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -83,7 +81,7 @@ package Customize{
 		}
 		
 		public function Destroy():void{
-
+			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 		}
 	}
 }
