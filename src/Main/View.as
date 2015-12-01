@@ -3,6 +3,8 @@ package Main{
 	
 	import Level_1.Level_1;
 	
+	import Menu.Menu;
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -24,7 +26,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Level_1);
+			LoadScreen(Menu);
 		}
 		
 		private function Update(event:Event):void{
