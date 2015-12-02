@@ -5,13 +5,19 @@ package Level_1{
 	
 	import Common.Entity;
 	import Common.Screen;
+	
 	import Main.View;
+	
 	import Menu.Menu;
+	
 	import Player.Player;
+	
 	import VirusScreen.VirusScreen;
+	
 	import Viruses.HIV;
 	
 	import starling.display.Button;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -253,6 +259,7 @@ package Level_1{
 					
 					if(entities[i] is Entity){
 						entities[i].Destroy();
+						RemoveEntity(entities[i]);
 					}
 				}
 			}
@@ -260,6 +267,21 @@ package Level_1{
 		
 		private function Continue(event:TimerEvent):void{
 			View.GetInstance().LoadScreen(VirusScreen);
+		}
+		
+		/**
+		 * Deletes and entity from the entity array, and then it removes the hole in the array.
+		 */
+		private function RemoveEntity(entity:Object):void{
+			var index:int = entities.indexOf(entity);
+			var next:DisplayObject;
+			var j:int;
+			
+			for(var i:int = index; i < entities.length-1; i++){				
+				entities[i] = entities[i+1];					
+			}
+			
+			entities.pop();
 		}
 
 		/**
