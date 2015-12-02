@@ -5,10 +5,17 @@ package Level_1{
 	
 	import Common.Entity;
 	import Common.Screen;
+	
+	import Items.Platform;
+	
 	import Main.View;
+	
 	import Menu.Menu;
+	
 	import Player.Player;
+	
 	import VirusScreen.VirusScreen;
+	
 	import Viruses.HIV;
 	
 	import starling.display.Button;
@@ -37,6 +44,7 @@ package Level_1{
 		private var timeText:TextField;
 		private var timeCounterText:TextField;
 		private var loaded:Boolean = false;
+		private var playerLoaded:Boolean = false;
 		private var progress:Quad;
 		private var middle:Quad;
 		private var left:Quad;
@@ -146,15 +154,33 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			var hiv:HIV  = new HIV();
-			hiv.x = 500;
-			hiv.y = 215;
-			entities.push(hiv);
-			addChild(hiv);
+			// make formula to decrease the divider to increase spawn speed
+			if( (time/24)%8 == 0){
+				var hiv:HIV  = new HIV();
+				hiv.x = 500;
+				hiv.y = 215;
+				entities.push(hiv);
+				addChild(hiv);
+			}
 			
-			player.x = 100;
-			player.y = 205;
-			addChild(player);			
+			if ( (time/24)%12 == 0){
+				var platform:Platform = new Platform();
+				platform.x = 550;
+				platform.y = 175;
+				entities.push(platform);
+				addChild(platform);
+			}
+			
+			/*
+			* Add power-ups
+			*/
+			
+			if(!playerLoaded){
+				player.x = 100;
+				player.y = 205;
+				addChild(player);
+				playerLoaded = true;
+			}
 		}
 		
 		/**
@@ -239,6 +265,7 @@ package Level_1{
 				MoveEntities();
 				UpdateHearts();
 				RemoveOutOfStageEntities();
+				AddEntities();
 			}
 		}
 		
