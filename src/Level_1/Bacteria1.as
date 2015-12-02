@@ -11,18 +11,15 @@ package Level_1{
 		
 		import starling.display.Image;
 		import starling.display.Sprite;
-		import starling.display.Stage;
 		import starling.events.Event;
 		import starling.utils.AssetManager;
 		
 		public class Bacteria1 extends Sprite{
 			
-			private var StageInstance:Stage;
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
 			 
-			public function Bacteria1(_stage:Stage, _desiredX:int, _desiredY:int) {
-				this.StageInstance = _stage;
+			public function Bacteria1(_desiredX:int, _desiredY:int) {
 				this.x = _desiredX;
 				this.y = _desiredY;
 				addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -46,7 +43,6 @@ package Level_1{
 				bacteriaImage.width = 40;
 				bacteriaImage.height = 40;
 				addChild(bacteriaImage);
-				
 			}
 
 			public function getPosition():Point{

@@ -3,117 +3,132 @@
  * This class is not allowed to be copied or sold except with explicit permission from Hanze: University of Applied Sciences
  * @author:    Kevin Stoffers
  * @version: 1 (29/11/2015)
+ * @version: 2 (02/12/2015)
+ * UNLOCK (find in map) , SWITCHANIMATION, life (has to be reflected in lvl1:shownLife),  
  */
-package 
+package Player
 {
     /**
      * Load external libraries
      */
-    import flash.display.Stage;
-    import flash.display.Sprite;
-    import flash.geom.Point;
+    import flash.filesystem.File;
+    
+    import starling.core.Starling;
+    import starling.display.MovieClip;
+    import starling.display.Sprite;
+    import starling.events.Event;
+    import starling.utils.AssetManager;
     
     /**
      * This class contains an instance of the player class. By calling the constructor a new instance is initiated
-     * To add the player to stage a stage instance needs to be called in the constructor of the class.
      */
     public class Player extends Sprite {
        /* parameters 
-        * @param currentAnimationState the string representation of the animation state the player is currently in
-        * @param animations Array holding animations object
-        * @param StageInstance the stage instance to add coin instance too
-        * @param PositionX the desired x location (absolute to stage) position to spawn the item
-        * @param PositionY the desired y location (absolute to stage) position to spawn the item
-        */
-        private var currentAnimationState:String;
-        private var animations:Array;
-        private var StageInstance:Stage;        
-        private var PositionX:int;
-        private var PositionY:int;
+		* @param life, nr of hearts
+        */       
+		private var life:int = 5;
+		private var currentAnimation:String;
+		private var animations:Array;
+		private var assetManager:AssetManager;
+		private var unlock1:Boolean = true;
+		private var unlock2:Boolean = false;
+		private var unlock3:Boolean = false;
+		private var unlock4:Boolean = false;
         
        /**
          * Class constructor sets stage, desired position x and desired position y
-         * @param _stage stage instance to add player to
-         * @param _positionx the desired x location (absolute to stage) position to spawn the item
-         * @param _positiony the desired y loaction (absolute to stage) position to spawn the item
          */    
-        public function Player(_stage:Stage, _desiredX:int, _desiredY:int) {           
-            this.StageInstance = _stage;
-            this.PositionX = _desiredX;
-            this.PositionY = _desiredY;
-            loadAnimations();
-            Spawn();
-        }
+        public function Player() {  
+			animations = new Array();
+        	addEventListener(Event.ADDED_TO_STAGE, Initialize);
+		}
+		
+		private function loadAnimations():void{
+			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("Mole"), 24);
+			animations["run"] = run_animation;
+		}
+				
+		private function Initialize():void{
+			assetManager = new AssetManager();
+			var folder:File = File.applicationDirectory.resolvePath("Player/assets");
+			assetManager.enqueue(folder);
+			assetManager.loadQueue(Progress);
+		}
+		
+		private function Progress(ratio:Number):void{
+			if(ratio == 1){
+				Start();
+			}
+		}
+		
+		private function Start():void{
+			loadAnimations();
+			switchAnimations("run");
+		}
 
-        /**
-         * Class public method to get x and y coordination of player instance wrapped as Point
-         * @return Point a point representation of objects x and y coordination
-         */
-        public function getPosition():Point{
-            return new Point(this.animations[this.currentAnimationState].x, this.animations[this.currentAnimationState].y);
-        }
-        
-        /**
-        * Class public method to set x and y coordination of player instance wrappes as Point
-        * @param _position the desired position (absolute to stage) wrapped as Point
-        */
-        public function setPosition(_position:Point):void{
-            this.PositionX = _position.x;
-            this.PositionY = _position.y;
-        }
-        
-        /**
-         * Class private method that adds player to the stage and places it on desired X/Y position
-         */
-        private function Spawn():void{
-            switchAnimations(null);            
-            this.StageInstance.addChild(animations[currentAnimationState]);
-            animations[currentAnimationState].x = this.PositionX;
-            animations[currentAnimationState].y = this.PositionY;
-        }
-        
-       /**
-         * Class private method that loads player animations to memory
-         * animations array holds reference to object
-         */
-         private function loadAnimations():void{
-            var _idle:playerIdle = new playerIdle();
-            var _running:playerRummomg = new playerRunning();
-            var _jumping:playerJumping = new playerJumping();
-            var _descending:playerDescend = new playerDescend();
-            var _hit:playerHit = new playerHit();
-            
-            this.animations = new Array();
-            this.animations["idle"] = _idle;
-            this.animations["running"] = _running;
-            this.animations["jumping"] = _jumping;
-            this.animations["falling"] = _descending;
-            this.animations["hit"] = _hit;
-        }
-        
-        /**
-         * Class public method that switches player animations in memory
-         * if the currentAnimationState = null switches to idle (i.e.: before spawn)
-         * if the currentAnimationState = param _animation do nothing
-         * else save the current X and Y position, switch animation and set X and Y position
-         * @param _animation the desired animation to switch to
-         */
-        public function switchAnimations(_animation:String):void{
-            if(this.currentAnimationState == null){
-                this.currentAnimationState = "idle";
-            }
-            else if(this.currentAnimationState == _animation){
-                // do nothing
-            }
-            else{
-                var positionX = this.animations[this.currentAnimationState].x;
-                var positionY = this.animations[this.currentAnimationState].y;
-                this.currentAnimationState = _animation;
-                this.StageInstance.addChild(this.animations[this.currentAnimationState]);
-                this.animations[this.currentAnimationState].x = positionX;
-                this.animations[this.currentAnimationState].y = positionY;
-            }
-        }
-
+		public function getLife():int{
+			return this.life;
+		}
+		
+		public function getUnlock():Array{
+			var unlock:Array = new Array();
+			unlock[0] = unlock1;
+			unlock[1] = unlock2;
+			unlock[2] = unlock3;
+			unlock[3] = unlock4;
+			return unlock;
+		}
+		
+		public function setUnlock(level:int):void{
+			if (level == 2){
+				unlock2 = true;
+			}
+			else if(level == 3){
+				unlock3 = true;
+			}
+			else if(level == 4){
+				unlock4 = true;
+			}
+		}
+		
+		public function setLife(_life:int):void{
+			this.life = _life; 
+		}
+		
+		//before monday
+		public function jump(name:String):void{
+			
+		}
+		
+		/**
+		 * Method that changes animation
+		 * @param: _animation possibilities: run - jump - hit
+		 */
+		public function switchAnimations(_animation:String):void{
+			if(currentAnimation == null){
+				addChild(animations[_animation]);
+				Starling.juggler.add(animations[_animation]);
+				currentAnimation = _animation;
+			}
+			else if(_animation.localeCompare(currentAnimation)==0){
+				//animation is already playing, do nothing
+			}
+			else{
+				var currentX:int = animations[currentAnimation].x;
+				var currentY:int = animations[currentAnimation].y; 
+				animations[currentAnimation].stop();
+				removeChild(animations[currentAnimation]);
+				Starling.juggler.add(animations[_animation]);
+				animations[_animation].x = currentX;
+				animations[_animation].y = currentY;
+				currentAnimation = _animation;
+			}
+		}
+		
+		public function destroy():void{
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			assetManager.dispose();
+		}
+		
     }
 }

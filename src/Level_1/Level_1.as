@@ -9,6 +9,8 @@ package Level_1{
 	
 	import Menu.Menu;
 	
+	import Player.Player;
+	
 	import VirusScreen.VirusScreen;
 	
 	import starling.display.Button;
@@ -28,6 +30,7 @@ package Level_1{
 		private var coinIcon:Image;
 		private var jumpScreen:Image;
 		private var winImage:Image;
+		//to be removed
 		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
@@ -39,7 +42,6 @@ package Level_1{
 		private var middle:Quad;
 		private var left:Quad;
 		private var right:Quad;
-		private var bacteria1:Bacteria1;
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
@@ -47,6 +49,7 @@ package Level_1{
 		private var pictureChange:Number;
 		private var progressPos:Number;
 		private var timer:flash.utils.Timer;
+		private var player:Player = new Player();
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -149,23 +152,30 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			bacteria1 = new Bacteria1(stage, 500, 180);
+			var bacteria1:Bacteria1  = new Bacteria1(500, 180);
 			entities.push(bacteria1);
 			addChild(bacteria1);
+			player.x = 100;
+			player.y = 200;
+			addChild(player);
+			/** to be removed later **/
+			player.width = (player.width / 2);
+			player.height = (player.height / 2);
+			
 		}
 		
 		/**
 		 * checks the shownLife variable, and updates the number of hearts in the bottom left accordingly.
 		 */
 		private function UpdateHearts():void{
-			while(shownLife > hearts.length){
+			while(player.getLife() > hearts.length){
 				var heart:Image = new Image(assetManager.getTexture("heart"));
 				heart.x = 45 + (hearts.length*22);
 				heart.y = 285;
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(shownLife < hearts.length){
+			while(player.getLife() < hearts.length){
 				removeChild(hearts.pop());
 			}
 		}
@@ -175,7 +185,7 @@ package Level_1{
 		 */
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-				trace("jump");
+
 			}
 		}
 		
@@ -212,7 +222,8 @@ package Level_1{
 			if(progress.x >= 350){
 				removeChild(background);
 				entities.pop();
-				timer.start();			}
+				timer.start();			
+			}
 		}
 		
 		/**
@@ -263,6 +274,7 @@ package Level_1{
 			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
+			/** player destroy **/
 		}
 	}
 }
