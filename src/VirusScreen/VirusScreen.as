@@ -6,6 +6,8 @@ package VirusScreen
 	
 	import Main.View;
 	
+	import Menu.Menu;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -94,7 +96,7 @@ package VirusScreen
 		
 		public function ContinueButtonTriggered():void
 		{
-			//View.GetInstance().LoadScreen(Infant);
+			View.GetInstance().LoadScreen(Menu);
 		}
 		
 		public function DiarrheaTriggered():void
