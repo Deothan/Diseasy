@@ -1,5 +1,4 @@
-package Level_1
-{
+package Level_1{
 	import flash.filesystem.File;
 	
 	import Common.Screen;
@@ -12,6 +11,7 @@ package Level_1
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
+	import starling.display.Stage;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -24,6 +24,7 @@ package Level_1
 		private var background:Image;
 		private var coinIcon:Image;
 		private var jumpScreen:Image;
+		private var winImage:Image;
 		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
@@ -35,10 +36,14 @@ package Level_1
 		private var middle:Quad;
 		private var left:Quad;
 		private var right:Quad;
-		private var exitButton:Button;
+		private var bacteria1:Bacteria1;
+		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
-		private var speed:int;
+		private var speed:int = 2;
+		private var pictureChange:Number;
+		private var progressPos:Number;
+		private var stage:Stage;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -58,14 +63,19 @@ package Level_1
 		}
 		
 		private function Start():void{
-			loaded = true;
+			stage = this.stage;
 			
-			background = new Image(assetManager.getTexture("test"));
+			background = new Image(assetManager.getTexture("background"));
+			entities.push(background);
 			addChild(background);
 			
-			coinIcon = new Image(assetManager.getTexture("coinIcon"));
+			winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+			winImage.alpha = 0;
+			addChild(winImage);
+			
+			coinIcon = new Image(assetManager.getTexture("coin"));
 			coinIcon.x = 460;
-			coinIcon.y = 12;
+			coinIcon.y = 7;
 			addChild(coinIcon);
 			
 			jumpScreen = new Image(assetManager.getTexture("transparent"));
@@ -74,22 +84,22 @@ package Level_1
 			jumpScreen.y = 30;
 			addChild(jumpScreen);
 			
-			exitButton = new Button(assetManager.getTexture("exitButton"), "Exit");
-			exitButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
-			exitButton.x = 412;
-			exitButton.y = 292;
-			addChild(exitButton);	
+			backButton = new Button(assetManager.getTexture("button_back"));
+			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
+			backButton.x = 370;
+			backButton.y = 265;
+			addChild(backButton);	
 			
 			coinText = new TextField(35, 25, "0 x");
 			coinText.color = 0xFFFFFF;
-			coinText.x = 425;
+			coinText.x = 428;
 			coinText.y = 4;
 			addChild(coinText);
 			
 			lifeText = new TextField(35, 25, "Life:");
 			lifeText.color = 0xFFFFFF;
 			lifeText.x = 5;
-			lifeText.y = 292;
+			lifeText.y = 283;
 			addChild(lifeText);
 			
 			timeText = new TextField(45, 25, "Time:");
@@ -105,33 +115,39 @@ package Level_1
 			addChild(timeCounterText);
 
 			middle = new Quad(100 ,2 ,Color.WHITE);
-			middle.x = 290;
-			middle.y = 302;
+			middle.x = 250;
+			middle.y = 292;
 			addChild(middle);
 			
 			left = new Quad(2 ,9 ,Color.WHITE);
-			left.x = 290;
-			left.y = 298;
+			left.x = 250;
+			left.y = 288;
 			addChild(left);
 			
 			right = new Quad(2 ,9 ,Color.WHITE);
-			right.x = 390;
-			right.y = 298;
+			right.x = 350;
+			right.y = 288;
 			addChild(right);
 			
 			progress = new Quad(2 ,9 ,Color.WHITE);
-			progress.x = 290;
-			progress.y = 298;
+			progress.x = 250;
+			progress.y = 288;
 			addChild(progress);
 			
+			pictureChange = progress.x;
+
 			AddEntities();
+			
+			loaded = true;
 		}
 		
 		/**
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			
+			bacteria1 = new Bacteria1(stage, 500, 180);
+			entities.push(bacteria1);
+			addChild(bacteria1);
 		}
 		
 		/**
@@ -139,9 +155,9 @@ package Level_1
 		 */
 		private function UpdateHearts():void{
 			while(shownLife > hearts.length){
-				var heart:Image = new Image(assetManager.getTexture("heartIcon"));
-				heart.x = 45 + (hearts.length*17);
-				heart.y = 298;
+				var heart:Image = new Image(assetManager.getTexture("heart"));
+				heart.x = 45 + (hearts.length*22);
+				heart.y = 285;
 				hearts.push(heart);
 				addChild(heart);
 			}
@@ -162,7 +178,7 @@ package Level_1
 		/**
 		 * Called when the exitButton is pushed.
 		 */
-		private function ExitButtonTriggered():void{
+		private function BackButtonTriggered():void{
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
@@ -179,8 +195,20 @@ package Level_1
 		 * Moves the middle line to indicate progress.
 		 */
 		private function ProgressBar():void{
-			if(progress.x < 390){
-				progress.x += 1;
+			if(progress.x < 350){
+				progress.x += ((1*speed)/20.48);
+				pictureChange += ((1*speed)/15.68);
+			}
+			if(pictureChange >= 350){
+				winImage.x = 480;
+				winImage.y = 0;
+				winImage.alpha = 1;
+				entities.push(winImage);
+			}
+			if(progress.x >= 350){
+				removeChild(background);
+				entities.pop();
+				//View.GetInstance().LoadScreen(VirusScreen);
 			}
 		}
 		
@@ -189,8 +217,8 @@ package Level_1
 		 * To change the speed of the level change the speed variable in the top.
 		 */
 		private function MoveEntities():void{
-			for(var e:Sprite in entities){
-				e.x += speed;
+			for(var i:int = 0; i < entities.length; i++){
+				entities[i].x -= speed;
 			}
 		}
 		
@@ -203,6 +231,19 @@ package Level_1
 				ProgressBar();
 				MoveEntities();
 				UpdateHearts();
+				UpdateBacteria();
+			}
+		}
+		
+		/**
+		 * Deleting the bacteria when it leaves the screen.
+		 */
+		private function UpdateBacteria():void{
+			for(var i:int = 0; i < entities.length; i++){
+				if(entities[i] is Bacteria1 && entities[i].x < (0 - entities[i].width)){
+					entities[i].destroy();
+					removeChild(entities[i]);
+				}
 			}
 		}
 
@@ -210,6 +251,10 @@ package Level_1
 		 * Called when the screen is changed.
 		 */
 		public function Destroy():void{
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			assetManager.dispose();
 		}
 	}
 }

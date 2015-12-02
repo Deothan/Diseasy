@@ -2,9 +2,7 @@ package Main{
 	import Common.Screen;
 	
 	import Menu.Menu;
-	
-	import VirusScreen.VirusScreen;
-	
+		
 	import starling.display.Sprite;
 	import starling.events.Event;
 

@@ -12,9 +12,6 @@ package Settings{
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
-	import starling.text.TextField;
 	import starling.utils.AssetManager;
 
 	public class Settings extends Sprite implements Screen{
@@ -22,8 +19,8 @@ package Settings{
 		private var background:Image;
 		private var backButton:Button;
 		private var soundOn:Boolean;
-		private var soundText:TextField;
-		private var soundOnOffText:TextField;
+		private var soundOnButton:Button;
+		private var soundOffButton:Button;
 		private var sound:SoundTransform = new SoundTransform;
 		
 		public function Settings(){
@@ -44,51 +41,53 @@ package Settings{
 		}
 		
 		private function Start():void{
-			background = new Image(assetManager.getTexture("test"));
+			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			backButton = new Button(assetManager.getTexture("backButton"), "Back");
+			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
-			backButton.x = 412;
-			backButton.y = 292;
+			backButton.x = 370;
+			backButton.y = 260;
 			addChild(backButton);
 			
-			soundText = new TextField(50, 30, "Sound:");
-			soundText.color = 0xFFFFFF;
-			soundText.x = 50;
-			soundText.y = 50;
-			addChild(soundText);
+			soundOnButton = new Button(assetManager.getTexture("sound_off"));
+			soundOnButton.addEventListener(Event.TRIGGERED, SoundTouch);
+			soundOnButton.x = 350;
+			soundOnButton.y = 50;
+			addChild(soundOnButton);
+			
+			soundOffButton = new Button(assetManager.getTexture("sound_on"));
+			soundOffButton.addEventListener(Event.TRIGGERED, SoundTouch);
+			soundOffButton.x = 250;
+			soundOffButton.y = 50;
+			addChild(soundOffButton);
 			
 			if(View.GetInstance().GetVolume() == 1){
-				soundOnOffText = new TextField(30, 30, "ON");
+				soundOnButton.alpha = 1;
+				soundOffButton.alpha = 0.5;
 				soundOn = true;
 			}
 			else{
-				soundOnOffText = new TextField(30, 30, "OFF");
+				soundOnButton.alpha = 0.5;
+				soundOffButton.alpha = 1;
 				soundOn = false;
 			}
-					
-			soundOnOffText.color = 0xFFFFFF;
-			soundOnOffText.x = 150;
-			soundOnOffText.y = 50;
-			soundOnOffText.addEventListener(TouchEvent.TOUCH, SoundTouch);
-			addChild(soundOnOffText);
 		}
 		
-		private function SoundTouch(event:TouchEvent):void{
-			if(event.getTouch(this, TouchPhase.BEGAN)){
-				if(soundOn){
-					soundOnOffText.text = "OFF";
-					soundOn = false;
-					sound.volume = 0;
-				}
-				else{
-					soundOnOffText.text = "ON";
-					soundOn = true;
-					sound.volume = 1;
-				}
-				View.GetInstance().SetVolume(sound.volume);
+		private function SoundTouch():void{
+			if(soundOn){
+				soundOnButton.alpha = 0.5;
+				soundOffButton.alpha = 1;
+				soundOn = false;
+				sound.volume = 0;
 			}
+			else{
+				soundOnButton.alpha = 1;
+				soundOffButton.alpha = 0.5;
+				soundOn = true;
+				sound.volume = 1;
+			}
+			View.GetInstance().SetVolume(sound.volume);
 		}
 		
 		private function BackButtonTriggered():void{
@@ -100,7 +99,10 @@ package Settings{
 		}
 		
 		public function Destroy():void{
-			
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			soundOnButton.removeEventListener(Event.TRIGGERED, SoundTouch);
+			soundOffButton.removeEventListener(Event.TRIGGERED, SoundTouch);
+			assetManager.dispose();
 		}
 	}
 }

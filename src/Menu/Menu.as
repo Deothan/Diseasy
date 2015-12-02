@@ -45,31 +45,31 @@ package Menu
 		}
 		
 		private function Start():void{
-			background = new Image(assetManager.getTexture("test"));
+			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			mapButton = new Button(assetManager.getTexture("mapButton"), "Map");
+			mapButton = new Button(assetManager.getTexture("menu_play"));
 			mapButton.addEventListener(Event.TRIGGERED, MapButtonTriggered);
-			mapButton.x = 100;
-			mapButton.y = 100;
+			mapButton.x = 50;
+			mapButton.y = 30;
 			addChild(mapButton);
 			
-			settingsButton = new Button(assetManager.getTexture("settingsButton"), "Settings");
+			settingsButton = new Button(assetManager.getTexture("menu_settings"));
 			settingsButton.addEventListener(Event.TRIGGERED, SettingsButtonTriggered);
-			settingsButton.x = 320;
-			settingsButton.y = 100;
+			settingsButton.x = 50;
+			settingsButton.y = 220;
 			addChild(settingsButton);
 			
-			loadButton = new Button(assetManager.getTexture("loadButton"), "Load");
+			loadButton = new Button(assetManager.getTexture("menu_load"));
 			loadButton.addEventListener(Event.TRIGGERED, LoadButtonTriggered);
-			loadButton.x = 100;
-			loadButton.y = 200;
+			loadButton.x = 250;
+			loadButton.y = 30;
 			addChild(loadButton);
 			
-			exitButton = new Button(assetManager.getTexture("exitButton"), "Exit");
+			exitButton = new Button(assetManager.getTexture("menu_exit"));
 			exitButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
-			exitButton.x = 320;
-			exitButton.y = 200;
+			exitButton.x = 250;
+			exitButton.y = 220;
 			addChild(exitButton);
 		}
 		
@@ -102,11 +102,15 @@ package Menu
 		}
 		
 		public function Update():void{
-			
+
 		}
 		
 		public function Destroy():void{
-			
+			mapButton.removeEventListener(Event.TRIGGERED, MapButtonTriggered);
+			settingsButton.removeEventListener(Event.TRIGGERED, SettingsButtonTriggered);
+			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
+			exitButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			assetManager.dispose();
 		}
 	}
 }
