@@ -1,5 +1,7 @@
 package Level_1{
+	import flash.events.TimerEvent;
 	import flash.filesystem.File;
+	import flash.utils.Timer;
 	
 	import Common.Screen;
 	
@@ -13,7 +15,6 @@ package Level_1{
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
-	import starling.display.Stage;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -45,7 +46,7 @@ package Level_1{
 		private var speed:int = 2;
 		private var pictureChange:Number;
 		private var progressPos:Number;
-		private var stage:Stage;
+		private var timer:flash.utils.Timer;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -65,7 +66,8 @@ package Level_1{
 		}
 		
 		private function Start():void{
-			stage = this.stage;
+			timer = new flash.utils.Timer(2500, 1);
+			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
 			background = new Image(assetManager.getTexture("background"));
 			entities.push(background);
@@ -210,8 +212,7 @@ package Level_1{
 			if(progress.x >= 350){
 				removeChild(background);
 				entities.pop();
-				View.GetInstance().LoadScreen(VirusScreen);
-			}
+				timer.start();			}
 		}
 		
 		/**
@@ -248,12 +249,17 @@ package Level_1{
 				}
 			}
 		}
+		
+		private function Continue(event:TimerEvent):void{
+			View.GetInstance().LoadScreen(VirusScreen);
+		}
 
 		/**
 		 * Called when the screen is changed.
 		 */
 		public function Destroy():void{
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
