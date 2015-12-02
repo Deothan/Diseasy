@@ -4,30 +4,29 @@
  * @author:    Werner Mulder
  * @version: 1 (29/11/2015)
  */
-package Level_1{
+package Viruses{
 
 		import flash.filesystem.File;
-		import flash.geom.Point;
+		
+		import Common.Entity;
 		
 		import starling.display.Image;
 		import starling.display.Sprite;
 		import starling.events.Event;
 		import starling.utils.AssetManager;
 		
-		public class Bacteria1 extends Sprite{
+		public class HIV extends Sprite implements Entity{
 			
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
 			 
-			public function Bacteria1(_desiredX:int, _desiredY:int) {
-				this.x = _desiredX;
-				this.y = _desiredY;
+			public function HIV() {
 				addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			}
 			
 			private function Initialize():void{
 				assetManager = new AssetManager();
-				var folder:File = File.applicationDirectory.resolvePath("Level_1/assets");
+				var folder:File = File.applicationDirectory.resolvePath("Viruses/assets");
 				assetManager.enqueue(folder);
 				assetManager.loadQueue(Progress);
 			}
@@ -40,24 +39,14 @@ package Level_1{
 			
 			private function Start():void{
 				bacteriaImage = new Image(assetManager.getTexture("hiv"));
-				bacteriaImage.width = 40;
-				bacteriaImage.height = 40;
+				bacteriaImage.width = 40; // to be removed later
+				bacteriaImage.height = 40; // to be removed later
 				addChild(bacteriaImage);
 			}
-
-			public function getPosition():Point{
-				return new Point(this.x, this.y);
-			}
 			
-			public function setPosition(_position:Point):void{
-				this.x = _position.x;
-				this.y = _position.y;
-			}
-			
-			public function destroy():void{
+			public function Destroy():void{
 				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 				assetManager.dispose();
 			}
-			
 		}
 	}

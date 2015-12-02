@@ -45,6 +45,8 @@ package Player
 		
 		private function loadAnimations():void{
 			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("Mole"), 24);
+			run_animation.width = 40; // to be removed
+			run_animation.height = 50; // to be removed
 			animations["run"] = run_animation;
 		}
 				

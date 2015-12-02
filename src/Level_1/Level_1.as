@@ -3,6 +3,7 @@ package Level_1{
 	import flash.filesystem.File;
 	import flash.utils.Timer;
 	
+	import Common.Entity;
 	import Common.Screen;
 	
 	import Main.View;
@@ -12,6 +13,8 @@ package Level_1{
 	import Player.Player;
 	
 	import VirusScreen.VirusScreen;
+	
+	import Viruses.HIV;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -23,6 +26,7 @@ package Level_1{
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
+
 
 	public class Level_1 extends Sprite implements Screen{
 		private var assetManager:AssetManager;
@@ -45,11 +49,12 @@ package Level_1{
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
-		private var speed:int = 2;
-		private var pictureChange:Number;
-		private var progressPos:Number;
 		private var timer:flash.utils.Timer;
 		private var player:Player = new Player();
+		
+		//Changeable variables
+		private var widthOfLevelInPixels:int = 2528;
+		private var speed:int = 2;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -75,10 +80,6 @@ package Level_1{
 			background = new Image(assetManager.getTexture("background"));
 			entities.push(background);
 			addChild(background);
-			
-			winImage = new Image(assetManager.getTexture("Level1FinalStage"));
-			winImage.alpha = 0;
-			addChild(winImage);
 			
 			coinIcon = new Image(assetManager.getTexture("coin"));
 			coinIcon.x = 460;
@@ -135,8 +136,6 @@ package Level_1{
 			progress.y = 288;
 			addChild(progress);
 			
-			pictureChange = progress.x;
-
 			AddEntities();
 			
 			jumpScreen = new Image(assetManager.getTexture("transparent"));
@@ -152,16 +151,15 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			var bacteria1:Bacteria1  = new Bacteria1(500, 180);
-			entities.push(bacteria1);
-			addChild(bacteria1);
-			player.x = 100;
-			player.y = 200;
-			addChild(player);
-			/** to be removed later **/
-			player.width = (player.width / 2);
-			player.height = (player.height / 2);
+			var hiv:HIV  = new HIV();
+			hiv.x = 500;
+			hiv.y = 215;
+			entities.push(hiv);
+			addChild(hiv);
 			
+			player.x = 100;
+			player.y = 205;
+			addChild(player);			
 		}
 		
 		/**
@@ -210,18 +208,16 @@ package Level_1{
 		 */
 		private function ProgressBar():void{
 			if(progress.x < 350){
-				progress.x += ((1*speed)/20.48);
-				pictureChange += ((1*speed)/15.68);
+				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
-			if(pictureChange >= 350){
+			if(progress.x >= 326){
+				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
-				winImage.alpha = 1;
 				entities.push(winImage);
+				addChildAt(winImage, 1);
 			}
 			if(progress.x >= 350){
-				removeChild(background);
-				entities.pop();
 				timer.start();			
 			}
 		}
@@ -231,8 +227,10 @@ package Level_1{
 		 * To change the speed of the level change the speed variable in the top.
 		 */
 		private function MoveEntities():void{
-			for(var i:int = 0; i < entities.length; i++){
-				entities[i].x -= speed;
+			if(progress.x < 350){
+				for(var i:int = 0; i < entities.length; i++){
+					entities[i].x -= speed;
+				}
 			}
 		}
 		
@@ -245,18 +243,22 @@ package Level_1{
 				ProgressBar();
 				MoveEntities();
 				UpdateHearts();
-				UpdateBacteria();
+				RemoveOutOfStageEntities();
 			}
 		}
 		
 		/**
-		 * Deleting the bacteria when it leaves the screen.
+		 * Deleting the Entites when it leaves the screen.
+		 * If it is an Entity call Destroy().
 		 */
-		private function UpdateBacteria():void{
+		private function RemoveOutOfStageEntities():void{
 			for(var i:int = 0; i < entities.length; i++){
-				if(entities[i] is Bacteria1 && entities[i].x < (0 - entities[i].width)){
-					entities[i].destroy();
+				if(entities[i].x < (0 - entities[i].width)){
 					removeChild(entities[i]);
+					
+					if(entities[i] is Entity){
+						entities[i].Destroy();
+					}
 				}
 			}
 		}
