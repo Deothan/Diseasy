@@ -66,7 +66,7 @@ package Level_1{
 		}
 		
 		private function Start():void{
-			timer = new flash.utils.Timer(2500, 1);
+			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
 			background = new Image(assetManager.getTexture("background"));
