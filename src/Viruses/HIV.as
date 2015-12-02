@@ -1,9 +1,3 @@
-/**
- * Product owner: Hanze University of Applied Sciences
- * This class is not allowed to be copied or sold except with explicit permission from Hanze: University of Applied Sciences
- * @author:    Werner Mulder
- * @version: 1 (29/11/2015)
- */
 package Viruses{
 
 		import flash.filesystem.File;
@@ -19,11 +13,13 @@ package Viruses{
 			
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
-			 
+			
+			//Constructor that start the initialze function when this is added to the stage
 			public function HIV() {
 				addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			}
 			
+			//If added to the stage load the assetmanager and call function progress
 			private function Initialize():void{
 				assetManager = new AssetManager();
 				var folder:File = File.applicationDirectory.resolvePath("Viruses/assets");
@@ -31,12 +27,14 @@ package Viruses{
 				assetManager.loadQueue(Progress);
 			}
 			
+			//Functions that checks whether the assetmanager is done loading, if so continue
 			private function Progress(ratio:Number):void{
 				if(ratio == 1){
 					Start();
 				}
 			}
 			
+			//If assetmanager is loaded, get the texture set its size and add it to the stage
 			private function Start():void{
 				bacteriaImage = new Image(assetManager.getTexture("hiv"));
 				bacteriaImage.width = 40; // to be removed later
@@ -44,8 +42,10 @@ package Viruses{
 				addChild(bacteriaImage);
 			}
 			
+			//Function to remove the listener and assetmanager of this object, 
 			public function Destroy():void{
 				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+				removeChild(bacteriaImage);
 				assetManager.dispose();
 			}
 		}
