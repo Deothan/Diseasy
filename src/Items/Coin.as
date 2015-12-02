@@ -4,7 +4,7 @@
  * @author:	Kevin Stoffers
  * @version: 1 (25/11/2015)
  */
-package Level_1
+package Items
 {
 	import flash.filesystem.File;
 	
@@ -44,7 +44,7 @@ package Level_1
 		
 		private function Initialize():void{
 			assetManager = new AssetManager();
-			var folder:File = File.applicationDirectory.resolvePath("Level_1/assets");
+			var folder:File = File.applicationDirectory.resolvePath("Items/assets");
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
 		}
