@@ -82,12 +82,6 @@ package Level_1{
 			coinIcon.y = 7;
 			addChild(coinIcon);
 			
-			jumpScreen = new Image(assetManager.getTexture("transparent"));
-			jumpScreen.addEventListener(TouchEvent.TOUCH, Jump);
-			jumpScreen.x = 0;
-			jumpScreen.y = 30;
-			addChild(jumpScreen);
-			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
 			backButton.x = 370;
@@ -141,6 +135,12 @@ package Level_1{
 			pictureChange = progress.x;
 
 			AddEntities();
+			
+			jumpScreen = new Image(assetManager.getTexture("transparent"));
+			jumpScreen.addEventListener(TouchEvent.TOUCH, Jump);
+			jumpScreen.x = 0;
+			jumpScreen.y = 30;
+			addChild(jumpScreen);
 			
 			loaded = true;
 		}
