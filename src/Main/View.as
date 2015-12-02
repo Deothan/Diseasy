@@ -2,7 +2,7 @@ package Main{
 	import Common.Screen;
 	
 	import Menu.Menu;
-		
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 

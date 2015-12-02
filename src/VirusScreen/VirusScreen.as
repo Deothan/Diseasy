@@ -21,10 +21,12 @@ package VirusScreen
 		private var hiv:Button;
 		private var malaria:Button;
 		private var pneumonia:Button;
+		private var neonatalsepsis:Button;
 		private var diarrheaClicked:Boolean = false;
 		private var hivClicked:Boolean = false;
 		private var malariaClicked:Boolean = false;
 		private var pneumoniaClicked:Boolean = false;
+		private var neonatalsepsisClicked:Boolean = false;
 		
 		public function VirusScreen()
 		{
@@ -82,6 +84,12 @@ package VirusScreen
 			pneumonia.x = 190;
 			pneumonia.y = 140;
 			addChild(pneumonia);
+			
+			neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis"));
+			neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+			neonatalsepsis.x = 250;
+			neonatalsepsis.y = 10;
+			addChild(neonatalsepsis);			
 		}
 		
 		public function ContinueButtonTriggered():void
@@ -106,17 +114,62 @@ package VirusScreen
 		
 		public function HivTriggered():void
 		{
+			if (hivClicked == false)
+			{
+				removeChild(hiv);
+				hiv = new Button(assetManager.getTexture("virusscreen_hiv_check"));
+				hiv.addEventListener(Event.TRIGGERED, HivTriggered);
+				hiv.x = 70;
+				hiv.y = 140;
+				addChild(hiv);
+				hivClicked = true;
+			}
 			//View.GetInstance().LoadScreen(HivInformation);
 		}
 		
 		public function MalariaTriggered():void
 		{
+			if (malariaClicked == false)
+			{
+				removeChild(malaria);
+				malaria = new Button(assetManager.getTexture("virusscreen_malaria_check"));
+				malaria.addEventListener(Event.TRIGGERED, MalariaTriggered);
+				malaria.x = 130;
+				malaria.y = 10;
+				addChild(malaria);
+				malariaClicked = true;
+			}
 			//View.GetInstance().LoadScreen(MalariaInformation);
 		}
 		
 		public function PneumoniaTriggered():void
 		{
+			if (pneumoniaClicked == false)
+			{
+				removeChild(pneumonia);
+				pneumonia = new Button(assetManager.getTexture("virusscreen_pneumonia_check"));
+				pneumonia.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
+				pneumonia.x = 190;
+				pneumonia.y = 140;
+				addChild(pneumonia);
+				pneumoniaClicked = true;
+			}
 			//View.GetInstance().LoadScreen(PneumoniaInformation);
+		}
+		
+		public function NeonatalsepsisTriggered():void
+		{
+			if (neonatalsepsis == false);
+			{
+				removeChild(neonatalsepsis);
+				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis_check"));
+				neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+				neonatalsepsis.x = 250;
+				neonatalsepsis.y = 10;
+				addChild(neonatalsepsis);
+				neonatalsepsisClicked = true; 
+			}
+			//View.GetInstance().LoadScreen(NeonatalsepsisInformation);
 		}
 		
 		public function Update():void

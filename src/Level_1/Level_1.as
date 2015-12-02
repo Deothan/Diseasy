@@ -7,6 +7,8 @@ package Level_1{
 	
 	import Menu.Menu;
 	
+	import VirusScreen.VirusScreen;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Quad;
@@ -208,7 +210,7 @@ package Level_1{
 			if(progress.x >= 350){
 				removeChild(background);
 				entities.pop();
-				//View.GetInstance().LoadScreen(VirusScreen);
+				View.GetInstance().LoadScreen(VirusScreen);
 			}
 		}
 		
