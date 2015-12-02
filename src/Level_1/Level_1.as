@@ -5,15 +5,20 @@ package Level_1{
 	
 	import Common.Entity;
 	import Common.Screen;
+	
 	import Items.Platform;
+	
 	import Main.View;
+	
 	import Menu.Menu;
+	
 	import Player.Player;
+	
 	import VirusScreen.VirusScreen;
+	
 	import Viruses.HIV;
 	
 	import starling.display.Button;
-	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -23,7 +28,6 @@ package Level_1{
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
-	import Items.Platform;
 
 
 	public class Level_1 extends Sprite implements Screen{
@@ -50,6 +54,7 @@ package Level_1{
 		private var hearts:Array = new Array();
 		private var timer:flash.utils.Timer;
 		private var player:Player = new Player();
+		private var winstageAdded:Boolean = false;
 		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 2528;
@@ -166,7 +171,7 @@ package Level_1{
 				entities.push(platform);
 				addChild(platform);
 			}
-			
+
 			/*
 			* Add power-ups
 			*/
@@ -228,11 +233,14 @@ package Level_1{
 				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
 			if(progress.x >= 326){
-				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
-				winImage.x = 480;
-				winImage.y = 0;
-				entities.push(winImage);
-				addChildAt(winImage, 1);
+				if(!winstageAdded){
+					winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+					winImage.x = 480;
+					winImage.y = 0;
+					entities.push(winImage);
+					addChildAt(winImage, 1);
+					winstageAdded = true;
+				}
 			}
 			if(progress.x >= 350){
 				timer.start();			
@@ -290,11 +298,7 @@ package Level_1{
 		 * Deletes and entity from the entity array, and then it removes the hole in the array.
 		 */
 		private function RemoveEntity(entity:Object):void{
-			var index:int = entities.indexOf(entity);
-			var next:DisplayObject;
-			var j:int;
-			
-			for(var i:int = index; i < entities.length-1; i++){				
+			for(var i:int = entities.indexOf(entity); i < entities.length-1; i++){				
 				entities[i] = entities[i+1];					
 			}
 			
