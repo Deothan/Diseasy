@@ -180,6 +180,14 @@ package VirusScreen
 		
 		public function Destroy() :void
 		{
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			continueButton.removeEventListener(Event.TRIGGERED, ContinueButtonTriggered);
+			diarrhea.removeEventListener(Event.TRIGGERED, DiarrheaTriggered);
+			hiv.removeEventListener(Event.TRIGGERED, HivTriggered);
+			malaria.removeEventListener(Event.TRIGGERED, MalariaTriggered);
+			pneumonia.removeEventListener(Event.TRIGGERED, PneumoniaTriggered);
+			neonatalsepsis.removeEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+			assetManager.dispose();
 		}
 	}
 }
