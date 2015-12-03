@@ -27,6 +27,7 @@ package Map{
 		private var level2Button:Button;
 		private var level3Button:Button;
 		private var level4Button:Button;
+		private var level5Button:Button;
 		private var loaded:Boolean = false;
 		private var unlocks:Array;
 		
@@ -93,6 +94,16 @@ package Map{
 			level4Button.y = 130;
 			addChild(level4Button);
 			
+			if(unlocks[3] == true)
+				level5Button = new Button(assetManager.getTexture("button_stage1"));
+			else
+				level5Button = new Button(assetManager.getTexture("button_key"));	
+			
+			level5Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
+			level5Button.x = 384;
+			level5Button.y = 22;
+			addChild(level5Button);
+			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
 			backButton.x = 370;
@@ -116,14 +127,17 @@ package Map{
 			if(event.target == level1Button && unlocks[0]){
 				View.GetInstance().LoadScreen(Level_1);
 			}
-			if(event.target == level1Button && unlocks[1]){
+			else if(event.target == level1Button && unlocks[1]){
 				//View.GetInstance().LoadScreen(Level_2);
 			}
-			if(event.target == level1Button && unlocks[2]){
+			else if(event.target == level1Button && unlocks[2]){
 				//View.GetInstance().LoadScreen(Level_3);
 			}
-			if(event.target == level1Button && unlocks[3]){
+			else if(event.target == level1Button && unlocks[3]){
 				//View.GetInstance().LoadScreen(Level_4);
+			}
+			else if(event.target == level1Button && unlocks[4]){
+				//View.GetInstance().LoadScreen(Level_5);
 			}
 		}
 		

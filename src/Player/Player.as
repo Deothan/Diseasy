@@ -34,6 +34,7 @@ package Player
 		private var unlock2:Boolean = false;
 		private var unlock3:Boolean = false;
 		private var unlock4:Boolean = false;
+		private var unlock5:Boolean = false;
 		private var looks:Array = new Array();
 		private var name:String;
         
