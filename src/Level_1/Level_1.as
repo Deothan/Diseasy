@@ -313,7 +313,7 @@ package Level_1{
 			
 			entities.pop();
 		}
-
+		
 		/**
 		 * Called when the screen is changed.
 		 */

@@ -65,7 +65,7 @@ package Map{
 			addChild(level1Button);
 			
 			if(unlocks[1] == true)
-				level2Button = new Button(assetManager.getTexture("button_stage1"));
+				level2Button = new Button(assetManager.getTexture("button_stage2"));
 			else
 				level2Button = new Button(assetManager.getTexture("button_key"));			
 
@@ -75,7 +75,7 @@ package Map{
 			addChild(level2Button);
 			
 			if(unlocks[2] == true)
-				level3Button = new Button(assetManager.getTexture("button_stage1"));
+				level3Button = new Button(assetManager.getTexture("button_stage3"));
 			else
 				level3Button = new Button(assetManager.getTexture("button_key"));	
 			
