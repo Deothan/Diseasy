@@ -70,6 +70,11 @@ package Customize{
 			babyImage.x = 10;
 			babyImage.y = 7;
 			addChild(babyImage);
+			
+			hairImage = hair[currentHair];
+			hairImage.x = 10;
+			hairImage.y = 7;
+			addChild(hairImage);
 
 			bodyImage = body[currentBody];
 			bodyImage.x = 10;
@@ -80,11 +85,6 @@ package Customize{
 			strapImage.x = 10;
 			strapImage.y = 7;
 			addChild(strapImage);
-			
-			hairImage = hair[currentHair];
-			hairImage.x = 10;
-			hairImage.y = 7;
-			addChild(hairImage);
 			
 			hairButton = new Button(assetManager.getTexture("button_hair"));
 			hairButton.addEventListener(Event.TRIGGERED, HairButtonTriggered);
@@ -150,7 +150,7 @@ package Customize{
 			hairImage = hair[currentHair];	
 			hairImage.x = 10;
 			hairImage.y = 7;
-			addChildAt(hairImage, 4);
+			addChildAt(hairImage, 2);
 		}
 		
 		private function BabyButtonTriggered():void{
@@ -169,7 +169,7 @@ package Customize{
 			strapImage = strap[currentBaby];
 			strapImage.x = 10;
 			strapImage.y = 7;
-			addChildAt(strapImage, 3);	
+			addChildAt(strapImage, 4);	
 		}
 		
 		private function ClothesButtonTriggered():void{
@@ -182,7 +182,7 @@ package Customize{
 			bodyImage = body[currentBody];	
 			bodyImage.x = 10;
 			bodyImage.y = 7;
-			addChildAt(bodyImage, 2);
+			addChildAt(bodyImage, 3);
 		}
 		
 		private function LoadChangeArrays():void{
@@ -191,10 +191,10 @@ package Customize{
 			body[2] = new Image(assetManager.getTexture("women_pants"));
 			body[3] = new Image(assetManager.getTexture("women_tshirt"));
 			
-			hair[0] = new Image(assetManager.getTexture("women_onehair"));
-			hair[1] = new Image(assetManager.getTexture("women_orangehair"));
-			hair[2] = new Image(assetManager.getTexture("women_twinhair"));
-			hair[3] = new Image(assetManager.getTexture("women_shorthair"));
+			hair[0] = new Image(assetManager.getTexture("women_one"));
+			hair[1] = new Image(assetManager.getTexture("women_orange"));
+			hair[2] = new Image(assetManager.getTexture("women_twin"));
+			hair[3] = new Image(assetManager.getTexture("women_short"));
 			
 			baby[0] = new Image(assetManager.getTexture("baby_blue"));
 			baby[1] = new Image(assetManager.getTexture("baby_green"));
