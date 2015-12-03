@@ -3,13 +3,20 @@ package Level_1{
 	import flash.filesystem.File;
 	import flash.utils.Timer;
 	
+	import Common.Entity;
 	import Common.Screen;
+	
+	import Items.Coin;
 	
 	import Main.View;
 	
 	import Menu.Menu;
 	
+	import Platforms.Platform;
+	
 	import VirusScreen.VirusScreen;
+	
+	import Viruses.HIV;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -22,31 +29,34 @@ package Level_1{
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
 
+
 	public class Level_1 extends Sprite implements Screen{
 		private var assetManager:AssetManager;
 		private var background:Image;
 		private var coinIcon:Image;
 		private var jumpScreen:Image;
 		private var winImage:Image;
-		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
 		private var lifeText:TextField;
 		private var timeText:TextField;
 		private var timeCounterText:TextField;
 		private var loaded:Boolean = false;
+		private var playerLoaded:Boolean = false;
 		private var progress:Quad;
 		private var middle:Quad;
 		private var left:Quad;
 		private var right:Quad;
-		private var bacteria1:Bacteria1;
 		private var backButton:Button;
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
-		private var speed:int = 2;
-		private var pictureChange:Number;
-		private var progressPos:Number;
 		private var timer:flash.utils.Timer;
+		
+		//Changeable variables
+		private var widthOfLevelInPixels:int = 2528;
+		private var speed:int = 2;
+		private var enemySpawnTimeInSeconds:int = 8;
+		private var platformSpawnTimeInSeconds:int = 12;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -73,20 +83,10 @@ package Level_1{
 			entities.push(background);
 			addChild(background);
 			
-			winImage = new Image(assetManager.getTexture("Level1FinalStage"));
-			winImage.alpha = 0;
-			addChild(winImage);
-			
 			coinIcon = new Image(assetManager.getTexture("coin"));
 			coinIcon.x = 460;
 			coinIcon.y = 7;
 			addChild(coinIcon);
-			
-			jumpScreen = new Image(assetManager.getTexture("transparent"));
-			jumpScreen.addEventListener(TouchEvent.TOUCH, Jump);
-			jumpScreen.x = 0;
-			jumpScreen.y = 30;
-			addChild(jumpScreen);
 			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
@@ -138,9 +138,13 @@ package Level_1{
 			progress.y = 288;
 			addChild(progress);
 			
-			pictureChange = progress.x;
-
 			AddEntities();
+			
+			jumpScreen = new Image(assetManager.getTexture("transparent"));
+			jumpScreen.addEventListener(TouchEvent.TOUCH, Jump);
+			jumpScreen.x = 0;
+			jumpScreen.y = 30;
+			addChild(jumpScreen);
 			
 			loaded = true;
 		}
@@ -149,23 +153,27 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			bacteria1 = new Bacteria1(stage, 500, 180);
-			entities.push(bacteria1);
-			addChild(bacteria1);
+			View.GetInstance().GetPlayer().x = 100;
+			View.GetInstance().GetPlayer().y = 205;
+			addChild(View.GetInstance().GetPlayer());
+			
+			var coin:Coin = new Coin(10, 10);
+			entities.push(coin);
+			addChild(coin);	
 		}
 		
 		/**
 		 * checks the shownLife variable, and updates the number of hearts in the bottom left accordingly.
 		 */
 		private function UpdateHearts():void{
-			while(shownLife > hearts.length){
+			while(View.GetInstance().GetPlayer().getLife() > hearts.length){
 				var heart:Image = new Image(assetManager.getTexture("heart"));
 				heart.x = 45 + (hearts.length*22);
 				heart.y = 285;
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(shownLife < hearts.length){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length){
 				removeChild(hearts.pop());
 			}
 		}
@@ -175,7 +183,7 @@ package Level_1{
 		 */
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-				trace("jump");
+
 			}
 		}
 		
@@ -200,19 +208,20 @@ package Level_1{
 		 */
 		private function ProgressBar():void{
 			if(progress.x < 350){
-				progress.x += ((1*speed)/20.48);
-				pictureChange += ((1*speed)/15.68);
+				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
-			if(pictureChange >= 350){
-				winImage.x = 480;
-				winImage.y = 0;
-				winImage.alpha = 1;
-				entities.push(winImage);
+			if(progress.x >= 326.5){
+				if(winImage == null){
+					winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+					winImage.x = 480;
+					winImage.y = 0;
+					entities.push(winImage);
+					addChildAt(winImage, 1);
+				}
 			}
 			if(progress.x >= 350){
-				removeChild(background);
-				entities.pop();
-				timer.start();			}
+				timer.start();			
+			}
 		}
 		
 		/**
@@ -220,8 +229,38 @@ package Level_1{
 		 * To change the speed of the level change the speed variable in the top.
 		 */
 		private function MoveEntities():void{
-			for(var i:int = 0; i < entities.length; i++){
-				entities[i].x -= speed;
+			if(progress.x < 350){
+				for(var i:int = 0; i < entities.length; i++){
+					entities[i].x -= speed;
+				}
+			}
+		}
+		
+		/**
+		 * Spawns enemies at a given interval, but not in the end zone.
+		 * @param interval:int - interval in seconds between spawn.
+		 */
+		private function SpawnEnemies(interval:int):void{
+			if( (time/24)%interval == 0 && progress.x < 320){
+				var hiv:HIV  = new HIV();
+				hiv.x = 500;
+				hiv.y = 215;
+				entities.push(hiv);
+				addChild(hiv);
+			}
+		}
+		
+		/**
+		 * Spawns platforms at a given interval, but not in the end zone.
+		 * @param interval:int - interval in seconds between spawn.
+		 */
+		private function SpawnPlatforms(interval:int):void{
+			if ((time/24)%interval == 0 && progress.x < 320){
+				var platform:Platform = new Platform();
+				platform.x = 550;
+				platform.y = 175;
+				entities.push(platform);
+				addChild(platform);
 			}
 		}
 		
@@ -234,26 +273,47 @@ package Level_1{
 				ProgressBar();
 				MoveEntities();
 				UpdateHearts();
-				UpdateBacteria();
+				RemoveOutOfStageEntities();
+				SpawnEnemies(enemySpawnTimeInSeconds);
+				SpawnPlatforms(platformSpawnTimeInSeconds);
 			}
 		}
 		
 		/**
-		 * Deleting the bacteria when it leaves the screen.
+		 * Deleting the Entites when it leaves the screen.
+		 * If it is an Entity call Destroy().
 		 */
-		private function UpdateBacteria():void{
+		private function RemoveOutOfStageEntities():void{
 			for(var i:int = 0; i < entities.length; i++){
-				if(entities[i] is Bacteria1 && entities[i].x < (0 - entities[i].width)){
-					entities[i].destroy();
+				if(entities[i].x < (0 - entities[i].width)){
 					removeChild(entities[i]);
+					
+					if(entities[i] is Entity){
+						entities[i].Destroy();
+						RemoveEntity(entities[i]);
+					}
 				}
 			}
 		}
 		
+		/**
+		 * Continues to next screen.
+		 */
 		private function Continue(event:TimerEvent):void{
 			View.GetInstance().LoadScreen(VirusScreen);
 		}
-
+		
+		/**
+		 * Deletes and entity from the entity array, and then it removes the hole in the array.
+		 */
+		private function RemoveEntity(entity:Object):void{
+			for(var i:int = entities.indexOf(entity); i < entities.length-1; i++){				
+				entities[i] = entities[i+1];					
+			}
+			
+			entities.pop();
+		}
+		
 		/**
 		 * Called when the screen is changed.
 		 */
@@ -263,6 +323,7 @@ package Level_1{
 			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
+			/** player destroy **/
 		}
 	}
 }

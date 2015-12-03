@@ -27,13 +27,9 @@ package Map{
 		private var level2Button:Button;
 		private var level3Button:Button;
 		private var level4Button:Button;
+		private var level5Button:Button;
 		private var loaded:Boolean = false;
-		//These unlocks should be saved in player.
-		private var unlock1:Boolean = true;
-		private var unlock2:Boolean = false;
-		private var unlock3:Boolean = false;
-		private var unlock4:Boolean = false;
-
+		private var unlocks:Array;
 		
 		public function Map(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -56,29 +52,57 @@ package Map{
 			background = new Image(assetManager.getTexture("map"));
 			addChild(background);		
 			
-			level1Button = new Button(assetManager.getTexture("button_stage1"));
-			level1Button.addEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			unlocks = View.GetInstance().GetPlayer().getUnlock();
+			
+			if(unlocks[0] == true)
+				level1Button = new Button(assetManager.getTexture("button_stage1"));
+			else
+				level1Button = new Button(assetManager.getTexture("button_key"));
+			
+			level1Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
 			level1Button.x = 55;
 			level1Button.y = 30;
 			addChild(level1Button);
 			
-			level2Button = new Button(assetManager.getTexture("button_key"));
-			level2Button.addEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			if(unlocks[1] == true)
+				level2Button = new Button(assetManager.getTexture("button_stage2"));
+			else
+				level2Button = new Button(assetManager.getTexture("button_key"));			
+
+			level2Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
 			level2Button.x = 160;
 			level2Button.y = 135;
 			addChild(level2Button);
 			
-			level3Button = new Button(assetManager.getTexture("button_key"));
-			level3Button.addEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			if(unlocks[2] == true)
+				level3Button = new Button(assetManager.getTexture("button_stage3"));
+			else
+				level3Button = new Button(assetManager.getTexture("button_key"));	
+			
+			level3Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
 			level3Button.x = 235;
 			level3Button.y = 50;
 			addChild(level3Button);
 			
-			level4Button = new Button(assetManager.getTexture("button_key"));
-			level4Button.addEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			if(unlocks[3] == true)
+				level4Button = new Button(assetManager.getTexture("button_stage1"));
+			else
+				level4Button = new Button(assetManager.getTexture("button_key"));	
+			
+			level4Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
 			level4Button.x = 295;
 			level4Button.y = 130;
 			addChild(level4Button);
+			
+			if(unlocks[3] == true)
+				level5Button = new Button(assetManager.getTexture("button_stage1"));
+			else
+				level5Button = new Button(assetManager.getTexture("button_key"));	
+			
+			level5Button.addEventListener(Event.TRIGGERED, LevelButtonTriggered);
+			level5Button.x = 384;
+			level5Button.y = 22;
+			addChild(level5Button);
 			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
@@ -97,27 +121,24 @@ package Map{
 			customizeButton.x = 200;
 			customizeButton.y = 265;
 			addChild(customizeButton);
-			
-			loaded = true;
 		}
 		
-		private function Level1ButtonTriggered(event:Event):void{
-			if(event.target == level1Button && unlock1){
+		private function LevelButtonTriggered(event:Event):void{
+			if(event.target == level1Button && unlocks[0]){
 				View.GetInstance().LoadScreen(Level_1);
 			}
-			if(event.target == level1Button && unlock2){
+			else if(event.target == level1Button && unlocks[1]){
 				//View.GetInstance().LoadScreen(Level_2);
 			}
-			if(event.target == level1Button && unlock3){
+			else if(event.target == level1Button && unlocks[2]){
 				//View.GetInstance().LoadScreen(Level_3);
 			}
-			if(event.target == level1Button && unlock4){
+			else if(event.target == level1Button && unlocks[3]){
 				//View.GetInstance().LoadScreen(Level_4);
 			}
-		}
-		
-		public function UnlockLevels():void{
-			//Insert check in player.
+			else if(event.target == level1Button && unlocks[4]){
+				//View.GetInstance().LoadScreen(Level_5);
+			}
 		}
 		
 		private function CustomizeButtonTriggered():void{
@@ -132,14 +153,11 @@ package Map{
 			//Add save code here.
 		}
 		
-		public function Update():void{
-			if(loaded){
-				UnlockLevels();
-			}			
+		public function Update():void{	
 		}
 		
 		public function Destroy():void{
-			level1Button.removeEventListener(Event.TRIGGERED, Level1ButtonTriggered);
+			level1Button.removeEventListener(Event.TRIGGERED, LevelButtonTriggered);
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			saveButton.removeEventListener(Event.TRIGGERED, SaveButtonTriggered);
 			customizeButton.removeEventListener(Event.TRIGGERED, CustomizeButtonTriggered);
