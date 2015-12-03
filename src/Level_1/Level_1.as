@@ -36,8 +36,6 @@ package Level_1{
 		private var coinIcon:Image;
 		private var jumpScreen:Image;
 		private var winImage:Image;
-		//to be removed
-		private var shownLife:int = 5;
 		private var time:int;
 		private var coinText:TextField;
 		private var lifeText:TextField;
@@ -53,12 +51,12 @@ package Level_1{
 		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
 		private var timer:flash.utils.Timer;
-		private var player:Player = new Player();
-		private var winstageAdded:Boolean = false;
 		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 2528;
 		private var speed:int = 2;
+		private var enemySpawnTimeInSeconds:int = 8;
+		private var platformSpawnTimeInSeconds:int = 12;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -155,47 +153,23 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
-			// make formula to decrease the divider to increase spawn speed
-			if( (time/24)%8 == 0){
-				var hiv:HIV  = new HIV();
-				hiv.x = 500;
-				hiv.y = 215;
-				entities.push(hiv);
-				addChild(hiv);
-			}
-			
-			if ( (time/24)%12 == 0){
-				var platform:Platform = new Platform();
-				platform.x = 550;
-				platform.y = 175;
-				entities.push(platform);
-				addChild(platform);
-			}
-
-			/*
-			* Add power-ups
-			*/
-			
-			if(!playerLoaded){
-				player.x = 100;
-				player.y = 205;
-				addChild(player);
-				playerLoaded = true;
-			}
+			View.GetInstance().GetPlayer().x = 100;
+			View.GetInstance().GetPlayer().y = 205;
+			addChild(View.GetInstance().GetPlayer());
 		}
 		
 		/**
 		 * checks the shownLife variable, and updates the number of hearts in the bottom left accordingly.
 		 */
 		private function UpdateHearts():void{
-			while(player.getLife() > hearts.length){
+			while(View.GetInstance().GetPlayer().getLife() > hearts.length){
 				var heart:Image = new Image(assetManager.getTexture("heart"));
 				heart.x = 45 + (hearts.length*22);
 				heart.y = 285;
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(player.getLife() < hearts.length){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length){
 				removeChild(hearts.pop());
 			}
 		}
@@ -232,14 +206,13 @@ package Level_1{
 			if(progress.x < 350){
 				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
-			if(progress.x >= 326){
-				if(!winstageAdded){
+			if(progress.x >= 326.5){
+				if(winImage == null){
 					winImage = new Image(assetManager.getTexture("Level1FinalStage"));
 					winImage.x = 480;
 					winImage.y = 0;
 					entities.push(winImage);
 					addChildAt(winImage, 1);
-					winstageAdded = true;
 				}
 			}
 			if(progress.x >= 350){
@@ -260,6 +233,34 @@ package Level_1{
 		}
 		
 		/**
+		 * Spawns enemies at a given interval, but not in the end zone.
+		 * @param interval:int - interval in seconds between spawn.
+		 */
+		private function SpawnEnemies(interval:int):void{
+			if( (time/24)%interval == 0 && progress.x < 320){
+				var hiv:HIV  = new HIV();
+				hiv.x = 500;
+				hiv.y = 215;
+				entities.push(hiv);
+				addChild(hiv);
+			}
+		}
+		
+		/**
+		 * Spawns platforms at a given interval, but not in the end zone.
+		 * @param interval:int - interval in seconds between spawn.
+		 */
+		private function SpawnPlatforms(interval:int):void{
+			if ((time/24)%interval == 0 && progress.x < 320){
+				var platform:Platform = new Platform();
+				platform.x = 550;
+				platform.y = 175;
+				entities.push(platform);
+				addChild(platform);
+			}
+		}
+		
+		/**
 		 * Updates the screen.
 		 */
 		public function Update():void{
@@ -269,7 +270,8 @@ package Level_1{
 				MoveEntities();
 				UpdateHearts();
 				RemoveOutOfStageEntities();
-				AddEntities();
+				SpawnEnemies(enemySpawnTimeInSeconds);
+				SpawnPlatforms(platformSpawnTimeInSeconds);
 			}
 		}
 		
@@ -290,6 +292,9 @@ package Level_1{
 			}
 		}
 		
+		/**
+		 * Continues to next screen.
+		 */
 		private function Continue(event:TimerEvent):void{
 			View.GetInstance().LoadScreen(VirusScreen);
 		}
