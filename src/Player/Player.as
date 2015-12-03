@@ -34,6 +34,8 @@ package Player
 		private var unlock2:Boolean = false;
 		private var unlock3:Boolean = false;
 		private var unlock4:Boolean = false;
+		private var looks:Array = new Array();
+		private var name:String;
         
        /**
          * Class constructor sets stage, desired position x and desired position y
@@ -41,6 +43,13 @@ package Player
         public function Player() {  
 			animations = new Array();
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
+			
+			//Should be loaded not set.
+			looks[0] = 1;
+			looks[1] = 2;
+			looks[2] = 3;
+			
+			name = "Agina";
 		}
 		
 		private function loadAnimations():void{
@@ -98,8 +107,24 @@ package Player
 		}
 		
 		//before monday
-		public function jump(name:String):void{
+		public function jump(_name:String):void{
 			
+		}
+		
+		public function SetName(_name:String):void{
+			this.name = _name;
+		}
+		
+		public function GetName():String{
+			return name;
+		}
+		
+		public function SetLooks(_looks:Array):void{
+			this.looks = _looks;
+		}
+		
+		public function GetLooks():Array{
+			return looks;
 		}
 		
 		/**

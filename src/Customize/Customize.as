@@ -15,7 +15,6 @@ package Customize{
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
-	import starling.textures.RenderTexture;
 	import starling.utils.AssetManager;
 
 	public class Customize extends Sprite implements Screen{
@@ -36,9 +35,9 @@ package Customize{
 		private var body:Array = new Array();
 		private var baby:Array = new Array();
 		private var strap:Array = new Array();
-		private var currentHair:int = 0;
-		private var currentBody:int = 0;
-		private var currentBaby:int = 0;
+		private var currentHair:int;
+		private var currentBody:int;
+		private var currentBaby:int;
 		
 		public function Customize(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -59,6 +58,10 @@ package Customize{
 		
 		public function Start():void{
 			LoadChangeArrays();
+
+			currentHair = View.GetInstance().GetPlayer().GetLooks()[0];
+			currentBody = View.GetInstance().GetPlayer().GetLooks()[1];
+			currentBaby = View.GetInstance().GetPlayer().GetLooks()[2];
 			
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
@@ -113,7 +116,7 @@ package Customize{
 			okButton.y = 180;
 			addChild(okButton);
 			
-			nameText = new TextField(172, 40, "Name");
+			nameText = new TextField(172, 40, View.GetInstance().GetPlayer().GetName());
 			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
 			nameText.fontSize = 20;
 			nameText.color = 0x000000;
@@ -124,6 +127,12 @@ package Customize{
 		
 		//Add save functionality
 		private function OkButtonTriggered():void{
+			var looks:Array = new Array();
+			looks[0] = currentHair;
+			looks[1] = currentBody;
+			looks[2] = currentBaby;
+			
+			View.GetInstance().GetPlayer().SetLooks(looks);
 			View.GetInstance().LoadScreen(Map);
 		}
 		
@@ -199,6 +208,7 @@ package Customize{
 		private function ReadKey(event:KeyboardEvent):void{
 			if(event.keyCode == 13){
 				removeEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
+				View.GetInstance().GetPlayer().SetName(nameText.text);
 			}
 			else if(event.keyCode >= 65 && event.keyCode <= 90){
 				var letter:String = String.fromCharCode(event.charCode);
