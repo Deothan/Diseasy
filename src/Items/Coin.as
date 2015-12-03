@@ -8,6 +8,8 @@ package Items
 {
 	import flash.filesystem.File;
 	
+	import Common.Entity;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -22,7 +24,7 @@ package Items
 	 * This class contains an instance of the coin item. By calling the constructor a new instance is initiated
 	 * To add the item to stage a stage instance needs to be called in the constructor of the class.
 	 */
-	public class Coin extends Sprite{
+	public class Coin extends Sprite implements Entity{
 		/* parameters 
 		* @param PositionX the desired x location (absolute to stage) position to spawn the item
 		* @param PositionY the desired y location (absolute to stage) position to spawn the item
@@ -60,8 +62,8 @@ package Items
 			addChild(coin);
 		}
 		
-		public function destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+		public function Destroy():void{
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize)
 			assetManager.dispose();
 		}
 	}

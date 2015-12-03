@@ -5,10 +5,17 @@ package Level_1{
 	
 	import Common.Entity;
 	import Common.Screen;
-	import Platforms.Platform;
+	
+	import Items.Coin;
+	
 	import Main.View;
-	import Menu.Menu;	
+	
+	import Menu.Menu;
+	
+	import Platforms.Platform;
+	
 	import VirusScreen.VirusScreen;
+	
 	import Viruses.HIV;
 	
 	import starling.display.Button;
@@ -149,6 +156,10 @@ package Level_1{
 			View.GetInstance().GetPlayer().x = 100;
 			View.GetInstance().GetPlayer().y = 205;
 			addChild(View.GetInstance().GetPlayer());
+			
+			var coin:Coin = new Coin(10, 10);
+			entities.push(coin);
+			addChild(coin);	
 		}
 		
 		/**

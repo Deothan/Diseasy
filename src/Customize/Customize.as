@@ -67,24 +67,24 @@ package Customize{
 			addChild(background);
 			
 			babyImage = baby[currentBaby];
-			babyImage.x = 5;
+			babyImage.x = 10;
 			babyImage.y = 7;
 			addChild(babyImage);
-			
-			hairImage = hair[currentHair];
-			hairImage.x = 5;
-			hairImage.y = 7;
-			addChild(hairImage);
-			
+
 			bodyImage = body[currentBody];
-			bodyImage.x = 5;
+			bodyImage.x = 10;
 			bodyImage.y = 7;
 			addChild(bodyImage);
 			
 			strapImage = strap[currentBaby];
-			strapImage.x = 5;
+			strapImage.x = 10;
 			strapImage.y = 7;
 			addChild(strapImage);
+			
+			hairImage = hair[currentHair];
+			hairImage.x = 10;
+			hairImage.y = 7;
+			addChild(hairImage);
 			
 			hairButton = new Button(assetManager.getTexture("button_hair"));
 			hairButton.addEventListener(Event.TRIGGERED, HairButtonTriggered);
@@ -148,7 +148,9 @@ package Customize{
 			
 			removeChild(hairImage);
 			hairImage = hair[currentHair];	
-			addChildAt(hairImage, 2);
+			hairImage.x = 10;
+			hairImage.y = 7;
+			addChildAt(hairImage, 4);
 		}
 		
 		private function BabyButtonTriggered():void{
@@ -159,11 +161,15 @@ package Customize{
 			
 			removeChild(babyImage);
 			babyImage = baby[currentBaby];
+			babyImage.x = 10;
+			babyImage.y = 7;
 			addChildAt(babyImage, 1);
 			
 			removeChild(strapImage);
 			strapImage = strap[currentBaby];
-			addChildAt(strapImage, 4);	
+			strapImage.x = 10;
+			strapImage.y = 7;
+			addChildAt(strapImage, 3);	
 		}
 		
 		private function ClothesButtonTriggered():void{
@@ -174,7 +180,9 @@ package Customize{
 			
 			removeChild(bodyImage);
 			bodyImage = body[currentBody];	
-			addChildAt(bodyImage, 3);
+			bodyImage.x = 10;
+			bodyImage.y = 7;
+			addChildAt(bodyImage, 2);
 		}
 		
 		private function LoadChangeArrays():void{
