@@ -1,4 +1,4 @@
-package Items
+package Platforms
 {
 	
 	import flash.filesystem.File;
@@ -25,7 +25,7 @@ package Items
 		//If added to the stage load the assetmanager and call function progress
 		private function Initialize():void{
 			assetManager = new AssetManager();
-			var folder:File = File.applicationDirectory.resolvePath("Items/assets");
+			var folder:File = File.applicationDirectory.resolvePath("Platforms/assets");
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
 		}

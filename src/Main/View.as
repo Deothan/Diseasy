@@ -1,7 +1,7 @@
 package Main{
 	import Common.Screen;
 	
-	import Items.Platform;
+	import Platforms.Platform;
 	
 	import Menu.Menu;
 	

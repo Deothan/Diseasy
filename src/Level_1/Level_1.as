@@ -5,17 +5,10 @@ package Level_1{
 	
 	import Common.Entity;
 	import Common.Screen;
-	
-	import Items.Platform;
-	
+	import Platforms.Platform;
 	import Main.View;
-	
-	import Menu.Menu;
-	
-	import Player.Player;
-	
+	import Menu.Menu;	
 	import VirusScreen.VirusScreen;
-	
 	import Viruses.HIV;
 	
 	import starling.display.Button;
