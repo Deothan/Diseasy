@@ -45,5 +45,13 @@ package Items
 			removeChild(heartImage);
 			assetManager.dispose();
 		}
+		
+		public function getWidth():int{
+			return this.width;
+		}
+		
+		public function getHeight():int{
+			return this.height;
+		}
 	}
 }

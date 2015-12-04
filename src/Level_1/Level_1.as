@@ -4,6 +4,7 @@ package Level_1{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Physicus;
 	import Common.Screen;
 	
 	import Items.Coin;
@@ -153,13 +154,15 @@ package Level_1{
 		 * This is where all the entites specific for the level is added.
 		 */
 		private function AddEntities():void{
+			/* CHANGING PLAYER SPAWN POSITION ALSO NEEDS TO BE CHANGED IN PHYSICUS -> GRAVITY */
 			View.GetInstance().GetPlayer().x = 100;
 			View.GetInstance().GetPlayer().y = 205;
 			addChild(View.GetInstance().GetPlayer());
 			
 			var coin:Coin = new Coin(10, 10);
 			entities.push(coin);
-			addChild(coin);	
+			addChild(coin);
+			Common.Physicus.usePhysics().addEntity(coin);
 		}
 		
 		/**
@@ -183,7 +186,11 @@ package Level_1{
 		 */
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-
+				//trace("[Level_1] Jump trigger");
+				if(Common.Physicus.usePhysics().isGrounded()){
+					//trace("[Level_1] Grounded");
+					Common.Physicus.usePhysics().Kinetics();
+				}
 			}
 		}
 		
@@ -247,6 +254,7 @@ package Level_1{
 				hiv.y = 215;
 				entities.push(hiv);
 				addChild(hiv);
+				Common.Physicus.usePhysics().addEntity(hiv);
 			}
 		}
 		
@@ -261,6 +269,7 @@ package Level_1{
 				platform.y = 175;
 				entities.push(platform);
 				addChild(platform);
+				Common.Physicus.usePhysics().addEntity(platform);
 			}
 		}
 		
@@ -276,6 +285,10 @@ package Level_1{
 				RemoveOutOfStageEntities();
 				SpawnEnemies(enemySpawnTimeInSeconds);
 				SpawnPlatforms(platformSpawnTimeInSeconds);
+			}
+			if(View.GetInstance().GetPlayer().getSpawned()){
+				Common.Physicus.usePhysics().Collision();
+				Common.Physicus.usePhysics().Gravity();
 			}
 		}
 		

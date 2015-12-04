@@ -37,6 +37,7 @@ package Player
 		private var unlock5:Boolean = false;
 		private var looks:Array = new Array();
 		private var name:String;
+		private var spawned:Boolean = false;
         
        /**
          * Class constructor sets stage, desired position x and desired position y
@@ -76,6 +77,7 @@ package Player
 		private function Start():void{
 			loadAnimations();
 			switchAnimations("run");
+			this.spawned = true;
 		}
 
 		public function getLife():int{
@@ -105,6 +107,10 @@ package Player
 		
 		public function setLife(_life:int):void{
 			this.life = _life; 
+		}
+		
+		public function loseLife():void{
+			this.life -= 1; 
 		}
 		
 		//before monday
@@ -140,6 +146,7 @@ package Player
 			}
 			else if(_animation.localeCompare(currentAnimation)==0){
 				//animation is already playing, do nothing
+				currentAnimation = _animation;
 			}
 			else{
 				var currentX:int = animations[currentAnimation].x;
@@ -158,5 +165,25 @@ package Player
 			assetManager.dispose();
 		}
 		
+		public function getWidth():int{
+			//return animations[currentAnimation].width;
+			return this.width;
+		}
+		
+		public function getHeight():int{
+			return this.height;
+		}
+		
+		public function getX():int{
+			return this.x;
+		}
+		
+		public function getY():int{
+			return this.y;
+		}
+		
+		public function getSpawned():Boolean{
+			return this.spawned;
+		}
     }
 }

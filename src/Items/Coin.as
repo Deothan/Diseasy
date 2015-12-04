@@ -32,6 +32,7 @@ package Items
 		private var assetManager:AssetManager;
 		private var PositionX:int;
 		private var PositionY:int;
+		private var coin:Image;
 		
 		/**
 		 * Class constructor sets desired position x and desired position y
@@ -58,13 +59,21 @@ package Items
 		}
 		
 		private function Start():void{
-			var coin:Image = new Image(assetManager.getTexture("coin"));
+			coin = new Image(assetManager.getTexture("coin"));
 			addChild(coin);
 		}
 		
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize)
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
+		}
+		
+		public function getWidth():int{
+			return this.width;
+		}
+		
+		public function getHeight():int{
+			return this.height;
 		}
 	}
 }

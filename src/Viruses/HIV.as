@@ -1,6 +1,7 @@
 package Viruses{
 
 		import flash.filesystem.File;
+		import flash.text.ReturnKeyLabel;
 		
 		import Common.Entity;
 		
@@ -47,6 +48,14 @@ package Viruses{
 				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 				removeChild(bacteriaImage);
 				assetManager.dispose();
+			}
+			
+			public function getWidth():int{
+				return this.width;
+			}
+			
+			public function getHeight():int{
+				return this.height;
 			}
 		}
 	}
