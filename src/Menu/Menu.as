@@ -11,6 +11,8 @@ package Menu
 	
 	import Map.Map;
 	
+	import Load.Load;
+	
 	import Settings.Settings;
 	
 	import starling.display.Button;
@@ -84,7 +86,7 @@ package Menu
 		 * Opens the Load screen.
 		 */
 		private function LoadButtonTriggered():void{
-			//View.GetInstance().LoadScreen(Load);
+			View.GetInstance().LoadScreen(Load);
 		}
 		
 		/**
