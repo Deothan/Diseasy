@@ -3,6 +3,8 @@ package Common{
 	
 	import Platforms.Platform;
 	
+	import Player.Player;
+	
 	public class Physicus{
 		/* constant variables */
 		private static var Entities:Array = new Array();
@@ -61,7 +63,12 @@ package Common{
 				}
 				else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight){
 					trace("[Physicus] Collide with none platform object");
+					if(entity is Item){
+						//View.GetInstance().GetPlayer().addItem(entity);
+						entity.Destroy();
+					}
 				}
+				
 			}
 		}
 		
