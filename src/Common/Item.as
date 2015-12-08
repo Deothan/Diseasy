@@ -1,6 +1,5 @@
-package Common
-{
-	public interface Item{
+package Common{
+	public interface Item	{
 		function Use():void;
 	}
 }

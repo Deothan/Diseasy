@@ -3,6 +3,8 @@ package Common{
 	
 	import Platforms.Platform;
 	
+	import Player.Player;
+	
 	public class Physicus{
 		/* constant variables */
 		private static var Entities:Array = new Array();
@@ -73,6 +75,7 @@ package Common{
 						RemoveEntity(entity);
 					}
 				}
+				
 			}
 		}
 		

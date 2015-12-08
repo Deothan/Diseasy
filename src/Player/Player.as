@@ -13,6 +13,8 @@ package Player
      */
     import flash.filesystem.File;
     
+    import Common.Item;
+    
     import starling.core.Starling;
     import starling.display.MovieClip;
     import starling.display.Sprite;
@@ -37,6 +39,7 @@ package Player
 		private var unlock4:Boolean = false;
 		private var unlock5:Boolean = false;
 		private var looks:Array = new Array();
+		public var items:Array = new Array();
 		private var name:String;
 		private var spawned:Boolean = false;
         
@@ -187,6 +190,7 @@ package Player
 			return this.spawned;
 		}
 		
+
 		public function addCoin():void{
 			this.coins++;
 		}
@@ -207,6 +211,11 @@ package Player
 		
 		public function getCoins():int{
 			return this.coins;
+		}
+		
+		public function addItem(_item:Item):void{
+			items.push(_item);
+
 		}
     }
 }

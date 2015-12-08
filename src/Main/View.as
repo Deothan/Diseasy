@@ -4,7 +4,6 @@ package Main{
 	import Platforms.Platform;
 	
 	import Menu.Menu;
-	
 	import Player.Player;
 	
 	import starling.display.Sprite;

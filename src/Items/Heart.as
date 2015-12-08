@@ -3,13 +3,14 @@ package Items
 	import flash.filesystem.File;
 	
 	import Common.Entity;
+	import Common.Item;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
 
-	public class Heart extends Sprite implements Entity{
+	public class Heart extends Sprite implements Entity, Item{
 		
 		private var assetManager:AssetManager;
 		private var heartImage:Image;
@@ -52,6 +53,10 @@ package Items
 		
 		public function getHeight():int{
 			return this.height;
+		}
+		
+		public function Use():void{
+			
 		}
 	}
 }
