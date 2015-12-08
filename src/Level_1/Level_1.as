@@ -95,7 +95,7 @@ package Level_1{
 			backButton.y = 265;
 			addChild(backButton);	
 			
-			coinText = new TextField(35, 25, "0 x");
+			coinText = new TextField(35, 25, View.GetInstance().GetPlayer().getCoins() + "x");
 			coinText.color = 0xFFFFFF;
 			coinText.x = 428;
 			coinText.y = 4;
@@ -158,11 +158,6 @@ package Level_1{
 			View.GetInstance().GetPlayer().x = 100;
 			View.GetInstance().GetPlayer().y = 205;
 			addChild(View.GetInstance().GetPlayer());
-			
-			var coin:Coin = new Coin(10, 10);
-			entities.push(coin);
-			addChild(coin);
-			Common.Physicus.usePhysics().addEntity(coin);
 		}
 		
 		/**
@@ -179,6 +174,10 @@ package Level_1{
 			while(View.GetInstance().GetPlayer().getLife() < hearts.length){
 				removeChild(hearts.pop());
 			}
+		}
+		
+		private function UpdateCoins():void{
+			this.coinText.text = ""+View.GetInstance().GetPlayer().getCoins() + " x";
 		}
 		
 		/**
@@ -255,6 +254,13 @@ package Level_1{
 				entities.push(hiv);
 				addChild(hiv);
 				Common.Physicus.usePhysics().addEntity(hiv);
+				
+				var coin:Coin = new Coin();
+				coin.x = (hiv.x + 50);
+				coin.y = hiv.y;
+				entities.push(coin);
+				addChild(coin);
+				Common.Physicus.usePhysics().addEntity(coin);
 			}
 		}
 		
@@ -278,6 +284,7 @@ package Level_1{
 		 */
 		public function Update():void{
 			if(loaded){
+				UpdateCoins();
 				Timer();
 				ProgressBar();
 				MoveEntities();

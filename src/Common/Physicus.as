@@ -33,7 +33,7 @@ package Common{
 		}
 		
 		/**
-		 * method to crosscheck player with entities borders
+		 * method to crosscheck object with entities borders
 		 * single for loop, growth: O(n)
 		 */
 		public function Collision():void{
@@ -45,14 +45,16 @@ package Common{
 				var entityLeft:int = entity.x - (entity.getWidth() / 2);
 				var entityRight:int = entity.x + (entity.getWidth() / 2);
 				var entityBottom:int = entity.y + (entity.getHeight() / 2);
-				var entityTop:int = (entity.y - (entity.getHeight() / 2) -35);
+				var entityTop:int = (entity.y - (entity.getHeight() / 2) -45);
 				
 				if(entity is Platform){
 					if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
 						trace("[Physicus] Collide with platform object");
+						if(!_disableGravity){
+							View.GetInstance().GetPlayer().y = entityTop;
+							_verticalVelocity *= 0;
+						}
 						_disableGravity = true;
-						View.GetInstance().GetPlayer().y = entityTop;
-						_verticalVelocity *= 0;
 					}
 					else{
 						_disableGravity = false;
@@ -60,7 +62,16 @@ package Common{
 					}
 				}
 				else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight){
+					_disableGravity = false;
 					trace("[Physicus] Collide with none platform object");
+					if(entity is Virus){
+						entity.Encounter();
+						RemoveEntity(entity);
+					}
+					if(entity is Item){
+						entity.Use();
+						RemoveEntity(entity);
+					}
 				}
 			}
 		}
@@ -85,6 +96,7 @@ package Common{
 		public function Gravity():void{
 			if(_disableGravity){
 				//do nothing	
+				View.GetInstance().GetPlayer().y += _verticalVelocity;
 			}
 			else{
 				View.GetInstance().GetPlayer().y += _verticalVelocity;
@@ -94,7 +106,7 @@ package Common{
 					View.GetInstance().GetPlayer().y = 205;
 				}
 				else{
-					//trace("[Physicus] Gravity-> air");
+				//trace("[Physicus] Gravity-> air");
 					_verticalVelocity += GRAVITY;
 				}
 			}
@@ -113,6 +125,17 @@ package Common{
 		 */
 		public function addEntity(_entity:Object):void{
 			Entities.push(_entity);
+		}
+		
+		/**
+		 * Deletes and entity from the entity array, and then it removes the hole in the array.
+		 */
+		private function RemoveEntity(entity:Object):void{
+			for(var i:int = Entities.indexOf(entity); i < Entities.length-1; i++){				
+				Entities[i] = Entities[i+1];					
+			}
+			
+			Entities.pop();
 		}
 	}
 }

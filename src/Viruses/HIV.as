@@ -4,13 +4,15 @@ package Viruses{
 		import flash.text.ReturnKeyLabel;
 		
 		import Common.Entity;
+		import Common.Virus;
+		import Main.View;
 		
 		import starling.display.Image;
 		import starling.display.Sprite;
 		import starling.events.Event;
 		import starling.utils.AssetManager;
 		
-		public class HIV extends Sprite implements Entity{
+		public class HIV extends Sprite implements Entity, Virus{
 			
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
@@ -56,6 +58,12 @@ package Viruses{
 			
 			public function getHeight():int{
 				return this.height;
+			}
+			
+			public function Encounter():void{
+				//show information screen
+				Destroy();
+				View.GetInstance().GetPlayer().loseLife();
 			}
 		}
 	}

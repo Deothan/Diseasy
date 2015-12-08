@@ -27,6 +27,7 @@ package Player
 		* @param life, nr of hearts
         */       
 		private var life:int = 5;
+		private var coins:int = 0;
 		private var currentAnimation:String;
 		private var animations:Array;
 		private var assetManager:AssetManager;
@@ -184,6 +185,28 @@ package Player
 		
 		public function getSpawned():Boolean{
 			return this.spawned;
+		}
+		
+		public function addCoin():void{
+			this.coins++;
+		}
+		
+		/**
+		 * method to decrement the number of coins only and only if there is a coin to be removed
+		 * @return Boolean returns true if coin was removed (i.e.: player has atleast one coin)
+		 */
+		public function removeCoin():Boolean{
+			if(this.coins < 1){
+				return false;
+			}
+			else{
+				this.coins --;
+				return true;
+			}
+		}
+		
+		public function getCoins():int{
+			return this.coins;
 		}
     }
 }
