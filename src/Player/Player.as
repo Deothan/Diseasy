@@ -33,6 +33,7 @@ package Player
 		private var currentAnimation:String;
 		private var animations:Array;
 		private var assetManager:AssetManager;
+		private var unlock:Array = new Array;
 		private var unlock1:Boolean = true;
 		private var unlock2:Boolean = false;
 		private var unlock3:Boolean = false;
@@ -48,6 +49,7 @@ package Player
          */    
         public function Player() {  
 			animations = new Array();
+			unlock[1] = true;
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			
 			//Should be loaded not set.
@@ -211,6 +213,23 @@ package Player
 		
 		public function getCoins():int{
 			return this.coins;
+		}
+		
+		/**
+		 * method to set a level to a current state. !!IMPORTANT!! ignore [0]
+		 * @param level: the level to set
+		 * @param state: the state to set the level to (i.e.: true or false)
+		 */
+		public function setLevel(level:int, state:Boolean):void{
+			this.unlock[int] = state;
+		}
+		
+		/**
+		 * method to get an Array of level states. !!IMPORTANT!! ignore [0]
+		 * @return Array: an array with the level states (i.e.: true,true,false,false,false)
+		 */
+		public function getLevels():Array{
+			return this.unlock;
 		}
 		
 		public function addItem(_item:Item):void{
