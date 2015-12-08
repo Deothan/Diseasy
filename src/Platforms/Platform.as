@@ -4,6 +4,7 @@ package Platforms
 	import flash.filesystem.File;
 	
 	import Common.Entity;
+	import Common.Physicus;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -48,6 +49,8 @@ package Platforms
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(platformImage);
 			assetManager.dispose();
+			Physicus.GetInstance().RemoveEntity(this);
+			trace("platform destroyed");
 		}
 		
 		public function getWidth():int{

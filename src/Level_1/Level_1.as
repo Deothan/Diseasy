@@ -77,6 +77,8 @@ package Level_1{
 		}
 		
 		private function Start():void{
+			View.GetInstance().GetPlayer().setLife(5);
+			
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
@@ -186,9 +188,9 @@ package Level_1{
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
 				//trace("[Level_1] Jump trigger");
-				if(Common.Physicus.usePhysics().isGrounded()){
-					//trace("[Level_1] Grounded");
-					Common.Physicus.usePhysics().Kinetics();
+				if(Common.Physicus.GetInstance().isGrounded()){
+					trace("[Level_1] Grounded");
+					Common.Physicus.GetInstance().Kinetics();
 				}
 			}
 		}
@@ -253,14 +255,14 @@ package Level_1{
 				hiv.y = 215;
 				entities.push(hiv);
 				addChild(hiv);
-				Common.Physicus.usePhysics().addEntity(hiv);
+				Common.Physicus.GetInstance().addEntity(hiv);
 				
 				var coin:Coin = new Coin();
 				coin.x = (hiv.x + 50);
 				coin.y = hiv.y;
 				entities.push(coin);
 				addChild(coin);
-				Common.Physicus.usePhysics().addEntity(coin);
+				Common.Physicus.GetInstance().addEntity(coin);
 			}
 		}
 		
@@ -275,7 +277,7 @@ package Level_1{
 				platform.y = 175;
 				entities.push(platform);
 				addChild(platform);
-				Common.Physicus.usePhysics().addEntity(platform);
+				Common.Physicus.GetInstance().addEntity(platform);
 			}
 		}
 		
@@ -294,8 +296,8 @@ package Level_1{
 				SpawnPlatforms(platformSpawnTimeInSeconds);
 			}
 			if(View.GetInstance().GetPlayer().getSpawned()){
-				Common.Physicus.usePhysics().Collision();
-				Common.Physicus.usePhysics().Gravity();
+				Common.Physicus.GetInstance().Collision();
+				Common.Physicus.GetInstance().Gravity();
 			}
 		}
 		
@@ -306,6 +308,7 @@ package Level_1{
 		private function RemoveOutOfStageEntities():void{
 			for(var i:int = 0; i < entities.length; i++){
 				if(entities[i].x < (0 - entities[i].width)){
+					trace("removed object");	
 					removeChild(entities[i]);
 					
 					if(entities[i] is Entity){

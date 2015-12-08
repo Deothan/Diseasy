@@ -27,7 +27,7 @@ package Common{
 		/**
 		 * Singleton
 		 */
-		public static function usePhysics():Physicus{
+		public static function GetInstance():Physicus{
 			if (instance == null){
 					instance = new Physicus();
 			}
@@ -51,7 +51,7 @@ package Common{
 				
 				if(entity is Platform){
 					if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
-						trace("[Physicus] Collide with platform object");
+						//trace("[Physicus] Collide with platform object");
 						if(!_disableGravity){
 							View.GetInstance().GetPlayer().y = entityTop;
 							_verticalVelocity *= 0;
@@ -65,7 +65,7 @@ package Common{
 				}
 				else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight){
 					_disableGravity = false;
-					trace("[Physicus] Collide with none platform object");
+					//trace("[Physicus] Collide with none platform object");
 					if(entity is Virus){
 						entity.Encounter();
 						RemoveEntity(entity);
@@ -133,7 +133,7 @@ package Common{
 		/**
 		 * Deletes and entity from the entity array, and then it removes the hole in the array.
 		 */
-		private function RemoveEntity(entity:Object):void{
+		public function RemoveEntity(entity:Object):void{
 			for(var i:int = Entities.indexOf(entity); i < Entities.length-1; i++){				
 				Entities[i] = Entities[i+1];					
 			}
