@@ -43,6 +43,7 @@ package Player
 		public var items:Array = new Array();
 		private var name:String;
 		private var spawned:Boolean = false;
+		private var checkedViruses:Array = new Array();
         
        /**
          * Class constructor sets stage, desired position x and desired position y
@@ -58,6 +59,8 @@ package Player
 			looks[2] = 3;
 			
 			name = "Agina";
+			
+			checkedViruses[0] = true;
 		}
 		
 		private function loadAnimations():void{
@@ -138,6 +141,14 @@ package Player
 		
 		public function GetLooks():Array{
 			return looks;
+		}
+		
+		public function GetCheckedViruses():Array{
+			return checkedViruses;
+		}
+		
+		public function SetCheckedViruses(checkedViruses:Array):void{
+			this.checkedViruses = new checkedViruses;
 		}
 		
 		/**
