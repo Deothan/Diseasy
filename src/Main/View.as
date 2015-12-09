@@ -1,10 +1,13 @@
 package Main{
 	import Common.Screen;
 	
+	import Menu.Menu;
+	
 	import Platforms.Platform;
 	
-	import Menu.Menu;
 	import Player.Player;
+	
+	import VirusScreen.VirusScreen;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -28,7 +31,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Menu);
+			LoadScreen(VirusScreen);
 		}
 		
 		private function Update(event:Event):void{

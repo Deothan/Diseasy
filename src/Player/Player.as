@@ -60,7 +60,7 @@ package Player
 			
 			name = "Agina";
 			
-			checkedViruses[0] = true;
+			checkedViruses[0] = false;
 			checkedViruses[1] = false;
 			checkedViruses[2] = false;
 			checkedViruses[3] = false;
@@ -152,7 +152,7 @@ package Player
 		}
 		
 		public function SetCheckedViruses(checkedViruses:Array):void{
-			this.checkedViruses = new checkedViruses;
+			this.checkedViruses = checkedViruses;
 		}
 		
 		/**
