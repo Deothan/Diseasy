@@ -6,6 +6,7 @@ package Level_1{
 	import Common.Entity;
 	import Common.Physicus;
 	import Common.Screen;
+	import Common.Virus;
 	
 	import Items.Coin;
 	
@@ -17,7 +18,7 @@ package Level_1{
 	
 	import VirusScreen.VirusScreen;
 	
-	import Viruses.HIV;
+	import Viruses.*;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -173,7 +174,7 @@ package Level_1{
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(View.GetInstance().GetPlayer().getLife() < hearts.length){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() >= 0){
 				removeChild(hearts.pop());
 			}
 		}
@@ -250,7 +251,7 @@ package Level_1{
 		 */
 		private function SpawnEnemies(interval:int):void{
 			if( (time/24)%interval == 0 && progress.x < 320){
-				var hiv:HIV  = new HIV();
+				var hiv:Sprite  = new HIV();
 				hiv.x = 500;
 				hiv.y = 215;
 				entities.push(hiv);
