@@ -61,6 +61,10 @@ package Player
 			name = "Agina";
 			
 			checkedViruses[0] = true;
+			checkedViruses[1] = false;
+			checkedViruses[2] = false;
+			checkedViruses[3] = false;
+			checkedViruses[4] = false;
 		}
 		
 		private function loadAnimations():void{
