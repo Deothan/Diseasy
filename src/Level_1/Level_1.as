@@ -174,8 +174,11 @@ package Level_1{
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() >= 0){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() <= 0){
 				removeChild(hearts.pop());
+			}
+			if(View.GetInstance().GetPlayer().getLife() <= 0){
+				//Player dies.
 			}
 		}
 		
