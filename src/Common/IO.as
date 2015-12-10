@@ -73,7 +73,7 @@ package Common
 		}
 		
 		/**
-		 * method to load the player profile. multiply pointer * 8
+		 * method to load the player profile. multiply pointer * SIZEOFPROFILE
 		 * @param param: the name of the character to load
 		 */
 		public function loadUserProfile(param:String):void{
