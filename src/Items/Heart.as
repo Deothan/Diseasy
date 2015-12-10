@@ -5,6 +5,8 @@ package Items
 	import Common.Entity;
 	import Common.Item;
 	
+	import Main.View;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -56,7 +58,8 @@ package Items
 		}
 		
 		public function Use():void{
-			
+			View.GetInstance().GetPlayer().addLife();
+			Destroy();
 		}
 	}
 }

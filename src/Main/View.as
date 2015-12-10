@@ -1,9 +1,11 @@
 package Main{
+	import Common.Level;
 	import Common.Screen;
+	
+	import Menu.Menu;
 	
 	import Platforms.Platform;
 	
-	import Menu.Menu;
 	import Player.Player;
 	
 	import starling.display.Sprite;
@@ -14,6 +16,7 @@ package Main{
 		private var screen:Sprite;
 		private var volume:int;
 		private var player:Player = new Player();
+		private var level:Level;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -45,6 +48,14 @@ package Main{
 		
 		public function GetPlayer():Player{
 			return player;
+		}
+		
+		public function setLevel(currentLevel):void{
+			level = currentLevel;
+		}
+		
+		public function getLevel():Level{
+			return level;
 		}
 		
 		public function LoadScreen(newScreen:Class):void{

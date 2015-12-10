@@ -4,6 +4,8 @@ package Items
 	
 	import Common.Entity;
 	import Common.Item;
+	import Main.View;
+	
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -36,7 +38,7 @@ package Items
 		
 		//If assetmanager is loaded, get the texture set its size and add it to the stage
 		private function Start():void{
-			watchImage = new Image(assetManager.getTexture("Watch"));
+			watchImage = new Image(assetManager.getTexture("watch"));
 			addChild(watchImage);
 		}
 		
@@ -56,6 +58,8 @@ package Items
 		}
 		
 		public function Use():void{
+			View.GetInstance().getLevel().DecreaseTime();
+			Destroy();
 			
 		}
 	}

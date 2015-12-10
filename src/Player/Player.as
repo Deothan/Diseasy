@@ -54,9 +54,9 @@ package Player
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			
 			//Should be loaded not set.
-			looks[0] = 1;
-			looks[1] = 2;
-			looks[2] = 3;
+			looks[0] = 0;
+			looks[1] = 1;
+			looks[2] = 2;
 			
 			name = "Agina";
 			
@@ -210,6 +210,10 @@ package Player
 
 		public function addCoin():void{
 			this.coins++;
+		}
+		
+		public function addLife():void{
+			this.life ++;
 		}
 		
 		/**
