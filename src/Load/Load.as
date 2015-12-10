@@ -17,7 +17,6 @@ package Load
 
 	public class Load extends Sprite implements Screen{
 		private var assetManager:AssetManager = new AssetManager();
-		private var loadButton:Button;
 		private var backButton:Button;
 		private var background:Image;
 		
@@ -42,16 +41,10 @@ package Load
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
-			loadButton = new Button(assetManager.getTexture("button_load"));
-			loadButton.addEventListener(Event.TRIGGERED, LoadButtonTriggered);
-			loadButton.x = 250;
-			loadButton.y = 30;
-			addChild(loadButton);
-			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
-			backButton.x = 250;
-			backButton.y = 220;
+			backButton.x = 370;
+			backButton.y = 260;
 			addChild(backButton);
 		}
 		
@@ -67,7 +60,6 @@ package Load
 		}
 		
 		public function Destroy():void{
-			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
 			backButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
 			assetManager.dispose();
 		}

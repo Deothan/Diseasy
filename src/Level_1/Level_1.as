@@ -9,6 +9,7 @@ package Level_1{
 	import Common.Virus;
 	
 	import Items.Coin;
+	import Items.Watch;
 	
 	import Main.View;
 	
@@ -18,7 +19,7 @@ package Level_1{
 	
 	import VirusScreen.VirusScreen;
 	
-	import Viruses.*;
+	import Viruses.HIV;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -279,6 +280,13 @@ package Level_1{
 				entities.push(platform);
 				addChild(platform);
 				Common.Physicus.GetInstance().addEntity(platform);
+				
+				var watch:Watch = new Watch();
+				watch.x = (platform.x + 250);
+				watch.y = (platform.y + 100);
+				entities.push(watch);
+				addChild(watch);
+				Common.Physicus.GetInstance().addEntity(Watch);
 			}
 		}
 		
