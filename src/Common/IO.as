@@ -10,7 +10,7 @@ package Common
 	
 	/**
 	 * Class file that handles read/write with saving
-	 * Singleton class with two functions:
+	 * Singleton class with three functions:
 	 * getNames() -> returns available save games
 	 * loadUserProfile() -> loads a user profile (needs name from getNames)
 	 * Save() -> saves the current loaded profile
