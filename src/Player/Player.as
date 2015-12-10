@@ -103,6 +103,7 @@ package Player
 			unlock[1] = unlock2;
 			unlock[2] = unlock3;
 			unlock[3] = unlock4;
+			unlock[4] = unlock5;
 			return unlock;
 		}
 		
@@ -232,6 +233,10 @@ package Player
 		
 		public function getCoins():int{
 			return this.coins;
+		}
+		
+		public function setCoin(param:int):void{
+			this.coins = param;
 		}
 		
 		/**

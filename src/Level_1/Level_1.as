@@ -8,6 +8,7 @@ package Level_1{
 	import Common.Physicus;
 	import Common.Screen;
 	import Common.Virus;
+	import Common.IO;
 	
 	import Items.Coin;
 	import Items.Heart;
