@@ -4,11 +4,13 @@ package Level_1{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Level;
 	import Common.Physicus;
 	import Common.Screen;
 	import Common.Virus;
 	
 	import Items.Coin;
+	import Items.Heart;
 	import Items.Watch;
 	
 	import Main.View;
@@ -31,9 +33,13 @@ package Level_1{
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
+	import Items.Blanket;
+	import Items.Medicine;
+	import Items.Towel;
+	import Items.WaterBottle;
 
 
-	public class Level_1 extends Sprite implements Screen{
+	public class Level_1 extends Sprite implements Screen,Level{
 		private var assetManager:AssetManager;
 		private var background:Image;
 		private var coinIcon:Image;
@@ -80,6 +86,7 @@ package Level_1{
 		
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
+			View.GetInstance().setLevel(this);
 			
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
@@ -175,8 +182,11 @@ package Level_1{
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() >= 0){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() <= 0){
 				removeChild(hearts.pop());
+			}
+			if(View.GetInstance().GetPlayer().getLife() <= 0){
+				//Player dies.
 			}
 		}
 		
@@ -265,6 +275,48 @@ package Level_1{
 				entities.push(coin);
 				addChild(coin);
 				Common.Physicus.GetInstance().addEntity(coin);
+				
+				var watch:Watch = new Watch();
+				watch.x = 600;
+				watch.y = 100;
+				entities.push(watch);
+				addChild(watch);
+				Common.Physicus.GetInstance().addEntity(watch);
+				
+				var heart:Heart = new Heart();
+				heart.x = (hiv.x + 100);
+				heart.y = hiv.y;
+				entities.push(heart);
+				addChild(heart);
+				Common.Physicus.GetInstance().addEntity(heart);
+				
+				var blanket:Blanket = new Blanket();
+				blanket.x = (hiv.x + 150);
+				blanket.y = hiv.y;
+				entities.push(blanket);
+				addChild(blanket);
+				Common.Physicus.GetInstance().addEntity(blanket);
+				
+				var medicine:Medicine = new Medicine();
+				medicine.x = (hiv.x + 200);
+				medicine.y = hiv.y;
+				entities.push(medicine);
+				addChild(medicine);
+				Common.Physicus.GetInstance().addEntity(medicine);
+				
+				var towel:Towel = new Towel();
+				towel.x = (hiv.x + 250);
+				towel.y = hiv.y;
+				entities.push(towel);
+				addChild(towel);
+				Common.Physicus.GetInstance().addEntity(towel);
+				
+				var waterBottle:WaterBottle= new WaterBottle();
+				waterBottle.x = (hiv.x + 300);
+				waterBottle.y = hiv.y;
+				entities.push(waterBottle);
+				addChild(waterBottle);
+				Common.Physicus.GetInstance().addEntity(waterBottle);
 			}
 		}
 		
@@ -280,13 +332,6 @@ package Level_1{
 				entities.push(platform);
 				addChild(platform);
 				Common.Physicus.GetInstance().addEntity(platform);
-				
-				var watch:Watch = new Watch();
-				watch.x = (platform.x + 250);
-				watch.y = (platform.y + 100);
-				entities.push(watch);
-				addChild(watch);
-				Common.Physicus.GetInstance().addEntity(Watch);
 			}
 		}
 		
@@ -344,6 +389,10 @@ package Level_1{
 			}
 			
 			entities.pop();
+		}
+		
+		public function DecreaseTime():void{
+			time -= 120;
 		}
 		
 		/**
