@@ -4,8 +4,6 @@ package Main{
 	
 	import Menu.Menu;
 	
-	import Platforms.Platform;
-	
 	import Player.Player;
 	
 	import starling.display.Sprite;
@@ -17,6 +15,7 @@ package Main{
 		private var volume:int;
 		private var player:Player = new Player();
 		private var level:Level;
+		private var entities:Array = new Array();
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -56,6 +55,22 @@ package Main{
 		
 		public function getLevel():Level{
 			return level;
+		}
+		
+		public function GetEntities():Array{
+			return entities;
+		}
+		
+		public function AddEntity(element:Object):void{
+			entities.push(element);
+		}
+		
+		public function RemoveEntity(element:Object):void{
+			for(var i:int = entities.indexOf(element); i < entities.length-1; i++){				
+				entities[i] = entities[i+1];					
+			}
+			
+			entities.pop();
 		}
 		
 		public function LoadScreen(newScreen:Class):void{

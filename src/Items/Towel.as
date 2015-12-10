@@ -13,7 +13,7 @@ package Items
 	import starling.utils.AssetManager;
 
 	public class Towel extends Sprite implements Entity, Item{
-		
+		private var destroyed:Boolean = false;
 		private var assetManager:AssetManager;
 		private var towelImage:Image;
 		
@@ -47,6 +47,11 @@ package Items
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(towelImage);
 			assetManager.dispose();
+			destroyed = true;
+		}
+		
+		public function Destroyed():Boolean{
+			return destroyed;
 		}
 		
 		public function getWidth():int{

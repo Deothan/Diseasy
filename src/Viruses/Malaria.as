@@ -5,6 +5,7 @@ package Viruses{
 		
 		import Common.Entity;
 		import Common.Virus;
+		
 		import Main.View;
 		
 		import starling.display.Image;
@@ -13,7 +14,7 @@ package Viruses{
 		import starling.utils.AssetManager;
 		
 		public class Malaria extends Sprite implements Entity, Virus{
-			
+			private var destroyed:Boolean = false;
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
 			
@@ -64,6 +65,11 @@ package Viruses{
 				//show information screen
 				Destroy();
 				View.GetInstance().GetPlayer().loseLife();
+				destroyed = true;
+			}
+			
+			public function Destroyed():Boolean{
+				return destroyed;
 			}
 		}
 	}

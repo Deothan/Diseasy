@@ -4,8 +4,8 @@ package Items
 	
 	import Common.Entity;
 	import Common.Item;
-	import Main.View;
 	
+	import Main.View;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -13,7 +13,7 @@ package Items
 	import starling.utils.AssetManager;
 
 	public class Watch extends Sprite implements Entity, Item{
-		
+		private var destroyed:Boolean = false;
 		private var assetManager:AssetManager;
 		private var watchImage:Image;
 		
@@ -47,6 +47,11 @@ package Items
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(watchImage);
 			assetManager.dispose();
+			destroyed = true;
+		}
+		
+		public function Destroyed():Boolean{
+			return destroyed;
 		}
 		
 		public function getWidth():int{
