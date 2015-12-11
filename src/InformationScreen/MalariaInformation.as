@@ -110,6 +110,11 @@ package InformationScreen
 		
 		public function Destroy() :void
 		{
+			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
+			englishButton.removeEventListener(Event.TRIGGERED, EnglishLanguage);
+			luoButton.removeEventListener(Event.TRIGGERED, LuoLanguage);
+			assetManager.dispose();
 			//View.GetInstance().GetPlayer().SetArrayMethodName(checkedArray);
 		}
 	}

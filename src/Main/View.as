@@ -4,11 +4,8 @@ package Main{
 	
 	import Menu.Menu;
 	
-<<<<<<< HEAD
 	import Platforms.Platform;
 	
-=======
->>>>>>> 180724e2b93cc52e4d8ec99203489dc1a908300b
 	import Player.Player;
 	
 	import VirusScreen.VirusScreen;
@@ -37,7 +34,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(VirusScreen);
+			LoadScreen(Menu);
 		}
 		
 		private function Update(event:Event):void{
