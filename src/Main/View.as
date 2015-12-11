@@ -1,4 +1,5 @@
 package Main{
+	import Common.EntityPlaceholder;
 	import Common.Level;
 	import Common.Screen;
 	
@@ -70,11 +71,15 @@ package Main{
 		}
 		
 		public function RemoveEntity(element:Object):void{
-			for(var i:int = entities.indexOf(element); i < entities.length-1; i++){				
+			entities[entities.indexOf(element)] = new EntityPlaceholder();
+			
+			/**
+			 * for(var i:int = entities.indexOf(element); i < entities.length-1; i++){				
 				entities[i] = entities[i+1];					
 			}
 			
-			entities.pop();
+			entities.pop()
+			 */
 		}
 		
 		public function LoadScreen(newScreen:Class):void{

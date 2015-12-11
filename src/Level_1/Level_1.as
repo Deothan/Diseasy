@@ -264,49 +264,49 @@ package Level_1{
 				hiv.x = 500;
 				hiv.y = 215;
 				View.GetInstance().AddEntity(hiv);
-				addChild(hiv);
+				addChildAt(hiv, 3);
 				
 				var coin:Coin = new Coin();
 				coin.x = (hiv.x + 50);
 				coin.y = hiv.y;
 				View.GetInstance().AddEntity(coin);
-				addChild(coin);
+				addChildAt(coin, 3);
 				
 				var watch:Watch = new Watch();
 				watch.x = 600;
 				watch.y = 100;
 				View.GetInstance().AddEntity(watch);
-				addChild(watch);
+				addChildAt(watch, 3);
 				
 				var heart:Heart = new Heart();
 				heart.x = (hiv.x + 100);
 				heart.y = hiv.y;
 				View.GetInstance().AddEntity(heart);
-				addChild(heart);
+				addChildAt(heart, 3);
 				
 				var blanket:Blanket = new Blanket();
 				blanket.x = (hiv.x + 150);
 				blanket.y = hiv.y;
 				View.GetInstance().AddEntity(blanket);
-				addChild(blanket);
+				addChildAt(blanket, 3);
 				
 				var medicine:Medicine = new Medicine();
 				medicine.x = (hiv.x + 200);
 				medicine.y = hiv.y;
 				View.GetInstance().AddEntity(medicine);
-				addChild(medicine);
+				addChildAt(medicine, 3);
 				
 				var towel:Towel = new Towel();
 				towel.x = (hiv.x + 250);
 				towel.y = hiv.y;
 				View.GetInstance().AddEntity(towel);
-				addChild(towel);
+				addChildAt(towel, 3);
 				
 				var waterBottle:WaterBottle= new WaterBottle();
 				waterBottle.x = (hiv.x + 300);
 				waterBottle.y = hiv.y;
 				View.GetInstance().AddEntity(waterBottle);
-				addChild(waterBottle);
+				addChildAt(waterBottle, 3);
 			}
 		}
 		
@@ -320,7 +320,7 @@ package Level_1{
 				platform.x = 550;
 				platform.y = 175;
 				View.GetInstance().AddEntity(platform);
-				addChild(platform);
+				addChildAt(platform, 3);
 			}
 		}
 		
