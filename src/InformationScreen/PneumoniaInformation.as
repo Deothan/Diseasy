@@ -80,11 +80,26 @@ package InformationScreen
 		
 		public function EnglishLanguage():void
 		{
+			removeChild(englishButton);
+			addChild(luoButton);
+			removeChild(pneumoniaInformation);
+			pneumoniaInformation = new Image(assetManager.getTexture("Info_Screen_Pneumonia"));
+			pneumoniaInformation.x = 15;
+			pneumoniaInformation.y = 20;
+			addChild(pneumoniaInformation);
+			
 			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
 		{
+			removeChild(luoButton);
+			addChild(englishButton);
+			removeChild(pneumoniaInformation);
+			pneumoniaInformation = new Image(assetManager.getTexture("cat"));
+			pneumoniaInformation.x = 15;
+			pneumoniaInformation.y = 20;
+			addChild(pneumoniaInformation);
 			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		

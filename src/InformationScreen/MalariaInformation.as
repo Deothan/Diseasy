@@ -80,11 +80,27 @@ package InformationScreen
 		
 		public function EnglishLanguage():void
 		{
+			removeChild(englishButton);
+			addChild(luoButton);
+			removeChild(malariaInformation);
+			malariaInformation = new Image(assetManager.getTexture("Info_Screen_Malaria"));
+			malariaInformation.x = 15;
+			malariaInformation.y = 20;
+			addChild(malariaInformation);
+			
 			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
 		{
+			removeChild(luoButton);
+			addChild(englishButton);
+			removeChild(malariaInformation);
+			malariaInformation = new Image(assetManager.getTexture("cat"));
+			malariaInformation.x = 15;
+			malariaInformation.y = 20;
+			addChild(malariaInformation);
+			
 			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		

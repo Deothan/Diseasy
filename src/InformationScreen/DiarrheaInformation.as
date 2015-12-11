@@ -82,11 +82,27 @@ package InformationScreen
 		
 		public function EnglishLanguage():void
 		{
+			removeChild(englishButton);
+			addChild(luoButton);
+			removeChild(diarrheaInformation);
+			diarrheaInformation = new Image(assetManager.getTexture("Info_Screen_Diarrhea"));
+			diarrheaInformation.x = 15;
+			diarrheaInformation.y = 20;
+			addChild(diarrheaInformation);
+			
 			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
 		{
+			removeChild(luoButton);
+			addChild(englishButton);
+			removeChild(diarrheaInformation);
+			diarrheaInformation = new Image(assetManager.getTexture("cat"));
+			diarrheaInformation.x = 15;
+			diarrheaInformation.y = 20;
+			addChild(diarrheaInformation); 
+			
 			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		

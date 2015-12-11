@@ -80,11 +80,26 @@ package InformationScreen
 		
 		public function EnglishLanguage():void
 		{
+			removeChild(englishButton);
+			addChild(luoButton);
+			removeChild(neonatalsepsisInformation);
+			neonatalsepsisInformation = new Image(assetManager.getTexture("Info_Screen_NeonatalSepsis"));
+			neonatalsepsisInformation.x = 15;
+			neonatalsepsisInformation.y = 20;
+			addChild(neonatalsepsisInformation);
+			
 			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
 		{
+			removeChild(luoButton);
+			addChild(englishButton);
+			removeChild(neonatalsepsisInformation);
+			neonatalsepsisInformation = new Image(assetManager.getTexture("cat"));
+			neonatalsepsisInformation.x = 15;
+			neonatalsepsisInformation.y = 20;
+			addChild(neonatalsepsisInformation);
 			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		
