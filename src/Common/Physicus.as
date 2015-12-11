@@ -1,13 +1,12 @@
-package Common{
+package Common{	
 	import Main.View;
 	
 	import Platforms.Platform;
 	
-	import Player.Player;
-	
+	import starling.display.Image;
+
 	public class Physicus{
 		/* constant variables */
-		private static var Entities:Array = new Array();
 		private static var instance:Physicus;
 		private static const GRAVITY:Number = 0.8;
 		private static const KENETIC:Number = 0.5;
@@ -43,36 +42,42 @@ package Common{
 			var playerRight:int = View.GetInstance().GetPlayer().getX() + (View.GetInstance().GetPlayer().getWidth() / 2);
 			var playerBottom:int = View.GetInstance().GetPlayer().getY() + (View.GetInstance().GetPlayer().getHeight() / 2);
 			var playerTop:int = View.GetInstance().GetPlayer().getY() - (View.GetInstance().GetPlayer().getHeight() / 2);
-			for each(var entity:Object in Entities){
-				var entityLeft:int = entity.x - (entity.getWidth() / 2);
-				var entityRight:int = entity.x + (entity.getWidth() / 2);
-				var entityBottom:int = entity.y + (entity.getHeight() / 2);
-				var entityTop:int = (entity.y - (entity.getHeight() / 2) -45);
-				
-				if(entity is Platform){
-					if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
-						//trace("[Physicus] Collide with platform object");
-						if(!_disableGravity){
-							View.GetInstance().GetPlayer().y = entityTop;
-							_verticalVelocity *= 0;
+			for each(var entity:Object in View.GetInstance().GetEntities()){
+				if(!(entity is Image)){
+					var entityLeft:int = entity.x - (entity.getWidth() / 2);
+					var entityRight:int = entity.x + (entity.getWidth() / 2);
+					var entityBottom:int = entity.y + (entity.getHeight() / 2);
+					var entityTop:int = (entity.y - (entity.getHeight() / 2) -45);
+					
+					if(entity is Platform){
+						if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
+							//trace("[Physicus] Collide with platform object");
+							if(!_disableGravity){
+								View.GetInstance().GetPlayer().y = entityTop;
+								_verticalVelocity *= 0;
+							}
+							_disableGravity = true;
 						}
-						_disableGravity = true;
+						else{
+							_disableGravity = false;
+							//do nothing
+						}
 					}
-					else{
+					else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight && playerTop <= entityBottom){
 						_disableGravity = false;
-						//do nothing
-					}
-				}
-				else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight){
-					_disableGravity = false;
-					//trace("[Physicus] Collide with none platform object");
-					if(entity is Virus){
-						entity.Encounter();
-						RemoveEntity(entity);
-					}
-					if(entity is Item){
-						entity.Use();
-						RemoveEntity(entity);
+						//trace("[Physicus] Collide with none platform object");
+						if(entity is Virus){
+							if(!entity.Destroyed()){
+								entity.Encounter();
+								entity.Destroy();
+							}							
+						}
+						if(entity is Item){
+							if(!entity.Destroyed()){
+								entity.Use();
+								entity.Destroy();
+							}							
+						}
 					}
 				}
 				
@@ -121,24 +126,6 @@ package Common{
 		public function Kinetics():void{
 			trace("[Physicus] Kinetics");
 			_verticalVelocity -= HITFORCE;
-		}
-		
-		/**
-		 * method to add entities to array
-		 */
-		public function addEntity(_entity:Object):void{
-			Entities.push(_entity);
-		}
-		
-		/**
-		 * Deletes and entity from the entity array, and then it removes the hole in the array.
-		 */
-		public function RemoveEntity(entity:Object):void{
-			for(var i:int = Entities.indexOf(entity); i < Entities.length-1; i++){				
-				Entities[i] = Entities[i+1];					
-			}
-			
-			Entities.pop();
 		}
 	}
 }

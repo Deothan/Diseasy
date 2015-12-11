@@ -5,13 +5,15 @@ package Items
 	import Common.Entity;
 	import Common.Item;
 	
+	import Main.View;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
 
 	public class Blanket extends Sprite implements Entity, Item{
-		
+		private var destroyed:Boolean = false;
 		private var assetManager:AssetManager;
 		private var blanketImage:Image;
 		
@@ -45,6 +47,7 @@ package Items
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(blanketImage);
 			assetManager.dispose();
+			destroyed = true;
 		}
 		
 		public function getWidth():int{
@@ -55,8 +58,13 @@ package Items
 			return this.height;
 		}
 		
+		public function Destroyed():Boolean{
+			return destroyed;
+		}
+		
 		public function Use():void{
-			
+			View.GetInstance().GetPlayer().addItem(this);
+			Destroy();
 		}
 	}
 }

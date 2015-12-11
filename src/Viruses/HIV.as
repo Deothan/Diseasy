@@ -13,7 +13,7 @@ package Viruses{
 		import starling.utils.AssetManager;
 		
 		public class HIV extends Sprite implements Entity, Virus{
-			
+			private var destroyed:Boolean = false;
 			private var assetManager:AssetManager;
 			private var bacteriaImage:Image;
 			
@@ -50,6 +50,11 @@ package Viruses{
 				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 				removeChild(bacteriaImage);
 				assetManager.dispose();
+				destroyed = true;
+			}
+			
+			public function Destroyed():Boolean{
+				return destroyed;
 			}
 			
 			public function getWidth():int{

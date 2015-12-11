@@ -4,9 +4,7 @@ package Menu
 	import flash.filesystem.File;
 	
 	import Common.Screen;
-	
-	import Level_1.Level_1;
-	
+
 	import Main.View;
 	
 	import Map.Map;

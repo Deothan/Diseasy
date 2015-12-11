@@ -10,8 +10,8 @@ package Items
 	
 	import Common.Entity;
 	import Common.Item;
+	
 	import Main.View;
-
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -34,7 +34,7 @@ package Items
 		*/
 		private var assetManager:AssetManager;
 		private var coin:Image;
-		
+		private var destroyed:Boolean = false;
 		/**
 		 * Class constructor sets desired position x and desired position y
 		 * @param _positionx the desired x location (absolute to stage) position to spawn the item
@@ -66,6 +66,7 @@ package Items
 		public function Destroy():void{
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
+			destroyed = true;
 		}
 		
 		public function getWidth():int{
@@ -74,6 +75,10 @@ package Items
 		
 		public function getHeight():int{
 			return this.height;
+		}
+		
+		public function Destroyed():Boolean{
+			return destroyed;
 		}
 		
 		public function Use():void{

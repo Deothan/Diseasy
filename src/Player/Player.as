@@ -54,9 +54,9 @@ package Player
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			
 			//Should be loaded not set.
-			looks[0] = 1;
-			looks[1] = 2;
-			looks[2] = 3;
+			looks[0] = 0;
+			looks[1] = 1;
+			looks[2] = 2;
 			
 			name = "Agina";
 			
@@ -68,7 +68,7 @@ package Player
 		}
 		
 		private function loadAnimations():void{
-			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("Mole"), 24);
+			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("fly"), 24);
 			run_animation.width = 40; // to be removed
 			run_animation.height = 50; // to be removed
 			animations["run"] = run_animation;
@@ -103,6 +103,7 @@ package Player
 			unlock[1] = unlock2;
 			unlock[2] = unlock3;
 			unlock[3] = unlock4;
+			unlock[4] = unlock5;
 			return unlock;
 		}
 		
@@ -212,6 +213,10 @@ package Player
 			this.coins++;
 		}
 		
+		public function addLife():void{
+			this.life ++;
+		}
+		
 		/**
 		 * method to decrement the number of coins only and only if there is a coin to be removed
 		 * @return Boolean returns true if coin was removed (i.e.: player has atleast one coin)
@@ -228,6 +233,10 @@ package Player
 		
 		public function getCoins():int{
 			return this.coins;
+		}
+		
+		public function setCoin(param:int):void{
+			this.coins = param;
 		}
 		
 		/**

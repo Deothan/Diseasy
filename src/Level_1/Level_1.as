@@ -4,11 +4,17 @@ package Level_1{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Level;
 	import Common.Physicus;
 	import Common.Screen;
-	import Common.Virus;
 	
+	import Items.Blanket;
 	import Items.Coin;
+	import Items.Heart;
+	import Items.Medicine;
+	import Items.Towel;
+	import Items.Watch;
+	import Items.WaterBottle;
 	
 	import Main.View;
 	
@@ -18,7 +24,7 @@ package Level_1{
 	
 	import VirusScreen.VirusScreen;
 	
-	import Viruses.*;
+	import Viruses.HIV;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -32,7 +38,7 @@ package Level_1{
 	import starling.utils.Color;
 
 
-	public class Level_1 extends Sprite implements Screen{
+	public class Level_1 extends Sprite implements Screen,Level{
 		private var assetManager:AssetManager;
 		private var background:Image;
 		private var coinIcon:Image;
@@ -50,7 +56,6 @@ package Level_1{
 		private var left:Quad;
 		private var right:Quad;
 		private var backButton:Button;
-		private var entities:Array = new Array();
 		private var hearts:Array = new Array();
 		private var timer:flash.utils.Timer;
 		
@@ -79,12 +84,13 @@ package Level_1{
 		
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
+			View.GetInstance().setLevel(this);
 			
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
 			background = new Image(assetManager.getTexture("background"));
-			entities.push(background);
+			View.GetInstance().AddEntity(background);
 			addChild(background);
 			
 			coinIcon = new Image(assetManager.getTexture("coin"));
@@ -174,7 +180,7 @@ package Level_1{
 				hearts.push(heart);
 				addChild(heart);
 			}
-			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() <= 0){
+			while(View.GetInstance().GetPlayer().getLife() < hearts.length && View.GetInstance().GetPlayer().getLife() >= 0){
 				removeChild(hearts.pop());
 			}
 			if(View.GetInstance().GetPlayer().getLife() <= 0){
@@ -192,9 +198,9 @@ package Level_1{
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
 				//trace("[Level_1] Jump trigger");
-				if(Common.Physicus.GetInstance().isGrounded()){
-					trace("[Level_1] Grounded");
-					Common.Physicus.GetInstance().Kinetics();
+				if(Physicus.GetInstance().isGrounded()){
+					//trace("[Level_1] Grounded");
+					Physicus.GetInstance().Kinetics();
 				}
 			}
 		}
@@ -227,7 +233,7 @@ package Level_1{
 					winImage = new Image(assetManager.getTexture("Level1FinalStage"));
 					winImage.x = 480;
 					winImage.y = 0;
-					entities.push(winImage);
+					View.GetInstance().AddEntity(winImage);
 					addChildAt(winImage, 1);
 				}
 			}
@@ -242,8 +248,8 @@ package Level_1{
 		 */
 		private function MoveEntities():void{
 			if(progress.x < 350){
-				for(var i:int = 0; i < entities.length; i++){
-					entities[i].x -= speed;
+				for(var i:int = 0; i < View.GetInstance().GetEntities().length; i++){
+					View.GetInstance().GetEntities()[i].x -= speed;
 				}
 			}
 		}
@@ -257,16 +263,50 @@ package Level_1{
 				var hiv:Sprite  = new HIV();
 				hiv.x = 500;
 				hiv.y = 215;
-				entities.push(hiv);
+				View.GetInstance().AddEntity(hiv);
 				addChild(hiv);
-				Common.Physicus.GetInstance().addEntity(hiv);
 				
 				var coin:Coin = new Coin();
 				coin.x = (hiv.x + 50);
 				coin.y = hiv.y;
-				entities.push(coin);
+				View.GetInstance().AddEntity(coin);
 				addChild(coin);
-				Common.Physicus.GetInstance().addEntity(coin);
+				
+				var watch:Watch = new Watch();
+				watch.x = 600;
+				watch.y = 100;
+				View.GetInstance().AddEntity(watch);
+				addChild(watch);
+				
+				var heart:Heart = new Heart();
+				heart.x = (hiv.x + 100);
+				heart.y = hiv.y;
+				View.GetInstance().AddEntity(heart);
+				addChild(heart);
+				
+				var blanket:Blanket = new Blanket();
+				blanket.x = (hiv.x + 150);
+				blanket.y = hiv.y;
+				View.GetInstance().AddEntity(blanket);
+				addChild(blanket);
+				
+				var medicine:Medicine = new Medicine();
+				medicine.x = (hiv.x + 200);
+				medicine.y = hiv.y;
+				View.GetInstance().AddEntity(medicine);
+				addChild(medicine);
+				
+				var towel:Towel = new Towel();
+				towel.x = (hiv.x + 250);
+				towel.y = hiv.y;
+				View.GetInstance().AddEntity(towel);
+				addChild(towel);
+				
+				var waterBottle:WaterBottle= new WaterBottle();
+				waterBottle.x = (hiv.x + 300);
+				waterBottle.y = hiv.y;
+				View.GetInstance().AddEntity(waterBottle);
+				addChild(waterBottle);
 			}
 		}
 		
@@ -279,9 +319,8 @@ package Level_1{
 				var platform:Platform = new Platform();
 				platform.x = 550;
 				platform.y = 175;
-				entities.push(platform);
+				View.GetInstance().AddEntity(platform);
 				addChild(platform);
-				Common.Physicus.GetInstance().addEntity(platform);
 			}
 		}
 		
@@ -310,14 +349,13 @@ package Level_1{
 		 * If it is an Entity call Destroy().
 		 */
 		private function RemoveOutOfStageEntities():void{
-			for(var i:int = 0; i < entities.length; i++){
-				if(entities[i].x < (0 - entities[i].width)){
-					trace("removed object");	
-					removeChild(entities[i]);
+			for(var i:int = 0; i < View.GetInstance().GetEntities().length; i++){
+				if(View.GetInstance().GetEntities()[i].x < (0 - View.GetInstance().GetEntities()[i].width)){	
+					removeChild(View.GetInstance().GetEntities()[i]);
 					
-					if(entities[i] is Entity){
-						entities[i].Destroy();
-						RemoveEntity(entities[i]);
+					if(View.GetInstance().GetEntities()[i] is Entity){
+						View.GetInstance().GetEntities()[i].Destroy();
+						View.GetInstance().RemoveEntity(View.GetInstance().GetEntities()[i]);
 					}
 				}
 			}
@@ -330,15 +368,8 @@ package Level_1{
 			View.GetInstance().LoadScreen(VirusScreen);
 		}
 		
-		/**
-		 * Deletes and entity from the entity array, and then it removes the hole in the array.
-		 */
-		private function RemoveEntity(entity:Object):void{
-			for(var i:int = entities.indexOf(entity); i < entities.length-1; i++){				
-				entities[i] = entities[i+1];					
-			}
-			
-			entities.pop();
+		public function DecreaseTime():void{
+			time -= 120;
 		}
 		
 		/**

@@ -4,7 +4,8 @@ package Platforms
 	import flash.filesystem.File;
 	
 	import Common.Entity;
-	import Common.Physicus;
+	
+	import Main.View;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -15,7 +16,7 @@ package Platforms
 	* implementing entities interface gives error
 	*/
 	public class Platform extends Sprite implements Entity{
-		
+		private var destroyed:Boolean = false;
 		private var assetManager:AssetManager;
 		private var platformImage:Image;
 		
@@ -49,8 +50,12 @@ package Platforms
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(platformImage);
 			assetManager.dispose();
-			Physicus.GetInstance().RemoveEntity(this);
-			trace("platform destroyed");
+			View.GetInstance().RemoveEntity(this);
+			destroyed = true;
+		}
+		
+		public function Destroyed():Boolean{
+			return destroyed;
 		}
 		
 		public function getWidth():int{

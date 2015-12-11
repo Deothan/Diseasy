@@ -5,13 +5,15 @@ package Items
 	import Common.Entity;
 	import Common.Item;
 	
+	import Main.View;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
 
 	public class WaterBottle extends Sprite implements Entity, Item{
-
+		private var destroyed:Boolean = false;
 		private var assetManager:AssetManager;
 		private var waterBottleImage:Image;
 		
@@ -45,6 +47,11 @@ package Items
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(waterBottleImage);
 			assetManager.dispose();
+			destroyed = true;
+		}
+		
+		public function Destroyed():Boolean{
+			return destroyed;
 		}
 		
 		public function getWidth():int{
@@ -56,7 +63,8 @@ package Items
 		}
 		
 		public function Use():void{
-			
+			View.GetInstance().GetPlayer().addItem(this);
+			Destroy();
 		}
 	}
 }
