@@ -8,6 +8,8 @@ package Level_1{
 	import Common.Physicus;
 	import Common.Screen;
 	
+	import InfantScreen.InfantScreen;
+	
 	import Items.Blanket;
 	import Items.Coin;
 	import Items.Heart;
@@ -209,7 +211,7 @@ package Level_1{
 		 * Called when the exitButton is pushed.
 		 */
 		private function BackButtonTriggered():void{
-			View.GetInstance().LoadScreen(Menu);
+			View.GetInstance().LoadScreen(InfantScreen);
 		}
 		
 		/**

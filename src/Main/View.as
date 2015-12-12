@@ -3,6 +3,8 @@ package Main{
 	import Common.Level;
 	import Common.Screen;
 	
+	import InfantScreen.Infant;
+	
 	import Menu.Menu;
 	
 	import Platforms.Platform;
@@ -19,6 +21,7 @@ package Main{
 		private var screen:Sprite;
 		private var volume:int;
 		private var player:Player = new Player();
+		private var infant:Infant = new Infant();
 		private var level:Level;
 		private var entities:Array = new Array();
 		
@@ -52,6 +55,10 @@ package Main{
 		
 		public function GetPlayer():Player{
 			return player;
+		}
+		
+		public function GetInfant():Infant{
+			return infant;
 		}
 		
 		public function setLevel(currentLevel):void{

@@ -4,6 +4,8 @@ package VirusScreen
 	
 	import Common.Screen;
 	
+	import InfantScreen.InfantScreen;
+	
 	import InformationScreen.DiarrheaInformation;
 	import InformationScreen.HivInformation;
 	import InformationScreen.MalariaInformation;
@@ -163,7 +165,7 @@ package VirusScreen
 		
 		public function ContinueButtonTriggered():void
 		{
-			View.GetInstance().LoadScreen(Menu);
+			View.GetInstance().LoadScreen(InfantScreen);
 		}
 		
 		public function DiarrheaTriggered():void
