@@ -59,7 +59,7 @@ package Load
 			spawnPlayerImage();
 			
 			backButton = new Button(assetManager.getTexture("button_back"));
-			backButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
 			backButton.x = 370;
 			backButton.y = 263;
 			addChild(backButton);
@@ -225,12 +225,12 @@ package Load
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
-		private function ExitButtonTriggered():void{
+		private function BackButtonTriggered():void{
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
 		public function Destroy():void{
-			backButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
 			player1Button.addEventListener(Event.TRIGGERED, Player1Loaded);
 			player2Button.addEventListener(Event.TRIGGERED, Player2Loaded);
