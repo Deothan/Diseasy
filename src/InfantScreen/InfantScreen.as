@@ -1,8 +1,11 @@
 package InfantScreen
 {	
+	import flash.filesystem.File;
+	import flash.utils.getQualifiedClassName;
+	
 	import Common.Screen;
 	
-	import flash.filesystem.File;
+	import Items.WaterBottle;
 	
 	import Main.View;
 	
@@ -63,6 +66,7 @@ package InfantScreen
 		}
 		
 		private function Start():void{
+			View.GetInstance().setInfantScreen(this);
 			var items:Array = View.GetInstance().GetPlayer().getItems();
 			background = new Image(assetManager.getTexture("infantcare_background"));
 			View.GetInstance().AddEntity(background);
@@ -172,6 +176,20 @@ package InfantScreen
 		private function waterButtonTriggered():void
 		{
 			// TODO Auto Generated method stub
+			/*for (var i:int; i < View.GetInstance().GetPlayer().items.length; i++){
+				if(View.GetInstance().GetPlayer().items[i] is WaterBottle){
+					var item:WaterBottle = View.GetInstance().GetPlayer().items[i];
+					item.triggerEffect();
+					trace("hi");
+					break;
+				}
+			}*/
+			var items:Array = View.GetInstance().GetPlayer().getItems();
+			for(var i:int; i<items.length; i++){
+				if(items[i] is WaterBottle){
+					items[i].triggerEffect();
+				}
+			}
 			
 		}
 		
@@ -198,6 +216,13 @@ package InfantScreen
 		private function continueButtonTriggered():void
 		{
 			View.GetInstance().LoadScreen(Menu);
+		}
+		
+		public function incrementTemperatureWidth():void{
+			Temperature.width += 10;
+			if(Temperature.width > 100){
+				Temperature.width = 100;
+			}
 		}
 		
 		/**

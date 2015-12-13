@@ -4,6 +4,7 @@ package Main{
 	import Common.Screen;
 	
 	import InfantScreen.Infant;
+	import InfantScreen.InfantScreen;
 	
 	import Menu.Menu;
 	
@@ -24,6 +25,7 @@ package Main{
 		private var infant:Infant = new Infant();
 		private var level:Level;
 		private var entities:Array = new Array();
+		private var infantScreen:InfantScreen;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -75,6 +77,14 @@ package Main{
 		
 		public function AddEntity(element:Object):void{
 			entities.push(element);
+		}
+		
+		public function setInfantScreen(InfantScreen):void{
+			infantScreen = InfantScreen;
+		}
+		
+		public function getInfantScreen():InfantScreen{
+			return infantScreen;
 		}
 		
 		public function RemoveEntity(element:Object):void{

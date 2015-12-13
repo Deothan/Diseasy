@@ -11,7 +11,7 @@ package Shop
 	
 	import Main.View;
 	
-	import Menu.Menu;
+	import InfantScreen.InfantScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -168,6 +168,7 @@ package Shop
 		private function BuyMedicineButtonTriggered():void{
 			if(coins >= medicinePrice){
 				coins -= medicinePrice;
+				View.GetInstance().GetPlayer().setCoin(coins);
 				var medicine:Medicine = new Medicine();
 				View.GetInstance().GetPlayer().addItem(medicine);
 				textField1.text = coins.toString();
@@ -177,6 +178,7 @@ package Shop
 		private function BuyTowelButtonTriggered():void{
 			if(coins >= towelPrice){
 				coins -= towelPrice;
+				View.GetInstance().GetPlayer().setCoin(coins);
 				var towel:Towel= new Towel();
 				View.GetInstance().GetPlayer().addItem(towel);
 				textField1.text = coins.toString();
@@ -186,6 +188,7 @@ package Shop
 		private function BuyBlanketButtonTriggered():void{
 			if(coins >= blanketPrice){
 				coins -= blanketPrice;
+				View.GetInstance().GetPlayer().setCoin(coins);
 				var blanket:Blanket = new Blanket();
 				View.GetInstance().GetPlayer().addItem(blanket);
 				textField1.text = coins.toString();
@@ -195,6 +198,7 @@ package Shop
 		private function BuyWaterBottleButtonTriggered():void{
 			if(coins >= waterPrice){
 				coins -= waterPrice;
+				View.GetInstance().GetPlayer().setCoin(coins);
 				var waterBottle:WaterBottle = new WaterBottle();
 				View.GetInstance().GetPlayer().addItem(waterBottle);
 				textField1.text = coins.toString();
@@ -202,7 +206,7 @@ package Shop
 		}
 		
 		private function BackButtonTriggered():void{
-			View.GetInstance().LoadScreen(Menu);//Should be infant care screen
+			View.GetInstance().LoadScreen(InfantScreen);
 		}
 		
 		public function Update():void{

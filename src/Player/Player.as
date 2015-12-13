@@ -305,6 +305,18 @@ package Player
 			return foo;
 		}
 		
+		/*public function GetItem(element:Item):Item{
+			var item:Item = items[items.indexOf(element)];
+			
+			for(var i:int = items.indexOf(element); i < items.length-1; i++){                                                                                      
+				entities[i] = entities[i+1];                                   
+			}
+			
+			entities.pop()
+			
+			return item;
+		}*/
+		
 		public function setItems(param:Array):void{
 			for(var j:int = 1; j< param[0]; j++){
 				addItem(new Medicine());
