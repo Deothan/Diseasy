@@ -36,6 +36,7 @@ package InfantScreen
 		private var shopButton:Button;
 		private var towelButton:Button;
 		private var waterButton:Button;
+		private var blanketButton:Button;
 		private var coinText:TextField;
 		private var blanketText:TextField;
 		private var medicineText:TextField;
@@ -91,6 +92,17 @@ package InfantScreen
 			shopButton.y = 155;
 			addChild(shopButton);
 			
+			blanketButton = new Button(assetManager.getTexture("button_blanket"));
+			blanketButton.addEventListener(Event.TRIGGERED, blanketButtonTriggered);
+			blanketButton.x = 10;
+			blanketButton.y = 135;
+			addChild(blanketButton);
+			
+			blanketText = new TextField(40, 40, items[3], "Verdana", 20, Color.BLACK, true);
+			blanketText.x = blanketButton.x + 2;
+			blanketText.y = blanketButton.y - 27;
+			addChild(blanketText);
+			
 			hospitalButton = new Button(assetManager.getTexture("button_hospital"));
 			hospitalButton.addEventListener(Event.TRIGGERED, hospitalButtonTriggered);
 			hospitalButton.x = 220;
@@ -118,6 +130,8 @@ package InfantScreen
 			medicineText.x = medicineButton.x + 2;
 			medicineText.y = medicineButton.y - 27;
 			addChild(medicineText);
+			
+			
 			
 			waterButton = new Button(assetManager.getTexture("button_water"));
 			waterButton.addEventListener(Event.TRIGGERED, waterButtonTriggered);
@@ -263,6 +277,7 @@ package InfantScreen
 				medicineText.text = items[0];
 				towelText.text = items[1];
 				waterbottleText.text = items[2];
+				blanketText.text = items[3];
 			}
 			
 		}
@@ -299,6 +314,7 @@ package InfantScreen
 			continueButton.removeEventListener(Event.TRIGGERED, continueButtonTriggered);
 			hospitalButton.removeEventListener(Event.TRIGGERED, hospitalButtonTriggered);
 			medicineButton.removeEventListener(Event.TRIGGERED, medicineButtonTriggered);
+			blanketButton.removeEventListener(Event.TRIGGERED, blanketButtonTriggered);
 			shopButton.removeEventListener(Event.TRIGGERED, shopButtonTriggered);
 			towelButton.removeEventListener(Event.TRIGGERED, towelButtonTriggered);
 			waterButton.removeEventListener(Event.TRIGGERED, waterButtonTriggered);

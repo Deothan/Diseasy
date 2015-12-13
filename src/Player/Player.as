@@ -16,6 +16,7 @@ package Player
     
     import Common.Item;
     
+    import Items.Blanket;
     import Items.Medicine;
     import Items.Towel;
     import Items.WaterBottle;
@@ -290,6 +291,7 @@ package Player
 			foo[0] = 0;
 			foo[1] = 0;
 			foo[2] = 0;
+			foo[3] = 0;
 			for (var i:int = 0; i < items.length; i++){
 				if(items[i] is Medicine){
 					foo[0]++;
@@ -299,6 +301,9 @@ package Player
 				}
 				if(items[i] is WaterBottle){
 					foo[2]++;
+				}
+				if(items[i] is Blanket){
+					foo[3]++;
 				}
 			}
 			return foo;

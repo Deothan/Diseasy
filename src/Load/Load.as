@@ -52,7 +52,7 @@ package Load
 		}
 		
 		private function Start():void{
-			background = new Image(assetManager.getTexture("background"));
+			background = new Image(assetManager.getTexture("customize_screen3"));
 			addChild(background);
 						
 			setPlayerImage();
@@ -72,19 +72,19 @@ package Load
 			
 			player1Button = new Button(assetManager.getTexture("button_player_1"));
 			player1Button.addEventListener(Event.TRIGGERED, Player1Loaded);
-			player1Button.x = 50;
+			player1Button.x = 20;
 			player1Button.y = 50;
 			addChild(player1Button);
 			
 			player2Button = new Button(assetManager.getTexture("button_player_2"));
 			player2Button.addEventListener(Event.TRIGGERED, Player2Loaded);
-			player2Button.x = 50;
+			player2Button.x = 20;
 			player2Button.y = 100;
 			addChild(player2Button);
 			
 			player3Button = new Button(assetManager.getTexture("button_player_3"));
 			player3Button.addEventListener(Event.TRIGGERED, Player3Loaded);
-			player3Button.x = 50;
+			player3Button.x = 20;
 			player3Button.y = 150;
 			addChild(player3Button);
 		}
@@ -171,10 +171,10 @@ package Load
 		}
 		
 		private function spawnPlayerImage():void{
-			baby.x = 250;
-			hair.x = 250;
-			body.x = 250;
-			strap.x = 250;
+			baby.x = 200;
+			hair.x = 200;
+			body.x = 200;
+			strap.x = 200;
 			addChildAt(baby,1);
 			addChildAt(hair,2);
 			addChildAt(body,3);
