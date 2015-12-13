@@ -40,7 +40,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Menu);
+			LoadScreen(InfantScreen);
 		}
 		
 		private function Update(event:Event):void{
@@ -89,19 +89,12 @@ package Main{
 		
 		public function RemoveEntity(element:Object):void{
 			entities[entities.indexOf(element)] = new EntityPlaceholder();
-			
-			/**
-			 * for(var i:int = entities.indexOf(element); i < entities.length-1; i++){				
-				entities[i] = entities[i+1];					
-			}
-			
-			entities.pop()
-			 */
 		}
 		
 		public function LoadScreen(newScreen:Class):void{
 			if(screen != null && contains(screen)){		
 				(screen as Screen).Destroy();
+				entities = new Array();
 				removeChild(screen, true);
 			}
 			

@@ -3,8 +3,12 @@ package InfantScreen
 	import flash.filesystem.File;
 	import flash.utils.getQualifiedClassName;
 	
+	import Common.Entity;
+	import Common.Item;
 	import Common.Screen;
 	
+	import Items.Medicine;
+	import Items.Towel;
 	import Items.WaterBottle;
 	
 	import Main.View;
@@ -21,7 +25,6 @@ package InfantScreen
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
-	import Common.Item;
 	
 	public class InfantScreen extends Sprite implements Screen{
 		private var assetManager:AssetManager;
@@ -148,22 +151,22 @@ package InfantScreen
 			
 			HydrationRED = new Quad(100 ,13 ,Color.RED);
 			HydrationRED.x = 365;
-			HydrationRED.y = 25;
+			HydrationRED.y = 7;
 			addChild(HydrationRED);
 			
 			Hydration = new Quad(83 ,13 ,Color.GREEN);
 			Hydration.x = 365;
-			Hydration.y = 25;
+			Hydration.y = 7;
 			addChild(Hydration);
 			
 			TemperatureRED = new Quad(100 ,13 ,Color.RED);
 			TemperatureRED.x = 365;
-			TemperatureRED.y = 7;
+			TemperatureRED.y = 25;
 			addChild(TemperatureRED);
 			
 			Temperature = new Quad(17 ,13 ,Color.GREEN);
 			Temperature.x = 365;
-			Temperature.y = 7;
+			Temperature.y = 25;
 			addChild(Temperature);
 			
 			this.ready = true;
@@ -174,20 +177,32 @@ package InfantScreen
 			addChild(Infant);
 		}
 		
-		private function waterButtonTriggered():void
-		{
-			var bottle:WaterBottle = new WaterBottle();
-			
-			if(View.GetInstance().GetPlayer().ContainsItem(bottle)){
-				var item:Item = View.GetInstance().GetPlayer().GetItem(bottle);
-				item.triggerEffect();
-			}    
-			
+		private function waterButtonTriggered():void{
+			var item:Item;
+			var i:int = 0;
+
+			while(item != WaterBottle && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
+				i++;
+				
+				if(item is WaterBottle){
+					item.triggerEffect();
+				}
+			}
 		}
 		
-		private function towelButtonTriggered():void
-		{
-				// TODO Auto Generated method stub
+		private function towelButtonTriggered():void{
+			var item:Item;
+			var i:int = 0;
+			
+			while(item != Towel && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
+				i++;
+				
+				if(item is Towel){
+					item.triggerEffect();
+				}
+			}
 		}
 		
 		private function shopButtonTriggered():void
@@ -195,9 +210,18 @@ package InfantScreen
 			View.GetInstance().LoadScreen(Shop);
 		}
 		
-		private function medicineButtonTriggered():void
-		{
-			// TODO Auto Generated method stub
+		private function medicineButtonTriggered():void{
+			var item:Item;
+			var i:int = 0;
+			
+			while(item != Medicine && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
+				i++;
+			
+				if(item is Medicine){
+					item.triggerEffect();
+				}
+			}
 		}
 		
 		private function hospitalButtonTriggered():void

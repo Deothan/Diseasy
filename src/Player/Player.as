@@ -11,15 +11,14 @@ package Player
     /**
      * Load external libraries
      */
-    import flash.utils;
     import flash.filesystem.File;
     import flash.utils.getDefinitionByName;
     
     import Common.Item;
-	
-	import Items.Medicine;
-	import Items.Towel;
-	import Items.WaterBottle;
+    
+    import Items.Medicine;
+    import Items.Towel;
+    import Items.WaterBottle;
     
     import starling.core.Starling;
     import starling.display.MovieClip;
@@ -35,7 +34,7 @@ package Player
 		* @param life, nr of hearts
         */       
 		private var life:int = 5;
-		private var coins:int = 0;
+		private var coins:int = 100;
 		private var currentAnimation:String;
 		private var animations:Array;
 		private var assetManager:AssetManager;
@@ -266,7 +265,7 @@ package Player
 			items.push(_item);
 
 		}
-		
+		/**
 		public function removeItem(_item:Item):void{
 			var flag:Boolean = true;
 			var _items:Array = new Array();
@@ -280,7 +279,7 @@ package Player
 				}
 			}
 			this.items = _items;
-		}
+		}*/
 		
 		/**
 		 * method to get array of items.
@@ -305,27 +304,16 @@ package Player
 			return foo;
 		}
 		
-		public function ContainsItem(element:Item):Boolean{
-			var contains:int = items.indexOf(element);
-			
-			if(contains >= 0){
-				return true;
-			}
-			else{
-				return null;   
-			}
+		public function GetItemsArray():Array{
+			return items;
 		}
 		
-		public function GetItem(element:Item):Item{
-			var item:Item = items[items.indexOf(element)];
-			
+		public function RemoveItem(element:Item):void{
 			for(var i:int = items.indexOf(element); i < items.length-1; i++){                                                                                      
 				items[i] = items[i+1];                                  
 			}
 			
 			items.pop()
-			
-			return item;
 		}
 		
 		public function setItems(param:Array):void{
