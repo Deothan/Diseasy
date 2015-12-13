@@ -7,6 +7,7 @@ package InfantScreen
 	import Common.Item;
 	import Common.Screen;
 	
+	import Items.Blanket;
 	import Items.Medicine;
 	import Items.Towel;
 	import Items.WaterBottle;
@@ -219,6 +220,20 @@ package InfantScreen
 				i++;
 			
 				if(item is Medicine){
+					item.triggerEffect();
+				}
+			}
+		}
+		
+		private function blanketButtonTriggered():void{
+			var item:Item;
+			var i:int = 0;
+			
+			while(item != Blanket && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
+				i++;
+				
+				if(item is Blanket){
 					item.triggerEffect();
 				}
 			}
