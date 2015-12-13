@@ -40,7 +40,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(InfantScreen);
+			LoadScreen(Menu);
 		}
 		
 		private function Update(event:Event):void{

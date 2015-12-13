@@ -34,7 +34,7 @@ package Player
 		* @param life, nr of hearts
         */       
 		private var life:int = 5;
-		private var coins:int = 100;
+		private var coins:int = 0;
 		private var currentAnimation:String;
 		private var animations:Array;
 		private var assetManager:AssetManager;
