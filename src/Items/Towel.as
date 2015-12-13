@@ -62,6 +62,12 @@ package Items
 			return this.height;
 		}
 		
+		public function triggerEffect():void{
+			View.GetInstance().GetInfant().setHygiene(10);
+			View.GetInstance().GetPlayer().removeItem(this);
+			
+		}
+		
 		public function Use():void{
 			View.GetInstance().GetPlayer().addItem(this);
 			Destroy();

@@ -62,6 +62,12 @@ package Items
 			return destroyed;
 		}
 		
+		public function triggerEffect():void{
+			View.GetInstance().GetInfant().setTemperature(10);
+			View.GetInstance().GetPlayer().removeItem(this);
+			
+		}
+		
 		public function Use():void{
 			View.GetInstance().GetPlayer().addItem(this);
 			Destroy();

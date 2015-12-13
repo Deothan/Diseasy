@@ -81,6 +81,10 @@ package Items
 			return destroyed;
 		}
 		
+		public function triggerEffect():void{
+			
+		}
+		
 		public function Use():void{
 			trace("[Coin] using coin");
 			View.GetInstance().GetPlayer().addCoin();

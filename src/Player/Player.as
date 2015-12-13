@@ -305,17 +305,28 @@ package Player
 			return foo;
 		}
 		
-		/*public function GetItem(element:Item):Item{
+		public function ContainsItem(element:Item):Boolean{
+			var contains:int = items.indexOf(element);
+			
+			if(contains >= 0){
+				return true;
+			}
+			else{
+				return null;   
+			}
+		}
+		
+		public function GetItem(element:Item):Item{
 			var item:Item = items[items.indexOf(element)];
 			
 			for(var i:int = items.indexOf(element); i < items.length-1; i++){                                                                                      
-				entities[i] = entities[i+1];                                   
+				items[i] = items[i+1];                                  
 			}
 			
-			entities.pop()
+			items.pop()
 			
 			return item;
-		}*/
+		}
 		
 		public function setItems(param:Array):void{
 			for(var j:int = 1; j< param[0]; j++){

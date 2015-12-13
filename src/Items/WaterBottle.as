@@ -63,7 +63,7 @@ package Items
 		}
 		
 		public function triggerEffect():void{
-			View.GetInstance().getInfantScreen().incrementTemperatureWidth();
+			View.GetInstance().GetInfant().setHydration(10);
 			View.GetInstance().GetPlayer().removeItem(this);
 			
 		}

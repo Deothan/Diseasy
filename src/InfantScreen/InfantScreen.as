@@ -21,6 +21,7 @@ package InfantScreen
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
+	import Common.Item;
 	
 	public class InfantScreen extends Sprite implements Screen{
 		private var assetManager:AssetManager;
@@ -175,21 +176,12 @@ package InfantScreen
 		
 		private function waterButtonTriggered():void
 		{
-			// TODO Auto Generated method stub
-			/*for (var i:int; i < View.GetInstance().GetPlayer().items.length; i++){
-				if(View.GetInstance().GetPlayer().items[i] is WaterBottle){
-					var item:WaterBottle = View.GetInstance().GetPlayer().items[i];
-					item.triggerEffect();
-					trace("hi");
-					break;
-				}
-			}*/
-			var items:Array = View.GetInstance().GetPlayer().getItems();
-			for(var i:int; i<items.length; i++){
-				if(items[i] is WaterBottle){
-					items[i].triggerEffect();
-				}
-			}
+			var bottle:WaterBottle = new WaterBottle();
+			
+			if(View.GetInstance().GetPlayer().ContainsItem(bottle)){
+				var item:Item = View.GetInstance().GetPlayer().GetItem(bottle);
+				item.triggerEffect();
+			}    
 			
 		}
 		
@@ -218,12 +210,6 @@ package InfantScreen
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
-		public function incrementTemperatureWidth():void{
-			Temperature.width += 10;
-			if(Temperature.width > 100){
-				Temperature.width = 100;
-			}
-		}
 		
 		/**
 		 * Updates the screen.
