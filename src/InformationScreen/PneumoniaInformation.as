@@ -50,8 +50,8 @@ package InformationScreen
 			addChild(background);
 			
 			pneumoniaInformation = new Image(assetManager.getTexture("Info_Screen_Pneumonia"));
-			pneumoniaInformation.x = 10;
-			pneumoniaInformation.y = 25;
+			pneumoniaInformation.x = 15;
+			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
@@ -96,7 +96,7 @@ package InformationScreen
 			removeChild(luoButton);
 			addChild(englishButton);
 			removeChild(pneumoniaInformation);
-			pneumoniaInformation = new Image(assetManager.getTexture("cat"));
+			pneumoniaInformation = new Image(assetManager.getTexture("InfoLuo_Screen_Pneumonia"));
 			pneumoniaInformation.x = 15;
 			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);

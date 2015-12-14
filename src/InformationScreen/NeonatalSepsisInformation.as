@@ -50,8 +50,8 @@ package InformationScreen
 			addChild(background); 
 			
 			neonatalsepsisInformation = new Image(assetManager.getTexture("Info_Screen_NeonatalSepsis"));
-			neonatalsepsisInformation.x = 10;
-			neonatalsepsisInformation.y = 25;
+			neonatalsepsisInformation.x = 15;
+			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
@@ -96,7 +96,7 @@ package InformationScreen
 			removeChild(luoButton);
 			addChild(englishButton);
 			removeChild(neonatalsepsisInformation);
-			neonatalsepsisInformation = new Image(assetManager.getTexture("cat"));
+			neonatalsepsisInformation = new Image(assetManager.getTexture("InfoLuo_Screen_NeonatalSepsis"));
 			neonatalsepsisInformation.x = 15;
 			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);

@@ -50,8 +50,8 @@ package InformationScreen
 			addChild(background);
 			
 			malariaInformation = new Image(assetManager.getTexture("Info_Screen_Malaria"));
-			malariaInformation.x = 10;
-			malariaInformation.y = 25;
+			malariaInformation.x = 15;
+			malariaInformation.y = 20;
 			addChild(malariaInformation);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
@@ -96,7 +96,7 @@ package InformationScreen
 			removeChild(luoButton);
 			addChild(englishButton);
 			removeChild(malariaInformation);
-			malariaInformation = new Image(assetManager.getTexture("cat"));
+			malariaInformation = new Image(assetManager.getTexture("InfoLuo_Screen_Malaria"));
 			malariaInformation.x = 15;
 			malariaInformation.y = 20;
 			addChild(malariaInformation);

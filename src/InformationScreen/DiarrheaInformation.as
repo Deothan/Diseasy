@@ -52,8 +52,8 @@ package InformationScreen
 			addChild(background); 
 			
 			diarrheaInformation = new Image(assetManager.getTexture("Info_Screen_Diarrhea"));
-			diarrheaInformation.x = 10;
-			diarrheaInformation.y = 25;
+			diarrheaInformation.x = 15;
+			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
@@ -98,7 +98,7 @@ package InformationScreen
 			removeChild(luoButton);
 			addChild(englishButton);
 			removeChild(diarrheaInformation);
-			diarrheaInformation = new Image(assetManager.getTexture("cat"));
+			diarrheaInformation = new Image(assetManager.getTexture("InfoLuo_Screen_Diarrhea"));
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation); 
