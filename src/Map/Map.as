@@ -5,7 +5,7 @@ package Map{
 	
 	import Customize.Customize;
 	
-	import Level_1.Level_1;
+	import Levels.Level_1;
 	
 	import Main.View;
 	

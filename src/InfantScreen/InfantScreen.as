@@ -130,9 +130,7 @@ package InfantScreen
 			medicineText.x = medicineButton.x + 2;
 			medicineText.y = medicineButton.y - 27;
 			addChild(medicineText);
-			
-			
-			
+				
 			waterButton = new Button(assetManager.getTexture("button_water"));
 			waterButton.addEventListener(Event.TRIGGERED, waterButtonTriggered);
 			waterButton.x = 10;
@@ -196,7 +194,7 @@ package InfantScreen
 			var item:Item;
 			var i:int = 0;
 
-			while(item != WaterBottle && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+			while(!(item is WaterBottle) && i < View.GetInstance().GetPlayer().GetItemsArray().length){
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				
@@ -210,7 +208,7 @@ package InfantScreen
 			var item:Item;
 			var i:int = 0;
 			
-			while(item != Towel && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+			while(!(item is Towel) && i < View.GetInstance().GetPlayer().GetItemsArray().length){
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				
@@ -229,7 +227,7 @@ package InfantScreen
 			var item:Item;
 			var i:int = 0;
 			
-			while(item != Medicine && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+			while(!(item is Medicine) && i < View.GetInstance().GetPlayer().GetItemsArray().length){
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 			
@@ -243,7 +241,8 @@ package InfantScreen
 			var item:Item;
 			var i:int = 0;
 			
-			while(item != Blanket && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+			while(!(item is Blanket) && i < View.GetInstance().GetPlayer().GetItemsArray().length){
+				trace(View.GetInstance().GetPlayer().GetItemsArray()[i]);
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				

@@ -8,11 +8,7 @@ package Main{
 	
 	import Menu.Menu;
 	
-	import Platforms.Platform;
-	
 	import Player.Player;
-	
-	import VirusScreen.VirusScreen;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
