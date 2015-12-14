@@ -67,7 +67,7 @@ package Common
 			var bar:Array = new Array();
 			for(var i:int = 0; i< profileNames.length; i++){
 				foo = profileNames[i].split(":");
-				bar[i] = foo;
+				bar[i] = foo[1];
 			}
 			return bar;
 		}
