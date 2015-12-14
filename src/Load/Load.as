@@ -3,9 +3,12 @@ package Load
 	
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import Main.View;
+	
+	import Map.Map;
 	
 	import Menu.Menu;
 	
@@ -13,6 +16,9 @@ package Load
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
+	import starling.text.TextField;
 	import starling.utils.AssetManager;
 
 	public class Load extends Sprite implements Screen{
@@ -32,6 +38,7 @@ package Load
 		private var hair:Image;
 		private var strap:Image;
 		private var looks:Array = new Array();
+		private var names:Array = Common.IO.GetInstance().getNames();
 		
 		
 		public function Load(){
@@ -70,23 +77,20 @@ package Load
 			loadButton.y = 196;
 			addChild(loadButton);
 			
-			player1Button = new Button(assetManager.getTexture("button_player_1"));
-			player1Button.addEventListener(Event.TRIGGERED, Player1Loaded);
-			player1Button.x = 20;
-			player1Button.y = 50;
-			addChild(player1Button);
+			for(var i:int; i<Common.IO.GetInstance().getNames().length; i++){
+				var textField:TextField = new TextField(172,40, names[i],"Verdana", 20, 0x0);
+					textField.addEventListener(TouchEvent.TOUCH, NameTouched);
+					textField.x = 20;
+					textField.y = (20 * (i+1));
+					addChild(textField);
+			}
 			
-			player2Button = new Button(assetManager.getTexture("button_player_2"));
-			player2Button.addEventListener(Event.TRIGGERED, Player2Loaded);
-			player2Button.x = 20;
-			player2Button.y = 100;
-			addChild(player2Button);
-			
-			player3Button = new Button(assetManager.getTexture("button_player_3"));
-			player3Button.addEventListener(Event.TRIGGERED, Player3Loaded);
-			player3Button.x = 20;
-			player3Button.y = 150;
-			addChild(player3Button);
+		}
+		
+		private function NameTouched(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				
+			}
 		}
 		
 		private function setPlayerImage():void{
@@ -206,7 +210,7 @@ package Load
 				
 		}
 		
-		private function Player1Loaded():void{
+		private function Player1Loaded(name:String):void{
 			LoadPlayer(1);
 		}
 		
@@ -222,7 +226,7 @@ package Load
 		}
 		
 		private function LoadButtonTriggered():void{
-			View.GetInstance().LoadScreen(Menu);
+			View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
@@ -232,9 +236,9 @@ package Load
 		public function Destroy():void{
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
-			player1Button.addEventListener(Event.TRIGGERED, Player1Loaded);
-			player2Button.addEventListener(Event.TRIGGERED, Player2Loaded);
-			player3Button.addEventListener(Event.TRIGGERED, Player3Loaded);
+			//player1Button.addEventListener(Event.TRIGGERED, Player1Loaded);
+			//player2Button.addEventListener(Event.TRIGGERED, Player2Loaded);
+			//player3Button.addEventListener(Event.TRIGGERED, Player3Loaded);
 			assetManager.dispose();
 		}
 	}

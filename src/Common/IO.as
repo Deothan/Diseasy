@@ -263,8 +263,8 @@ package Common
 			foo[4] = "LOOKS:" + looks[0] + "," + looks[1] + "," + looks[2] + "\r\n";
 			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4] +  "\r\n";
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
-			foo[6] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + "\r\n";
-			foo[7] = "</PROFILE>\r\n";
+			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3]+ "\r\n";
+			foo[8] = "</PROFILE>\r\n";
 			
 			return foo;
 		}

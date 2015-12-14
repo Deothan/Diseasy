@@ -1,6 +1,7 @@
 package Map{
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import Customize.Customize;
@@ -150,7 +151,7 @@ package Map{
 		}
 		
 		private function SaveButtonTriggered():void{
-			//Add save code here.
+			IO.GetInstance().Save();
 		}
 		
 		public function Update():void{	

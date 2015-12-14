@@ -3,14 +3,7 @@ NAME:Agina
 LIFE:5
 COINS:0
 LOOKS:0,1,2
-VIRUSSES:true,false,false,false,false
-LEVELS:true,false,false,false,false
-</PROFILE>
-<PROFILE>
-NAME:Agina
-LIFE:5
-COINS:0
-LOOKS:1,2,3
 VIRUSSES:false,false,false,false,false
+LEVELS:true,false,false,false,false
 ITEMS:0,0,0,
 </PROFILE>
