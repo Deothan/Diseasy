@@ -12,8 +12,14 @@ package Player
      * Load external libraries
      */
     import flash.filesystem.File;
+    import flash.utils.getDefinitionByName;
     
     import Common.Item;
+    
+    import Items.Blanket;
+    import Items.Medicine;
+    import Items.Towel;
+    import Items.WaterBottle;
     
     import starling.core.Starling;
     import starling.display.MovieClip;
@@ -259,6 +265,72 @@ package Player
 		public function addItem(_item:Item):void{
 			items.push(_item);
 
+		}
+		/**
+		public function removeItem(_item:Item):void{
+			var flag:Boolean = true;
+			var _items:Array = new Array();
+			for (var i:int =0; i < items.length; i++){
+				if(flash.utils.getDefinitionByName(flash.utils.getQualifiedClassName(_item)) == flash.utils.getDefinitionByName(flash.utils.getQualifiedClassName(items[i])) && flag){
+					flag = false;
+					items[i].destroy();
+				}	
+				else{
+					_items.push(items[i]);
+				}
+			}
+			this.items = _items;
+		}*/
+		
+		/**
+		 * method to get array of items.
+		 * @return: Array, array holding medicine,towel,waterbottle
+		 */
+		public function getItems():Array{
+			var foo:Array = new Array();
+			foo[0] = 0;
+			foo[1] = 0;
+			foo[2] = 0;
+			foo[3] = 0;
+			for (var i:int = 0; i < items.length; i++){
+				if(items[i] is Medicine){
+					foo[0]++;
+				}
+				if(items[i] is Towel){
+					foo[1]++;
+				}
+				if(items[i] is WaterBottle){
+					foo[2]++;
+				}
+				if(items[i] is Blanket){
+					foo[3]++;
+				}
+			}
+			return foo;
+		}
+		
+		public function GetItemsArray():Array{
+			return items;
+		}
+		
+		public function RemoveItem(element:Item):void{
+			for(var i:int = items.indexOf(element); i < items.length-1; i++){                                                                                      
+				items[i] = items[i+1];                                  
+			}
+			
+			items.pop()
+		}
+		
+		public function setItems(param:Array):void{
+			for(var j:int = 1; j< param[0]; j++){
+				addItem(new Medicine());
+			}
+			for(var k:int = 1; k< param[1]; k++){
+				addItem(new Towel());
+			}
+			for(var l:int = 1; l < param[2]; l++){
+				addItem(new WaterBottle());
+			}
 		}
     }
 }

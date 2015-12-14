@@ -62,6 +62,10 @@ package Items
 			return this.height;
 		}
 		
+		public function triggerEffect():void{
+			
+		}
+		
 		public function Use():void{
 			View.GetInstance().getLevel().DecreaseTime();
 			Destroy();

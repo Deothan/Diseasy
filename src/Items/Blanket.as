@@ -46,7 +46,7 @@ package Items
 		public function Destroy():void{
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(blanketImage);
-			assetManager.dispose();
+			//assetManager.dispose();
 			destroyed = true;
 		}
 		
@@ -60,6 +60,12 @@ package Items
 		
 		public function Destroyed():Boolean{
 			return destroyed;
+		}
+		
+		public function triggerEffect():void{
+			Destroy();
+			View.GetInstance().GetInfant().setTemperature(10);
+			View.GetInstance().GetPlayer().RemoveItem(this);
 		}
 		
 		public function Use():void{

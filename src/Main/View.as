@@ -1,14 +1,14 @@
 package Main{
+	import Common.EntityPlaceholder;
 	import Common.Level;
 	import Common.Screen;
 	
+	import InfantScreen.Infant;
+	import InfantScreen.InfantScreen;
+	
 	import Menu.Menu;
 	
-	import Platforms.Platform;
-	
 	import Player.Player;
-	
-	import VirusScreen.VirusScreen;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -18,8 +18,10 @@ package Main{
 		private var screen:Sprite;
 		private var volume:int;
 		private var player:Player = new Player();
+		private var infant:Infant = new Infant();
 		private var level:Level;
 		private var entities:Array = new Array();
+		private var infantScreen:InfantScreen;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -53,6 +55,10 @@ package Main{
 			return player;
 		}
 		
+		public function GetInfant():Infant{
+			return infant;
+		}
+		
 		public function setLevel(currentLevel):void{
 			level = currentLevel;
 		}
@@ -69,17 +75,22 @@ package Main{
 			entities.push(element);
 		}
 		
+		public function setInfantScreen(InfantScreen):void{
+			infantScreen = InfantScreen;
+		}
+		
+		public function getInfantScreen():InfantScreen{
+			return infantScreen;
+		}
+		
 		public function RemoveEntity(element:Object):void{
-			for(var i:int = entities.indexOf(element); i < entities.length-1; i++){				
-				entities[i] = entities[i+1];					
-			}
-			
-			entities.pop();
+			entities[entities.indexOf(element)] = new EntityPlaceholder();
 		}
 		
 		public function LoadScreen(newScreen:Class):void{
 			if(screen != null && contains(screen)){		
 				(screen as Screen).Destroy();
+				entities = new Array();
 				removeChild(screen, true);
 			}
 			

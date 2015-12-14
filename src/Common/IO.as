@@ -32,7 +32,7 @@ package Common
 		/** constant variables 
 		 * SIZEOFPROFILE needs to be adjusted every time new data is added in a sprint 
 		 **/
-		private const SIZEOFPROFILE:int = 8;
+		private const SIZEOFPROFILE:int = 9;
 		private const SIZEOFRECORDS:int = SIZEOFPROFILE - 1;
 		
 		/**
@@ -67,7 +67,7 @@ package Common
 			var bar:Array = new Array();
 			for(var i:int = 0; i< profileNames.length; i++){
 				foo = profileNames[i].split(":");
-				bar[i] = foo;
+				bar[i] = foo[1];
 			}
 			return bar;
 		}
@@ -123,6 +123,12 @@ package Common
 			if(foobar[3].search("true") >= 0){
 				View.GetInstance().GetPlayer().setUnlock(4);	
 			}
+			
+			var playerItems:String =profiles[(loop +6)];
+			tmp = playerItems.split(":");
+			foobar = tmp[1].split(",");
+			trace(foobar);
+			View.GetInstance().GetPlayer().setItems(foobar);
 			playerPointer = (loop -1);
 		}
 		
@@ -247,6 +253,7 @@ package Common
 			var looks:Array = View.GetInstance().GetPlayer().GetLooks();
 			var virusses:Array = View.GetInstance().GetPlayer().GetCheckedViruses();
 			var unlock:Array = View.GetInstance().GetPlayer().getUnlock();
+			var items:Array = View.GetInstance().GetPlayer().getItems();
 			var foo:Array = new Array();
 			
 			foo[0] = "<PROFILE>\r\n";
@@ -256,6 +263,7 @@ package Common
 			foo[4] = "LOOKS:" + looks[0] + "," + looks[1] + "," + looks[2] + "\r\n";
 			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4] +  "\r\n";
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
+			foo[6] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + "\r\n";
 			foo[7] = "</PROFILE>\r\n";
 			
 			return foo;

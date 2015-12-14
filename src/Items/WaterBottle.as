@@ -42,11 +42,11 @@ package Items
 			addChild(waterBottleImage);
 		}
 		
-		//Function to remove the listener and assetmanager of this object, 
+		//Function to remove the listener and assetmanager of this object
 		public function Destroy():void{
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			removeChild(waterBottleImage);
-			assetManager.dispose();
+			//assetManager.dispose();
 			destroyed = true;
 		}
 		
@@ -60,6 +60,12 @@ package Items
 		
 		public function getHeight():int{
 			return this.height;
+		}
+		
+		public function triggerEffect():void{
+			Destroy();
+			View.GetInstance().GetInfant().setHydration(10);
+			View.GetInstance().GetPlayer().RemoveItem(this);
 		}
 		
 		public function Use():void{
