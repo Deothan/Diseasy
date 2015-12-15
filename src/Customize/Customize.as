@@ -20,24 +20,14 @@ package Customize{
 	public class Customize extends Sprite implements Screen{
 		private var assetManager:AssetManager = new AssetManager();
 		private var background:Image;
-		private var hairImage:Image;
-		private var bodyImage:Image;
-		private var babyImage:Image;
-		private var strapImage:Image;
-		private var hairButton:Button;
-		private var babbyButton:Button;
-		private var clothesButton:Button;
+		private var look:Image;
+		private var currentLook:int;
 		private var backButton:Button;
+		private var lookButton:Button;
 		private var okButton:Button;
 		private var nameText:TextField;
 		private var input:String;
-		private var hair:Array = new Array();
-		private var body:Array = new Array();
-		private var baby:Array = new Array();
-		private var strap:Array = new Array();
-		private var currentHair:int;
-		private var currentBody:int;
-		private var currentBaby:int;
+		private var looks:Array = new Array();
 		
 		public function Customize(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -56,54 +46,10 @@ package Customize{
 			}
 		}
 		
-		public function Start():void{
-			LoadChangeArrays();
-
-			currentHair = View.GetInstance().GetPlayer().GetLooks()[0];
-			currentBody = View.GetInstance().GetPlayer().GetLooks()[1];
-			currentBaby = View.GetInstance().GetPlayer().GetLooks()[2];
-			
-			background = new Image(assetManager.getTexture("background"));
+		public function Start():void{	
+			background = new Image(assetManager.getTexture("customize_screen1"));
 			addChild(background);
-			
-			babyImage = baby[currentBaby];
-			babyImage.x = 10;
-			babyImage.y = 7;
-			addChild(babyImage);
-			
-			hairImage = hair[currentHair];
-			hairImage.x = 10;
-			hairImage.y = 7;
-			addChild(hairImage);
 
-			bodyImage = body[currentBody];
-			bodyImage.x = 10;
-			bodyImage.y = 7;
-			addChild(bodyImage);
-			
-			strapImage = strap[currentBaby];
-			strapImage.x = 10;
-			strapImage.y = 7;
-			addChild(strapImage);
-			
-			hairButton = new Button(assetManager.getTexture("button_hair"));
-			hairButton.addEventListener(Event.TRIGGERED, HairButtonTriggered);
-			hairButton.x = 180;
-			hairButton.y = 175;
-			addChild(hairButton);
-			
-			babbyButton = new Button(assetManager.getTexture("button_baby"));
-			babbyButton.addEventListener(Event.TRIGGERED, BabyButtonTriggered);
-			babbyButton.x = 310;
-			babbyButton.y = 65;
-			addChild(babbyButton);
-			
-			clothesButton = new Button(assetManager.getTexture("button_clothes"));
-			clothesButton.addEventListener(Event.TRIGGERED, ClothesButtonTriggered);
-			clothesButton.x = 180;
-			clothesButton.y = 65;
-			addChild(clothesButton);
-			
 			backButton = new Button(assetManager.getTexture("button_back"));
 			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
 			backButton.x = 365;
@@ -112,99 +58,59 @@ package Customize{
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
 			okButton.addEventListener(Event.TRIGGERED, OkButtonTriggered);
-			okButton.x = 310;
-			okButton.y = 180;
+			okButton.x = 230;
+			okButton.y = 248;
 			addChild(okButton);
+			
+			lookButton = new Button(assetManager.getTexture("button_hair"));
+			lookButton.addEventListener(Event.TRIGGERED, LookButtonTriggered);
+			lookButton.x = 280;
+			lookButton.y = 110;
+			addChild(lookButton);
 			
 			nameText = new TextField(172, 40, View.GetInstance().GetPlayer().GetName());
 			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
 			nameText.fontSize = 20;
 			nameText.color = 0x000000;
-			nameText.x = 290;
+			nameText.x = 285;
 			nameText.y = 20;
 			addChild(nameText);
+			
+			looks[0] = new Image(assetManager.getTexture("customize_women_1"));
+			looks[1] = new Image(assetManager.getTexture("customize_women_2"));
+			looks[2] = new Image(assetManager.getTexture("customize_women_3"));
+			looks[3] = new Image(assetManager.getTexture("customize_women_4"));
+		
+			currentLook = View.GetInstance().GetPlayer().GetLooks();
+			look = looks[currentLook];
+			look.x = 10;
+			look.y = 10;
+			addChild(look);
 		}
 		
-		//Add save functionality
-		private function OkButtonTriggered():void{
-			var looks:Array = new Array();
-			looks[0] = currentHair;
-			looks[1] = currentBody;
-			looks[2] = currentBaby;
+		private function LookButtonTriggered():void{
+			currentLook++;
 			
-			View.GetInstance().GetPlayer().SetLooks(looks);
+			if(currentLook > 3){
+				currentLook = 0;
+			}
+			
+			
+			removeChild(look);
+			
+			look = looks[currentLook];
+			look.x = 10;
+			look.y = 10;
+			addChild(look);
+		}
+		
+		private function OkButtonTriggered():void{
+			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
 			View.GetInstance().LoadScreen(Map);
-		}
-		
-		private function HairButtonTriggered():void{
-			if(currentHair == hair.length-1)
-				currentHair = 0;
-			else
-				currentHair++;
-			
-			removeChild(hairImage);
-			hairImage = hair[currentHair];	
-			hairImage.x = 10;
-			hairImage.y = 7;
-			addChildAt(hairImage, 2);
-		}
-		
-		private function BabyButtonTriggered():void{
-			if(currentBaby == baby.length-1)
-				currentBaby = 0;
-			else
-				currentBaby++;
-			
-			removeChild(babyImage);
-			babyImage = baby[currentBaby];
-			babyImage.x = 10;
-			babyImage.y = 7;
-			addChildAt(babyImage, 1);
-			
-			removeChild(strapImage);
-			strapImage = strap[currentBaby];
-			strapImage.x = 10;
-			strapImage.y = 7;
-			addChildAt(strapImage, 4);	
-		}
-		
-		private function ClothesButtonTriggered():void{
-			if(currentBody == body.length-1)
-				currentBody = 0;
-			else
-				currentBody++;
-			
-			removeChild(bodyImage);
-			bodyImage = body[currentBody];	
-			bodyImage.x = 10;
-			bodyImage.y = 7;
-			addChildAt(bodyImage, 3);
-		}
-		
-		private function LoadChangeArrays():void{
-			body[0] = new Image(assetManager.getTexture("women_longskirt"));
-			body[1] = new Image(assetManager.getTexture("women_orangedress"));
-			body[2] = new Image(assetManager.getTexture("women_pants"));
-			body[3] = new Image(assetManager.getTexture("women_tshirt"));
-			
-			hair[0] = new Image(assetManager.getTexture("women_one"));
-			hair[1] = new Image(assetManager.getTexture("women_orange"));
-			hair[2] = new Image(assetManager.getTexture("women_twin"));
-			hair[3] = new Image(assetManager.getTexture("women_short"));
-			
-			baby[0] = new Image(assetManager.getTexture("baby_blue"));
-			baby[1] = new Image(assetManager.getTexture("baby_green"));
-			baby[2] = new Image(assetManager.getTexture("baby_purple"));
-			baby[3] = new Image(assetManager.getTexture("baby_red"));
-			
-			strap[0] = new Image(assetManager.getTexture("babycloth_blue"));
-			strap[1] = new Image(assetManager.getTexture("babycloth_green"));
-			strap[2] = new Image(assetManager.getTexture("babycloth_purple"));
-			strap[3] = new Image(assetManager.getTexture("babycloth_red"));
 		}
 		
 		/**
@@ -248,17 +154,12 @@ package Customize{
 			}
 		}
 		
-		public function Update():void{
-			
-		}
+		public function Update():void{}
 		
 		public function Destroy():void{
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
-			hairButton.removeEventListener(Event.TRIGGERED, HairButtonTriggered);
-			babbyButton.removeEventListener(Event.TRIGGERED, BabyButtonTriggered);
-			clothesButton.removeEventListener(Event.TRIGGERED, ClothesButtonTriggered);
 			assetManager.dispose();
 		}
 	}

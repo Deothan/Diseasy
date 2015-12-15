@@ -12,8 +12,7 @@ package Player
      * Load external libraries
      */
     import flash.filesystem.File;
-    import flash.utils.getDefinitionByName;
-    
+	
     import Common.Item;
     
     import Items.Blanket;
@@ -45,8 +44,8 @@ package Player
 		private var unlock3:Boolean = false;
 		private var unlock4:Boolean = false;
 		private var unlock5:Boolean = false;
-		private var looks:Array = new Array();
-		public var items:Array = new Array();
+		private var looks:int = 0;
+		private var items:Array = new Array();
 		private var name:String;
 		private var spawned:Boolean = false;
 		private var checkedViruses:Array = new Array();
@@ -58,11 +57,6 @@ package Player
 			animations = new Array();
 			unlock[1] = true;
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
-			
-			//Should be loaded not set.
-			looks[0] = 0;
-			looks[1] = 1;
-			looks[2] = 2;
 			
 			name = "Agina";
 			
@@ -146,11 +140,11 @@ package Player
 			return name;
 		}
 		
-		public function SetLooks(_looks:Array):void{
+		public function SetLooks(_looks:int):void{
 			this.looks = _looks;
 		}
 		
-		public function GetLooks():Array{
+		public function GetLooks():int{
 			return looks;
 		}
 		

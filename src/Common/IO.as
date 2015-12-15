@@ -88,7 +88,8 @@ package Common
 			
 			loop = (pointer * SIZEOFPROFILE) + 1;
 			var tmp:Array = new Array();
-			var foobar:Array = new Array;
+			var foobar:int;
+			var fobar:Array = new Array();
 			
 			//set person parameters
 			View.GetInstance().GetPlayer().SetName(param);
@@ -103,13 +104,13 @@ package Common
 			
 			var playerlooks:String = profiles[(loop + 3)];
 			tmp = playerlooks.split(":");
-			foobar = tmp[1].split(",");
+			foobar = tmp[1];
 			View.GetInstance().GetPlayer().SetLooks(foobar);
 			
 			var playerVirusses:String =profiles[(loop +4)];
 			tmp = playerVirusses.split(":");
-			foobar = tmp[1].split(",");
-			View.GetInstance().GetPlayer().SetCheckedViruses(foobar);
+			fobar = tmp[1].split(",");
+			View.GetInstance().GetPlayer().SetCheckedViruses(fobar);
 			
 			var playerUnlocked:String =profiles[(loop +5)];
 			tmp = playerUnlocked.split(":");
@@ -126,9 +127,9 @@ package Common
 			
 			var playerItems:String =profiles[(loop +6)];
 			tmp = playerItems.split(":");
-			foobar = tmp[1].split(",");
-			trace(foobar);
-			View.GetInstance().GetPlayer().setItems(foobar);
+			fobar = tmp[1].split(",");
+			trace(fobar);
+			View.GetInstance().GetPlayer().setItems(fobar);
 			playerPointer = (loop -1);
 		}
 		
@@ -250,7 +251,7 @@ package Common
 			var name:String = View.GetInstance().GetPlayer().GetName();
 			var life:int = View.GetInstance().GetPlayer().getLife();
 			var coins:int = View.GetInstance().GetPlayer().getCoins();
-			var looks:Array = View.GetInstance().GetPlayer().GetLooks();
+			var looks:int = View.GetInstance().GetPlayer().GetLooks();
 			var virusses:Array = View.GetInstance().GetPlayer().GetCheckedViruses();
 			var unlock:Array = View.GetInstance().GetPlayer().getUnlock();
 			var items:Array = View.GetInstance().GetPlayer().getItems();
@@ -260,7 +261,7 @@ package Common
 			foo[1] = "NAME:" + name + "\r\n";
 			foo[2] = "LIFE:" + life + "\r\n";
 			foo[3] = "COINS:" + coins + "\r\n";
-			foo[4] = "LOOKS:" + looks[0] + "," + looks[1] + "," + looks[2] + "\r\n";
+			foo[4] = "LOOKS:" + looks + "\r\n";
 			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4] +  "\r\n";
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
 			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3]+ "\r\n";
