@@ -66,17 +66,13 @@ package Common{
 					else if(playerBottom > entityTop && playerTop < entityBottom && playerLeft < entityRight && playerRight > entityLeft){
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
-						if(entity is Virus){
-							if(!entity.Destroyed()){
-								entity.Encounter();
-								entity.Destroy();
-							}							
+						if(entity is Virus && !entity.Destroyed()){
+							entity.Encounter();
+							entity.Destroy();						
 						}
-						if(entity is Item){
-							if(!entity.Destroyed()){
-								entity.Use();
-								entity.Destroy();
-							}							
+						if(entity is Item && !entity.Destroyed()){
+							entity.Use();
+							entity.Destroy();						
 						}
 					}
 				}
