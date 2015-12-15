@@ -114,14 +114,14 @@ package Common
 			
 			var playerUnlocked:String =profiles[(loop +5)];
 			tmp = playerUnlocked.split(":");
-			foobar = tmp[1].split(",");
-			if(foobar[1].search("true") >= 0){
+			fobar = tmp[1].split(",");
+			if(fobar[1].search("true") >= 0){
 				View.GetInstance().GetPlayer().setUnlock(2);	
 			}
-			if(foobar[2].search("true") >= 0){
+			if(fobar[2].search("true") >= 0){
 				View.GetInstance().GetPlayer().setUnlock(3);	
 			}
-			if(foobar[3].search("true") >= 0){
+			if(fobar[3].search("true") >= 0){
 				View.GetInstance().GetPlayer().setUnlock(4);	
 			}
 			
