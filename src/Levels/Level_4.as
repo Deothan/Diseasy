@@ -4,6 +4,7 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
 	
@@ -14,6 +15,8 @@ package Levels{
 	import Items.Watch;
 	
 	import Main.View;
+	
+	import Obstacles.Branch;
 	
 	import Platforms.Platform;
 	
@@ -149,6 +152,13 @@ package Levels{
 		 */
 		private function SpawnItems(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
+				
+				var branch:Sprite = new Branch();
+				branch.x = (500 + 130);
+				branch.y = 215;
+				View.GetInstance().AddEntity(branch);
+				addChildAt(branch, 3);
+				
 				var coin:Coin = new Coin();
 				coin.x = 935;
 				coin.y = 215;
@@ -248,8 +258,9 @@ package Levels{
 			top.Destroy();
 			jumpLayer.Destroy();
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }

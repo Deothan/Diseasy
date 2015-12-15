@@ -268,8 +268,7 @@ package Load
 		}
 		
 		public function Destroy():void{
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

@@ -4,6 +4,7 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
 	
@@ -21,6 +22,7 @@ package Levels{
 	import VirusScreen.VirusScreen;
 	
 	import Viruses.Diarrhea;
+	import Obstacles.Rock;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -149,7 +151,13 @@ package Levels{
 		 * @param interval:int - interval in seconds between spawn.
 		 */
 		private function SpawnItems(interval:int):void{
-			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
+			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){				
+				var rock:Sprite  = new Rock();
+				rock.x = (500 + 230);
+				rock.y = 215;
+				View.GetInstance().AddEntity(rock);
+				addChildAt(rock, 3);
+				
 				var coin:Coin = new Coin();
 				coin.x = 550;
 				coin.y = 215;
@@ -255,8 +263,9 @@ package Levels{
 			top.Destroy();
 			jumpLayer.Destroy();
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }

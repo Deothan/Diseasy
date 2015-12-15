@@ -1,7 +1,6 @@
 package Map{
 	import flash.filesystem.File;
-	
-	import Common.IO;
+
 	import Common.Screen;
 	
 	import Customize.Customize;
@@ -26,7 +25,6 @@ package Map{
 		private var assetManager:AssetManager = new AssetManager();
 		private var background:Image;
 		private var backButton:Button;
-		private var saveButton:Button;
 		private var customizeButton:Button;
 		private var level1Button:Button;
 		private var level2Button:Button;
@@ -54,6 +52,8 @@ package Map{
 		}
 		
 		private function Start():void{
+			View.GetInstance().SetLastScreen("Map");
+			
 			background = new Image(assetManager.getTexture("map"));
 			addChild(background);		
 			
@@ -114,12 +114,6 @@ package Map{
 			backButton.x = 370;
 			backButton.y = 260;
 			addChild(backButton);
-	
-			saveButton = new Button(assetManager.getTexture("button_save"));
-			saveButton.addEventListener(Event.TRIGGERED, SaveButtonTriggered);
-			saveButton.x = 370;
-			saveButton.y = 215;
-			addChild(saveButton);
  		
 			customizeButton = new Button(assetManager.getTexture("button_customize"));
 			customizeButton.addEventListener(Event.TRIGGERED, CustomizeButtonTriggered);
@@ -154,18 +148,11 @@ package Map{
 			View.GetInstance().LoadScreen(Menu);
 		}
 		
-		private function SaveButtonTriggered():void{
-			IO.GetInstance().Save();
-		}
-		
 		public function Update():void{	
 		}
 		
 		public function Destroy():void{
-			level1Button.removeEventListener(Event.TRIGGERED, LevelButtonTriggered);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			saveButton.removeEventListener(Event.TRIGGERED, SaveButtonTriggered);
-			customizeButton.removeEventListener(Event.TRIGGERED, CustomizeButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

@@ -4,9 +4,11 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
 	
+
 	import Items.Coin;
 	import Items.Heart;
 	import Items.Medicine;
@@ -248,8 +250,9 @@ package Levels{
 			top.Destroy();
 			jumpLayer.Destroy();
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }

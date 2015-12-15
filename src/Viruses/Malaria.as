@@ -1,7 +1,5 @@
 package Viruses{
-
 		import flash.filesystem.File;
-		import flash.text.ReturnKeyLabel;
 		
 		import Common.Entity;
 		import Common.Virus;
@@ -48,8 +46,7 @@ package Viruses{
 			
 			//Function to remove the listener and assetmanager of this object, 
 			public function Destroy():void{
-				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-				removeChild(bacteriaImage);
+				removeEventListeners(null);
 				assetManager.dispose();
 			}
 			

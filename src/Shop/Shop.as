@@ -2,7 +2,10 @@ package Shop
 {
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
+	
+	import InfantScreen.InfantScreen;
 	
 	import Items.Blanket;
 	import Items.Medicine;
@@ -10,8 +13,6 @@ package Shop
 	import Items.WaterBottle;
 	
 	import Main.View;
-	
-	import InfantScreen.InfantScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -210,13 +211,9 @@ package Shop
 		}
 		
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			buyMedicineButton.removeEventListener(Event.TRIGGERED, BuyMedicineButtonTriggered);
-			buyTowelButton.removeEventListener(Event.TRIGGERED, BuyTowelButtonTriggered);
-			buyBlanketButton.removeEventListener(Event.TRIGGERED, BuyBlanketButtonTriggered);
-			buyWaterBottleButton.removeEventListener(Event.TRIGGERED, BuyWaterBottleButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }

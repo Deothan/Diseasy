@@ -41,7 +41,6 @@ package Items
 		 * @param _positiony the desired y loaction (absolute to stage) position to spawn the item
 		 */
 		public function Coin(){
-			trace("[Coin] Adding coin to scence");
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
@@ -64,7 +63,7 @@ package Items
 		}
 		
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
 			destroyed = true;
 		}

@@ -45,6 +45,8 @@ package Menu
 		}
 		
 		private function Start():void{
+			View.GetInstance().SetLastScreen("Menu");
+			
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			
@@ -106,10 +108,7 @@ package Menu
 		}
 		
 		public function Destroy():void{
-			mapButton.removeEventListener(Event.TRIGGERED, MapButtonTriggered);
-			settingsButton.removeEventListener(Event.TRIGGERED, SettingsButtonTriggered);
-			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
-			exitButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

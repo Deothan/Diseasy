@@ -2,6 +2,7 @@ package VirusScreen
 {
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import InfantScreen.InfantScreen;
@@ -13,7 +14,6 @@ package VirusScreen
 	import InformationScreen.PneumoniaInformation;
 	
 	import Main.View;
-
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -208,15 +208,10 @@ package VirusScreen
 		
 		public function Destroy() :void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			continueButton.removeEventListener(Event.TRIGGERED, ContinueButtonTriggered);
-			diarrhea.removeEventListener(Event.TRIGGERED, DiarrheaTriggered);
-			hiv.removeEventListener(Event.TRIGGERED, HivTriggered);
-			malaria.removeEventListener(Event.TRIGGERED, MalariaTriggered);
-			pneumonia.removeEventListener(Event.TRIGGERED, PneumoniaTriggered);
-			neonatalsepsis.removeEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 			View.GetInstance().GetPlayer().SetCheckedViruses(checkedArray);
+			IO.GetInstance().Save();
 		}
 	}
 }

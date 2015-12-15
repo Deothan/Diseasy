@@ -1,11 +1,14 @@
 package Customize{
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import Main.View;
 	
 	import Map.Map;
+	
+	import Menu.Menu;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -104,12 +107,19 @@ package Customize{
 		}
 		
 		private function OkButtonTriggered():void{
+			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
+			IO.GetInstance().Save();
 			View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
-			View.GetInstance().LoadScreen(Map);
+			if(View.GetInstance().GetLastScreen() == "Menu"){
+				View.GetInstance().LoadScreen(Menu);
+			}
+			else{
+				View.GetInstance().LoadScreen(Map);
+			}	
 		}
 		
 		/**
@@ -156,10 +166,7 @@ package Customize{
 		public function Update():void{}
 		
 		public function Destroy():void{
-			lookButton.removeEventListener(Event.TRIGGERED, LookButtonTriggered);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
-			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

@@ -44,8 +44,7 @@ package Items
 		
 		//Function to remove the listener and assetmanager of this object, 
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			removeChild(towelImage);
+			removeEventListeners(null);
 			//assetManager.dispose();
 			destroyed = true;
 		}
