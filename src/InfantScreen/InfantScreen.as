@@ -3,6 +3,7 @@ package InfantScreen
 	import flash.filesystem.File;
 	import flash.utils.getQualifiedClassName;
 	
+	import Common.IO;
 	import Common.Item;
 	import Common.Screen;
 	
@@ -317,7 +318,7 @@ package InfantScreen
 			waterButton.removeEventListener(Event.TRIGGERED, waterButtonTriggered);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			
+			IO.GetInstance().Save();
 		}
 	}
 }
