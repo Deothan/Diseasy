@@ -6,7 +6,7 @@ package Levels{
 	import Common.Entity;
 	import Common.Physicus;
 	import Common.Screen;
-		
+	
 	import Items.Blanket;
 	import Items.Coin;
 	import Items.Heart;
@@ -21,14 +21,14 @@ package Levels{
 	
 	import VirusScreen.VirusScreen;
 	
-	import Viruses.HIV;
+	import Viruses.Malaria;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
-
-	public class Level_1 extends Sprite implements Screen{
+	
+	public class Level_3 extends Sprite implements Screen{
 		private var assetManager:AssetManager;
 		private var top:TopBar = new TopBar();
 		private var bottom:BottomBar = new BottomBar;
@@ -39,20 +39,20 @@ package Levels{
 		private var loaded:Boolean = false;
 		private var playerLoaded:Boolean = false;
 		private var timer:flash.utils.Timer;
-		  
+		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 2528;
 		private var speed:int = 2;
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
 		
-		public function Level_1(){
+		public function Level_3(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
 		private function Initialize():void{
 			assetManager = new AssetManager();
-			var folder:File = File.applicationDirectory.resolvePath("Levels/assets/level1");
+			var folder:File = File.applicationDirectory.resolvePath("Levels/assets/level3");
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
 		}
@@ -78,7 +78,7 @@ package Levels{
 			bottom.SetSpeed(speed);
 			bottom.SetWidthOfLevelInPixels(widthOfLevelInPixels);
 			addChild(bottom);
-
+			
 			AddEntities();
 			
 			addChild(jumpLayer);
@@ -98,14 +98,14 @@ package Levels{
 		
 		public function ScreenProgression():void{
 			if(bottom.GetProgress() >= 76 && winImage == null){
-				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+				winImage = new Image(assetManager.getTexture("Level3FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
 				View.GetInstance().AddEntity(winImage);
 				addChildAt(winImage, 1);
 			}
 			if(bottom.GetProgress() >= 100){
-				timer.start();
+				timer.start();	
 				View.GetInstance().GetPlayer().Stop();
 			}
 		}
@@ -128,15 +128,15 @@ package Levels{
 		 */
 		private function SpawnEnemies(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
-				var hiv:Sprite  = new HIV();
-				hiv.x = 500;
-				hiv.y = 215;
-				View.GetInstance().AddEntity(hiv);
-				addChildAt(hiv, 3);
+				var malaria:Sprite  = new Malaria();
+				malaria.x = 500;
+				malaria.y = 215;
+				View.GetInstance().AddEntity(malaria);
+				addChildAt(malaria, 3);
 				
 				var coin:Coin = new Coin();
-				coin.x = (hiv.x + 50);
-				coin.y = hiv.y;
+				coin.x = (malaria.x + 50);
+				coin.y = malaria.y;
 				View.GetInstance().AddEntity(coin);
 				addChildAt(coin, 3);
 				
@@ -147,32 +147,32 @@ package Levels{
 				addChildAt(watch, 3);
 				
 				var heart:Heart = new Heart();
-				heart.x = (hiv.x + 100);
-				heart.y = hiv.y;
+				heart.x = (malaria.x + 100);
+				heart.y = malaria.y;
 				View.GetInstance().AddEntity(heart);
 				addChildAt(heart, 3);
 				
 				var blanket:Blanket = new Blanket();
-				blanket.x = (hiv.x + 150);
-				blanket.y = hiv.y;
+				blanket.x = (malaria.x + 150);
+				blanket.y = malaria.y;
 				View.GetInstance().AddEntity(blanket);
 				addChildAt(blanket, 3);
 				
 				var medicine:Medicine = new Medicine();
-				medicine.x = (hiv.x + 200);
-				medicine.y = hiv.y;
+				medicine.x = (malaria.x + 200);
+				medicine.y = malaria.y;
 				View.GetInstance().AddEntity(medicine);
 				addChildAt(medicine, 3);
 				
 				var towel:Towel = new Towel();
-				towel.x = (hiv.x + 250);
-				towel.y = hiv.y;
+				towel.x = (malaria.x + 250);
+				towel.y = malaria.y;
 				View.GetInstance().AddEntity(towel);
 				addChildAt(towel, 3);
 				
 				var waterBottle:WaterBottle= new WaterBottle();
-				waterBottle.x = (hiv.x + 300);
-				waterBottle.y = hiv.y;
+				waterBottle.x = (malaria.x + 300);
+				waterBottle.y = malaria.y;
 				View.GetInstance().AddEntity(waterBottle);
 				addChildAt(waterBottle, 3);
 			}
@@ -235,7 +235,7 @@ package Levels{
 		private function Continue(event:TimerEvent):void{
 			View.GetInstance().LoadScreen(VirusScreen);
 		}
-		
+
 		/**
 		 * Called when the screen is changed.
 		 */
@@ -246,7 +246,7 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			View.GetInstance().GetPlayer().setLevel(2, true);
+			View.GetInstance().GetPlayer().setLevel(4, true);
 		}
 	}
 }

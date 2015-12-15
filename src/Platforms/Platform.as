@@ -45,6 +45,10 @@ package Platforms
 			addChild(platformImage);
 		}
 		
+		public function convertToPlatform2():void{
+			//platformImage.texture = assetManager.getTexture("Platform2");
+		}
+		
 		//Function to remove the listener and assetmanager of this object, 
 		public function Destroy():void{
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
