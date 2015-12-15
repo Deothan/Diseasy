@@ -28,11 +28,11 @@ ITEMS:0,0,0,0
 <PROFILE>
 NAME:Madsi
 LIFE:5
-COINS:8
+COINS:12
 LOOKS:1
 VIRUSSES:true,false,false,false,false
-LEVELS:true,true,true,false,false
-ITEMS:7,6,7,4
+LEVELS:true,true,true,true,false
+ITEMS:10,9,10,4
 </PROFILE>
 <PROFILE>
 NAME:Enter Name
