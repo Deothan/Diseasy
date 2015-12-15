@@ -39,7 +39,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Level_5);
+			LoadScreen(Menu);
 		}
 		
 		private function Update(event:Event):void{
