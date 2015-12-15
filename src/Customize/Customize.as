@@ -1,6 +1,7 @@
 package Customize{
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import Main.View;
@@ -106,7 +107,9 @@ package Customize{
 		}
 		
 		private function OkButtonTriggered():void{
+			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
+			IO.GetInstance().Save();
 			View.GetInstance().LoadScreen(Map);
 		}
 		

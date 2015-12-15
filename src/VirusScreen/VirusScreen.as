@@ -2,6 +2,7 @@ package VirusScreen
 {
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
 	
 	import InfantScreen.InfantScreen;
@@ -13,7 +14,6 @@ package VirusScreen
 	import InformationScreen.PneumoniaInformation;
 	
 	import Main.View;
-
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -217,6 +217,7 @@ package VirusScreen
 			neonatalsepsis.removeEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
 			assetManager.dispose();
 			View.GetInstance().GetPlayer().SetCheckedViruses(checkedArray);
+			IO.GetInstance().Save();
 		}
 	}
 }

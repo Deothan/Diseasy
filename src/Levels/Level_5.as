@@ -4,6 +4,7 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
 	
@@ -248,6 +249,7 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }

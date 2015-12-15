@@ -2,7 +2,10 @@ package Shop
 {
 	import flash.filesystem.File;
 	
+	import Common.IO;
 	import Common.Screen;
+	
+	import InfantScreen.InfantScreen;
 	
 	import Items.Blanket;
 	import Items.Medicine;
@@ -10,8 +13,6 @@ package Shop
 	import Items.WaterBottle;
 	
 	import Main.View;
-	
-	import InfantScreen.InfantScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -217,6 +218,7 @@ package Shop
 			buyBlanketButton.removeEventListener(Event.TRIGGERED, BuyBlanketButtonTriggered);
 			buyWaterBottleButton.removeEventListener(Event.TRIGGERED, BuyWaterBottleButtonTriggered);
 			assetManager.dispose();
+			IO.GetInstance().Save();
 		}
 	}
 }
