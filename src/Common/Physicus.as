@@ -90,9 +90,11 @@ package Common{
 		 */
 		public function isGrounded():Boolean{
 			if(View.GetInstance().GetPlayer().y >= 205 || _disableGravity){
+				//View.GetInstance().GetPlayer().switchAnimations("run");
 				return true;
 			}
 			else{
+				//View.GetInstance().GetPlayer().jump();
 				return false;
 			}
 		}

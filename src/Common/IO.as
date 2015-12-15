@@ -116,13 +116,16 @@ package Common
 			tmp = playerUnlocked.split(":");
 			fobar = tmp[1].split(",");
 			if(fobar[1].search("true") >= 0){
-				View.GetInstance().GetPlayer().setUnlock(2);	
+				View.GetInstance().GetPlayer().setLevel(2, true);	
 			}
 			if(fobar[2].search("true") >= 0){
-				View.GetInstance().GetPlayer().setUnlock(3);	
+				View.GetInstance().GetPlayer().setLevel(3, true);	
 			}
 			if(fobar[3].search("true") >= 0){
-				View.GetInstance().GetPlayer().setUnlock(4);	
+				View.GetInstance().GetPlayer().setLevel(4, true );	
+			}
+			if(fobar[4].search("true") >= 0){
+				View.GetInstance().GetPlayer().setLevel(5, true );	
 			}
 			
 			var playerItems:String =profiles[(loop +6)];

@@ -4,12 +4,12 @@ package Menu
 	import flash.filesystem.File;
 	
 	import Common.Screen;
-
-	import Main.View;
 	
-	import Map.Map;
+	import Customize.Customize;
 	
 	import Load.Load;
+	
+	import Main.View;
 	
 	import Settings.Settings;
 	
@@ -91,7 +91,7 @@ package Menu
 		 * Opens the map screen.
 		 */
 		private function MapButtonTriggered():void{
-			View.GetInstance().LoadScreen(Map);
+			View.GetInstance().LoadScreen(Customize);
 		}
 		
 		/**

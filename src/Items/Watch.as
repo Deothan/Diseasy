@@ -67,7 +67,7 @@ package Items
 		}
 		
 		public function Use():void{
-			View.GetInstance().getLevel().DecreaseTime();
+			View.GetInstance().DecreaseTime();
 			Destroy();
 			
 		}

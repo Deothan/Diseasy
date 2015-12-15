@@ -1,5 +1,6 @@
 package Levels{
 	import flash.filesystem.File;
+	
 	import Main.View;
 	
 	import starling.display.Image;
@@ -15,7 +16,6 @@ package Levels{
 		private var coinText:TextField;
 		private var timeText:TextField;
 		private var timeCounterText:TextField;
-		private var time:int;
 		private var loaded:Boolean = false;
 		
 		public function TopBar(){
@@ -53,7 +53,7 @@ package Levels{
 			timeText.y = 5;
 			addChild(timeText);
 			
-			timeCounterText = new TextField(30, 20, time.toString(10));
+			timeCounterText = new TextField(30, 20, View.GetInstance().GetTime().toString(10));
 			timeCounterText.color = 0xFFFFFF;
 			timeCounterText.x = 42;
 			timeCounterText.y = 7;
@@ -72,17 +72,18 @@ package Levels{
 		}
 		
 		private function Timer():void{
-			time++;
+			var time:int = View.GetInstance().GetTime() + 1;
+			View.GetInstance().SetTime(time);
 			var timeString:int = time/24;
 			timeCounterText.text = timeString.toString(10);
 		}
 		
 		public function GetTime():int{
-			return time;
+			return View.GetInstance().GetTime();
 		}
 		
 		public function DecreaseTime(reduction:int):void{
-			time-=reduction;
+			View.GetInstance().DecreaseTime();
 		}
 		
 		private function UpdateCoins():void{

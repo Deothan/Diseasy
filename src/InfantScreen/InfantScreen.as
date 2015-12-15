@@ -3,7 +3,6 @@ package InfantScreen
 	import flash.filesystem.File;
 	import flash.utils.getQualifiedClassName;
 	
-	import Common.Entity;
 	import Common.Item;
 	import Common.Screen;
 	
@@ -14,7 +13,7 @@ package InfantScreen
 	
 	import Main.View;
 	
-	import Menu.Menu;
+	import Map.Map;
 	
 	import Shop.Shop;
 	
@@ -259,7 +258,7 @@ package InfantScreen
 		
 		private function continueButtonTriggered():void
 		{
-			View.GetInstance().LoadScreen(Menu);
+			View.GetInstance().LoadScreen(Map);
 		}
 		
 		

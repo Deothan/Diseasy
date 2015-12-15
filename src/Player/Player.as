@@ -39,11 +39,6 @@ package Player
 		private var animations:Array;
 		private var assetManager:AssetManager;
 		private var unlock:Array = new Array;
-		private var unlock1:Boolean = true;
-		private var unlock2:Boolean = false;
-		private var unlock3:Boolean = false;
-		private var unlock4:Boolean = false;
-		private var unlock5:Boolean = false;
 		private var looks:int = 0;
 		private var items:Array = new Array();
 		private var name:String;
@@ -58,13 +53,19 @@ package Player
 			unlock[1] = true;
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
 			
-			name = "Agina";
+			name = "Enter Name";
 			
 			checkedViruses[0] = false;
 			checkedViruses[1] = false;
 			checkedViruses[2] = false;
 			checkedViruses[3] = false;
 			checkedViruses[4] = false;
+			
+			unlock[0] = true;
+			unlock[1] = false;
+			unlock[2] = false;
+			unlock[3] = false;
+			unlock[4] = false;
 		}
 		
 		private function loadAnimations():void{
@@ -72,6 +73,13 @@ package Player
 			run_animation.width = 40; // to be removed
 			run_animation.height = 50; // to be removed
 			animations["run"] = run_animation;
+			
+			/** NEEDS TO BE UNMARKED WHEN IMAGES ARE READY
+			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("jump instance"), 24);
+			jump_animation.width = 40; // to be removed
+			jump_animation.height = 50; // to be removed
+			animations["jump"] = jump_animation;
+			**/
 		}
 				
 		private function Initialize():void{
@@ -98,25 +106,7 @@ package Player
 		}
 		
 		public function getUnlock():Array{
-			var unlock:Array = new Array();
-			unlock[0] = unlock1;
-			unlock[1] = unlock2;
-			unlock[2] = unlock3;
-			unlock[3] = unlock4;
-			unlock[4] = unlock5;
 			return unlock;
-		}
-		
-		public function setUnlock(level:int):void{
-			if (level == 2){
-				unlock2 = true;
-			}
-			else if(level == 3){
-				unlock3 = true;
-			}
-			else if(level == 4){
-				unlock4 = true;
-			}
 		}
 		
 		public function setLife(_life:int):void{
@@ -127,9 +117,8 @@ package Player
 			this.life -= 1; 
 		}
 		
-		//before monday
-		public function jump(_name:String):void{
-			
+		public function jump():void{
+			switchAnimations("jump");
 		}
 		
 		public function SetName(_name:String):void{
@@ -240,12 +229,12 @@ package Player
 		}
 		
 		/**
-		 * method to set a level to a current state. !!IMPORTANT!! ignore [0]
-		 * @param level: the level to set
-		 * @param state: the state to set the level to (i.e.: true or false)
+		 * method to set a level to a current state. 
+		 * @param level: the level to set (1-5)
+		 * @param state: the locked state true or false
 		 */
 		public function setLevel(level:int, state:Boolean):void{
-			this.unlock[int] = state;
+			this.unlock[level-1] = state;
 		}
 		
 		/**
@@ -258,23 +247,7 @@ package Player
 		
 		public function addItem(_item:Item):void{
 			items.push(_item);
-
 		}
-		/**
-		public function removeItem(_item:Item):void{
-			var flag:Boolean = true;
-			var _items:Array = new Array();
-			for (var i:int =0; i < items.length; i++){
-				if(flash.utils.getDefinitionByName(flash.utils.getQualifiedClassName(_item)) == flash.utils.getDefinitionByName(flash.utils.getQualifiedClassName(items[i])) && flag){
-					flag = false;
-					items[i].destroy();
-				}	
-				else{
-					_items.push(items[i]);
-				}
-			}
-			this.items = _items;
-		}*/
 		
 		/**
 		 * method to get array of items.
@@ -313,6 +286,10 @@ package Player
 			}
 			
 			items.pop()
+		}
+		
+		public function Stop():void{
+			Starling.juggler.remove(animations[currentAnimation])
 		}
 		
 		public function setItems(param:Array):void{
