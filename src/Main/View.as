@@ -1,6 +1,5 @@
 package Main{
 	import Common.EntityPlaceholder;
-	import Common.Level;
 	import Common.Screen;
 	
 	import InfantScreen.Infant;
@@ -19,9 +18,9 @@ package Main{
 		private var volume:int;
 		private var player:Player = new Player();
 		private var infant:Infant = new Infant();
-		private var level:Level;
 		private var entities:Array = new Array();
 		private var infantScreen:InfantScreen;
+		private var time:int = 0;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -43,6 +42,18 @@ package Main{
 			(screen as Screen).Update();
 		}
 		
+		public function GetTime():int{
+			return time;
+		}
+		
+		public function SetTime(time:int):void{
+			this.time = time;
+		}
+		
+		public function DecreaseTime():void{
+			time -= 120;
+		}
+		
 		public function SetVolume(volume:int):void{
 			this.volume = volume;
 		}
@@ -58,15 +69,7 @@ package Main{
 		public function GetInfant():Infant{
 			return infant;
 		}
-		
-		public function setLevel(currentLevel):void{
-			level = currentLevel;
-		}
-		
-		public function getLevel():Level{
-			return level;
-		}
-		
+
 		public function GetEntities():Array{
 			return entities;
 		}

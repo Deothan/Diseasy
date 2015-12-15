@@ -4,12 +4,9 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
-	import Common.Level;
 	import Common.Physicus;
 	import Common.Screen;
-	
-	import InfantScreen.InfantScreen;
-	
+		
 	import Items.Blanket;
 	import Items.Coin;
 	import Items.Heart;
@@ -29,11 +26,9 @@ package Levels{
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 
-	public class Level_1 extends Sprite implements Screen,Level{
+	public class Level_1 extends Sprite implements Screen{
 		private var assetManager:AssetManager;
 		private var top:TopBar = new TopBar();
 		private var bottom:BottomBar = new BottomBar;
@@ -70,7 +65,6 @@ package Levels{
 		
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
-			View.GetInstance().setLevel(this);
 			
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
@@ -241,10 +235,6 @@ package Levels{
 			View.GetInstance().LoadScreen(VirusScreen);
 		}
 		
-		public function DecreaseTime():void{
-			top.DecreaseTime(120);
-		}
-		
 		/**
 		 * Called when the screen is changed.
 		 */
@@ -255,7 +245,6 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			/** player destroy **/
 		}
 	}
 }
