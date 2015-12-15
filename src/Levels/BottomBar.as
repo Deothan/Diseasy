@@ -100,7 +100,7 @@ package Levels{
 				removeChild(hearts.pop());
 			}
 			if(View.GetInstance().GetPlayer().getLife() <= 0){
-				//Player dies.
+				View.GetInstance().LoadScreen(Map);
 			}
 		}
 		
