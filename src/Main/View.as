@@ -19,7 +19,6 @@ package Main{
 		private var player:Player = new Player();
 		private var infant:Infant = new Infant();
 		private var entities:Array = new Array();
-		private var infantScreen:InfantScreen;
 		private var time:int = 0;
 		
 		public function View(){
@@ -76,14 +75,6 @@ package Main{
 		
 		public function AddEntity(element:Object):void{
 			entities.push(element);
-		}
-		
-		public function setInfantScreen(InfantScreen):void{
-			infantScreen = InfantScreen;
-		}
-		
-		public function getInfantScreen():InfantScreen{
-			return infantScreen;
 		}
 		
 		public function RemoveEntity(element:Object):void{
