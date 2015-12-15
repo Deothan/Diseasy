@@ -49,7 +49,7 @@ package Obstacles
 		
 		public function Destroy():void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 		
