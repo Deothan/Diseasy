@@ -196,7 +196,7 @@ package InfantScreen
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				
-				if(item is WaterBottle){
+				if(item is WaterBottle && View.GetInstance().GetInfant().getHydration() < 100){
 					item.triggerEffect();
 				}
 			}
@@ -210,7 +210,7 @@ package InfantScreen
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				
-				if(item is Towel){
+				if(item is Towel && View.GetInstance().GetInfant().getHygiene() < 100){
 					item.triggerEffect();
 				}
 			}
@@ -229,7 +229,7 @@ package InfantScreen
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 			
-				if(item is Medicine){
+				if(item is Medicine && View.GetInstance().GetInfant().getHealth() < 100){
 					item.triggerEffect();
 				}
 			}
@@ -244,7 +244,7 @@ package InfantScreen
 				item = View.GetInstance().GetPlayer().GetItemsArray()[i];
 				i++;
 				
-				if(item is Blanket){
+				if(item is Blanket && View.GetInstance().GetInfant().getTemperature() < 100){
 					item.triggerEffect();
 				}
 			}
