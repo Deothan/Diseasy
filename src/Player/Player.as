@@ -292,6 +292,12 @@ package Player
 			Starling.juggler.remove(animations[currentAnimation])
 		}
 		
+		public function Run():void{
+			if(!(Starling.juggler.contains(animations[currentAnimation]))){
+				Starling.juggler.add(animations[currentAnimation])
+			}
+		}
+		
 		public function setItems(param:Array):void{
 			for(var j:int = 1; j< param[0]; j++){
 				addItem(new Medicine());

@@ -25,3 +25,12 @@ VIRUSSES:false,false,false,false,false
 LEVELS:true,false,false,false,false
 ITEMS:0,0,0,0
 </PROFILE>
+<PROFILE>
+NAME:Madsi
+LIFE:6
+COINS:4
+LOOKS:1
+VIRUSSES:true,false,false,false,false
+LEVELS:true,true,false,false,false
+ITEMS:4,3,4,4
+</PROFILE>
