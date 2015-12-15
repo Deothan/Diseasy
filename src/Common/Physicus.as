@@ -67,12 +67,10 @@ package Common{
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
 						if(entity is Virus && !entity.Destroyed()){
-							entity.Encounter();
-							entity.Destroy();						
+							entity.Encounter();					
 						}
 						if(entity is Item && !entity.Destroyed()){
-							entity.Use();
-							entity.Destroy();						
+							entity.Use();						
 						}
 					}
 				}
@@ -122,7 +120,7 @@ package Common{
 		 * method to apply vertical velocity to player (jumping)
 		 */
 		public function Kinetics():void{
-			trace("[Physicus] Kinetics");
+			//trace("[Physicus] Kinetics");
 			_verticalVelocity -= HITFORCE;
 		}
 	}
