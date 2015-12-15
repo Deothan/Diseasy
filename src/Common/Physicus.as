@@ -63,7 +63,7 @@ package Common{
 							//do nothing
 						}
 					}
-					else if(playerBottom >= entityTop && playerRight >= entityLeft && playerRight <= entityRight && playerTop <= entityBottom){
+					else if(playerBottom > entityTop && playerTop < entityBottom && playerLeft < entityRight && playerRight > entityLeft){
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
 						if(entity is Virus){
