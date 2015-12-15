@@ -246,7 +246,6 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			/** player destroy **/
 		}
 	}
 }
