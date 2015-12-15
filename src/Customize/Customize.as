@@ -93,8 +93,7 @@ package Customize{
 			
 			if(currentLook > 3){
 				currentLook = 0;
-			}
-			
+			}			
 			
 			removeChild(look);
 			
@@ -157,6 +156,7 @@ package Customize{
 		public function Update():void{}
 		
 		public function Destroy():void{
+			lookButton.removeEventListener(Event.TRIGGERED, LookButtonTriggered);
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);
