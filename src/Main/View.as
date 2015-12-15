@@ -5,6 +5,11 @@ package Main{
 	import InfantScreen.Infant;
 	import InfantScreen.InfantScreen;
 	
+	import Levels.Level_2;
+	import Levels.Level_3;
+	import Levels.Level_4;
+	import Levels.Level_5;
+	
 	import Menu.Menu;
 	
 	import Player.Player;
@@ -35,7 +40,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Menu);
+			LoadScreen(Level_5);
 		}
 		
 		private function Update(event:Event):void{

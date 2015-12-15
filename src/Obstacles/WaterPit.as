@@ -12,22 +12,17 @@ package Obstacles
 	import starling.events.Event;
 	import starling.utils.AssetManager;
 
-	public class Rock extends Sprite implements Entity, Obstacle
+	public class WaterPit extends Sprite implements Entity, Obstacle
 	{
 		private var assetManager:AssetManager;
-		private var rockObstacle:Image;
+		private var waterPitObstacle:Image;
 		private var hit:Boolean=false;
 		
-		public function Rock()
+		public function WaterPit()
 		{
-			
-			//Rock - Level 2
-			//Water pit - Level 3
-			//Branch - Level 4
-			
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
-			
+		
 		private function Initialize():void
 		{
 			assetManager = new AssetManager();
@@ -35,7 +30,7 @@ package Obstacles
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
 		}
-			
+		
 		private function Progress(ratio:Number):void
 		{
 			if(ratio == 1)
@@ -43,13 +38,13 @@ package Obstacles
 				Start();
 			}
 		}
-			
+		
 		private function Start():void
 		{
-			rockObstacle = new Image(assetManager.getTexture("obstacle_stone"));
-			rockObstacle.width = 40; 
-			rockObstacle.height = 40; 
-			addChild(rockObstacle);
+			waterPitObstacle = new Image(assetManager.getTexture("obstacle_water"));
+			waterPitObstacle.width = 40; 
+			waterPitObstacle.height = 40; 
+			addChild(waterPitObstacle);
 		}
 		
 		public function Destroy():void
@@ -62,7 +57,7 @@ package Obstacles
 		{
 			return false;
 		}
-		
+			
 		public function isHit():Boolean
 		{
 			return hit;
@@ -81,7 +76,7 @@ package Obstacles
 		public function Encounter():void
 		{
 			View.GetInstance().GetPlayer().loseLife();
-			hit = true;
+			hit = false;
 		}
 		
 	}

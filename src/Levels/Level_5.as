@@ -17,6 +17,9 @@ package Levels{
 	
 	import Main.View;
 	
+	import Obstacles.Branch;
+	import Obstacles.WaterPit;
+	
 	import Platforms.Platform;
 	
 	import VirusScreen.VirusScreen;
@@ -133,6 +136,18 @@ package Levels{
 				pneumonia.y = 215;
 				View.GetInstance().AddEntity(pneumonia);
 				addChildAt(pneumonia, 3);
+				
+				var water:Sprite = new WaterPit();
+				water.x = (pneumonia.x + 70);
+				water.y = (pneumonia.y + 26);
+				View.GetInstance().AddEntity(water);
+				addChildAt(water, 3);
+				
+				var branch:Sprite = new Branch();
+				branch.x = (pneumonia.x + 240);
+				branch.y = pneumonia.y;
+				View.GetInstance().AddEntity(branch);
+				addChildAt(branch, 3);
 				
 				var coin:Coin = new Coin();
 				coin.x = (pneumonia.x + 50);

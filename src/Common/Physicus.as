@@ -76,7 +76,12 @@ package Common{
 							if(!entity.Destroyed()){
 								entity.Use();
 								entity.Destroy();
-							}							
+							}	
+						}
+						
+						if(entity is Obstacle && !(entity as Obstacle).isHit())
+						{
+								entity.Encounter();
 						}
 					}
 				}
