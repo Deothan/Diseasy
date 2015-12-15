@@ -54,6 +54,8 @@ package Map{
 		}
 		
 		private function Start():void{
+			View.GetInstance().SetLastScreen("Map");
+			
 			background = new Image(assetManager.getTexture("map"));
 			addChild(background);		
 			

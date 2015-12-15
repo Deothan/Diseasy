@@ -45,6 +45,8 @@ package Menu
 		}
 		
 		private function Start():void{
+			View.GetInstance().SetLastScreen("Menu");
+			
 			background = new Image(assetManager.getTexture("background"));
 			addChild(background);
 			

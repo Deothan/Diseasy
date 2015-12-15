@@ -7,6 +7,8 @@ package Customize{
 	
 	import Map.Map;
 	
+	import Menu.Menu;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -109,7 +111,12 @@ package Customize{
 		}
 		
 		private function BackButtonTriggered():void{
-			View.GetInstance().LoadScreen(Map);
+			if(View.GetInstance().GetLastScreen() == "Menu"){
+				View.GetInstance().LoadScreen(Menu);
+			}
+			else{
+				View.GetInstance().LoadScreen(Map);
+			}	
 		}
 		
 		/**
