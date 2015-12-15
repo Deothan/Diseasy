@@ -63,6 +63,8 @@ package Viruses{
 			
 			public function Encounter():void{
 				Destroy();
+				View.GetInstance().GetInfant().setHealth(-2);
+				View.GetInstance().GetInfant().setTemperature(-4);
 				View.GetInstance().GetPlayer().loseLife();
 				destroyed = true;
 			}
