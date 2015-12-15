@@ -69,7 +69,6 @@ package Common{
 						if(entity is Virus && !entity.Destroyed()){
 							entity.Encounter();					
 						}
-<<<<<<< HEAD
 						if(entity is Item){
 							if(!entity.Destroyed()){
 								entity.Use();
@@ -80,10 +79,10 @@ package Common{
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
 						{
 								entity.Encounter();
-=======
+						}
 						if(entity is Item && !entity.Destroyed()){
 							entity.Use();						
->>>>>>> dfa0ee6d80ee891b96c94f7ecd8e25432c896e9b
+
 						}
 					}
 				}

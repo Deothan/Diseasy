@@ -20,11 +20,6 @@ package Obstacles
 		
 		public function Rock()
 		{
-			
-			//Rock - Level 2
-			//Water pit - Level 3
-			//Branch - Level 4
-			
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 			
