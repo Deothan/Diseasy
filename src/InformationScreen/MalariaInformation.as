@@ -87,8 +87,6 @@ package InformationScreen
 			malariaInformation.x = 15;
 			malariaInformation.y = 20;
 			addChild(malariaInformation);
-			
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
@@ -100,8 +98,6 @@ package InformationScreen
 			malariaInformation.x = 15;
 			malariaInformation.y = 20;
 			addChild(malariaInformation);
-			
-			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		
 		public function Update():void
@@ -115,7 +111,6 @@ package InformationScreen
 			englishButton.removeEventListener(Event.TRIGGERED, EnglishLanguage);
 			luoButton.removeEventListener(Event.TRIGGERED, LuoLanguage);
 			assetManager.dispose();
-			//View.GetInstance().GetPlayer().SetArrayMethodName(checkedArray);
 		}
 	}
 }

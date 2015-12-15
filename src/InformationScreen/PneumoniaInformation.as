@@ -87,8 +87,6 @@ package InformationScreen
 			pneumoniaInformation.x = 15;
 			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);
-			
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
@@ -100,7 +98,6 @@ package InformationScreen
 			pneumoniaInformation.x = 15;
 			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);
-			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		
 		public function Update():void
@@ -114,7 +111,6 @@ package InformationScreen
 			englishButton.removeEventListener(Event.TRIGGERED, EnglishLanguage);
 			luoButton.removeEventListener(Event.TRIGGERED, LuoLanguage);
 			assetManager.dispose();
-			//View.GetInstance().GetPlayer().SetArrayMethodName(checkedArray);
 		}
 	}
 }

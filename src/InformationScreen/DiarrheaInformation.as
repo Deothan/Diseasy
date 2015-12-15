@@ -5,9 +5,7 @@ package InformationScreen
 	import Common.Screen;
 	
 	import Main.View;
-	
-	import Menu.Menu;
-	
+
 	import VirusScreen.VirusScreen;
 	
 	import starling.display.Button;
@@ -89,8 +87,6 @@ package InformationScreen
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation);
-			
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
@@ -102,8 +98,6 @@ package InformationScreen
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation); 
-			
-			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		
 		public function Update():void

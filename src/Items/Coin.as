@@ -86,7 +86,6 @@ package Items
 		}
 		
 		public function Use():void{
-			trace("[Coin] using coin");
 			View.GetInstance().GetPlayer().addCoin();
 			Destroy();
 		}

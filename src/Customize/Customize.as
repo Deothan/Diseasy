@@ -7,6 +7,8 @@ package Customize{
 	
 	import Map.Map;
 	
+	import Menu.Menu;
+	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -93,8 +95,7 @@ package Customize{
 			
 			if(currentLook > 3){
 				currentLook = 0;
-			}
-			
+			}			
 			
 			removeChild(look);
 			
@@ -110,7 +111,12 @@ package Customize{
 		}
 		
 		private function BackButtonTriggered():void{
-			View.GetInstance().LoadScreen(Map);
+			if(View.GetInstance().GetLastScreen() == "Menu"){
+				View.GetInstance().LoadScreen(Menu);
+			}
+			else{
+				View.GetInstance().LoadScreen(Map);
+			}	
 		}
 		
 		/**
@@ -157,6 +163,7 @@ package Customize{
 		public function Update():void{}
 		
 		public function Destroy():void{
+			lookButton.removeEventListener(Event.TRIGGERED, LookButtonTriggered);
 			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
 			okButton.removeEventListener(Event.TRIGGERED, OkButtonTriggered);
 			nameText.removeEventListener(TouchEvent.TOUCH, NameTouched);

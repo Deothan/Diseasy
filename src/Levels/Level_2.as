@@ -84,6 +84,8 @@ package Levels{
 			
 			addChild(jumpLayer);
 			
+			View.GetInstance().GetPlayer().Run();
+			
 			loaded = true;
 		}
 		
@@ -108,6 +110,7 @@ package Levels{
 			if(bottom.GetProgress() >= 100){
 				timer.start();	
 				View.GetInstance().GetPlayer().Stop();
+				View.GetInstance().GetPlayer().setLevel(3, true);
 			}
 		}
 		
@@ -253,7 +256,6 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			View.GetInstance().GetPlayer().setLevel(3, true);
 		}
 	}
 }

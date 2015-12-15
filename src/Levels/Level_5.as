@@ -86,6 +86,8 @@ package Levels{
 			
 			addChild(jumpLayer);
 			
+			View.GetInstance().GetPlayer().Run();
+			
 			loaded = true;
 		}
 		
@@ -261,7 +263,6 @@ package Levels{
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
 			assetManager.dispose();
-			/** player destroy **/
 		}
 	}
 }

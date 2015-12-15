@@ -62,7 +62,6 @@ package Viruses{
 			}
 			
 			public function Encounter():void{
-				//show information screen
 				Destroy();
 				View.GetInstance().GetPlayer().loseLife();
 				destroyed = true;

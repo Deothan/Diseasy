@@ -87,8 +87,6 @@ package InformationScreen
 			hivInformation.x = 15;
 			hivInformation.y = 20;
 			addChild(hivInformation);
-			
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}
 		
 		public function LuoLanguage():void
@@ -100,7 +98,6 @@ package InformationScreen
 			hivInformation.x = 15;
 			hivInformation.y = 20;
 			addChild(hivInformation);
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}
 		
 		public function Update():void
@@ -114,7 +111,6 @@ package InformationScreen
 			englishButton.removeEventListener(Event.TRIGGERED, EnglishLanguage);
 			luoButton.removeEventListener(Event.TRIGGERED, LuoLanguage);
 			assetManager.dispose();
-			//View.GetInstance().GetPlayer().SetArrayMethodName(checkedArray);
 		}
 	}
 }

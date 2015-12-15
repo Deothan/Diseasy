@@ -169,8 +169,7 @@ package Shop
 			if(coins >= medicinePrice){
 				coins -= medicinePrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
-				var medicine:Medicine = new Medicine();
-				View.GetInstance().GetPlayer().addItem(medicine);
+				View.GetInstance().GetPlayer().addItem(new Medicine());
 				textField1.text = coins.toString();
 			}
 		}
@@ -179,8 +178,7 @@ package Shop
 			if(coins >= towelPrice){
 				coins -= towelPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
-				var towel:Towel= new Towel();
-				View.GetInstance().GetPlayer().addItem(towel);
+				View.GetInstance().GetPlayer().addItem(new Towel());
 				textField1.text = coins.toString();
 			}
 		}
@@ -189,8 +187,7 @@ package Shop
 			if(coins >= blanketPrice){
 				coins -= blanketPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
-				var blanket:Blanket = new Blanket();
-				View.GetInstance().GetPlayer().addItem(blanket);
+				View.GetInstance().GetPlayer().addItem(new Blanket());
 				textField1.text = coins.toString();
 			}
 		}
@@ -199,8 +196,7 @@ package Shop
 			if(coins >= waterPrice){
 				coins -= waterPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
-				var waterBottle:WaterBottle = new WaterBottle();
-				View.GetInstance().GetPlayer().addItem(waterBottle);
+				View.GetInstance().GetPlayer().addItem(new WaterBottle());
 				textField1.text = coins.toString();
 			}
 		}

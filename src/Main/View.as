@@ -3,7 +3,6 @@ package Main{
 	import Common.Screen;
 	
 	import InfantScreen.Infant;
-	import InfantScreen.InfantScreen;
 	
 	import Levels.Level_2;
 	import Levels.Level_3;
@@ -24,8 +23,8 @@ package Main{
 		private var player:Player = new Player();
 		private var infant:Infant = new Infant();
 		private var entities:Array = new Array();
-		private var infantScreen:InfantScreen;
 		private var time:int = 0;
+		private var lastScreen:String = "Menu";
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -59,6 +58,14 @@ package Main{
 			time -= 120;
 		}
 		
+		public function GetLastScreen():String{
+			return lastScreen;
+		}
+		
+		public function SetLastScreen(lastScreen:String):void{
+			this.lastScreen = lastScreen;
+		}
+		
 		public function SetVolume(volume:int):void{
 			this.volume = volume;
 		}
@@ -81,14 +88,6 @@ package Main{
 		
 		public function AddEntity(element:Object):void{
 			entities.push(element);
-		}
-		
-		public function setInfantScreen(InfantScreen):void{
-			infantScreen = InfantScreen;
-		}
-		
-		public function getInfantScreen():InfantScreen{
-			return infantScreen;
 		}
 		
 		public function RemoveEntity(element:Object):void{

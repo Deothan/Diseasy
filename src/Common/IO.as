@@ -90,6 +90,7 @@ package Common
 			var tmp:Array = new Array();
 			var foobar:int;
 			var fobar:Array = new Array();
+			var fooobar:Array = new Array();
 			
 			//set person parameters
 			View.GetInstance().GetPlayer().SetName(param);
@@ -110,8 +111,14 @@ package Common
 			var playerVirusses:String =profiles[(loop +4)];
 			tmp = playerVirusses.split(":");
 			fobar = tmp[1].split(",");
-			View.GetInstance().GetPlayer().SetCheckedViruses(fobar);
-			
+			for(var j:int = 0; j < fobar.length; j++){
+				if(fobar[j] == "true")
+					fooobar[j] = true;
+				else
+					fooobar[j] = false;
+			}
+			View.GetInstance().GetPlayer().SetCheckedViruses(fooobar);
+
 			var playerUnlocked:String =profiles[(loop +5)];
 			tmp = playerUnlocked.split(":");
 			fobar = tmp[1].split(",");
@@ -131,7 +138,7 @@ package Common
 			var playerItems:String =profiles[(loop +6)];
 			tmp = playerItems.split(":");
 			fobar = tmp[1].split(",");
-			trace(fobar);
+
 			View.GetInstance().GetPlayer().setItems(fobar);
 			playerPointer = (loop -1);
 		}

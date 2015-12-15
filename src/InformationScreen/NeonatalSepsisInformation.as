@@ -87,8 +87,6 @@ package InformationScreen
 			neonatalsepsisInformation.x = 15;
 			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);
-			
-			//View.GetInstance().LoadScreen(LangaugeScreen);
 		}	
 		
 		public function LuoLanguage():void
@@ -100,7 +98,6 @@ package InformationScreen
 			neonatalsepsisInformation.x = 15;
 			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);
-			//View.GetInstance().LoadScreen(LanguageScreen);
 		}
 		
 		public function Update():void
