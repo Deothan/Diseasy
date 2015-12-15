@@ -23,6 +23,7 @@ package Levels{
 	import VirusScreen.VirusScreen;
 	
 	import Viruses.Diarrhea;
+	import Obstacles.Rock;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -137,6 +138,12 @@ package Levels{
 				diarrhea.y = 215;
 				View.GetInstance().AddEntity(diarrhea);
 				addChildAt(diarrhea, 3);
+				
+				var rock:Sprite  = new Rock();
+				rock.x = (diarrhea.x + 230);
+				rock.y = diarrhea.y;
+				View.GetInstance().AddEntity(rock);
+				addChildAt(rock, 3);
 				
 				var coin:Coin = new Coin();
 				coin.x = (diarrhea.x + 50);

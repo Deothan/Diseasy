@@ -18,6 +18,8 @@ package Levels{
 	
 	import Main.View;
 	
+	import Obstacles.WaterPit;
+	
 	import Platforms.Platform;
 	
 	import VirusScreen.VirusScreen;
@@ -137,6 +139,12 @@ package Levels{
 				malaria.y = 215;
 				View.GetInstance().AddEntity(malaria);
 				addChildAt(malaria, 3);
+				
+				var waterPit:Sprite = new WaterPit();
+				waterPit.x = (malaria.x + 125);
+				waterPit.y = (malaria.y + 26);
+				View.GetInstance().AddEntity(waterPit);
+				addChildAt(waterPit, 3);
 				
 				var coin:Coin = new Coin();
 				coin.x = (malaria.x + 50);

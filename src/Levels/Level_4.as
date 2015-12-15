@@ -18,6 +18,8 @@ package Levels{
 	
 	import Main.View;
 	
+	import Obstacles.Branch;
+	
 	import Platforms.Platform;
 	
 	import VirusScreen.VirusScreen;
@@ -137,6 +139,12 @@ package Levels{
 				neonatalSepsis.y = 215;
 				View.GetInstance().AddEntity(neonatalSepsis);
 				addChildAt(neonatalSepsis, 3);
+				
+				var branch:Sprite = new Branch();
+				branch.x = (neonatalSepsis.x + 130);
+				branch.y = neonatalSepsis.y;
+				View.GetInstance().AddEntity(branch);
+				addChildAt(branch, 3);
 				
 				var coin:Coin = new Coin();
 				coin.x = (neonatalSepsis.x + 50);
