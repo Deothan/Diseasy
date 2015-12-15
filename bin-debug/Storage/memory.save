@@ -61,3 +61,12 @@ VIRUSSES:false,false,false,false,false
 LEVELS:true,true,false,false,false
 ITEMS:4,4,4,4
 </PROFILE>
+<PROFILE>
+NAME:Enter Name
+LIFE:5
+COINS:0
+LOOKS:0
+VIRUSSES:false,false,false,false,false
+LEVELS:true,false,false,false,false
+ITEMS:0,0,0,0
+</PROFILE>

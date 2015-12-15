@@ -247,7 +247,7 @@ package Levels{
 			top.Destroy();
 			jumpLayer.Destroy();
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
 			IO.GetInstance().Save();
 		}

@@ -108,10 +108,7 @@ package Menu
 		}
 		
 		public function Destroy():void{
-			mapButton.removeEventListener(Event.TRIGGERED, MapButtonTriggered);
-			settingsButton.removeEventListener(Event.TRIGGERED, SettingsButtonTriggered);
-			loadButton.removeEventListener(Event.TRIGGERED, LoadButtonTriggered);
-			exitButton.removeEventListener(Event.TRIGGERED, ExitButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

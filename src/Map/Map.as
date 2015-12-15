@@ -1,7 +1,6 @@
 package Map{
 	import flash.filesystem.File;
-	
-	import Common.IO;
+
 	import Common.Screen;
 	
 	import Customize.Customize;
@@ -153,9 +152,7 @@ package Map{
 		}
 		
 		public function Destroy():void{
-			level1Button.removeEventListener(Event.TRIGGERED, LevelButtonTriggered);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			customizeButton.removeEventListener(Event.TRIGGERED, CustomizeButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}

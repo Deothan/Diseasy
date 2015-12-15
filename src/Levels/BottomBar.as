@@ -1,8 +1,6 @@
 package Levels{
 	import flash.filesystem.File;
 	
-	import InfantScreen.InfantScreen;
-	
 	import Main.View;
 	
 	import Map.Map;
@@ -130,8 +128,7 @@ package Levels{
 		}
 		
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 		}
 	}
