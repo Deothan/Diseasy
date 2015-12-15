@@ -7,6 +7,10 @@ package Map{
 	import Customize.Customize;
 	
 	import Levels.Level_1;
+	import Levels.Level_2;
+	import Levels.Level_3;
+	import Levels.Level_4;
+	import Levels.Level_5;
 	
 	import Main.View;
 	
@@ -129,16 +133,16 @@ package Map{
 				View.GetInstance().LoadScreen(Level_1);
 			}
 			else if(event.target == level1Button && unlocks[1]){
-				//View.GetInstance().LoadScreen(Level_2);
+				View.GetInstance().LoadScreen(Level_2);
 			}
 			else if(event.target == level1Button && unlocks[2]){
-				//View.GetInstance().LoadScreen(Level_3);
+				View.GetInstance().LoadScreen(Level_3);
 			}
 			else if(event.target == level1Button && unlocks[3]){
-				//View.GetInstance().LoadScreen(Level_4);
+				View.GetInstance().LoadScreen(Level_4);
 			}
 			else if(event.target == level1Button && unlocks[4]){
-				//View.GetInstance().LoadScreen(Level_5);
+				View.GetInstance().LoadScreen(Level_5);
 			}
 		}
 		
