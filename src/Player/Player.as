@@ -72,6 +72,13 @@ package Player
 			run_animation.width = 40; // to be removed
 			run_animation.height = 50; // to be removed
 			animations["run"] = run_animation;
+			
+			/** NEEDS TO BE UNMARKED WHEN IMAGES ARE READY
+			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("jump instance"), 24);
+			jump_animation.width = 40; // to be removed
+			jump_animation.height = 50; // to be removed
+			animations["jump"] = jump_animation;
+			**/
 		}
 				
 		private function Initialize():void{
@@ -127,9 +134,8 @@ package Player
 			this.life -= 1; 
 		}
 		
-		//before monday
-		public function jump(_name:String):void{
-			
+		public function jump():void{
+			switchAnimations("jump");
 		}
 		
 		public function SetName(_name:String):void{
