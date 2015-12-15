@@ -46,6 +46,7 @@ package Items
 		public function Destroy():void{
 			removeEventListeners(null);
 			//assetManager.dispose();
+			assetManager.dispose();
 			destroyed = true;
 		}
 		
@@ -62,7 +63,6 @@ package Items
 		}
 		
 		public function triggerEffect():void{
-			Destroy();
 			View.GetInstance().GetInfant().setTemperature(10);
 			View.GetInstance().GetPlayer().RemoveItem(this);
 		}

@@ -7,7 +7,6 @@ package Levels{
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
-	
 
 	import Items.Coin;
 	import Items.Heart;

@@ -81,8 +81,12 @@ package Common{
 								entity.Encounter();
 						}
 						if(entity is Item && !entity.Destroyed()){
-							entity.Use();						
-
+							entity.Use();
+						}
+						
+						if(entity is Obstacle && !(entity as Obstacle).isHit())
+						{
+							entity.Encounter();
 						}
 					}
 				}
