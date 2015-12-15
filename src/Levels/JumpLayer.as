@@ -20,7 +20,7 @@ package Levels{
 		
 		private function Initialize():void{
 			assetManager = new AssetManager();
-			var folder:File = File.applicationDirectory.resolvePath("Levels/assets");
+			var folder:File = File.applicationDirectory.resolvePath("Levels/assets/general");
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
 		}
