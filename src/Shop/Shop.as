@@ -211,12 +211,7 @@ package Shop
 		}
 		
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			backButton.removeEventListener(Event.TRIGGERED, BackButtonTriggered);
-			buyMedicineButton.removeEventListener(Event.TRIGGERED, BuyMedicineButtonTriggered);
-			buyTowelButton.removeEventListener(Event.TRIGGERED, BuyTowelButtonTriggered);
-			buyBlanketButton.removeEventListener(Event.TRIGGERED, BuyBlanketButtonTriggered);
-			buyWaterBottleButton.removeEventListener(Event.TRIGGERED, BuyWaterBottleButtonTriggered);
+			removeEventListeners(null);
 			assetManager.dispose();
 			IO.GetInstance().Save();
 		}

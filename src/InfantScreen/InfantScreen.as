@@ -309,14 +309,7 @@ package InfantScreen
 		
 		public function Destroy():void{
 			ready = false;
-			continueButton.removeEventListener(Event.TRIGGERED, continueButtonTriggered);
-			hospitalButton.removeEventListener(Event.TRIGGERED, hospitalButtonTriggered);
-			medicineButton.removeEventListener(Event.TRIGGERED, medicineButtonTriggered);
-			blanketButton.removeEventListener(Event.TRIGGERED, blanketButtonTriggered);
-			shopButton.removeEventListener(Event.TRIGGERED, shopButtonTriggered);
-			towelButton.removeEventListener(Event.TRIGGERED, towelButtonTriggered);
-			waterButton.removeEventListener(Event.TRIGGERED, waterButtonTriggered);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
 			IO.GetInstance().Save();
 		}

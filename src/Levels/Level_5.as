@@ -12,9 +12,7 @@ package Levels{
 	import Items.Coin;
 	import Items.Heart;
 	import Items.Medicine;
-	import Items.Towel;
 	import Items.Watch;
-	import Items.WaterBottle;
 	
 	import Main.View;
 	
@@ -49,6 +47,7 @@ package Levels{
 		private var speed:int = 2;
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
+		private var itemSpawnTimeInSeconds:int = 16;
 		
 		public function Level_5(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -69,6 +68,11 @@ package Levels{
 		
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
+			
+			View.GetInstance().GetInfant().setHealth(100);
+			View.GetInstance().GetInfant().setHydration(100);
+			View.GetInstance().GetInfant().setHygiene(100);
+			View.GetInstance().GetInfant().setTemperature(100);
 			
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
@@ -139,60 +143,57 @@ package Levels{
 				pneumonia.y = 215;
 				View.GetInstance().AddEntity(pneumonia);
 				addChildAt(pneumonia, 3);
+			}
+		}
+		
+		/**
+		 * Spawns items at a given interval, but not in the end zone.
+		 * @param interval:int - interval in seconds between spawn.
+		 */
+		private function SpawnItems(interval:int):void{
+			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
 				
 				var water:Sprite = new WaterPit();
-				water.x = (pneumonia.x + 70);
-				water.y = (pneumonia.y + 26);
+				water.x = 570;
+				water.y = (215 + 26);
 				View.GetInstance().AddEntity(water);
 				addChildAt(water, 3);
 				
 				var branch:Sprite = new Branch();
-				branch.x = (pneumonia.x + 240);
-				branch.y = pneumonia.y;
+				branch.x = (500 + 240);
+				branch.y = 215;
 				View.GetInstance().AddEntity(branch);
 				addChildAt(branch, 3);
 				
 				var coin:Coin = new Coin();
-				coin.x = (pneumonia.x + 50);
-				coin.y = pneumonia.y;
+				coin.x = 935;
+				coin.y = 215;
 				View.GetInstance().AddEntity(coin);
 				addChildAt(coin, 3);
 				
 				var watch:Watch = new Watch();
-				watch.x = 600;
+				watch.x = 630;
 				watch.y = 100;
 				View.GetInstance().AddEntity(watch);
 				addChildAt(watch, 3);
 				
 				var heart:Heart = new Heart();
-				heart.x = (pneumonia.x + 100);
-				heart.y = pneumonia.y;
+				heart.x = 730;
+				heart.y = 215;
 				View.GetInstance().AddEntity(heart);
 				addChildAt(heart, 3);
 				
-				var blanket:Blanket = new Blanket();
-				blanket.x = (pneumonia.x + 150);
-				blanket.y = pneumonia.y;
-				View.GetInstance().AddEntity(blanket);
-				addChildAt(blanket, 3);
-				
 				var medicine:Medicine = new Medicine();
-				medicine.x = (pneumonia.x + 200);
-				medicine.y = pneumonia.y;
+				medicine.x = 815;
+				medicine.y = 215;
 				View.GetInstance().AddEntity(medicine);
 				addChildAt(medicine, 3);
 				
-				var towel:Towel = new Towel();
-				towel.x = (pneumonia.x + 250);
-				towel.y = pneumonia.y;
-				View.GetInstance().AddEntity(towel);
-				addChildAt(towel, 3);
-				
-				var waterBottle:WaterBottle= new WaterBottle();
-				waterBottle.x = (pneumonia.x + 300);
-				waterBottle.y = pneumonia.y;
-				View.GetInstance().AddEntity(waterBottle);
-				addChildAt(waterBottle, 3);
+				var blanket:Blanket = new Blanket();
+				blanket.x = 550;
+				blanket.y = 215;
+				View.GetInstance().AddEntity(blanket);
+				addChildAt(blanket, 3);
 			}
 		}
 		
@@ -219,6 +220,7 @@ package Levels{
 				RemoveOutOfStageEntities();
 				SpawnEnemies(enemySpawnTimeInSeconds);
 				SpawnPlatforms(platformSpawnTimeInSeconds);
+				SpawnItems(itemSpawnTimeInSeconds);
 				top.Update();
 				ScreenProgression();
 				bottom.Update();
@@ -262,7 +264,7 @@ package Levels{
 			top.Destroy();
 			jumpLayer.Destroy();
 			timer.removeEventListener(TimerEvent.TIMER_COMPLETE, Continue);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
+			removeEventListeners(null);
 			assetManager.dispose();
 			IO.GetInstance().Save();
 		}

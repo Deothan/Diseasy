@@ -1,8 +1,6 @@
 package Viruses{
-
 		import flash.filesystem.File;
-		import flash.text.ReturnKeyLabel;
-		
+
 		import Common.Entity;
 		import Common.Virus;
 		
@@ -48,8 +46,7 @@ package Viruses{
 			
 			//Function to remove the listener and assetmanager of this object, 
 			public function Destroy():void{
-				removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-				removeChild(bacteriaImage);
+				removeEventListeners(null);
 				assetManager.dispose();
 				destroyed = true;
 			}
@@ -68,6 +65,9 @@ package Viruses{
 			
 			public function Encounter():void{
 				Destroy();
+				View.GetInstance().GetInfant().setHealth(-2);
+				View.GetInstance().GetInfant().setHygiene(-2);
+				View.GetInstance().GetInfant().setHydration(-4);
 				View.GetInstance().GetPlayer().loseLife();
 			}
 		}

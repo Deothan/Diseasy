@@ -53,9 +53,7 @@ package Levels{
 		}
 		
 		public function Destroy():void{
-			jumpScreen.removeEventListener(TouchEvent.TOUCH, Jump);
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-
+			removeEventListeners(null);
 		}
 	}
 }

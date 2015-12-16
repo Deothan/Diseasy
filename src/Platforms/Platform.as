@@ -5,8 +5,6 @@ package Platforms
 	
 	import Common.Entity;
 	
-	import Main.View;
-	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -51,10 +49,8 @@ package Platforms
 		
 		//Function to remove the listener and assetmanager of this object, 
 		public function Destroy():void{
-			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-			removeChild(platformImage);
+			removeEventListeners(null);
 			assetManager.dispose();
-			View.GetInstance().RemoveEntity(this);
 			destroyed = true;
 		}
 		
