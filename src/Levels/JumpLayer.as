@@ -2,6 +2,7 @@ package Levels{
 	import flash.filesystem.File;
 	
 	import Common.Physicus;
+	import Main.View;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -44,7 +45,6 @@ package Levels{
 		 */
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-				//trace("[Level_1] Jump trigger");
 				if(Physicus.GetInstance().isGrounded()){
 					//trace("[Level_1] Grounded");
 					Physicus.GetInstance().Kinetics();
