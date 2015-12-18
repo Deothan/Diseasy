@@ -98,6 +98,7 @@ package Load
 			previousButton.y = 275;
 			addChild(previousButton);
 			
+			trace(names);
 		}
 		
 		private function LoadPlayerButtons(_param:int):void{

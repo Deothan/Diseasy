@@ -12,7 +12,8 @@ package Player
      * Load external libraries
      */
     import flash.filesystem.File;
-	
+    import flash.utils.Dictionary;
+    
     import Common.Item;
     
     import Items.Blanket;
@@ -25,8 +26,6 @@ package Player
     import starling.display.Sprite;
     import starling.events.Event;
     import starling.utils.AssetManager;
-    import flash.utils.Dictionary;
-    import starling.textures.TextureAtlas;
     
     /**
      * This class contains an instance of the player class. By calling the constructor a new instance is initiated
@@ -48,10 +47,11 @@ package Player
 		private var name:String;
 		private var spawned:Boolean = false;
 		private var checkedViruses:Array = new Array();
+		private var tutorials:Array = new Array();
         
-       /**
-         * Class constructor sets stage, desired position x and desired position y
-         */    
+        /**
+        * Class constructor sets stage, desired position x and desired position y
+        */    
         public function Player() {  
 			_animations = new Dictionary();
 			animations = new Array();
@@ -71,6 +71,13 @@ package Player
 			unlock[2] = false;
 			unlock[3] = false;
 			unlock[4] = false;
+			
+			tutorials[0] = false;
+			tutorials[1] = false;
+			tutorials[2] = false;
+			tutorials[3] = false;
+			tutorials[4] = false;
+			tutorials[5] = false;
 		}
 		
 		private function loadAnimations():void{
@@ -107,6 +114,17 @@ package Player
 		private function Start():void{
 			loadAnimations();
 			this.spawned = true;
+		}
+		
+		public function GetTutorials():Array{
+			return tutorials;
+		}
+		
+		/**
+		 * param tutorial:int - customize = 0, map = 1, level = 2, virusInformationScreen = 3, virusScreen = 4 or infantScreen = 5
+		 */
+		public function setTutorials(tutorial:int, value:Boolean):void{
+			tutorials[tutorial] = value;
 		}
 
 		public function getLife():int{
