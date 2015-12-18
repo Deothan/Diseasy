@@ -82,3 +82,21 @@ VIRUSSES:false,false,false,false,false
 LEVELS:true,true,true,false,false
 ITEMS:8,8,8,8
 </PROFILE>
+<PROFILE>
+NAME:Enter Name
+LIFE:0
+COINS:9
+LOOKS:2
+VIRUSSES:true,true,false,false,false
+LEVELS:true,true,true,false,false
+ITEMS:10,4,4,0
+</PROFILE>
+<PROFILE>
+NAME:Enter Name
+LIFE:0
+COINS:5
+LOOKS:0
+VIRUSSES:false,false,false,false,false
+LEVELS:true,true,true,false,false
+ITEMS:6,4,2,0
+</PROFILE>
