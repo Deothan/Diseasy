@@ -44,7 +44,7 @@ package Platforms
 		}
 		
 		public function convertToPlatform2():void{
-			//platformImage.texture = assetManager.getTexture("Platform2");
+			platformImage.texture = assetManager.getTexture("Platform2");
 		}
 		
 		//Function to remove the listener and assetmanager of this object, 

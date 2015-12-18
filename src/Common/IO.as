@@ -32,7 +32,7 @@ package Common
 		/** constant variables 
 		 * SIZEOFPROFILE needs to be adjusted every time new data is added in a sprint 
 		 **/
-		private const SIZEOFPROFILE:int = 9;
+		private const SIZEOFPROFILE:int = 10;
 		private const SIZEOFRECORDS:int = SIZEOFPROFILE - 1;
 		
 		/**
@@ -122,24 +122,28 @@ package Common
 			var playerUnlocked:String =profiles[(loop +5)];
 			tmp = playerUnlocked.split(":");
 			fobar = tmp[1].split(",");
-			if(fobar[1].search("true") >= 0){
-				View.GetInstance().GetPlayer().setLevel(2, true);	
+			for(var k:int = 0; k < fobar.length; k++){
+				if(fobar[k] == "true")
+					View.GetInstance().GetPlayer().setLevel(k+1, true);
+				else
+					View.GetInstance().GetPlayer().setLevel(k+1, false);
 			}
-			if(fobar[2].search("true") >= 0){
-				View.GetInstance().GetPlayer().setLevel(3, true);	
-			}
-			if(fobar[3].search("true") >= 0){
-				View.GetInstance().GetPlayer().setLevel(4, true );	
-			}
-			if(fobar[4].search("true") >= 0){
-				View.GetInstance().GetPlayer().setLevel(5, true );	
-			}
-			
+
 			var playerItems:String =profiles[(loop +6)];
 			tmp = playerItems.split(":");
 			fobar = tmp[1].split(",");
-
 			View.GetInstance().GetPlayer().setItems(fobar);
+						
+			var playerTutorials:String =profiles[(loop +7)];
+			tmp = playerTutorials.split(":");
+			fobar = tmp[1].split(",");
+			for(var l:int = 0; l < fobar.length; l++){
+				if(fobar[l] == "true")
+					View.GetInstance().GetPlayer().setTutorials(l, true);
+				else
+					View.GetInstance().GetPlayer().setTutorials(l, false);   
+			}
+			
 			playerPointer = (loop -1);
 		}
 		
@@ -265,6 +269,7 @@ package Common
 			var virusses:Array = View.GetInstance().GetPlayer().GetCheckedViruses();
 			var unlock:Array = View.GetInstance().GetPlayer().getUnlock();
 			var items:Array = View.GetInstance().GetPlayer().getItems();
+			var tutorials:Array = View.GetInstance().GetPlayer().GetTutorials();
 			var foo:Array = new Array();
 			
 			foo[0] = "<PROFILE>\r\n";
@@ -275,7 +280,8 @@ package Common
 			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4] +  "\r\n";
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
 			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3]+ "\r\n";
-			foo[8] = "</PROFILE>\r\n";
+			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5]+ "\r\n";
+			foo[9] = "</PROFILE>\r\n";
 			
 			return foo;
 		}

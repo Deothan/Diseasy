@@ -7,7 +7,7 @@ package Levels{
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
-
+	
 	import Items.Coin;
 	import Items.Heart;
 	import Items.Medicine;
@@ -32,7 +32,9 @@ package Levels{
 		private var top:TopBar = new TopBar();
 		private var bottom:BottomBar = new BottomBar;
 		private var jumpLayer:JumpLayer = new JumpLayer();
-		private var background:Image;
+		private var background1:Image;
+		private var background2:Image;
+		private var background3:Image;
 		private var jumpScreen:Image;
 		private var winImage:Image;
 		private var loaded:Boolean = false;
@@ -40,7 +42,7 @@ package Levels{
 		private var timer:flash.utils.Timer;
 		
 		//Changeable variables
-		private var widthOfLevelInPixels:int = 2528;
+		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = 2;
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
@@ -65,6 +67,7 @@ package Levels{
 		
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
+			View.GetInstance().SetTime(0);
 			
 			View.GetInstance().GetInfant().setHealth(100);
 			View.GetInstance().GetInfant().setHydration(100);
@@ -74,9 +77,9 @@ package Levels{
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
-			background = new Image(assetManager.getTexture("background"));
-			View.GetInstance().AddEntity(background);
-			addChild(background);
+			background1 = new Image(assetManager.getTexture("background"));
+			View.GetInstance().AddEntity(background1);
+			addChild(background1);
 			
 			addChild(top);
 			
@@ -104,7 +107,22 @@ package Levels{
 		}
 		
 		public function ScreenProgression():void{
-			if(bottom.GetProgress() >= 76 && winImage == null){
+			if(bottom.GetProgress() >= 25 && background2 == null){
+				background2 = new Image(assetManager.getTexture("background"));
+				background2.x = 480;
+				background2.y = 0;
+				View.GetInstance().AddEntity(background2);
+				addChildAt(background2, 1);
+			}
+			if(bottom.GetProgress() >= 58 && background3 == null){
+				background3 = new Image(assetManager.getTexture("background"));
+				background3.x = 480;
+				background3.y = 0;
+				View.GetInstance().AddEntity(background3);
+				addChildAt(background3, 1);
+			}
+			
+			if(bottom.GetProgress() >= 92 && winImage == null){
 				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;

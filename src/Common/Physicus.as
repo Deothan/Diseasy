@@ -8,9 +8,10 @@ package Common{
 	public class Physicus{
 		/* constant variables */
 		private static var instance:Physicus;
-		private static const GRAVITY:Number = 0.8;
+		private static const GRAVITY:Number = 1.1;
 		private static const KENETIC:Number = 0.5;
 		private static const HITFORCE:Number = 15;
+		private static const HORIZONTALVELOCITY:Number = 3;
 		/* variable variables */
 		private static var _verticalVelocity:Number;
 		private static var _disableGravity:Boolean;
@@ -50,7 +51,11 @@ package Common{
 					var entityTop:int = (entity.y - (entity.getHeight() / 2) -45);
 					
 					if(entity is Platform){
-						if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
+						if(playerTop <= entityBottom && playerLeft >= entityLeft && playerLeft <= entityRight && playerBottom >= entityBottom){
+							//collide with platform from under
+							_verticalVelocity *= -1;
+						}
+						else if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
 							//trace("[Physicus] Collide with platform object");
 							if(!_disableGravity){
 								View.GetInstance().GetPlayer().y = entityTop;
@@ -60,22 +65,15 @@ package Common{
 						}
 						else{
 							_disableGravity = false;
-							//do nothing
 						}
+						
 					}
-					else if(playerBottom > entityTop && playerTop < entityBottom && playerLeft < entityRight && playerRight > entityLeft){
+					else if(playerBottom > (entityTop + 45) && playerTop < entityBottom && playerLeft < entityRight && playerRight > entityLeft){
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
 						if(entity is Virus && !entity.Destroyed()){
 							entity.Encounter();					
 						}
-						if(entity is Item){
-							if(!entity.Destroyed()){
-								entity.Use();
-								entity.Destroy();
-							}	
-						}
-						
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
 						{
 								entity.Encounter();
@@ -89,8 +87,7 @@ package Common{
 							entity.Encounter();
 						}
 					}
-				}
-				
+				}				
 			}
 		}
 		
@@ -100,11 +97,9 @@ package Common{
 		 */
 		public function isGrounded():Boolean{
 			if(View.GetInstance().GetPlayer().y >= 205 || _disableGravity){
-				//View.GetInstance().GetPlayer().switchAnimations("run");
 				return true;
 			}
 			else{
-				//View.GetInstance().GetPlayer().jump();
 				return false;
 			}
 		}
@@ -115,19 +110,35 @@ package Common{
 		 */
 		public function Gravity():void{
 			if(_disableGravity){
-				//do nothing	
 				View.GetInstance().GetPlayer().y += _verticalVelocity;
+				View.GetInstance().GetPlayer().switchAnimations("run");
 			}
 			else{
-				View.GetInstance().GetPlayer().y += _verticalVelocity;
+				View.GetInstance().GetPlayer().y += _verticalVelocity;	
 				if(View.GetInstance().GetPlayer().y >= 205){
 					//trace("[Physicus] Gravity-> grounded");
 					_verticalVelocity *= 0;
+					View.GetInstance().GetPlayer().switchAnimations("run");
 					View.GetInstance().GetPlayer().y = 205;
+					/** gravitate back x-axis **/
+					if(View.GetInstance().GetPlayer().x > 100){
+						View.GetInstance().GetPlayer().switchAnimations("idle");
+						View.GetInstance().GetPlayer().x -= HORIZONTALVELOCITY - 1.5;
+					}
+					if(View.GetInstance().GetPlayer().x < 100){
+						View.GetInstance().GetPlayer().x = 100;
+					}
 				}
 				else{
 				//trace("[Physicus] Gravity-> air");
+					if(View.GetInstance().GetPlayer().x >= (View.GetInstance().stage.stageWidth - 30)){
+						/** don't jump outside of x-axis **/
+					}
+					else{
+						View.GetInstance().GetPlayer().x += HORIZONTALVELOCITY;	
+					}
 					_verticalVelocity += GRAVITY;
+					View.GetInstance().GetPlayer().switchAnimations("jump");
 				}
 			}
 		}

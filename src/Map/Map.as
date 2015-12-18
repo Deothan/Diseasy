@@ -1,11 +1,12 @@
 package Map{
 	import flash.filesystem.File;
-
+	
 	import Common.Screen;
 	
 	import Customize.Customize;
 	
-	import Levels.Level_1;
+	import Cutscene.Cutscene;
+	
 	import Levels.Level_2;
 	import Levels.Level_3;
 	import Levels.Level_4;
@@ -124,7 +125,7 @@ package Map{
 		
 		private function LevelButtonTriggered(event:Event):void{
 			if(event.target == level1Button && unlocks[0]){
-				View.GetInstance().LoadScreen(Level_1);
+				View.GetInstance().LoadScreen(Cutscene);
 			}
 			else if(event.target == level2Button && unlocks[1]){
 				View.GetInstance().LoadScreen(Level_2);

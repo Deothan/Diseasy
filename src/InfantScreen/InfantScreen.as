@@ -13,9 +13,7 @@ package InfantScreen
 	import Items.WaterBottle;
 	
 	import Main.View;
-	
-	import Map.Map;
-	
+
 	import Shop.Shop;
 	
 	import starling.display.Button;
@@ -258,7 +256,7 @@ package InfantScreen
 		
 		private function continueButtonTriggered():void
 		{
-			View.GetInstance().LoadScreen(Map);
+			View.GetInstance().LoadScreen(FeedbackScreen);
 		}
 		
 		

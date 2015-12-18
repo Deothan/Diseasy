@@ -12,7 +12,8 @@ package Player
      * Load external libraries
      */
     import flash.filesystem.File;
-	
+    import flash.utils.Dictionary;
+    
     import Common.Item;
     
     import Items.Blanket;
@@ -38,17 +39,21 @@ package Player
 		private var currentAnimation:String;
 		private var animations:Array;
 		private var assetManager:AssetManager;
+		private var _animations:Dictionary;
+		private var _currentAnimation:String;
 		private var unlock:Array = new Array;
 		private var looks:int = 0;
 		private var items:Array = new Array();
 		private var name:String;
 		private var spawned:Boolean = false;
 		private var checkedViruses:Array = new Array();
+		private var tutorials:Array = new Array();
         
-       /**
-         * Class constructor sets stage, desired position x and desired position y
-         */    
+        /**
+        * Class constructor sets stage, desired position x and desired position y
+        */    
         public function Player() {  
+			_animations = new Dictionary();
 			animations = new Array();
 			unlock[1] = true;
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -66,20 +71,31 @@ package Player
 			unlock[2] = false;
 			unlock[3] = false;
 			unlock[4] = false;
+			
+			tutorials[0] = false;
+			tutorials[1] = false;
+			tutorials[2] = false;
+			tutorials[3] = false;
+			tutorials[4] = false;
+			tutorials[5] = false;
 		}
 		
 		private function loadAnimations():void{
-			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 24);
+			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 34);
 			run_animation.width = 40; // to be removed
 			run_animation.height = 50; // to be removed
-			animations["run"] = run_animation;
+			_animations["run"] = run_animation;
 			
-			/** NEEDS TO BE UNMARKED WHEN IMAGES ARE READY
-			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("jump instance"), 24);
+			var idle_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 20);
+			idle_animation.width = 40; // to be removed
+			idle_animation.height = 50; // to be removed
+			_animations["idle"] = idle_animation;
+			
+			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("women_jump_1"), 24);
 			jump_animation.width = 40; // to be removed
 			jump_animation.height = 50; // to be removed
-			animations["jump"] = jump_animation;
-			**/
+			_animations["jump"] = jump_animation;
+			
 		}
 				
 		private function Initialize():void{
@@ -97,8 +113,18 @@ package Player
 		
 		private function Start():void{
 			loadAnimations();
-			switchAnimations("run");
 			this.spawned = true;
+		}
+		
+		public function GetTutorials():Array{
+			return tutorials;
+		}
+		
+		/**
+		 * param tutorial:int - customize = 0, map = 1, level = 2, virusInformationScreen = 3, virusScreen = 4 or infantScreen = 5
+		 */
+		public function setTutorials(tutorial:int, value:Boolean):void{
+			tutorials[tutorial] = value;
 		}
 
 		public function getLife():int{
@@ -115,10 +141,6 @@ package Player
 		
 		public function loseLife():void{
 			this.life -= 1; 
-		}
-		
-		public function jump():void{
-			switchAnimations("jump");
 		}
 		
 		public function SetName(_name:String):void{
@@ -149,26 +171,23 @@ package Player
 		 * Method that changes animation
 		 * @param: _animation possibilities: run - jump - hit
 		 */
-		public function switchAnimations(_animation:String):void{
-			if(currentAnimation == null){
-				addChild(animations[_animation]);
-				Starling.juggler.add(animations[_animation]);
-				currentAnimation = _animation;
+		public function switchAnimations(name:String):void{
+			if (_currentAnimation == name)
+				return;
+			
+			if (!_animations[name])
+				throw new Error("No animation called " + name);
+			
+			if (_currentAnimation)
+			{
+				removeChild(_animations[_currentAnimation]);
+				Starling.juggler.remove(_animations[_currentAnimation]);
 			}
-			else if(_animation.localeCompare(currentAnimation)==0){
-				//animation is already playing, do nothing
-				currentAnimation = _animation;
-			}
-			else{
-				var currentX:int = animations[currentAnimation].x;
-				var currentY:int = animations[currentAnimation].y; 
-				animations[currentAnimation].stop();
-				removeChild(animations[currentAnimation]);
-				Starling.juggler.add(animations[_animation]);
-				animations[_animation].x = currentX;
-				animations[_animation].y = currentY;
-				currentAnimation = _animation;
-			}
+			
+			addChild(_animations[name]);
+			Starling.juggler.add(_animations[name]);
+			
+			_currentAnimation = name;
 		}
 		
 		public function destroy():void{

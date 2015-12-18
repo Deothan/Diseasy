@@ -2,6 +2,7 @@ package Customize{
 	import flash.filesystem.File;
 	
 	import Common.IO;
+	import Common.Physicus;
 	import Common.Screen;
 	
 	import Main.View;
@@ -23,6 +24,9 @@ package Customize{
 	public class Customize extends Sprite implements Screen{
 		private var assetManager:AssetManager = new AssetManager();
 		private var background:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;
+		private var tutorial3:Image;
 		private var look:Image;
 		private var currentLook:int;
 		private var backButton:Button;
@@ -89,6 +93,37 @@ package Customize{
 			look.x = 10;
 			look.y = 10;
 			addChild(look);
+			
+			if(!View.GetInstance().GetPlayer().GetTutorials()[0]){
+				tutorial1 = new Image(assetManager.getTexture("tutorial1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("tutorial2"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					tutorial3 = new Image(assetManager.getTexture("tutorial3"));
+					tutorial3.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial3);
+				}
+				else if(event.target == tutorial3){
+					tutorial3.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial3);
+					
+					View.GetInstance().GetPlayer().setTutorials(0, true);
+				}
+			}				
 		}
 		
 		private function LookButtonTriggered():void{
