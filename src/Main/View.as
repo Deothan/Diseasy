@@ -1,7 +1,8 @@
 package Main{
 	import Common.EntityPlaceholder;
 	import Common.Screen;
-
+	import Common.SoundControl;
+	
 	import InfantScreen.Infant;
 	
 	import Menu.Menu;
@@ -18,6 +19,7 @@ package Main{
 		private var player:Player = new Player();
 		private var infant:Infant = new Infant();
 		private var entities:Array = new Array();
+		private var soundtrack:SoundControl;
 		private var time:int = 0;
 		private var lastScreen:String = "Menu";
 		
@@ -98,6 +100,13 @@ package Main{
 			
 			screen = new newScreen();
 			addChild(screen);
+		}
+		
+		public function getSoundControl():SoundControl{
+			if(soundtrack == null){
+				soundtrack = new SoundControl();
+			}
+			return soundtrack;
 		}
 	}
 }

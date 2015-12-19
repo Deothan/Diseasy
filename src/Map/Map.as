@@ -125,6 +125,7 @@ package Map{
 		
 		private function LevelButtonTriggered(event:Event):void{
 			if(event.target == level1Button && unlocks[0]){
+				View.GetInstance().getSoundControl().playClock();
 				View.GetInstance().LoadScreen(Cutscene);
 			}
 			else if(event.target == level2Button && unlocks[1]){
