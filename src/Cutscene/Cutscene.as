@@ -40,7 +40,7 @@ package Cutscene{
 		private function Start():void{
 			timer = new Timer(3000, 6);
 			timer.addEventListener(TimerEvent.TIMER, NextScene);
-			
+			View.GetInstance().getSoundControl().playSad();
 			scenes[0] = new Image(assetManager.getTexture("storyscene1"));
 			scenes[1] = new Image(assetManager.getTexture("storyscene2"));
 			scenes[2] = new Image(assetManager.getTexture("storyscene3"));
@@ -58,6 +58,7 @@ package Cutscene{
 			currentScene++;
 			
 			if(currentScene > 5)
+				
 				View.GetInstance().LoadScreen(Level_1);
 			else
 				addChild(scenes[currentScene]);
