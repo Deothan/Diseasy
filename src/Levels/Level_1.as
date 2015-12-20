@@ -68,7 +68,7 @@ package Levels{
 		private function Start():void{
 			View.GetInstance().GetPlayer().setLife(5);
 			View.GetInstance().SetTime(0);
-			
+			View.GetInstance().getSoundControl().playStartGame();
 			View.GetInstance().GetInfant().setHealth(100);
 			View.GetInstance().GetInfant().setHydration(100);
 			View.GetInstance().GetInfant().setHygiene(100);

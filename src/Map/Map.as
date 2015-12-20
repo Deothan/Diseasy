@@ -53,6 +53,7 @@ package Map{
 		}
 		
 		private function Start():void{
+			View.GetInstance().getSoundControl();
 			View.GetInstance().SetLastScreen("Map");
 			
 			background = new Image(assetManager.getTexture("map"));
@@ -124,8 +125,8 @@ package Map{
 		}
 		
 		private function LevelButtonTriggered(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			if(event.target == level1Button && unlocks[0]){
-				View.GetInstance().getSoundControl().playClock();
 				View.GetInstance().LoadScreen(Cutscene);
 			}
 			else if(event.target == level2Button && unlocks[1]){
@@ -143,10 +144,12 @@ package Map{
 		}
 		
 		private function CustomizeButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Customize);
 		}
 		
 		private function BackButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Menu);
 		}
 		

@@ -72,7 +72,8 @@ package Common{
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
 						if(entity is Virus && !entity.Destroyed()){
-							entity.Encounter();					
+							entity.Encounter();
+							View.GetInstance().getSoundControl().playcollide();
 						}
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
 						{
@@ -80,6 +81,7 @@ package Common{
 						}
 						if(entity is Item && !entity.Destroyed()){
 							entity.Use();
+							View.GetInstance().getSoundControl().playcollide();
 						}
 						
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
@@ -148,6 +150,7 @@ package Common{
 		 */
 		public function Kinetics():void{
 			//trace("[Physicus] Kinetics");
+			View.GetInstance().getSoundControl().playjump();
 			_verticalVelocity -= HITFORCE;
 		}
 	}
