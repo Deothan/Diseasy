@@ -244,3 +244,13 @@ ITEMS:0,0,0,0
 >>>>>>> 017656578baada28ccf7ea8d1cb1a7298fba5930
 TUTORIALS:true,false,false,false,false,false
 </PROFILE>
+<PROFILE>
+NAME:Aki
+LIFE:4
+COINS:2
+LOOKS:0
+VIRUSSES:true,true,false,false,false
+LEVELS:true,true,true,false,false
+ITEMS:7,4,1,2
+TUTORIALS:true,false,false,false,false,false
+</PROFILE>
