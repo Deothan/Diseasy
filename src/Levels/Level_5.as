@@ -45,7 +45,7 @@ package Levels{
 		private var timer:flash.utils.Timer;
 		
 		//Changeable variables
-		private var widthOfLevelInPixels:int = 2528;
+		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = 2;
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
