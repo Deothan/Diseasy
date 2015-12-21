@@ -80,7 +80,7 @@ package Levels{
 			timer = new flash.utils.Timer(3500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			
-			background1 = new Image(assetManager.getTexture("background"));
+			background1 = new Image(assetManager.getTexture("Level5Background"));
 			View.GetInstance().AddEntity(background1);
 			addChild(background1);
 			
@@ -111,14 +111,14 @@ package Levels{
 		
 		public function ScreenProgression():void{
 			if(bottom.GetProgress() >= 25 && background2 == null){
-				background2 = new Image(assetManager.getTexture("background"));
+				background2 = new Image(assetManager.getTexture("Level5Background"));
 				background2.x = 480;
 				background2.y = 0;
 				View.GetInstance().AddEntity(background2);
 				addChildAt(background2, 1);
 			}
 			if(bottom.GetProgress() >= 58 && background3 == null){
-				background3 = new Image(assetManager.getTexture("background"));
+				background3 = new Image(assetManager.getTexture("Level5Background"));
 				background3.x = 480;
 				background3.y = 0;
 				View.GetInstance().AddEntity(background3);
@@ -126,7 +126,7 @@ package Levels{
 			}
 			
 			if(bottom.GetProgress() >= 92 && winImage == null){
-				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+				winImage = new Image(assetManager.getTexture("Level5FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
 				View.GetInstance().AddEntity(winImage);

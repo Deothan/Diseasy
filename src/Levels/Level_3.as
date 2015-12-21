@@ -125,7 +125,7 @@ package Levels{
 			}
 			
 			if(bottom.GetProgress() >= 92 && winImage == null){
-				winImage = new Image(assetManager.getTexture("Level1FinalStage"));
+				winImage = new Image(assetManager.getTexture("Level3FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
 				View.GetInstance().AddEntity(winImage);
