@@ -167,6 +167,7 @@ package Shop
 		}
 		
 		private function BuyMedicineButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			if(coins >= medicinePrice){
 				coins -= medicinePrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
@@ -176,6 +177,7 @@ package Shop
 		}
 		
 		private function BuyTowelButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			if(coins >= towelPrice){
 				coins -= towelPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
@@ -185,6 +187,7 @@ package Shop
 		}
 		
 		private function BuyBlanketButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			if(coins >= blanketPrice){
 				coins -= blanketPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
@@ -194,6 +197,7 @@ package Shop
 		}
 		
 		private function BuyWaterBottleButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			if(coins >= waterPrice){
 				coins -= waterPrice;
 				View.GetInstance().GetPlayer().setCoin(coins);
@@ -203,6 +207,7 @@ package Shop
 		}
 		
 		private function BackButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(InfantScreen);
 		}
 		

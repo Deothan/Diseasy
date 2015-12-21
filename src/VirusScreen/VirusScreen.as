@@ -154,11 +154,13 @@ package VirusScreen
 		
 		public function ContinueButtonTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(InfantScreen);
 		}
 		
 		public function DiarrheaTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[0])
 			{
 				checkedArray[0] = true;
@@ -168,6 +170,7 @@ package VirusScreen
 		
 		public function HivTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[1])
 			{
 				checkedArray[1] = true;	
@@ -177,6 +180,7 @@ package VirusScreen
 		
 		public function MalariaTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[2])
 			{
 				checkedArray[2] = true;
@@ -186,6 +190,7 @@ package VirusScreen
 		
 		public function PneumoniaTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[3])
 			{
 				checkedArray[3] = true;
@@ -195,6 +200,7 @@ package VirusScreen
 		
 		public function NeonatalsepsisTriggered():void
 		{
+			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[4])
 			{
 				checkedArray[4] = true;

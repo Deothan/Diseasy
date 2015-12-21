@@ -15,7 +15,8 @@ package Player
     import flash.utils.Dictionary;
     
     import Common.Item;
-    
+    import Main.View;
+		
     import Items.Blanket;
     import Items.Medicine;
     import Items.Towel;
@@ -26,6 +27,7 @@ package Player
     import starling.display.Sprite;
     import starling.events.Event;
     import starling.utils.AssetManager;
+	
     
     /**
      * This class contains an instance of the player class. By calling the constructor a new instance is initiated

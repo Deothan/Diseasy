@@ -193,6 +193,7 @@ package Load
 		
 		
 		private function LoadPlayer1(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			removeChild(playerImage);
 			if(player1 != " "){
 				Common.IO.GetInstance().loadUserProfile(player1);
@@ -203,6 +204,7 @@ package Load
 		}
 		
 		private function LoadPlayer2(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			if(player2 != " "){
 				Common.IO.GetInstance().loadUserProfile(player2);
 				playerImage = looks[View.GetInstance().GetPlayer().GetLooks()];
@@ -212,6 +214,7 @@ package Load
 		}
 		
 		private function LoadPlayer3(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			if(player3 != " "){
 				Common.IO.GetInstance().loadUserProfile(player3);
 				playerImage = looks[View.GetInstance().GetPlayer().GetLooks()];
@@ -221,6 +224,7 @@ package Load
 		}
 		
 		private function LoadPlayer4(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			if(player4 != " "){
 				Common.IO.GetInstance().loadUserProfile(player4);
 				playerImage = looks[View.GetInstance().GetPlayer().GetLooks()];
@@ -230,6 +234,7 @@ package Load
 		}
 		
 		private function LoadPlayer5(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			if(player5 != " "){
 				Common.IO.GetInstance().loadUserProfile(player5);
 				playerImage = looks[View.GetInstance().GetPlayer().GetLooks()];
@@ -240,6 +245,7 @@ package Load
 		
 		
 		private function NextListOfPlayers(event:Event):void{
+			View.GetInstance().getSoundControl().playButton();
 			arrayPart++;
 			if((arrayPart * 5) <= Common.IO.GetInstance().getNames().length){
 				SetPlayerNames(arrayPart);
@@ -261,10 +267,12 @@ package Load
 		}
 		
 		private function LoadButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Menu);
 		}
 		

@@ -45,6 +45,7 @@ package Menu
 		}
 		
 		private function Start():void{
+			View.GetInstance().getSoundControl();
 			View.GetInstance().SetLastScreen("Menu");
 			
 			background = new Image(assetManager.getTexture("background"));
@@ -79,6 +80,7 @@ package Menu
 		 * Closes the application.
 		 */
 		private function ExitButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			NativeApplication.nativeApplication.exit();
 		}
 		
@@ -86,6 +88,7 @@ package Menu
 		 * Opens the Load screen.
 		 */
 		private function LoadButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();	
 			View.GetInstance().LoadScreen(Load);
 		}
 		
@@ -93,6 +96,7 @@ package Menu
 		 * Opens the map screen.
 		 */
 		private function MapButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();	
 			View.GetInstance().LoadScreen(Customize);
 		}
 		
@@ -100,6 +104,7 @@ package Menu
 		 * Opens the settings screen.
 		 */
 		private function SettingsButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();	
 			View.GetInstance().LoadScreen(Settings);
 		}
 		

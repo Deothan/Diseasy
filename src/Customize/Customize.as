@@ -103,6 +103,7 @@ package Customize{
 		
 		private function TutorialTouch(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
 				if(event.target == tutorial1){
 					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
 					removeChild(tutorial1);
@@ -128,6 +129,7 @@ package Customize{
 		
 		private function LookButtonTriggered():void{
 			currentLook++;
+			View.GetInstance().getSoundControl().playButton();
 			
 			if(currentLook > 3){
 				currentLook = 0;
@@ -142,6 +144,7 @@ package Customize{
 		}
 		
 		private function OkButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			IO.GetInstance().Save();
@@ -150,6 +153,7 @@ package Customize{
 		
 		private function BackButtonTriggered():void{
 			if(View.GetInstance().GetLastScreen() == "Menu"){
+				View.GetInstance().getSoundControl().playButton();
 				View.GetInstance().LoadScreen(Menu);
 			}
 			else{
@@ -191,6 +195,7 @@ package Customize{
 		 */
 		private function NameTouched(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
 				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
 				
 				input = new String();

@@ -86,6 +86,7 @@ package Items
 		
 		public function Use():void{
 			View.GetInstance().GetPlayer().addCoin();
+			View.GetInstance().getSoundControl().playCoin();
 			Destroy();
 		}
 	}

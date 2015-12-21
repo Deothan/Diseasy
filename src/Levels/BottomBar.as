@@ -115,6 +115,7 @@ package Levels{
 		}
 		
 		private function BackButtonTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Map);
 		}
 		

@@ -1,9 +1,9 @@
 package Common{
 	import flash.filesystem.File;
 	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	
 	import starling.utils.AssetManager;
-	import flash.media.SoundChannel;
 	
 	public class SoundControl
 	{
@@ -30,8 +30,36 @@ package Common{
 		}
 		
 		public function playSad():void{
-			if(Channel != null) Channel.stop();
-			sound = assetManager.getSound("sadtheme");
+			if (Channel != null) Channel.stop();
+			sound = assetManager.getSound('sadtheme');
+			Channel = sound.play();
+		}
+		
+		public function playClock():void{
+			if (Channel != null) Channel.stop();
+			sound = assetManager.getSound('sound_ticking');
+			Channel = sound.play();
+		}
+		
+		public function playButton():void{
+			assetManager.getSound('button').play();
+		}
+		
+		public function playCoin():void{
+			assetManager.getSound('coin').play();
+		}
+		
+		public function playcollide():void{
+			assetManager.getSound('collide').play();
+		}
+		
+		public function playjump():void{
+			assetManager.getSound('jump').play();
+		}
+		
+		public function playStartGame():void{
+			if (Channel != null) Channel.stop();
+			sound = assetManager.getSound('startgame');
 			Channel = sound.play();
 		}
 	}
