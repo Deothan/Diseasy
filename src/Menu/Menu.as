@@ -57,12 +57,6 @@ package Menu
 			mapButton.y = 30;
 			addChild(mapButton);
 			
-			settingsButton = new Button(assetManager.getTexture("menu_settings"));
-			settingsButton.addEventListener(Event.TRIGGERED, SettingsButtonTriggered);
-			settingsButton.x = 50;
-			settingsButton.y = 220;
-			addChild(settingsButton);
-			
 			loadButton = new Button(assetManager.getTexture("menu_load"));
 			loadButton.addEventListener(Event.TRIGGERED, LoadButtonTriggered);
 			loadButton.x = 250;
@@ -71,7 +65,7 @@ package Menu
 			
 			exitButton = new Button(assetManager.getTexture("menu_exit"));
 			exitButton.addEventListener(Event.TRIGGERED, ExitButtonTriggered);
-			exitButton.x = 250;
+			exitButton.x = 50;
 			exitButton.y = 220;
 			addChild(exitButton);
 		}

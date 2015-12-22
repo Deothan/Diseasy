@@ -11,7 +11,6 @@ package Common{
 		private static const GRAVITY:Number = 1.1;
 		private static const KENETIC:Number = 0.5;
 		private static const HITFORCE:Number = 15;
-		private static const HORIZONTALVELOCITY:Number = 3;
 		/* variable variables */
 		private static var _verticalVelocity:Number;
 		private static var _disableGravity:Boolean;
@@ -112,8 +111,10 @@ package Common{
 		 */
 		public function Gravity():void{
 			if(_disableGravity){
+				//trace("[Physicus] Gravity-> air but on platform");
 				View.GetInstance().GetPlayer().y += _verticalVelocity;
 				View.GetInstance().GetPlayer().switchAnimations("run");
+				View.GetInstance().setSpeedBackToDefault();
 			}
 			else{
 				View.GetInstance().GetPlayer().y += _verticalVelocity;	
@@ -122,23 +123,11 @@ package Common{
 					_verticalVelocity *= 0;
 					View.GetInstance().GetPlayer().switchAnimations("run");
 					View.GetInstance().GetPlayer().y = 205;
-					/** gravitate back x-axis **/
-					if(View.GetInstance().GetPlayer().x > 100){
-						View.GetInstance().GetPlayer().switchAnimations("idle");
-						View.GetInstance().GetPlayer().x -= HORIZONTALVELOCITY - 1.5;
-					}
-					if(View.GetInstance().GetPlayer().x < 100){
-						View.GetInstance().GetPlayer().x = 100;
-					}
+					View.GetInstance().setSpeedBackToDefault();
 				}
 				else{
-				//trace("[Physicus] Gravity-> air");
-					if(View.GetInstance().GetPlayer().x >= (View.GetInstance().stage.stageWidth - 30)){
-						/** don't jump outside of x-axis **/
-					}
-					else{
-						View.GetInstance().GetPlayer().x += HORIZONTALVELOCITY;	
-					}
+					//trace("[Physicus] Gravity-> air");
+					View.GetInstance().setSpeed(4);
 					_verticalVelocity += GRAVITY;
 					View.GetInstance().GetPlayer().switchAnimations("jump");
 				}

@@ -152,8 +152,8 @@ package Common
 		 * makes a shadow copy and replaces the origin since partial change is not available in current language
 		 */
 		public function Save():void{
-			var pathToFile:String = File.applicationDirectory.resolvePath('Storage/memoryShadowCopy.save').nativePath;
-			var pathToDestination:String = File.applicationDirectory.resolvePath('Storage/memory.save').nativePath;
+			var pathToFile:String = File.applicationStorageDirectory.resolvePath('Storage/memoryShadowCopy.save').nativePath;
+			var pathToDestination:String = File.applicationStorageDirectory.resolvePath('Storage/memory.save').nativePath;
 			var currentUser:Array = addProfile();
 			var foo:int = 0;
 			
@@ -215,8 +215,8 @@ package Common
 		 * Varify if file already exists or is first time use
 		 */
 		private function CheckMemory():void{
-			var FolderToFile:String = File.applicationDirectory.resolvePath('Storage').nativePath;
-			var pathToFile:String = File.applicationDirectory.resolvePath('Storage/memory.save').nativePath;
+			var FolderToFile:String = File.applicationStorageDirectory.resolvePath('Storage').nativePath;
+			var pathToFile:String = File.applicationStorageDirectory.resolvePath('Storage/memory.save').nativePath;
 			
 			var Folder:File = new File(FolderToFile);
 			

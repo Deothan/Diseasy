@@ -11,11 +11,11 @@ TUTORIALS:true,false,false,false,false,false
 <PROFILE>
 NAME:Kevin
 LIFE:1
-COINS:4
+COINS:14
 LOOKS:2
 VIRUSSES:false,false,false,false,false
-LEVELS:true,true,false,false,false
-ITEMS:5,3,0,0
+LEVELS:true,true,true,true,true
+ITEMS:33,18,2,2
 TUTORIALS:true,false,false,false,false,false
 </PROFILE>
 <PROFILE>
@@ -455,13 +455,13 @@ ITEMS:2,3,0,0
 TUTORIALS:true,false,false,false,false,false
 </PROFILE>
 <PROFILE>
-NAME:Enter Name
-LIFE:4
-COINS:4
-LOOKS:0
+NAME:were
+LIFE:2
+COINS:3
+LOOKS:1
 VIRUSSES:false,false,false,false,false
 LEVELS:true,true,true,false,false
-ITEMS:9,7,3,0
+ITEMS:108,78,19,2
 TUTORIALS:true,false,false,false,false,false
 </PROFILE>
 <PROFILE>
