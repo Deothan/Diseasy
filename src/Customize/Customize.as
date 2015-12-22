@@ -1,8 +1,13 @@
 package Customize{
+	import flash.display.FocusDirection;
+	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.events.KeyboardEvent;
 	import flash.filesystem.File;
+	import flash.text.TextField;
+	import flash.text.TextFieldType;
 	
 	import Common.IO;
-	import Common.Physicus;
 	import Common.Screen;
 	
 	import Main.View;
@@ -15,7 +20,6 @@ package Customize{
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.events.KeyboardEvent;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
@@ -32,12 +36,14 @@ package Customize{
 		private var backButton:Button;
 		private var lookButton:Button;
 		private var okButton:Button;
-		private var nameText:TextField;
+		private var nameText:starling.text.TextField;
 		private var input:String;
 		private var looks:Array = new Array();
 		
+		private var trickText:flash.text.TextField;
+		
 		public function Customize(){
-			addEventListener(Event.ADDED_TO_STAGE, Initialize);
+			addEventListener(starling.events.Event.ADDED_TO_STAGE, Initialize);
 		}
 		
 		private function Initialize():void{
@@ -58,24 +64,32 @@ package Customize{
 			addChild(background);
 
 			backButton = new Button(assetManager.getTexture("button_back"));
-			backButton.addEventListener(Event.TRIGGERED, BackButtonTriggered);
+			backButton.addEventListener(starling.events.Event.TRIGGERED, BackButtonTriggered);
 			backButton.x = 365;
 			backButton.y = 265;
 			addChild(backButton);
 			
 			okButton = new Button(assetManager.getTexture("button_ok"));
-			okButton.addEventListener(Event.TRIGGERED, OkButtonTriggered);
+			okButton.addEventListener(starling.events.Event.TRIGGERED, OkButtonTriggered);
 			okButton.x = 230;
 			okButton.y = 248;
 			addChild(okButton);
 			
 			lookButton = new Button(assetManager.getTexture("button_hair"));
-			lookButton.addEventListener(Event.TRIGGERED, LookButtonTriggered);
+			lookButton.addEventListener(starling.events.Event.TRIGGERED, LookButtonTriggered);
 			lookButton.x = 280;
 			lookButton.y = 110;
 			addChild(lookButton);
 			
-			nameText = new TextField(172, 40, View.GetInstance().GetPlayer().GetName());
+			/**
+			 * No Idead wy this doesn't open the keyboard.
+			trickText = new flash.text.TextField();
+			trickText.type = TextFieldType.INPUT;
+			trickText.needsSoftKeyboard = true;
+			trickText.addEventListener(FocusEvent.FOCUS_IN, keyboard);
+			*/
+			
+			nameText = new starling.text.TextField(172, 40, View.GetInstance().GetPlayer().GetName());
 			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
 			nameText.fontSize = 20;
 			nameText.color = 0x000000;
@@ -99,6 +113,13 @@ package Customize{
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial1);
 			}
+		}
+		
+		/**
+		 * Used to check the In focus event.
+		 */
+		private function keyboard(event:flash.events.Event):void{
+			trace("done");
 		}
 		
 		private function TutorialTouch(event:TouchEvent):void{
@@ -167,7 +188,7 @@ package Customize{
 		 * 32 is space
 		 * 13 is the maximum length of the field
 		 */
-		private function ReadKey(event:KeyboardEvent):void{
+		private function ReadKey(event:KeyboardEvent):void{			
 			if(event.keyCode == 13){
 				removeEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
 				View.GetInstance().GetPlayer().SetName(nameText.text);
@@ -196,7 +217,12 @@ package Customize{
 		private function NameTouched(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
 				View.GetInstance().getSoundControl().playButton();
-				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
+				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);	
+				
+				/**
+				 * This does fire the in focus event, and it is caught by the normal AS3 textfield.
+				 * trickText.dispatchEvent(new FocusEvent(FocusEvent.FOCUS_IN));
+				 */				
 				
 				input = new String();
 				nameText.text = input;
