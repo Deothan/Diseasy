@@ -46,7 +46,7 @@ package Levels{
 		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 6150;
-		private var speed:int = 2;
+		private var speed:int = View.GetInstance().getSpeed();
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
 		private var itemSpawnTimeInSeconds:int = 16;
@@ -234,6 +234,7 @@ package Levels{
 		 */
 		public function Update():void{
 			if(loaded && top.Loaded() && bottom.Loaded()){
+				speed = View.GetInstance().getSpeed();
 				MoveEntities();
 				RemoveOutOfStageEntities();
 				SpawnEnemies(enemySpawnTimeInSeconds);
