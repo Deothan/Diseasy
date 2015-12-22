@@ -124,6 +124,7 @@ package Levels{
 		}
 		
 		public function Update():void{
+			speed = View.GetInstance().getSpeed();
 			UpdateHearts();
 			ProgressBar();
 		}

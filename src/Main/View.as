@@ -22,6 +22,9 @@ package Main{
 		private var soundtrack:SoundControl;
 		private var time:int = 0;
 		private var lastScreen:String = "Menu";
+		/** speed in which the level progresses **/
+		private var currentSpeed:int = 2;
+		private var defaultSpeed:int = 2;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -41,6 +44,22 @@ package Main{
 		
 		private function Update(event:Event):void{
 			(screen as Screen).Update();
+		}
+		
+		public function setSpeed(_speed:int):void{
+			this.currentSpeed = _speed;
+		}
+		
+		public function getSpeed():int{
+			return this.currentSpeed;
+		}
+		
+		public function setDefaultSpeed(_speed:int):void{
+			this.defaultSpeed = _speed;
+		}
+		
+		public function setSpeedBackToDefault():void{
+			this.currentSpeed = this.defaultSpeed;
 		}
 		
 		public function GetTime():int{
@@ -108,5 +127,7 @@ package Main{
 			}
 			return soundtrack;
 		}
+		
+		
 	}
 }
