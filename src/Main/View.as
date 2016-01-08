@@ -1,4 +1,7 @@
 package Main{
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
 	import Common.EntityPlaceholder;
 	import Common.Screen;
 	import Common.SoundControl;
@@ -22,6 +25,11 @@ package Main{
 		private var soundtrack:SoundControl;
 		private var time:int = 0;
 		private var lastScreen:String = "Menu";
+		private var lockInformationScreen:Boolean = true;
+		private var timerStarted:Boolean = false;
+		private var timer:Timer;
+		//Delay before the player can go to next screen in seconds.
+		private var delay:int = 10;		
 		/** speed in which the level progresses **/
 		private var currentSpeed:int = 2;
 		private var defaultSpeed:int = 2;
@@ -40,6 +48,9 @@ package Main{
 		
 		private function Initialize(event:Event):void{
 			LoadScreen(Menu);
+			
+			timer = new Timer((delay*1000), 1);
+			timer.addEventListener(TimerEvent.TIMER, Unlock);
 		}
 		
 		private function Update(event:Event):void{
@@ -48,6 +59,23 @@ package Main{
 		
 		public function setSpeed(_speed:int):void{
 			this.currentSpeed = _speed;
+		}
+		
+		private function Unlock(event:TimerEvent):void{
+			lockInformationScreen = false;
+		}
+		
+		public function startVirusScreenUnlockTimer():void{
+			if(!timerStarted)
+				timer.start();
+		}
+		
+		public function getLockInformationScreen():Boolean{
+			return lockInformationScreen;
+		}
+		
+		public function setLockInformationScreen(value:Boolean):void{
+			lockInformationScreen = value;
 		}
 		
 		public function getSpeed():int{

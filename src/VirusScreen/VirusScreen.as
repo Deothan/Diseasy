@@ -1,6 +1,8 @@
 package VirusScreen
 {
+	import flash.events.TimerEvent;
 	import flash.filesystem.File;
+	import flash.utils.Timer;
 	
 	import Common.IO;
 	import Common.Screen;
@@ -32,6 +34,7 @@ package VirusScreen
 		private var pneumonia:Button;
 		private var neonatalsepsis:Button;
 		private var checkedArray:Array = View.GetInstance().GetPlayer().GetCheckedViruses();
+		private var loaded:Boolean = false;
 		
 		public function VirusScreen()
 		{
@@ -56,7 +59,7 @@ package VirusScreen
 		}
 		
 		private function Start():void
-		{	
+		{		
 			background = new Image(assetManager.getTexture("Background"));
 			addChild(background); 
 			
@@ -150,12 +153,18 @@ package VirusScreen
 				neonatalsepsis.y = 10;
 				addChild(neonatalsepsis);
 			}
+			
+			View.GetInstance().startVirusScreenUnlockTimer();
+			
+			loaded = true;
 		}
 		
 		public function ContinueButtonTriggered():void
 		{
-			View.GetInstance().getSoundControl().playButton();
-			View.GetInstance().LoadScreen(InfantScreen);
+			if(!View.GetInstance().getLockInformationScreen()){
+				View.GetInstance().getSoundControl().playButton();
+				View.GetInstance().LoadScreen(InfantScreen);	
+			}
 		}
 		
 		public function DiarrheaTriggered():void
@@ -209,7 +218,13 @@ package VirusScreen
 		}
 		
 		public function Update():void
-		{			
+		{
+			if(loaded){
+				if(View.GetInstance().getLockInformationScreen())
+					continueButton.alpha = 0.5;
+				else
+					continueButton.alpha = 1;
+			}
 		}
 		
 		public function Destroy() :void

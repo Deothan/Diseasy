@@ -93,8 +93,6 @@ package Levels{
 			
 			addChild(jumpLayer);
 			
-			View.GetInstance().GetPlayer().Run();
-			
 			loaded = true;
 		}
 		
@@ -106,6 +104,7 @@ package Levels{
 			View.GetInstance().GetPlayer().x = 100;
 			View.GetInstance().GetPlayer().y = 205;
 			addChild(View.GetInstance().GetPlayer());
+			View.GetInstance().GetPlayer().Run();
 		}
 		
 		public function ScreenProgression():void{
@@ -133,6 +132,7 @@ package Levels{
 			}
 			if(bottom.GetProgress() >= 100){
 				timer.start();	
+				View.GetInstance().setLockInformationScreen(true);
 				View.GetInstance().GetPlayer().Stop();
 				View.GetInstance().GetPlayer().setLevel(4, true);
 			}
@@ -171,10 +171,10 @@ package Levels{
 		private function SpawnItems(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
 				var waterPit:Sprite = new WaterPit();
-				waterPit.x = (500 + 125);
+				waterPit.x = 400;
 				waterPit.y = (215 + 26);
 				View.GetInstance().AddEntity(waterPit);
-				addChildAt(waterPit, 3);
+				addChildAt(waterPit, 2);
 				
 				var coin:Coin = new Coin();
 				coin.x = 630;

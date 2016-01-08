@@ -58,12 +58,9 @@ package Cutscene{
 			currentScene++;
 			
 			if(currentScene > 5)
-				
 				View.GetInstance().LoadScreen(Level_1);
 			else
 				addChild(scenes[currentScene]);
-			
-			
 		}
 		
 		public function Update():void{			

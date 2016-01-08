@@ -134,6 +134,7 @@ package Levels{
 			}
 			if(bottom.GetProgress() >= 100){
 				timer.start();		
+				View.GetInstance().setLockInformationScreen(true);
 				View.GetInstance().GetPlayer().Stop();
 			}
 		}

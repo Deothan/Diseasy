@@ -133,6 +133,7 @@ package Levels{
 			}
 			if(bottom.GetProgress() >= 100){
 				timer.start();	
+				View.GetInstance().setLockInformationScreen(true);
 				View.GetInstance().GetPlayer().Stop();
 				View.GetInstance().GetPlayer().setLevel(3, true);
 			}
@@ -171,8 +172,8 @@ package Levels{
 		private function SpawnItems(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){				
 				var rock:Sprite  = new Rock();
-				rock.x = (500 + 230);
-				rock.y = 215;
+				rock.x = 650;
+				rock.y = 220;
 				View.GetInstance().AddEntity(rock);
 				addChildAt(rock, 3);
 				
