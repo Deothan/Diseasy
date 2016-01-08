@@ -166,10 +166,15 @@ package Levels{
 				View.GetInstance().AddEntity(platform);
 				addChildAt(platform, 3);
 				
-				xLocation = Math.floor(Math.random()*25);
-				var nextPowerUpX:int = 600+xLocation;
-				var nextPowerUpY:int = 155;
+				var nextPowerUpX:int = 630+xLocation;
+				var nextPowerUpY:int = 100;
 				var nextPowerUp:int = Math.floor(Math.random()*6);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				xLocation = Math.floor(Math.random()*25);
+				nextPowerUpX = 600+xLocation;
+				nextPowerUpY = 155;
+				nextPowerUp = Math.floor(Math.random()*6);
 				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
 				var hiv2:Sprite = new HIV();
@@ -178,6 +183,25 @@ package Levels{
 				hiv2.y = 215;
 				View.GetInstance().AddEntity(hiv2);
 				addChildAt(hiv2, 3);
+				
+				xLocation = Math.floor(Math.random()*50);
+				nextPowerUpX = 800+xLocation;
+				nextPowerUpY = 215;
+				nextPowerUp = Math.floor(Math.random()*6);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				var hiv3:Sprite = new HIV();
+				xLocation = Math.floor(Math.random()*50);
+				hiv3.x = 900+xLocation;
+				hiv3.y = 215;
+				View.GetInstance().AddEntity(hiv3);
+				addChildAt(hiv3, 3);
+				
+				xLocation = Math.floor(Math.random()*50);
+				nextPowerUpX = 1000+xLocation;
+				nextPowerUpY = 215;
+				nextPowerUp = Math.floor(Math.random()*6);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
 				
 			}
