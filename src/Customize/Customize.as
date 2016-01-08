@@ -216,6 +216,7 @@ package Customize{
 		 */
 		private function NameTouched(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
+				var keyboard:Keyboard = new Keyboard();
 				View.GetInstance().getSoundControl().playButton();
 				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);	
 				
