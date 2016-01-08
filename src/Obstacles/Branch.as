@@ -80,7 +80,7 @@ package Obstacles
 		public function Encounter():void
 		{
 			View.GetInstance().GetPlayer().loseLife();
-			hit = false;
+			hit = true;
 		}
 	}
 }
