@@ -47,6 +47,7 @@ package Levels{
 		private var enemySpawnTimeInSeconds:int = 8;
 		private var platformSpawnTimeInSeconds:int = 12;
 		private var itemSpawnTimeInSeconds:int = 16;
+		private var masterSpawnTimeInSeconds:int = 13;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -149,11 +150,92 @@ package Levels{
 			}
 		}
 		
+		private function SpawnAll(interval:int):void{
+			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 80){
+				var hiv:Sprite = new HIV();
+				var xLocation:int = Math.floor(Math.random()*50);
+				hiv.x = 500+xLocation;
+				hiv.y = 215;
+				View.GetInstance().AddEntity(hiv);
+				addChildAt(hiv, 3 );
+				
+				var platform:Platform = new Platform();
+				xLocation = Math.floor(Math.random()*75);
+				platform.x = 550+xLocation;
+				platform.y = 175;
+				View.GetInstance().AddEntity(platform);
+				addChildAt(platform, 3);
+				
+				xLocation = Math.floor(Math.random()*25);
+				var nextPowerUpX:int = 600+xLocation;
+				var nextPowerUpY:int = 155;
+				var nextPowerUp:int = Math.floor(Math.random()*6);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				var hiv2:Sprite = new HIV();
+				xLocation = Math.floor(Math.random()*50);
+				hiv2.x = 725+xLocation;
+				hiv2.y = 215;
+				View.GetInstance().AddEntity(hiv2);
+				addChildAt(hiv2, 3);
+				
+				
+			}
+		}
+		
+		private function SpawnPowerUp(type:int, xLocation:int, yLocation:int):void{
+			switch (type){
+				case 0:
+					//do nothing
+					break;
+				
+				case 1:
+					var coin:Coin = new Coin();
+					coin.x = xLocation;
+					coin.y = yLocation;
+					View.GetInstance().AddEntity(coin);
+					addChildAt(coin, 3);
+					break;
+				
+				case 2:
+					var watch:Watch = new Watch();
+					watch.x = xLocation;
+					watch.y = yLocation;
+					View.GetInstance().AddEntity(watch);
+					addChildAt(watch, 3);	
+					break;
+				
+				case 3:
+					var heart:Heart = new Heart();
+					heart.x = xLocation;
+					heart.y = yLocation;
+					View.GetInstance().AddEntity(heart);
+					addChildAt(heart, 3);
+					break;
+				
+				case 4:
+					var medicine:Medicine = new Medicine();
+					medicine.x = xLocation;
+					medicine.y = yLocation;
+					View.GetInstance().AddEntity(medicine);
+					addChildAt(medicine, 3);					
+					break;
+				
+				case 5:
+					var towel:Towel = new Towel();
+					towel.x = xLocation;
+					towel.y = yLocation;
+					View.GetInstance().AddEntity(towel);
+					addChildAt(towel, 3);					
+					break;
+			}
+		}
+		
 		/**
 		 * Spawns enemies at a given interval, but not in the end zone.
 		 * @param interval:int - interval in seconds between spawn.
 		 */
-		private function SpawnEnemies(interval:int):void{
+		/*private function SpawnEnemies(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
 				var hiv:Sprite  = new HIV();
 				hiv.x = 500;
@@ -161,12 +243,13 @@ package Levels{
 				View.GetInstance().AddEntity(hiv);
 				addChildAt(hiv, 3);
 			}
-		}
+		}*/
 		
 		/**
 		 * Spawns items at a given interval, but not in the end zone.
 		 * @param interval:int - interval in seconds between spawn.
 		 */
+		/*
 		private function SpawnItems(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
 				var coin:Coin = new Coin();
@@ -199,12 +282,13 @@ package Levels{
 				View.GetInstance().AddEntity(towel);
 				addChildAt(towel, 3);
 			}
-		}
+		}*/
 		
 		/**
 		 * Spawns platforms at a given interval, but not in the end zone.
 		 * @param interval:int - interval in seconds between spawn.
 		 */
+		/*
 		private function SpawnPlatforms(interval:int):void{
 			if (((top.GetTime())/24)%interval == 0 && bottom.GetProgress() < 70){
 				var platform:Platform = new Platform();
@@ -214,6 +298,7 @@ package Levels{
 				addChildAt(platform, 3);
 			}
 		}
+		*/
 		
 		/**
 		 * Updates the screen.
@@ -223,9 +308,12 @@ package Levels{
 				speed = View.GetInstance().getSpeed();
 				MoveEntities();
 				RemoveOutOfStageEntities();
+				/*
 				SpawnEnemies(enemySpawnTimeInSeconds);
 				SpawnPlatforms(platformSpawnTimeInSeconds);
 				SpawnItems(itemSpawnTimeInSeconds);
+				*/
+				SpawnAll(masterSpawnTimeInSeconds);
 				top.Update();
 				ScreenProgression();
 				bottom.Update();
