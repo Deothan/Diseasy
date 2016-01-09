@@ -275,7 +275,6 @@ package InfantScreen
 				waterbottleText.text = items[2];
 				blanketText.text = items[3];
 			}
-			
 		}
 		
 		/**

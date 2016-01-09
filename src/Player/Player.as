@@ -185,10 +185,8 @@ package Player
 				removeChild(_animations[_currentAnimation]);
 				Starling.juggler.remove(_animations[_currentAnimation]);
 			}
-			
 			addChild(_animations[name]);
 			Starling.juggler.add(_animations[name]);
-			
 			_currentAnimation = name;
 		}
 		

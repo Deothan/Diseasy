@@ -13,7 +13,7 @@ package Obstacles
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
-
+	
 	public class Branch extends Sprite implements Entity, Obstacle		
 	{
 		private var assetManager:AssetManager;
@@ -52,7 +52,7 @@ package Obstacles
 		public function Destroy():void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, Initialize);
-
+			
 			removeEventListeners(null);
 			assetManager.dispose();
 		}

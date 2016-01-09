@@ -108,6 +108,11 @@ package Levels{
 			if(progress.x < 350){
 				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
+			else {
+				trace('[BOTTOMBAR]');
+				/* needs new animation */
+				View.GetInstance().GetPlayer().switchAnimations("idle");
+			}
 		}
 		
 		public function GetProgress():int{

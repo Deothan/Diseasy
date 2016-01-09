@@ -8,6 +8,7 @@ package VirusScreen
 	import Common.Screen;
 	
 	import InfantScreen.InfantScreen;
+	import InfantScreen.Tutorial;
 	
 	import InformationScreen.DiarrheaInformation;
 	import InformationScreen.HivInformation;
@@ -163,7 +164,9 @@ package VirusScreen
 		{
 			if(!View.GetInstance().getLockInformationScreen()){
 				View.GetInstance().getSoundControl().playButton();
-				View.GetInstance().LoadScreen(InfantScreen);	
+				var firstTime:Array = View.GetInstance().GetPlayer().getLevels();
+				if(firstTime[2] == false) View.GetInstance().LoadScreen(Tutorial);
+				else View.GetInstance().LoadScreen(InfantScreen);	
 			}
 		}
 		

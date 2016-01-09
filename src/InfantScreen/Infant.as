@@ -27,18 +27,22 @@ package InfantScreen{
 		}
 		
 		public function getHealth():int{
+			if(Health > 100) Health = 100;
 			return this.Health;
 		}
 		
 		public function getHygiene():int{
+			if(Hygiene > 100) Hygiene = 100;
 			return this.Hygiene;
 		}
 		
 		public function getHydration():int{
+			if(Hydration > 100) Hydration = 100;
 			return this.Hydration;
 		}
 		
 		public function getTemperature():int{
+			if(Temperature > 100) Temperature = 100;
 			return this.Temperature;
 		}
 		
