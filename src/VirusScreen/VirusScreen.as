@@ -73,7 +73,7 @@ package VirusScreen
 			{
 				diarrhea = new Button(assetManager.getTexture("virusscreen_diarrhea_check"));
 				diarrhea.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
-				diarrhea.x = 10;
+				diarrhea.x = 65;
 				diarrhea.y = 10;
 				addChild(diarrhea);
 			}
@@ -81,7 +81,7 @@ package VirusScreen
 			{
 				diarrhea = new Button(assetManager.getTexture("virusscreen_diarrhea"));
 				diarrhea.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
-				diarrhea.x = 10;
+				diarrhea.x = 65;
 				diarrhea.y = 10;
 				addChild(diarrhea);
 			}
@@ -90,7 +90,7 @@ package VirusScreen
 			{
 				hiv = new Button(assetManager.getTexture("virusscreen_hiv_check"));
 				hiv.addEventListener(Event.TRIGGERED, HivTriggered);
-				hiv.x = 70;
+				hiv.x = 125;
 				hiv.y = 140;
 				addChild(hiv);
 			}
@@ -98,7 +98,7 @@ package VirusScreen
 			{
 				hiv = new Button(assetManager.getTexture("virusscreen_hiv"));
 				hiv.addEventListener(Event.TRIGGERED, HivTriggered);
-				hiv.x = 70;
+				hiv.x = 125;
 				hiv.y = 140;
 				addChild(hiv);
 			}
@@ -107,7 +107,7 @@ package VirusScreen
 			{
 				malaria = new Button(assetManager.getTexture("virusscreen_malaria_check"));
 				malaria.addEventListener(Event.TRIGGERED, MalariaTriggered);
-				malaria.x = 130;
+				malaria.x = 185;
 				malaria.y = 10;
 				addChild(malaria);
 			}
@@ -115,7 +115,7 @@ package VirusScreen
 			{
 				malaria = new Button(assetManager.getTexture("virusscreen_malaria"));
 				malaria.addEventListener(Event.TRIGGERED, MalariaTriggered);
-				malaria.x = 130;
+				malaria.x = 185;
 				malaria.y = 10;
 				addChild(malaria);
 			}
@@ -124,7 +124,7 @@ package VirusScreen
 			{
 				pneumonia = new Button(assetManager.getTexture("virusscreen_pneumonia_check"));
 				pneumonia.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
-				pneumonia.x = 190;
+				pneumonia.x = 245;
 				pneumonia.y = 140;
 				addChild(pneumonia);
 			}
@@ -132,7 +132,7 @@ package VirusScreen
 			{
 				pneumonia = new Button(assetManager.getTexture("virusscreen_pneumonia"));
 				pneumonia.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
-				pneumonia.x = 190;
+				pneumonia.x = 245;
 				pneumonia.y = 140;
 				addChild(pneumonia);
 			}
@@ -141,7 +141,7 @@ package VirusScreen
 			{
 				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis_check"));
 				neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
-				neonatalsepsis.x = 250;
+				neonatalsepsis.x = 305;
 				neonatalsepsis.y = 10;
 				addChild(neonatalsepsis);		
 			}
@@ -149,7 +149,7 @@ package VirusScreen
 			{
 				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis"));
 				neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
-				neonatalsepsis.x = 250;
+				neonatalsepsis.x = 305;
 				neonatalsepsis.y = 10;
 				addChild(neonatalsepsis);
 			}

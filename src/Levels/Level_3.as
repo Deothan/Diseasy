@@ -108,7 +108,7 @@ package Levels{
 		}
 		
 		public function ScreenProgression():void{
-			if(bottom.GetProgress() >= 25 && background2 == null){
+			if(bottom.GetProgress() >= 23 && background2 == null){
 				background2 = new Image(assetManager.getTexture("background"));
 				background2.x = 480;
 				background2.y = 0;
@@ -123,7 +123,7 @@ package Levels{
 				addChildAt(background3, 1);
 			}
 			
-			if(bottom.GetProgress() >= 92 && winImage == null){
+			if(bottom.GetProgress() >= 94 && winImage == null){
 				winImage = new Image(assetManager.getTexture("Level3FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
