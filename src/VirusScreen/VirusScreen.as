@@ -39,8 +39,14 @@ package VirusScreen
 		
 		public function VirusScreen()
 		{
-			addEventListener(Event.ADDED_TO_STAGE, Initialize);
-			
+			if(!View.GetInstance().gettutorialVirusScreen()){
+				View.GetInstance().settutorialVirusScreen(true);
+				// !BUG! null pointer when VirusScreen gets loaded again. Tutorial working fine
+				View.GetInstance().LoadScreen(VirusScreen.Tutorial);
+			}
+			else{
+				addEventListener(Event.ADDED_TO_STAGE, Initialize);
+			}
 		}
 		
 		private function Initialize() :void
@@ -165,7 +171,7 @@ package VirusScreen
 			if(!View.GetInstance().getLockInformationScreen()){
 				View.GetInstance().getSoundControl().playButton();
 				var firstTime:Array = View.GetInstance().GetPlayer().getLevels();
-				if(firstTime[2] == false) View.GetInstance().LoadScreen(Tutorial);
+				if(firstTime[2] == false) View.GetInstance().LoadScreen(InfantScreen.Tutorial);
 				else View.GetInstance().LoadScreen(InfantScreen);	
 			}
 		}
@@ -233,7 +239,7 @@ package VirusScreen
 		public function Destroy() :void
 		{
 			removeEventListeners(null);
-			assetManager.dispose();
+			if(assetManager != null)assetManager.dispose();
 			View.GetInstance().GetPlayer().SetCheckedViruses(checkedArray);
 			IO.GetInstance().Save();
 		}

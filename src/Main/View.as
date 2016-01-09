@@ -40,6 +40,8 @@ package Main{
 		/** speed in which the level progresses **/
 		private var currentSpeed:int = 2;
 		private var defaultSpeed:int = 2;
+		private var Tutorial:Boolean = false;
+		private var tutorialVirusScreen:Boolean = false;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -163,6 +165,20 @@ package Main{
 			return soundtrack;
 		}
 		
+		public function setTutorial(value:Boolean):void{
+			Tutorial = value;
+		}
 		
+		public function getTutorial():Boolean{
+			return Tutorial;
+		}
+		
+		public function settutorialVirusScreen(value:Boolean):void{
+			tutorialVirusScreen = value;
+		}
+		
+		public function gettutorialVirusScreen():Boolean{
+			return tutorialVirusScreen;
+		}
 	}
 }

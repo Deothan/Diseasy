@@ -5,6 +5,8 @@ package Shop
 	import Common.IO;
 	import Common.Screen;
 	
+	import Cutscene.Cutscene;
+	
 	import InfantScreen.InfantScreen;
 	
 	import Items.Blanket;
@@ -41,7 +43,13 @@ package Shop
 		private var textField1:TextField;
 			
 		public function Shop(){
-			addEventListener(Event.ADDED_TO_STAGE, Initialize);
+			if(!View.GetInstance().getTutorial()){
+				View.GetInstance().setTutorial(true);
+				View.GetInstance().LoadScreen(Shop.Tutorial);
+			}
+			else{
+				addEventListener(Event.ADDED_TO_STAGE, Initialize);
+			}
 		}
 		
 		private function Initialize():void{

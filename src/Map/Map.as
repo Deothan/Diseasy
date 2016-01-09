@@ -7,6 +7,8 @@ package Map{
 	
 	import Cutscene.Cutscene;
 	
+	import InformationScreen.Tutorial;
+	
 	import Levels.Level_2;
 	import Levels.Level_3;
 	import Levels.Level_4;
@@ -14,7 +16,13 @@ package Map{
 	
 	import Main.View;
 	
+	import Map.Tutorial;
+	
 	import Menu.Menu;
+	
+	import Shop.Shop;
+	
+	import VirusScreen.VirusScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;

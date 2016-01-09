@@ -169,7 +169,9 @@ package Customize{
 			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			IO.GetInstance().Save();
-			View.GetInstance().LoadScreen(Map);
+			var unlocked:Array = View.GetInstance().GetPlayer().getLevels();
+			if(unlocked[2] == false) View.GetInstance().LoadScreen(Map.Tutorial);
+			else View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
