@@ -12,6 +12,7 @@ package Levels{
 	import Items.Coin;
 	import Items.Heart;
 	import Items.Medicine;
+	import Items.Towel;
 	import Items.Watch;
 	
 	import Main.View;
@@ -23,6 +24,7 @@ package Levels{
 	
 	import VirusScreen.VirusScreen;
 	
+	import Viruses.NeonatalSepsis;
 	import Viruses.Pneumonia;
 	
 	import starling.display.Image;
@@ -47,9 +49,7 @@ package Levels{
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = View.GetInstance().getSpeed();
-		private var enemySpawnTimeInSeconds:int = 8;
-		private var platformSpawnTimeInSeconds:int = 12;
-		private var itemSpawnTimeInSeconds:int = 16;
+		private var spawnTimeInSeconds:int = 13;
 		
 		public function Level_5(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -151,84 +151,160 @@ package Levels{
 			}
 		}
 		
-		/**
-		 * Spawns enemies at a given interval, but not in the end zone.
-		 * @param interval:int - interval in seconds between spawn.
-		 */
-		private function SpawnEnemies(interval:int):void{
-			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
-				var pneumonia:Sprite  = new Pneumonia();
-				pneumonia.x = 500;
-				pneumonia.y = 215;
-				View.GetInstance().AddEntity(pneumonia);
-				addChildAt(pneumonia, 3);
-			}
-		}
-		
-		/**
-		 * Spawns items at a given interval, but not in the end zone.
-		 * @param interval:int - interval in seconds between spawn.
-		 */
-		private function SpawnItems(interval:int):void{
-			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 70){
+		private function SpawnAll(interval:int):void{
+			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 80){
 				
-				var water:Sprite = new WaterPit();
-				water.x = 570;
-				water.y = (215 + 26);
-				View.GetInstance().AddEntity(water);
-				addChildAt(water, 3);
+				var xLocation:int = Math.floor(Math.random()*50);
+				var nextEnemyX:int = 500+xLocation;
+				var nextEnemy:int = Math.floor(Math.random()*5);
+				SpawnEnemies(nextEnemy, nextEnemyX);
 				
-				var branch:Sprite = new Branch();
-				branch.x = (500 + 240);
-				branch.y = 215;
-				View.GetInstance().AddEntity(branch);
-				addChildAt(branch, 3);
-				
-				var coin:Coin = new Coin();
-				coin.x = 935;
-				coin.y = 215;
-				View.GetInstance().AddEntity(coin);
-				addChildAt(coin, 3);
-				
-				var watch:Watch = new Watch();
-				watch.x = 630;
-				watch.y = 100;
-				View.GetInstance().AddEntity(watch);
-				addChildAt(watch, 3);
-				
-				var heart:Heart = new Heart();
-				heart.x = 730;
-				heart.y = 215;
-				View.GetInstance().AddEntity(heart);
-				addChildAt(heart, 3);
-				
-				var medicine:Medicine = new Medicine();
-				medicine.x = 815;
-				medicine.y = 215;
-				View.GetInstance().AddEntity(medicine);
-				addChildAt(medicine, 3);
-				
-				var blanket:Blanket = new Blanket();
-				blanket.x = 550;
-				blanket.y = 215;
-				View.GetInstance().AddEntity(blanket);
-				addChildAt(blanket, 3);
-			}
-		}
-		
-		/**
-		 * Spawns platforms at a given interval, but not in the end zone.
-		 * @param interval:int - interval in seconds between spawn.
-		 */
-		private function SpawnPlatforms(interval:int):void{
-			if (((top.GetTime())/24)%interval == 0 && bottom.GetProgress() < 70){
 				var platform:Platform = new Platform();
-				platform.x = 550;
+				xLocation = Math.floor(Math.random()*75);
+				platform.x = 550+xLocation;
 				platform.y = 175;
 				View.GetInstance().AddEntity(platform);
 				addChildAt(platform, 3);
+				
+				var nextPowerUpX:int = 630+xLocation;
+				var nextPowerUpY:int = 100;
+				var nextPowerUp:int = Math.floor(Math.random()*4);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				xLocation = Math.floor(Math.random()*25);
+				nextPowerUpX = 600+xLocation;
+				nextPowerUpY = 155;
+				nextPowerUp = Math.floor(Math.random()*4);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				xLocation= Math.floor(Math.random()*50);
+				nextEnemyX = 725+xLocation;
+				nextEnemy = Math.floor(Math.random()*5);
+				SpawnEnemies(nextEnemy, nextEnemyX);
+				
+				xLocation = Math.floor(Math.random()*50);
+				nextPowerUpX = 825+xLocation;
+				nextPowerUpY = 215;
+				nextPowerUp = Math.floor(Math.random()*4);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				xLocation= Math.floor(Math.random()*50);
+				nextEnemyX = 925+xLocation;
+				nextEnemy = Math.floor(Math.random()*5);
+				SpawnEnemies(nextEnemy, nextEnemyX);
+				
+				xLocation = Math.floor(Math.random()*50);
+				nextPowerUpX = 1025+xLocation;
+				nextPowerUpY = 215;
+				nextPowerUp = Math.floor(Math.random()*4);
+				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
+				
+				var coinOrHeart:int =  Math.floor(Math.random()*2)
+				xLocation = Math.floor(Math.random()*50);
+				if(coinOrHeart == 1){
+					var coin:Coin = new Coin();
+					coin.x = 1125+xLocation;
+					coin.y = 215;
+					View.GetInstance().AddEntity(coin);
+					addChildAt(coin, 3);
+				}else{
+					var heart:Heart = new Heart();
+					heart.x = 1125+xLocation;
+					heart.y = 215;
+					View.GetInstance().AddEntity(heart);
+					addChildAt(heart, 3);
+				}
+				
+				xLocation= Math.floor(Math.random()*50);
+				nextEnemyX = 1225+xLocation;
+				nextEnemy = Math.floor(Math.random()*5);
+				SpawnEnemies(nextEnemy, nextEnemyX);
+				
+				
 			}
 		}
+		
+		private function SpawnPowerUp(type:int, xLocation:int, yLocation:int):void{
+			switch (type){
+				case 0:
+					//do nothing
+					break;
+				
+				case 1:
+					var coin:Coin = new Coin();
+					coin.x = xLocation;
+					coin.y = yLocation;
+					View.GetInstance().AddEntity(coin);
+					addChildAt(coin, 3);
+					break;
+				
+				case 2:
+					var watch:Watch = new Watch();
+					watch.x = xLocation;
+					watch.y = yLocation;
+					View.GetInstance().AddEntity(watch);
+					addChildAt(watch, 3);	
+					break;
+				
+				case 3:
+					var medicine:Medicine = new Medicine();
+					medicine.x = xLocation;
+					medicine.y = yLocation;
+					View.GetInstance().AddEntity(medicine);
+					addChildAt(medicine, 3);					
+					break;
+				
+				case 4:
+					var blanket:Blanket = new Blanket();
+					blanket.x = 550;
+					blanket.y = 215;
+					View.GetInstance().AddEntity(blanket);
+					addChildAt(blanket, 3);			
+					break;
+			}
+		}
+		
+		
+		private function SpawnEnemies(type:int, xLocation:int):void{
+			switch (type){
+				case 0:
+					//do nothing
+					break;
+				
+				case 1:
+					var pneumonia:Sprite  = new Pneumonia();
+					pneumonia.x = 500;
+					pneumonia.y = 215;
+					View.GetInstance().AddEntity(pneumonia);
+					addChildAt(pneumonia, 3);
+					break;
+				
+				case 2:
+					var branch:Sprite = new Branch();
+					branch.x = (500 + 130);
+					branch.y = 215;
+					View.GetInstance().AddEntity(branch);
+					addChildAt(branch, 3);
+					break;
+				
+				case 3:
+					var pneumonia2:Sprite  = new Pneumonia();
+					pneumonia2.x = 500;
+					pneumonia2.y = 215;
+					View.GetInstance().AddEntity(pneumonia2);
+					addChildAt(pneumonia2, 3);
+					break;
+				
+				case 4:
+					var water:Sprite = new WaterPit();
+					water.x = 570;
+					water.y = (215 + 26);
+					View.GetInstance().AddEntity(water);
+					addChildAt(water, 3);				
+					break;
+			}
+		}
+		
 		
 		/**
 		 * Updates the screen.
@@ -238,9 +314,7 @@ package Levels{
 				speed = View.GetInstance().getSpeed();
 				MoveEntities();
 				RemoveOutOfStageEntities();
-				SpawnEnemies(enemySpawnTimeInSeconds);
-				SpawnPlatforms(platformSpawnTimeInSeconds);
-				SpawnItems(itemSpawnTimeInSeconds);
+				SpawnAll(spawnTimeInSeconds);
 				top.Update();
 				ScreenProgression();
 				bottom.Update();
