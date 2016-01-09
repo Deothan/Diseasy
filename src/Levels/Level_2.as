@@ -124,7 +124,7 @@ package Levels{
 				addChildAt(background3, 1);
 			}
 			
-			if(bottom.GetProgress() >= 92 && winImage == null){
+			if(bottom.GetProgress() >= 94 && winImage == null){
 				winImage = new Image(assetManager.getTexture("Level2FinalStage"));
 				winImage.x = 480;
 				winImage.y = 0;
