@@ -1,6 +1,8 @@
 package InfantScreen
 {	
+	import flash.events.TimerEvent;
 	import flash.filesystem.File;
+	import flash.utils.Timer;
 	import flash.utils.getQualifiedClassName;
 	
 	import Common.IO;
@@ -12,8 +14,10 @@ package InfantScreen
 	import Items.Towel;
 	import Items.WaterBottle;
 	
+	import Levels.Level_1;
+	
 	import Main.View;
-
+	
 	import Shop.Shop;
 	
 	import starling.display.Button;
@@ -50,6 +54,11 @@ package InfantScreen
 		private var TemperatureRED:Quad;
 		private var Infant:Image;
 		private var ready:Boolean = false;
+		private var coins:int;
+		private var hospitalPrice:int = 1;
+		private var timer:Timer;
+		private var scenes:Array = new Array();
+		private var currentScene:int = 0;
 		
 		
 		public function InfantScreen(){
@@ -70,6 +79,7 @@ package InfantScreen
 		}
 		
 		private function Start():void{
+			coins = View.GetInstance().GetPlayer().getCoins();
 			var items:Array = View.GetInstance().GetPlayer().getItems();
 			background = new Image(assetManager.getTexture("infantcare_background"));
 			View.GetInstance().AddEntity(background);
@@ -185,6 +195,7 @@ package InfantScreen
 			Infant.x = 150;
 			Infant.y = 50;
 			addChild(Infant);
+			
 		}
 		
 		private function waterButtonTriggered():void{
@@ -251,7 +262,37 @@ package InfantScreen
 		
 		private function hospitalButtonTriggered():void
 		{
-			// TODO Auto Generated method stub
+			if(coins>hospitalPrice){
+				coins -= hospitalPrice;
+				View.GetInstance().GetPlayer().setCoin(coins);
+				timer = new Timer(3000, 6);
+				timer.addEventListener(TimerEvent.TIMER, NextScene);
+				View.GetInstance().getSoundControl().playSad();
+				scenes[0] = new Image(assetManager.getTexture("storyscene1"));
+				scenes[1] = new Image(assetManager.getTexture("storyscene2"));
+				scenes[2] = new Image(assetManager.getTexture("storyscene3"));
+				scenes[3] = new Image(assetManager.getTexture("storyscene4"));
+				scenes[4] = new Image(assetManager.getTexture("storyscene5"));
+				scenes[5] = new Image(assetManager.getTexture("storyscene6"));
+				
+				addChild(scenes[currentScene]);
+				
+				timer.start();
+				View.GetInstance().GetInfant().setHealth(100);
+				View.GetInstance().GetInfant().setHydration(100);
+				View.GetInstance().GetInfant().setHygiene(100);
+				View.GetInstance().GetInfant().setTemperature(100);
+			}
+		}
+		
+		private function NextScene(event:TimerEvent):void{
+			removeChild(scenes[currentScene]);
+			currentScene++;
+			
+			if(currentScene > 5)
+				View.GetInstance().LoadScreen(InfantScreen);
+			else
+				addChild(scenes[currentScene]);
 		}
 		
 		private function continueButtonTriggered():void
