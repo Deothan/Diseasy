@@ -55,7 +55,7 @@ package InfantScreen
 		private var Infant:Image;
 		private var ready:Boolean = false;
 		private var coins:int;
-		private var hospitalPrice:int = 1;
+		private var hospitalPrice:int = 15;
 		private var timer:Timer;
 		private var scenes:Array = new Array();
 		private var currentScene:int = 0;
@@ -275,6 +275,7 @@ package InfantScreen
 				scenes[4] = new Image(assetManager.getTexture("storyscene5"));
 				scenes[5] = new Image(assetManager.getTexture("storyscene6"));
 				
+				currentScene = 0;
 				addChild(scenes[currentScene]);
 				
 				timer.start();
