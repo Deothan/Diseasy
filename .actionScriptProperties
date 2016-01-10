@@ -50,7 +50,7 @@
   <buildTargets>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="2" buildTargetName="device" isCurrent="true" platformId="com.adobe.flexide.multiplatform.android.platform">
       <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" reducedSizePackaging="false" version="1"/>
-      <airSettings airCertificatePath="C:/Users/Deothan/Downloads/certificate_diseasy.p12" airTimestamp="true" anePathSet="true" version="1">
+      <airSettings airCertificatePath="C:/Users/ginke/Documents/GitHub/Diseasy/Diseasy/bin-debug/certificate_diseasy.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths/>
         <newLaunchParams/>

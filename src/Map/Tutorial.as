@@ -59,27 +59,20 @@ package Map
 				else if(event.target == tutorial1){
 					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
 					removeChild(tutorial1);
-					tutorial2 = new Image(assetManager.getTexture("cutscene_map2"));
+					tutorial2 = new Image(assetManager.getTexture("cutscene_map3"));
 					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 					addChild(tutorial2);
 				}
 				else if(event.target == tutorial2){
 					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
 					removeChild(tutorial2);
-					tutorial3 = new Image(assetManager.getTexture("cutscene_map3"));
+					tutorial3 = new Image(assetManager.getTexture("cutscene_map4"));
 					tutorial3.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 					addChild(tutorial3);
 				}
 				else if(event.target == tutorial3){
 					tutorial3.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
 					removeChild(tutorial3);
-					tutorial4 = new Image(assetManager.getTexture("cutscene_map4"));
-					tutorial4.addEventListener(TouchEvent.TOUCH, TutorialTouch);
-					addChild(tutorial4);
-				}
-				else if(event.target == tutorial4){
-					tutorial4.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
-					removeChild(tutorial4);
 					
 					//call real screen
 					View.GetInstance().LoadScreen(Map);
