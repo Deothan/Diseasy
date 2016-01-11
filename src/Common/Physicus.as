@@ -50,11 +50,7 @@ package Common{
 					var entityTop:int = (entity.y - (entity.getHeight() / 2) -45);
 					
 					if(entity is Platform){
-						if(playerTop <= entityBottom && playerLeft >= entityLeft && playerLeft <= entityRight && playerBottom >= entityBottom){
-							//collide with platform from under
-							_verticalVelocity *= -1;
-						}
-						else if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
+					 	if(playerLeft >= entityLeft && playerLeft <= entityRight && playerTop <= entityTop && playerBottom >= entityTop){
 							//trace("[Physicus] Collide with platform object");
 							if(!_disableGravity){
 								View.GetInstance().GetPlayer().y = entityTop;
@@ -67,7 +63,7 @@ package Common{
 						}
 						
 					}
-					else if(playerBottom > (entityTop + 45) && playerTop < entityBottom && playerLeft < entityRight && playerRight > entityLeft){
+					else if(playerBottom > (entityTop + 45) && playerTop < entityBottom && (playerLeft +10) < entityRight && playerRight > entityLeft){
 						_disableGravity = false;
 						//trace("[Physicus] Collide with none platform object");
 						if(entity is Virus && !entity.Destroyed()){
