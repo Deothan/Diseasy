@@ -3,6 +3,7 @@ package Common{
 	
 	import Platforms.Platform;
 	
+	import starling.core.starling_internal;
 	import starling.display.Image;
 
 	public class Physicus{
@@ -73,15 +74,13 @@ package Common{
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
 						{
 								entity.Encounter();
+								trace(entity.getID());
 						}
 						if(entity is Item && !entity.Destroyed()){
 							entity.Use();
 							View.GetInstance().getSoundControl().playcollide();
-						}
-						
-						if(entity is Obstacle && !(entity as Obstacle).isHit())
-						{
-							entity.Encounter();
+							View.GetInstance().setSpeedBackToDefault();
+							View.GetInstance().GetPlayer().Run();
 						}
 					}
 				}				

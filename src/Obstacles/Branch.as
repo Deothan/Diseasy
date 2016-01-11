@@ -19,10 +19,16 @@ package Obstacles
 		private var assetManager:AssetManager;
 		private var branchObstacle:Image;
 		private var hit:Boolean=false;
+		private var debugCode:int;
 		
 		public function Branch()
 		{
+			debugCode = randomRange(1000, 2000);
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
+		}
+		
+		private function randomRange(minNum:Number, maxNum:Number):Number {
+			return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
 		}
 		
 		private function Initialize():void
@@ -31,6 +37,10 @@ package Obstacles
 			var folder:File = File.applicationDirectory.resolvePath("Obstacles/assets");
 			assetManager.enqueue(folder);
 			assetManager.loadQueue(Progress);
+		}
+		
+		public function getID():Number{
+			return debugCode;
 		}
 		
 		private function Progress(ratio:Number):void
