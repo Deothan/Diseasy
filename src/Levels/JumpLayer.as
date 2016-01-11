@@ -45,7 +45,7 @@ package Levels{
 		 */
 		private function Jump(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
-				if(Physicus.GetInstance().isGrounded()){
+				if(Physicus.GetInstance().isGrounded() && View.GetInstance().GetPlayer().getCurrentAnimation() != 'idle'){
 					//trace("[Level_1] Grounded");
 					Physicus.GetInstance().Kinetics();
 				}

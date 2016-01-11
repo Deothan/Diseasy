@@ -15,14 +15,16 @@ package Player
     import flash.utils.Dictionary;
     
     import Common.Item;
-    import Main.View;
-		
+    
     import Items.Blanket;
     import Items.Medicine;
     import Items.Towel;
     import Items.WaterBottle;
     
+    import Main.View;
+    
     import starling.core.Starling;
+    import starling.display.Image;
     import starling.display.MovieClip;
     import starling.display.Sprite;
     import starling.events.Event;
@@ -177,6 +179,19 @@ package Player
 			if (_currentAnimation == name)
 				return;
 			
+			if(name == 'idle'){
+				currentAnimation = 'idle';
+				var hor:int = _animations[_currentAnimation].x;
+				var ver:int = _animations[_currentAnimation].y;
+				removeChild(_animations[_currentAnimation]);
+				Starling.juggler.remove(_animations[_currentAnimation]);
+				var playerIdle:Image = new Image(assetManager.getTexture("women_stage_idle"));
+				playerIdle.x = hor;
+				playerIdle.y = ver;
+				addChild(playerIdle);
+				return;
+			}
+			
 			if (!_animations[name])
 				throw new Error("No animation called " + name);
 			
@@ -188,6 +203,10 @@ package Player
 			addChild(_animations[name]);
 			Starling.juggler.add(_animations[name]);
 			_currentAnimation = name;
+		}
+		
+		public function getCurrentAnimation():String{
+			return this.currentAnimation;
 		}
 		
 		public function destroy():void{

@@ -1,4 +1,5 @@
 package Levels{
+	import flash.display.Bitmap;
 	import flash.filesystem.File;
 	
 	import Main.View;
@@ -110,8 +111,7 @@ package Levels{
 			}
 			else {
 				trace('[BOTTOMBAR]');
-				/* needs new animation */
-				View.GetInstance().GetPlayer().switchAnimations("idle");
+				View.GetInstance().GetPlayer().switchAnimations('idle');
 			}
 		}
 		
