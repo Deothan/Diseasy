@@ -10,10 +10,10 @@ package VirusScreen
 	import InfantScreen.InfantScreen;
 	import InfantScreen.Tutorial;
 	
-	import InformationScreen.DiarrheaInformation;
-	import InformationScreen.HivInformation;
-	import InformationScreen.MalariaInformation;
 	import InformationScreen.NeonatalSepsisInformation;
+	import InformationScreen.HivInformation;
+	import InformationScreen.DiarrheaInformation;
+	import InformationScreen.MalariaInformation;
 	import InformationScreen.PneumoniaInformation;
 	
 	import Main.View;
@@ -78,16 +78,16 @@ package VirusScreen
 			
 			if (checkedArray[0])
 			{
-				diarrhea = new Button(assetManager.getTexture("virusscreen_diarrhea_check"));
-				diarrhea.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
+				diarrhea = new Button(assetManager.getTexture("virusscreen_neonatalsepsis_check"));
+				diarrhea.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
 				diarrhea.x = 65;
 				diarrhea.y = 10;
 				addChild(diarrhea);
 			}
 			else
 			{
-				diarrhea = new Button(assetManager.getTexture("virusscreen_diarrhea"));
-				diarrhea.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
+				diarrhea = new Button(assetManager.getTexture("virusscreen_neonatalsepsis"));
+				diarrhea.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
 				diarrhea.x = 65;
 				diarrhea.y = 10;
 				addChild(diarrhea);
@@ -112,16 +112,16 @@ package VirusScreen
 			
 			if (checkedArray[2])
 			{
-				malaria = new Button(assetManager.getTexture("virusscreen_malaria_check"));
-				malaria.addEventListener(Event.TRIGGERED, MalariaTriggered);
+				malaria = new Button(assetManager.getTexture("virusscreen_diarrhea_check"));
+				malaria.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
 				malaria.x = 185;
 				malaria.y = 10;
 				addChild(malaria);
 			}
 			else
 			{
-				malaria = new Button(assetManager.getTexture("virusscreen_malaria"));
-				malaria.addEventListener(Event.TRIGGERED, MalariaTriggered);
+				malaria = new Button(assetManager.getTexture("virusscreen_diarrhea"));
+				malaria.addEventListener(Event.TRIGGERED, DiarrheaTriggered);
 				malaria.x = 185;
 				malaria.y = 10;
 				addChild(malaria);
@@ -129,16 +129,16 @@ package VirusScreen
 			
 			if (checkedArray[3])
 			{
-				pneumonia = new Button(assetManager.getTexture("virusscreen_pneumonia_check"));
-				pneumonia.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
+				pneumonia = new Button(assetManager.getTexture("virusscreen_malaria_check"));
+				pneumonia.addEventListener(Event.TRIGGERED, MalariaTriggered);
 				pneumonia.x = 245;
 				pneumonia.y = 140;
 				addChild(pneumonia);
 			}
 			else
 			{
-				pneumonia = new Button(assetManager.getTexture("virusscreen_pneumonia"));
-				pneumonia.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
+				pneumonia = new Button(assetManager.getTexture("virusscreen_malaria"));
+				pneumonia.addEventListener(Event.TRIGGERED, MalariaTriggered);
 				pneumonia.x = 245;
 				pneumonia.y = 140;
 				addChild(pneumonia);
@@ -146,16 +146,16 @@ package VirusScreen
 			
 			if (checkedArray[4])
 			{
-				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis_check"));
-				neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_pneumonia_check"));
+				neonatalsepsis.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
 				neonatalsepsis.x = 305;
 				neonatalsepsis.y = 10;
 				addChild(neonatalsepsis);		
 			}
 			else
 			{
-				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_neonatalsepsis"));
-				neonatalsepsis.addEventListener(Event.TRIGGERED, NeonatalsepsisTriggered);
+				neonatalsepsis = new Button(assetManager.getTexture("virusscreen_pneumonia"));
+				neonatalsepsis.addEventListener(Event.TRIGGERED, PneumoniaTriggered);
 				neonatalsepsis.x = 305;
 				neonatalsepsis.y = 10;
 				addChild(neonatalsepsis);
@@ -176,14 +176,14 @@ package VirusScreen
 			}
 		}
 		
-		public function DiarrheaTriggered():void
+		public function NeonatalsepsisTriggered():void
 		{
 			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[0])
 			{
 				checkedArray[0] = true;
 			}
-			View.GetInstance().LoadScreen(DiarrheaInformation);
+			View.GetInstance().LoadScreen(NeonatalSepsisInformation);
 		}
 		
 		public function HivTriggered():void
@@ -196,12 +196,22 @@ package VirusScreen
 			View.GetInstance().LoadScreen(HivInformation);
 		}
 		
-		public function MalariaTriggered():void
+		public function DiarrheaTriggered():void
 		{
 			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[2])
 			{
 				checkedArray[2] = true;
+			}
+			View.GetInstance().LoadScreen(DiarrheaInformation);
+		}
+		
+		public function MalariaTriggered():void
+		{
+			View.GetInstance().getSoundControl().playButton();
+			if (!checkedArray[3])
+			{
+				checkedArray[3] = true;
 			}
 			View.GetInstance().LoadScreen(MalariaInformation);
 		}
@@ -209,21 +219,11 @@ package VirusScreen
 		public function PneumoniaTriggered():void
 		{
 			View.GetInstance().getSoundControl().playButton();
-			if (!checkedArray[3])
-			{
-				checkedArray[3] = true;
-			}
-			View.GetInstance().LoadScreen(PneumoniaInformation);
-		}
-		
-		public function NeonatalsepsisTriggered():void
-		{
-			View.GetInstance().getSoundControl().playButton();
 			if (!checkedArray[4])
 			{
 				checkedArray[4] = true;
 			}
-			View.GetInstance().LoadScreen(NeonatalSepsisInformation);
+			View.GetInstance().LoadScreen(PneumoniaInformation);
 		}
 		
 		public function Update():void
