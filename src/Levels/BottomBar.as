@@ -110,8 +110,10 @@ package Levels{
 				progress.x += (speed/((widthOfLevelInPixels-480)/100));
 			}
 			else {
-				trace('[BOTTOMBAR]');
-				View.GetInstance().GetPlayer().switchAnimations('idle');
+				trace('[BOTTOMBAR]'); 
+				View.GetInstance().GetPlayer().setIdleFlag(true);
+				View.GetInstance().GetPlayer().Stop();
+				View.GetInstance().GetPlayer().switchAnimations("idle");
 			}
 		}
 		

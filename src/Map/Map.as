@@ -9,6 +9,7 @@ package Map{
 	
 	import InformationScreen.Tutorial;
 	
+	import Levels.Level_1;
 	import Levels.Level_2;
 	import Levels.Level_3;
 	import Levels.Level_4;
@@ -136,7 +137,7 @@ package Map{
 			View.GetInstance().getSoundControl().playButton();
 			if(event.target == level1Button && unlocks[0]){
 				//View.GetInstance().LoadScreen(Cutscene);
-				View.GetInstance().LoadScreen(Level_4);
+				View.GetInstance().LoadScreen(Level_1);
 			}
 			else if(event.target == level2Button && unlocks[1]){
 				View.GetInstance().LoadScreen(Level_2);

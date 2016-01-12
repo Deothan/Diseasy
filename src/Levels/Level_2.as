@@ -92,7 +92,7 @@ package Levels{
 			AddEntities();
 			
 			addChild(jumpLayer);
-			
+			View.GetInstance().GetPlayer().setIdleFlag(false);
 			View.GetInstance().GetPlayer().Run();
 			
 			loaded = true;

@@ -48,10 +48,12 @@ package Player
 		private var unlock:Array = new Array;
 		private var looks:int = 0;
 		private var items:Array = new Array();
-		private var name:String;
+		private var name:String = 'Mother';
 		private var spawned:Boolean = false;
 		private var checkedViruses:Array = new Array();
 		private var tutorials:Array = new Array();
+		private var playerIdle:Image;
+		private var idle:Boolean = false;
         
         /**
         * Class constructor sets stage, desired position x and desired position y
@@ -86,18 +88,12 @@ package Player
 		
 		private function loadAnimations():void{
 			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 34);
-			run_animation.width = 40; // to be removed
-			run_animation.height = 50; // to be removed
 			_animations["run"] = run_animation;
 			
-			var idle_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 20);
-			idle_animation.width = 40; // to be removed
-			idle_animation.height = 50; // to be removed
+			var idle_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 1);
 			_animations["idle"] = idle_animation;
 			
 			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("women_jump_1"), 24);
-			jump_animation.width = 40; // to be removed
-			jump_animation.height = 50; // to be removed
 			_animations["jump"] = jump_animation;
 			
 		}
@@ -176,30 +172,14 @@ package Player
 		 * @param: _animation possibilities: run - jump - hit
 		 */
 		public function switchAnimations(name:String):void{
-			if (_currentAnimation == name)
-				return;
-			
-			if(name == 'idle'){
-				currentAnimation = 'idle';
-				var hor:int = _animations[_currentAnimation].x;
-				var ver:int = _animations[_currentAnimation].y;
-				removeChild(_animations[_currentAnimation]);
-				Starling.juggler.remove(_animations[_currentAnimation]);
-				var playerIdle:Image = new Image(assetManager.getTexture("women_stage_idle"));
-				playerIdle.x = hor;
-				playerIdle.y = ver;
-				addChild(playerIdle);
-				return;
-			}
-			
-			if (!_animations[name])
-				throw new Error("No animation called " + name);
-			
+			if (_currentAnimation == name) return;
+			if (!_animations[name])	throw new Error("No animation called " + name);
 			if (_currentAnimation)
 			{
-				removeChild(_animations[_currentAnimation]);
-				Starling.juggler.remove(_animations[_currentAnimation]);
+					removeChild(_animations[_currentAnimation]);
+					Starling.juggler.remove(_animations[_currentAnimation]);	
 			}
+			
 			addChild(_animations[name]);
 			Starling.juggler.add(_animations[name]);
 			_currentAnimation = name;
@@ -346,6 +326,15 @@ package Player
 			for(var l:int = 1; l < param[2]; l++){
 				addItem(new WaterBottle());
 			}
+		}
+		
+		/** overWrite needed for Physicus gravity **/
+		public function setIdleFlag(value:Boolean):void{
+			idle = value;
+		}
+		
+		public function getIdleFlag():Boolean{
+			return idle;
 		}
     }
 }

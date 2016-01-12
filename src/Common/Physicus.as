@@ -74,7 +74,7 @@ package Common{
 						if(entity is Obstacle && !(entity as Obstacle).isHit())
 						{
 								entity.Encounter();
-								trace(entity.getID());
+								//trace(entity.getID());
 						}
 						if(entity is Item && !entity.Destroyed()){
 							entity.Use();
@@ -116,7 +116,7 @@ package Common{
 				if(View.GetInstance().GetPlayer().y >= 205){
 					//trace("[Physicus] Gravity-> grounded");
 					_verticalVelocity *= 0;
-					View.GetInstance().GetPlayer().switchAnimations("run");
+					if(!View.GetInstance().GetPlayer().getIdleFlag()) View.GetInstance().GetPlayer().switchAnimations("run");
 					View.GetInstance().GetPlayer().y = 205;
 					View.GetInstance().setSpeedBackToDefault();
 				}
