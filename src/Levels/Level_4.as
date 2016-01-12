@@ -96,6 +96,7 @@ package Levels{
 			
 			View.GetInstance().GetPlayer().Run();
 			View.GetInstance().GetPlayer().setIdleFlag(false);
+			
 			loaded = true;
 		}
 		

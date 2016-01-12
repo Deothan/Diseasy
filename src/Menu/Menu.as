@@ -3,6 +3,7 @@ package Menu
 	import flash.desktop.NativeApplication;
 	import flash.filesystem.File;
 	
+	import Common.Highscore;
 	import Common.Screen;
 	
 	import Customize.Customize;
@@ -68,6 +69,7 @@ package Menu
 			exitButton.x = 50;
 			exitButton.y = 220;
 			addChild(exitButton);
+			
 		}
 		
 		/**
