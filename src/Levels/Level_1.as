@@ -176,7 +176,7 @@ package Levels{
 				
 				if ( spawnEnemy != 2){
 					var neonatalSepsis2:Sprite  = new NeonatalSepsis();
-					neonatalSepsis2.x = 500;
+					neonatalSepsis2.x = 850;
 					neonatalSepsis2.y = 215;
 					View.GetInstance().AddEntity(neonatalSepsis2);
 					addChildAt(neonatalSepsis2, 3);
@@ -189,10 +189,10 @@ package Levels{
 				
 				if ( spawnEnemy != 3){
 					var neonatalSepsis3:Sprite  = new NeonatalSepsis();
-					neonatalSepsis3.x = 500;
+					neonatalSepsis3.x = 1050;
 					neonatalSepsis3.y = 215;
 					View.GetInstance().AddEntity(neonatalSepsis3);
-					addChildAt(neonatalSepsis, 3);
+					addChildAt(neonatalSepsis3, 3);
 				}
 				
 				nextPowerUpX = 1125;
@@ -215,10 +215,9 @@ package Levels{
 					addChildAt(heart, 3);
 				}
 				
-				spawnEnemy = Math.floor(Math.random()*5);
 				if ( spawnEnemy != 4){
 					var neonatalSepsis4:Sprite  = new NeonatalSepsis();
-					neonatalSepsis4.x = 500;
+					neonatalSepsis4.x = 1325;
 					neonatalSepsis4.y = 215;
 					View.GetInstance().AddEntity(neonatalSepsis4);
 					addChildAt(neonatalSepsis4, 3);
