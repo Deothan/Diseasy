@@ -156,69 +156,60 @@ package Levels{
 		private function SpawnAll(interval:int):void{
 			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 80){
 				
-				var xLocation:int = Math.floor(Math.random()*50);
-				var nextEnemyX:int = 500+xLocation;
+				var nextEnemyX:int = 500;
 				var nextEnemy:int = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);
 				
 				var platform:Platform = new Platform();
-				xLocation = Math.floor(Math.random()*75);
-				platform.x = 550+xLocation;
+				platform.x = 575;
 				platform.y = 175;
 				View.GetInstance().AddEntity(platform);
 				addChildAt(platform, 3);
 				
-				var nextPowerUpX:int = 630+xLocation;
-				var nextPowerUpY:int = 100;
-				var nextPowerUp:int = Math.floor(Math.random()*4);
+				var nextPowerUpX:int = 650;
+				var nextPowerUpY:int = 60;
+				var nextPowerUp:int = Math.floor(Math.random()*5);
 				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
-				xLocation = Math.floor(Math.random()*25);
-				nextPowerUpX = 600+xLocation;
+				nextPowerUpX = 600;
 				nextPowerUpY = 155;
-				nextPowerUp = Math.floor(Math.random()*4);
+				nextPowerUp = Math.floor(Math.random()*5);
 				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
-				xLocation= Math.floor(Math.random()*50);
-				nextEnemyX = 725+xLocation;
+				nextEnemyX = 850;
 				nextEnemy = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);
 				
-				xLocation = Math.floor(Math.random()*50);
-				nextPowerUpX = 825+xLocation;
+				nextPowerUpX = 950;
 				nextPowerUpY = 215;
-				nextPowerUp = Math.floor(Math.random()*4);
+				nextPowerUp = Math.floor(Math.random()*5);
 				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
-				xLocation= Math.floor(Math.random()*50);
-				nextEnemyX = 925+xLocation;
+				nextEnemyX = 1050;
 				nextEnemy = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);
 				
-				xLocation = Math.floor(Math.random()*50);
-				nextPowerUpX = 1025+xLocation;
+				nextPowerUpX = 1125;
 				nextPowerUpY = 215;
-				nextPowerUp = Math.floor(Math.random()*4);
+				nextPowerUp = Math.floor(Math.random()*5);
 				SpawnPowerUp(nextPowerUp, nextPowerUpX, nextPowerUpY);
 				
 				var coinOrHeart:int =  Math.floor(Math.random()*2)
-				xLocation = Math.floor(Math.random()*50);
 				if(coinOrHeart == 1){
 					var coin:Coin = new Coin();
-					coin.x = 1125+xLocation;
+					coin.x = 1225;
 					coin.y = 215;
 					View.GetInstance().AddEntity(coin);
 					addChildAt(coin, 3);
 				}else{
 					var heart:Heart = new Heart();
-					heart.x = 1125+xLocation;
+					heart.x = 1225;
 					heart.y = 215;
 					View.GetInstance().AddEntity(heart);
 					addChildAt(heart, 3);
 				}
 				
-				xLocation= Math.floor(Math.random()*50);
-				nextEnemyX = 1225+xLocation;
+				nextEnemyX = 1325;
 				nextEnemy = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);
 				
@@ -274,11 +265,11 @@ package Levels{
 					break;
 				
 				case 1:
-					var neonatalSepsis:Sprite  = new NeonatalSepsis();
-					neonatalSepsis.x = 500;
-					neonatalSepsis.y = 215;
-					View.GetInstance().AddEntity(neonatalSepsis);
-					addChildAt(neonatalSepsis, 3);
+					var malaria:Sprite  = new Malaria();
+					malaria.x = 500;
+					malaria.y = 215;
+					View.GetInstance().AddEntity(malaria);
+					addChildAt(malaria, 3);
 					break;
 				
 				case 2:
@@ -290,11 +281,11 @@ package Levels{
 					break;
 				
 				case 3:
-					var neonatalSepsis2:Sprite  = new NeonatalSepsis();
-					neonatalSepsis2.x = 500;
-					neonatalSepsis2.y = 215;
-					View.GetInstance().AddEntity(neonatalSepsis2);
-					addChildAt(neonatalSepsis2, 3);
+					var malaria2:Sprite  = new Malaria();
+					malaria2.x = 500;
+					malaria2.y = 215;
+					View.GetInstance().AddEntity(malaria2);
+					addChildAt(malaria2, 3);
 					break;
 				
 				case 4:
