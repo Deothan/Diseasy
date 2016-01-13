@@ -77,6 +77,8 @@ package Obstacles
 		public function Encounter():void
 		{
 			View.GetInstance().GetPlayer().loseLife();
+			View.GetInstance().GetInfant().setTemperature(-2);
+			View.GetInstance().GetInfant().setState("cold");
 			hit = true;
 		}
 		

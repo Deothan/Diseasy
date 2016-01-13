@@ -67,6 +67,7 @@ package Viruses{
 				Destroy();
 				View.GetInstance().GetInfant().setHealth(-2);
 				View.GetInstance().GetInfant().setHygiene(-4);
+				View.GetInstance().GetInfant().setState("neonatalsepsis");
 				View.GetInstance().GetPlayer().loseLife();
 			}
 		}

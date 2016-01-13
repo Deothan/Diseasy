@@ -24,6 +24,16 @@ package InfantScreen{
 			this.Hygiene = 80;
 			this.Hydration = 80;
 			this.Temperature = 80;
+			
+			state = "normal";
+		}
+		
+		public function setState(newState:String):void{
+			state = newState;
+		}
+		
+		public function getState():String{
+			return this.state;
 		}
 		
 		public function getHealth():int{

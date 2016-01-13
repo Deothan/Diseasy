@@ -68,6 +68,7 @@ package Viruses{
 				View.GetInstance().GetInfant().setHealth(-2);
 				View.GetInstance().GetInfant().setHygiene(-2);
 				View.GetInstance().GetInfant().setHydration(-4);
+				View.GetInstance().GetInfant().setState("diarrhea");
 				View.GetInstance().GetPlayer().loseLife();
 			}
 		}

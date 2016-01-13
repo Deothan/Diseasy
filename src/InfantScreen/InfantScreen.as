@@ -59,6 +59,7 @@ package InfantScreen
 		private var timer:Timer;
 		private var scenes:Array = new Array();
 		private var currentScene:int = 0;
+		private var currentState:String = "normal";
 		
 		
 		public function InfantScreen(){
@@ -316,6 +317,18 @@ package InfantScreen
 				towelText.text = items[1];
 				waterbottleText.text = items[2];
 				blanketText.text = items[3];
+				if(View.GetInstance().GetInfant().getHealth() > 99 && View.GetInstance().GetInfant().getHydration() > 99 && View.GetInstance().GetInfant().getHygiene() > 99 && View.GetInstance().GetInfant().getTemperature() > 99){
+					View.GetInstance().GetInfant().setState("healthy");
+				}
+				if(View.GetInstance().GetInfant().getHealth() < 99 && View.GetInstance().GetInfant().getHydration() > 99 && View.GetInstance().GetInfant().getHygiene() > 99 && View.GetInstance().GetInfant().getTemperature() > 99){
+					View.GetInstance().GetInfant().setState("normal");
+				}
+				if(View.GetInstance().GetInfant().getHealth() > 99 && View.GetInstance().GetInfant().getHydration() > 99 && View.GetInstance().GetInfant().getHygiene() > 99 && View.GetInstance().GetInfant().getTemperature() < 99){
+					View.GetInstance().GetInfant().setState("cold");
+				}
+				if(currentState != View.GetInstance().GetInfant().getState()){
+					switchInfant(View.GetInstance().GetInfant().getState());
+				}
 			}
 		}
 		
@@ -325,24 +338,31 @@ package InfantScreen
 		public function switchInfant(state:String):void{
 			if(state.search("healthy") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_healthy");
+				currentState = "healthy";
 			}
 			if(state.search("fever") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_fever");
+				currentState = "fever";
 			}
 			if(state.search("hunger") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_hunger");
+				currentState = "hunger";
 			}
 			if(state.search("normal") >= 0){
-				Infant.texture = assetManager.getTexture("babyface1_normal");	
+				Infant.texture = assetManager.getTexture("babyface1_normal");
+				currentState = "normal";
 			}
 			if(state.search("cold") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_cold");
+				currentState = "cold";
 			}
 			if(state.search("diarrhea") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_diarrhea");
+				currentState = "diarrhea";
 			}
 			if(state.search("neonatalsepsis") >= 0){
 				Infant.texture = assetManager.getTexture("babyface1_neonatalsepsis");
+				currentState = "neonatalsepsis";
 			}
 		}
 		
