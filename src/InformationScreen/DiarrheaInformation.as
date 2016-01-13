@@ -5,7 +5,7 @@ package InformationScreen
 	import Common.Screen;
 	
 	import Main.View;
-
+	
 	import VirusScreen.VirusScreen;
 	
 	import starling.display.Button;
@@ -22,6 +22,7 @@ package InformationScreen
 		private var diarrheaInformation:Image;
 		private var englishButton:Button;
 		private var luoButton:Button;
+		private var speakerButton:Button;
 		
 		public function DiarrheaInformation()
 		{
@@ -71,6 +72,12 @@ package InformationScreen
 			luoButton.x = 356;
 			luoButton.y = 11;
 			addChild(luoButton);
+			
+			speakerButton = new Button(assetManager.getTexture("button_speakloud"));
+			speakerButton.addEventListener(Event.TRIGGERED, Speaker);
+			speakerButton.x = 380;
+			speakerButton.y = 45;
+			addChild(speakerButton);
 		}
 		
 		public function OkButtonTriggered():void
@@ -98,6 +105,11 @@ package InformationScreen
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation); 
+		}
+		
+		public function Speaker():void
+		{
+			
 		}
 		
 		public function Update():void

@@ -22,6 +22,7 @@ package InformationScreen
 		private var okButton:Button;
 		private var englishButton:Button;
 		private var luoButton:Button;
+		private var speakerButton:Button;
 		
 		public function HivInformation()
 		{
@@ -71,6 +72,12 @@ package InformationScreen
 			luoButton.x = 356;
 			luoButton.y = 11;
 			addChild(luoButton);
+			
+			speakerButton = new Button(assetManager.getTexture("button_speakloud"));
+			speakerButton.addEventListener(Event.TRIGGERED, Speaker);
+			speakerButton.x = 380;
+			speakerButton.y = 45;
+			addChild(speakerButton);
 		}
 		
 		public function OkButtonTriggered():void
@@ -98,6 +105,11 @@ package InformationScreen
 			hivInformation.x = 15;
 			hivInformation.y = 20;
 			addChild(hivInformation);
+		}
+		
+		public function Speaker():void
+		{
+			
 		}
 		
 		public function Update():void
