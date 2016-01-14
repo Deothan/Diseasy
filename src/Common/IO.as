@@ -14,15 +14,17 @@ package Common
 	 * getNames() -> returns available save games
 	 * loadUserProfile() -> loads a user profile (needs name from getNames)
 	 * Save() -> saves the current loaded profile
+	 * Storage location(C:\Users\'username'\AppData\Roaming\Diseasy.debug\Local Store\Storage)
 	 */
 	public class IO{
 		/** singleton instance**/
 		private static var instance:IO;
+		private var highscore:Highscore = new Highscore();
 		
 		/** Array holding information on disk **/
 		private static var profiles:Array;
 		private static var profileNames:Array;
-		private var playerPointer:int;
+		private var playerPointer:int = -1;
 		
 		/** FileWriter**/
 		private var stream:FileStream;
@@ -56,6 +58,10 @@ package Common
 				instance = new IO();
 			}
 			return instance;
+		}
+		
+		public function getHighscoreInstance():Highscore{
+			return highscore;
 		}
 		
 		/**
@@ -172,28 +178,40 @@ package Common
 				 * if pointer in array holding all users information = playerPointer set in load and user is loaded not created.
 				 * write current progress rather then array
 				 **/
-				if(i >= playerPointer && i<= (playerPointer + SIZEOFRECORDS) && playerPointer != 0){
+				if(i >= playerPointer && i<= (playerPointer + SIZEOFRECORDS) && playerPointer != -1){
 					stream.writeUTFBytes(currentUser[foo]);
 					foo++;
 				}
 				/**
 				 * but if no pointer is found (i.e.: user is created) do write other profiles
 				 */
-				else if(profiles.length != 0){
-					if(i < (profiles.length - 1)){
+				else {
 						stream.writeUTFBytes(profiles[i] + "\r\n");	
-					}
 				}
 			}
+			if(playerPointer == -1){
+				stream.writeUTFBytes(currentUser[0]);
+				stream.writeUTFBytes(currentUser[1]);
+				stream.writeUTFBytes(currentUser[2]);
+				stream.writeUTFBytes(currentUser[3]);
+				stream.writeUTFBytes(currentUser[4]);
+				stream.writeUTFBytes(currentUser[5]);
+				stream.writeUTFBytes(currentUser[6]);
+				stream.writeUTFBytes(currentUser[7]);
+				stream.writeUTFBytes(currentUser[8]);
+				stream.writeUTFBytes(currentUser[9]);
+			}
+			
 			/**
 			 * then finish with created profile but only if created
-			 */
+			
 			if(playerPointer ==0){
 				for(var j:int=0; j < currentUser.length; j++){
 					stream.writeUTFBytes(currentUser[j]);	
 				}
 				
 			}
+			 *  */
 			stream.close();
 			
 			var sourceFile:File = new File(pathToFile);
@@ -281,7 +299,7 @@ package Common
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
 			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3]+ "\r\n";
 			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5]+ "\r\n";
-			foo[9] = "</PROFILE>\r\n";
+			foo[9] = "</PROFILE>";
 			
 			return foo;
 		}

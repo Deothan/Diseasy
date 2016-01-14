@@ -1,11 +1,11 @@
 package Customize{
-	import flash.display.FocusDirection;
 	import flash.events.Event;
-	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
 	import flash.filesystem.File;
-	import flash.text.TextField;
-	import flash.text.TextFieldType;
+	import flash.geom.Rectangle;
+	import flash.text.ReturnKeyLabel;
+	import flash.text.StageText;
+	import flash.ui.Keyboard;
 	
 	import Common.IO;
 	import Common.Screen;
@@ -36,11 +36,40 @@ package Customize{
 		private var backButton:Button;
 		private var lookButton:Button;
 		private var okButton:Button;
-		private var nameText:starling.text.TextField;
-		private var input:String;
 		private var looks:Array = new Array();
+		private var nameText:TextField;
 		
-		private var trickText:flash.text.TextField;
+		/** keyboard **/
+		import starling.utils.HAlign;
+		import starling.utils.VAlign;
+		private var AButton:Button;
+		private var BButton:Button;
+		private var CButton:Button;
+		private var DButton:Button;
+		private var EButton:Button;
+		private var FButton:Button;
+		private var GButton:Button;
+		private var HButton:Button;
+		private var IButton:Button;
+		private var JButton:Button;
+		private var KButton:Button;
+		private var LButton:Button;
+		private var MButton:Button;
+		private var NButton:Button;
+		private var OButton:Button;
+		private var PButton:Button;
+		private var QButton:Button;
+		private var RButton:Button;
+		private var SButton:Button;
+		private var TButton:Button;
+		private var UButton:Button;
+		private var VButton:Button;
+		private var WButton:Button;
+		private var XButton:Button;
+		private var YButton:Button;
+		private var ZButton:Button;
+		
+		private var keyboardButton:Array = new Array();
 		
 		public function Customize(){
 			addEventListener(starling.events.Event.ADDED_TO_STAGE, Initialize);
@@ -78,24 +107,8 @@ package Customize{
 			lookButton = new Button(assetManager.getTexture("button_hair"));
 			lookButton.addEventListener(starling.events.Event.TRIGGERED, LookButtonTriggered);
 			lookButton.x = 280;
-			lookButton.y = 110;
+			lookButton.y = 140;
 			addChild(lookButton);
-			
-			/**
-			 * No Idead wy this doesn't open the keyboard.
-			trickText = new flash.text.TextField();
-			trickText.type = TextFieldType.INPUT;
-			trickText.needsSoftKeyboard = true;
-			trickText.addEventListener(FocusEvent.FOCUS_IN, keyboard);
-			*/
-			
-			nameText = new starling.text.TextField(172, 40, View.GetInstance().GetPlayer().GetName());
-			nameText.addEventListener(TouchEvent.TOUCH, NameTouched);
-			nameText.fontSize = 20;
-			nameText.color = 0x000000;
-			nameText.x = 285;
-			nameText.y = 20;
-			addChild(nameText);
 			
 			looks[0] = new Image(assetManager.getTexture("customize_women_1"));
 			looks[1] = new Image(assetManager.getTexture("customize_women_2"));
@@ -108,18 +121,251 @@ package Customize{
 			look.y = 10;
 			addChild(look);
 			
+			if(View.GetInstance().GetPlayer().name != 'Mother') nameText = new TextField(200,50,View.GetInstance().GetPlayer().GetName()); 
+			else nameText = new TextField(200,50, '');
+			nameText.fontSize = nameText.fontSize * 1.5; 
+			nameText.x = 275;
+			nameText.y = 15;
+			nameText.autoScale = true;
+			addChild(nameText);
+			
+			initializeKeyboard();
+			generateKeyboard(0,185,60);
+			
 			if(!View.GetInstance().GetPlayer().GetTutorials()[0]){
 				tutorial1 = new Image(assetManager.getTexture("tutorial1"));
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial1);
 			}
+				
+		}
+		/** 
+		 * simple algerithm to generate keyboard 
+		 */
+		private function generateKeyboard(_index:int, _x:int, _y:int):void{
+			if(_index >= keyboardButton.length) return;
+			if(_index == 10) {
+				_x = 205;
+				_y = 90;
+			}
+			if(_index == 19){
+				_x = 215;
+				_y = 120;
+			}
+			keyboardButton[_index].fontBold = true;
+			keyboardButton[_index].fontSize = 800;
+			keyboardButton[_index].textHAlign = HAlign.CENTER;
+			keyboardButton[_index].textVAlign = VAlign.CENTER;
+			keyboardButton[_index].x = _x;
+			keyboardButton[_index].y = _y;
+			keyboardButton[_index].useHandCursor = true;
+			addChild(keyboardButton[_index]);
+			generateKeyboard((_index + 1), (_x + 30), _y);
 		}
 		
 		/**
-		 * Used to check the In focus event.
+		 * method to initialize keyboard buttons
 		 */
-		private function keyboard(event:flash.events.Event):void{
-			trace("done");
+		private function initializeKeyboard():void{
+			AButton = new Button(assetManager.getTexture("button_keyboard"), 'A');
+			AButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			AButton.width = 25;
+			AButton.height = 25;
+			keyboardButton.push(AButton);
+			
+			BButton = new Button(assetManager.getTexture("button_keyboard") , 'B');
+			BButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			BButton.width = 25;
+			BButton.height = 25;
+			keyboardButton.push(BButton);
+			
+			CButton = new Button(assetManager.getTexture("button_keyboard") , 'C');
+			CButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			CButton.width = 25;
+			CButton.height = 25;
+			keyboardButton.push(CButton);
+			
+			DButton = new Button(assetManager.getTexture("button_keyboard"), 'D');
+			DButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			DButton.width = 25;
+			DButton.height = 25;
+			keyboardButton.push(DButton);
+			
+			EButton = new Button(assetManager.getTexture("button_keyboard"), 'E');
+			EButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			EButton.width = 25;
+			EButton.height = 25;
+			keyboardButton.push(EButton);
+			
+			FButton = new Button(assetManager.getTexture("button_keyboard") , 'F');
+			FButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			FButton.width = 25;
+			FButton.height = 25;
+			keyboardButton.push(FButton);
+			
+			GButton = new Button(assetManager.getTexture("button_keyboard"), 'G');
+			GButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			GButton.width = 25;
+			GButton.height = 25;
+			keyboardButton.push(GButton);
+			
+			HButton = new Button(assetManager.getTexture("button_keyboard"), 'H');
+			HButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			HButton.width = 25;
+			HButton.height = 25;
+			keyboardButton.push(HButton);
+			
+			IButton = new Button(assetManager.getTexture("button_keyboard"), 'I');
+			IButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			IButton.width = 25;
+			IButton.height = 25;
+			keyboardButton.push(IButton);
+			
+			JButton = new Button(assetManager.getTexture("button_keyboard"), 'J');
+			JButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			JButton.width = 25;
+			JButton.height = 25;
+			keyboardButton.push(JButton);
+			
+			KButton = new Button(assetManager.getTexture("button_keyboard"), 'K');
+			KButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			KButton.width = 25;
+			KButton.height = 25;
+			keyboardButton.push(KButton);
+			
+			LButton = new Button(assetManager.getTexture("button_keyboard"), 'L');
+			LButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			LButton.width = 25;
+			LButton.height = 25;
+			keyboardButton.push(LButton);
+			
+			MButton = new Button(assetManager.getTexture("button_keyboard"), 'M');
+			MButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			MButton.width = 25;
+			MButton.height = 25;
+			keyboardButton.push(MButton);
+			
+			NButton = new Button(assetManager.getTexture("button_keyboard"), 'N');
+			NButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			NButton.width = 25;
+			NButton.height = 25;
+			keyboardButton.push(NButton);
+			
+			OButton = new Button(assetManager.getTexture("button_keyboard"), 'O');
+			OButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			OButton.width = 25;
+			OButton.height = 25;
+			keyboardButton.push(OButton);
+			
+			PButton = new Button(assetManager.getTexture("button_keyboard"), 'P');
+			PButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			PButton.width = 25;
+			PButton.height = 25;
+			keyboardButton.push(PButton);
+			
+			QButton = new Button(assetManager.getTexture("button_keyboard"), 'Q');
+			QButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			QButton.width = 25;
+			QButton.height = 25;
+			keyboardButton.push(QButton);
+			
+			RButton = new Button(assetManager.getTexture("button_keyboard"), 'R');
+			RButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			RButton.width = 25;
+			RButton.height = 25;
+			keyboardButton.push(RButton);
+			
+			SButton = new Button(assetManager.getTexture("button_keyboard"), 'S');
+			SButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			SButton.width = 25;
+			SButton.height = 25;
+			keyboardButton.push(SButton);
+			
+			TButton = new Button(assetManager.getTexture("button_keyboard"), 'T');
+			TButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			TButton.width = 25;
+			TButton.height = 25;
+			keyboardButton.push(TButton);
+			
+			UButton = new Button(assetManager.getTexture("button_keyboard"), 'U');
+			UButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			UButton.width = 25;
+			UButton.height = 25;
+			keyboardButton.push(UButton);
+			
+			VButton = new Button(assetManager.getTexture("button_keyboard"), 'V');
+			VButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			VButton.width = 25;
+			VButton.height = 25;
+			keyboardButton.push(VButton);
+			
+			WButton = new Button(assetManager.getTexture("button_keyboard"), 'W');
+			WButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			WButton.width = 25;
+			WButton.height = 25;
+			keyboardButton.push(WButton);
+			
+			XButton = new Button(assetManager.getTexture("button_keyboard"), 'X');
+			XButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			XButton.width = 25;
+			XButton.height = 25;
+			keyboardButton.push(XButton);
+			
+			YButton= new Button(assetManager.getTexture("button_keyboard"), 'Y');
+			YButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			YButton.width = 25;
+			YButton.height = 25;
+			keyboardButton.push(YButton);
+			
+			ZButton = new Button(assetManager.getTexture("button_keyboard"), 'Z');
+			ZButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			ZButton.width = 25;
+			ZButton.height = 25;
+			keyboardButton.push(ZButton);
+		}
+		
+		/** method to handle simpulated keyboard input **/
+		private function KeyboardButton(event:starling.events.Event):void{
+			if(nameText.text.length >= 13) return;
+			trace('[CUSTOMIZE] KEYBOARDBUTTON');
+			if(event.target == AButton) nameText.text = nameText.text + 'A';
+			if(event.target == BButton) nameText.text = nameText.text + 'B';
+			if(event.target == CButton) nameText.text = nameText.text + 'C';
+			if(event.target == DButton) nameText.text = nameText.text + 'D';
+			if(event.target == EButton) nameText.text = nameText.text + 'E';
+			if(event.target == FButton) nameText.text = nameText.text + 'F';
+			if(event.target == GButton) nameText.text = nameText.text + 'G';
+			if(event.target == HButton) nameText.text = nameText.text + 'H';
+			if(event.target == IButton) nameText.text = nameText.text + 'I';
+			if(event.target == JButton) nameText.text = nameText.text + 'J';
+			if(event.target == KButton) nameText.text = nameText.text + 'K';
+			if(event.target == LButton) nameText.text = nameText.text + 'L';
+			if(event.target == MButton) nameText.text = nameText.text + 'M';
+			if(event.target == NButton) nameText.text = nameText.text + 'N';
+			if(event.target == OButton) nameText.text = nameText.text + 'O';
+			if(event.target == PButton) nameText.text = nameText.text + 'P';
+			if(event.target == QButton) nameText.text = nameText.text + 'Q';
+			if(event.target == RButton) nameText.text = nameText.text + 'R';
+			if(event.target == SButton) nameText.text = nameText.text + 'S';
+			if(event.target == TButton) nameText.text = nameText.text + 'T';
+			if(event.target == UButton) nameText.text = nameText.text + 'U';
+			if(event.target == VButton) nameText.text = nameText.text + 'V';
+			if(event.target == WButton) nameText.text = nameText.text + 'W';
+			if(event.target == XButton) nameText.text = nameText.text + 'X';
+			if(event.target == YButton) nameText.text = nameText.text + 'Y';
+			if(event.target == ZButton) nameText.text = nameText.text + 'Z';
+			nameText.redraw();
+		}		
+
+		
+		private function nameTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				trace("[CUSTOMIZE] SUCCES");	
+			}
+			else{
+				trace("[CUSTOMIZE] FAILURE");
+			}
+			
 		}
 		
 		private function TutorialTouch(event:TouchEvent):void{
@@ -169,6 +415,7 @@ package Customize{
 			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			IO.GetInstance().Save();
+			
 			var unlocked:Array = View.GetInstance().GetPlayer().getLevels();
 			if(unlocked[2] == false) View.GetInstance().LoadScreen(Map.Tutorial);
 			else View.GetInstance().LoadScreen(Map);
@@ -182,54 +429,6 @@ package Customize{
 			else{
 				View.GetInstance().LoadScreen(Map);
 			}	
-		}
-		
-		/**
-		 * If "Enter" is hit then the keyboard listener is removed. Untill it is removed it changes the nameText variable.
-		 * 65-90 are the letters
-		 * 32 is space
-		 * 13 is the maximum length of the field
-		 */
-		private function ReadKey(event:KeyboardEvent):void{			
-			if(event.keyCode == 13){
-				removeEventListener(KeyboardEvent.KEY_DOWN, ReadKey);
-				View.GetInstance().GetPlayer().SetName(nameText.text);
-			}
-			else if(event.keyCode >= 65 && event.keyCode <= 90){
-				var letter:String = String.fromCharCode(event.charCode);
-				
-				if(input.length <= 13)
-					input += letter;
-				
-				nameText.text = input;
-			}
-			else if(event.keyCode == 32){
-				var space:String = String.fromCharCode(event.charCode);
-				
-				if(input.length <= 13)
-					input += space;
-				
-				nameText.text = input;
-			}
-		}
-		
-		/**
-		 * Adds a keyboard listener when the name is clicked, and empties the current input.
-		 */
-		private function NameTouched(event:TouchEvent):void{
-			if(event.getTouch(this, TouchPhase.BEGAN)){
-				var keyboard:Keyboard = new Keyboard();
-				View.GetInstance().getSoundControl().playButton();
-				addEventListener(KeyboardEvent.KEY_DOWN, ReadKey);	
-				
-				/**
-				 * This does fire the in focus event, and it is caught by the normal AS3 textfield.
-				 * trickText.dispatchEvent(new FocusEvent(FocusEvent.FOCUS_IN));
-				 */				
-				
-				input = new String();
-				nameText.text = input;
-			}
 		}
 		
 		public function Update():void{}
