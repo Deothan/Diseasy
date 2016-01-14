@@ -15,6 +15,7 @@ package VirusScreen
 	import InformationScreen.MalariaInformation;
 	import InformationScreen.NeonatalSepsisInformation;
 	import InformationScreen.PneumoniaInformation;
+	import InformationScreen.Tutorial;
 	
 	import Levels.Level_1;
 	
@@ -186,7 +187,7 @@ package VirusScreen
 			{
 				checkedArray[0] = true;
 			}
-			View.GetInstance().LoadScreen(NeonatalSepsisInformation);
+			View.GetInstance().LoadScreen(InformationScreen.Tutorial);
 		}
 		
 		public function HivTriggered():void

@@ -8,13 +8,14 @@ package InformationScreen
 	
 	import Main.View;
 	
+	import VirusScreen.VirusScreen;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
-	import VirusScreen.VirusScreen;
 
 	public class Tutorial extends Sprite implements Screen{
 		private var assetManager:AssetManager;
@@ -68,6 +69,7 @@ package InformationScreen
 					removeChild(tutorial0);
 					//what screen should be called??
 					//
+					View.GetInstance().LoadScreen(NeonatalSepsisInformation);
 				}
 			}				
 		}
