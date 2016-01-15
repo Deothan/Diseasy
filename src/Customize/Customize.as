@@ -1,11 +1,6 @@
 package Customize{
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
+
 	import flash.filesystem.File;
-	import flash.geom.Rectangle;
-	import flash.text.ReturnKeyLabel;
-	import flash.text.StageText;
-	import flash.ui.Keyboard;
 	
 	import Common.IO;
 	import Common.Screen;
@@ -23,6 +18,7 @@ package Customize{
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
+	import starling.textures.Texture;
 	import starling.utils.AssetManager;
 
 	public class Customize extends Sprite implements Screen{
@@ -68,7 +64,8 @@ package Customize{
 		private var XButton:Button;
 		private var YButton:Button;
 		private var ZButton:Button;
-		
+		private var BACKButton:Button;
+		private var showKeyboard = false;
 		private var keyboardButton:Array = new Array();
 		
 		public function Customize(){
@@ -121,17 +118,18 @@ package Customize{
 			look.y = 10;
 			addChild(look);
 			
-			if(View.GetInstance().GetPlayer().name != 'Mother') nameText = new TextField(200,50,View.GetInstance().GetPlayer().GetName()); 
-			else nameText = new TextField(200,50, '');
+			if(View.GetInstance().GetPlayer().name != 'Mother') nameText = new TextField(200,25,View.GetInstance().GetPlayer().GetName()); 
+			else nameText = new TextField(200,25, '');
 			nameText.fontSize = nameText.fontSize * 1.5; 
 			nameText.x = 275;
-			nameText.y = 15;
+			nameText.y = 26;
 			nameText.autoScale = true;
+			nameText.addEventListener(TouchEvent.TOUCH, onTouch);
 			addChild(nameText);
 			
 			initializeKeyboard();
 			generateKeyboard(0,185,60);
-			
+
 			if(!View.GetInstance().GetPlayer().GetTutorials()[0]){
 				tutorial1 = new Image(assetManager.getTexture("tutorial1"));
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
@@ -139,6 +137,26 @@ package Customize{
 			}
 				
 		}
+		
+		private function onTouch(event:TouchEvent):void{			
+			if(!nameText.text.match('Enter Name')) return;
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				if(showKeyboard){
+					for each(var currentButton:Button in keyboardButton){
+						removeChild(currentButton);
+					}
+					showKeyboard = false;
+				}
+				else{
+					for each(var currentButton:Button in keyboardButton){
+						addChild(currentButton);
+					}
+					if(nameText.text.match('Enter Name') || nameText.text.match('name taken')) nameText.text = '';
+					showKeyboard = true;
+				}
+			}
+		}
+		
 		/** 
 		 * simple algerithm to generate keyboard 
 		 */
@@ -159,7 +177,7 @@ package Customize{
 			keyboardButton[_index].x = _x;
 			keyboardButton[_index].y = _y;
 			keyboardButton[_index].useHandCursor = true;
-			addChild(keyboardButton[_index]);
+			//addChild(keyboardButton[_index]);
 			generateKeyboard((_index + 1), (_x + 30), _y);
 		}
 		
@@ -322,12 +340,18 @@ package Customize{
 			ZButton.width = 25;
 			ZButton.height = 25;
 			keyboardButton.push(ZButton);
+			
+			BACKButton = new Button(assetManager.getTexture("arrow_left"), '');
+			BACKButton.addEventListener(starling.events.Event.TRIGGERED, KeyboardButton);
+			BACKButton.width = 25;
+			BACKButton.height = 25;
+			keyboardButton.push(BACKButton);
 		}
 		
 		/** method to handle simpulated keyboard input **/
 		private function KeyboardButton(event:starling.events.Event):void{
 			if(nameText.text.length >= 13) return;
-			trace('[CUSTOMIZE] KEYBOARDBUTTON');
+			if(event.target == BACKButton) if(nameText.text.length != 0) nameText.text = nameText.text.substr(0, nameText.text.length - 1);
 			if(event.target == AButton) nameText.text = nameText.text + 'A';
 			if(event.target == BButton) nameText.text = nameText.text + 'B';
 			if(event.target == CButton) nameText.text = nameText.text + 'C';
@@ -356,17 +380,6 @@ package Customize{
 			if(event.target == ZButton) nameText.text = nameText.text + 'Z';
 			nameText.redraw();
 		}		
-
-		
-		private function nameTouch(event:TouchEvent):void{
-			if(event.getTouch(this, TouchPhase.BEGAN)){
-				trace("[CUSTOMIZE] SUCCES");	
-			}
-			else{
-				trace("[CUSTOMIZE] FAILURE");
-			}
-			
-		}
 		
 		private function TutorialTouch(event:TouchEvent):void{
 			if(event.getTouch(this, TouchPhase.BEGAN)){
@@ -411,17 +424,28 @@ package Customize{
 		}
 		
 		private function OkButtonTriggered():void{
+			if(nameText.text.length == 0 || nameText.text.match('Enter Name')) return;
+			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
+			for each(var currentName:String in namesAlreadyUsed){
+				if(nameText.text.match(currentName) && IO.GetInstance().getPlayerPointer() == -1){
+					nameText.text = 'name taken'
+					return;
+				}
+			}
+			
 			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			IO.GetInstance().Save();
 			
+			Destroy();
 			var unlocked:Array = View.GetInstance().GetPlayer().getLevels();
 			if(unlocked[2] == false) View.GetInstance().LoadScreen(Map.Tutorial);
 			else View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
+			Destroy();
 			if(View.GetInstance().GetLastScreen() == "Menu"){
 				View.GetInstance().getSoundControl().playButton();
 				View.GetInstance().LoadScreen(Menu);
@@ -435,6 +459,12 @@ package Customize{
 		
 		public function Destroy():void{
 			removeEventListeners(null);
+			//for(var loop:int =0; loop < this.keyboardButton.length; loop++){
+			//	keyboardButton[loop].removeFromParent(true);
+			//}
+			for each(var instanceOfButton:Button in keyboardButton){
+				instanceOfButton.removeFromParent(true);
+			}
 			assetManager.dispose();
 		}
 	}

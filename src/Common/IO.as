@@ -47,7 +47,6 @@ package Common
 			CheckMemory();
 			loadToMemory();
 			profileNames = loadNames();
-			//appendProfile(); 
 		}
 		
 		/**
@@ -58,6 +57,11 @@ package Common
 				instance = new IO();
 			}
 			return instance;
+		}
+		
+		public function reset():IO{
+			return instance = new IO();
+			
 		}
 		
 		public function getHighscoreInstance():Highscore{
@@ -151,6 +155,14 @@ package Common
 			}
 			
 			playerPointer = (loop -1);
+		}
+		
+		public function setNewPlayerPointer():void{
+			playerPointer = -1;
+		}
+		
+		public function getPlayerPointer():int{
+			return playerPointer;
 		}
 		
 		/**

@@ -45,6 +45,9 @@ package Load
 		}
 		
 		private function Initialize():void{
+			IO.GetInstance().reset();
+			
+			
 			assetManager = new AssetManager();
 			var folder:File = File.applicationDirectory.resolvePath("Load/assets");
 			assetManager.enqueue(folder);

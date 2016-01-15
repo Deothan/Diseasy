@@ -164,6 +164,15 @@ package Player
 		}
 		
 		public function SetCheckedViruses(checkedViruses:Array):void{
+			if(checkedViruses == null){
+				this.checkedViruses = new Array();
+				this.checkedViruses.push(false);
+				this.checkedViruses.push(false);
+				this.checkedViruses.push(false);
+				this.checkedViruses.push(false);
+				this.checkedViruses.push(false);
+				return;
+			}
 			this.checkedViruses = checkedViruses;
 		}
 		
@@ -299,6 +308,11 @@ package Player
 		}
 		
 		public function RemoveItem(element:Item):void{
+			if(element == null){
+				items = new Array();
+				return;
+			}
+			
 			for(var i:int = items.indexOf(element); i < items.length-1; i++){                                                                                      
 				items[i] = items[i+1];                                  
 			}
