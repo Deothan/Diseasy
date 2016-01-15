@@ -18,7 +18,6 @@ package Customize{
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
-	import starling.textures.Texture;
 	import starling.utils.AssetManager;
 
 	public class Customize extends Sprite implements Screen{
@@ -65,7 +64,7 @@ package Customize{
 		private var YButton:Button;
 		private var ZButton:Button;
 		private var BACKButton:Button;
-		private var showKeyboard = false;
+		private var showKeyboard:Boolean = false;
 		private var keyboardButton:Array = new Array();
 		
 		public function Customize(){
@@ -148,8 +147,8 @@ package Customize{
 					showKeyboard = false;
 				}
 				else{
-					for each(var currentButton:Button in keyboardButton){
-						addChild(currentButton);
+					for each(var currentButton2:Button in keyboardButton){
+						addChild(currentButton2);
 					}
 					if(nameText.text.match('Enter Name') || nameText.text.match('name taken')) nameText.text = '';
 					showKeyboard = true;
