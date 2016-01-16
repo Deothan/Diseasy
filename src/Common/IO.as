@@ -170,12 +170,10 @@ package Common
 		 * makes a shadow copy and replaces the origin since partial change is not available in current language
 		 */
 		public function Save():void{
-			var pathToFile:String = File.applicationStorageDirectory.resolvePath('Storage/memoryShadowCopy.save').nativePath;
-			var pathToDestination:String = File.applicationStorageDirectory.resolvePath('Storage/memory.save').nativePath;
 			var currentUser:Array = addProfile();
 			var foo:int = 0;
 			
-			_file = new File(pathToFile);
+			_file = File.userDirectory.resolvePath("DISEASY/memoryShadowCopy.save");
 			
 			//first time use
 			if(!_file.exists){
@@ -191,43 +189,37 @@ package Common
 				 * write current progress rather then array
 				 **/
 				if(i >= playerPointer && i<= (playerPointer + SIZEOFRECORDS) && playerPointer != -1){
-					stream.writeUTFBytes(currentUser[foo]);
+					stream.writeUTFBytes(currentUser[foo] + "\r\n");
 					foo++;
 				}
 				/**
 				 * but if no pointer is found (i.e.: user is created) do write other profiles
 				 */
 				else {
-						stream.writeUTFBytes(profiles[i] + "\r\n");	
+						if(profiles.length >= 5){
+							if(profiles[i].match('<PROFILE>')) stream.writeUTFBytes(profiles[i] + "\r\n");
+							else if(i == profiles.length - 1)stream.writeUTFBytes(profiles[i]);
+							else stream.writeUTFBytes(profiles[i] + "\r\n");
+						}
 				}
 			}
 			if(playerPointer == -1){
-				stream.writeUTFBytes(currentUser[0]);
-				stream.writeUTFBytes(currentUser[1]);
-				stream.writeUTFBytes(currentUser[2]);
-				stream.writeUTFBytes(currentUser[3]);
-				stream.writeUTFBytes(currentUser[4]);
-				stream.writeUTFBytes(currentUser[5]);
-				stream.writeUTFBytes(currentUser[6]);
-				stream.writeUTFBytes(currentUser[7]);
-				stream.writeUTFBytes(currentUser[8]);
+				if(profiles.length >= 5)stream.writeUTFBytes("\r\n" + currentUser[0]  + "\r\n");
+				else stream.writeUTFBytes(currentUser[0]  + "\r\n");
+				stream.writeUTFBytes(currentUser[1]  + "\r\n");
+				stream.writeUTFBytes(currentUser[2]  + "\r\n");
+				stream.writeUTFBytes(currentUser[3]  + "\r\n");
+				stream.writeUTFBytes(currentUser[4]  + "\r\n");
+				stream.writeUTFBytes(currentUser[5]  + "\r\n");
+				stream.writeUTFBytes(currentUser[6]  + "\r\n");
+				stream.writeUTFBytes(currentUser[7]  + "\r\n");
+				stream.writeUTFBytes(currentUser[8]  + "\r\n");
 				stream.writeUTFBytes(currentUser[9]);
 			}
-			
-			/**
-			 * then finish with created profile but only if created
-			
-			if(playerPointer ==0){
-				for(var j:int=0; j < currentUser.length; j++){
-					stream.writeUTFBytes(currentUser[j]);	
-				}
-				
-			}
-			 *  */
 			stream.close();
 			
-			var sourceFile:File = new File(pathToFile);
-			var destinationFile:File = new File(pathToDestination);
+			var sourceFile:File = File.userDirectory.resolvePath("DISEASY/memoryShadowCopy.save");
+			var destinationFile:File = File.userDirectory.resolvePath("DISEASY/memory.save");
 			
 			/**
 			 * replace shadowcopy with origin
@@ -245,15 +237,13 @@ package Common
 		 * Varify if file already exists or is first time use
 		 */
 		private function CheckMemory():void{
-			var FolderToFile:String = File.applicationStorageDirectory.resolvePath('Storage').nativePath;
-			var pathToFile:String = File.applicationStorageDirectory.resolvePath('Storage/memory.save').nativePath;
-			
-			var Folder:File = new File(FolderToFile);
+			trace('[IO/CHECKMEMORY]');	
+			var Folder:File = File.userDirectory.resolvePath("DISEASY");
 			
 			if(!Folder.exists){
 				Folder.createDirectory();
 			}
-			_file = new File(pathToFile);
+			_file = File.userDirectory.resolvePath("DISEASY/memory.save");
 			
 			if(!_file.exists){
 				stream.open(_file, FileMode.WRITE);
@@ -302,15 +292,15 @@ package Common
 			var tutorials:Array = View.GetInstance().GetPlayer().GetTutorials();
 			var foo:Array = new Array();
 			
-			foo[0] = "<PROFILE>\r\n";
-			foo[1] = "NAME:" + name + "\r\n";
-			foo[2] = "LIFE:" + life + "\r\n";
-			foo[3] = "COINS:" + coins + "\r\n";
-			foo[4] = "LOOKS:" + looks + "\r\n";
-			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4] +  "\r\n";
-			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4] +"\r\n";
-			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3]+ "\r\n";
-			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5]+ "\r\n";
+			foo[0] = "<PROFILE>";
+			foo[1] = "NAME:" + name;
+			foo[2] = "LIFE:" + life;
+			foo[3] = "COINS:" + coins;
+			foo[4] = "LOOKS:" + looks;
+			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4];
+			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4];
+			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3];
+			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5];
 			foo[9] = "</PROFILE>";
 			
 			return foo;
