@@ -46,6 +46,11 @@ package Levels{
 		private var loaded:Boolean = false;
 		private var playerLoaded:Boolean = false;
 		private var timer:flash.utils.Timer;
+		private var spawned76:Boolean = false;
+		private var spawned57:Boolean = false;
+		private var spawned38:Boolean = false;
+		private var spawned19:Boolean = false;
+		private var spawned0:Boolean = false;
 		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 6150;
@@ -155,7 +160,7 @@ package Levels{
 		}
 		
 		private function SpawnAll(interval:int):void{
-			if( (top.GetTime()/24)%interval == 0 && bottom.GetProgress() < 80){
+			if(bottom.GetProgress() == 19 && !spawned19 || bottom.GetProgress() == 0 && !spawned0 || bottom.GetProgress() == 38 && !spawned38 || bottom.GetProgress() == 57 && !spawned57 || bottom.GetProgress() == 76 && !spawned76){
 				
 				var nextEnemyX:int = 500;
 				var nextEnemy:int = Math.floor(Math.random()*5);
@@ -213,7 +218,21 @@ package Levels{
 				nextEnemyX = 1325;
 				nextEnemy = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);
-				
+				if(bottom.GetProgress() == 0){
+					spawned0 = true;
+				}
+				if(bottom.GetProgress() == 19){
+					spawned19 = true;
+				}
+				if(bottom.GetProgress() == 38){
+					spawned38 = true;
+				}
+				if(bottom.GetProgress() == 57){
+					spawned57 = true;
+				}
+				if(bottom.GetProgress() == 76){
+					spawned76 = true;
+				}
 				
 			}
 		}

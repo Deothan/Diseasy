@@ -35,8 +35,7 @@ package Common{
 		
 		/** method to read array from disk to memory **/
 		private function Load():void{
-			var pathToDestination:String = File.applicationStorageDirectory.resolvePath('Storage/highscore.save').nativePath;
-			var _file:File = new File(pathToDestination);
+			var _file:File = File.userDirectory.resolvePath("DISEASY/highscore.save");
 			if(!_file.exists){
 				for(var pointer:int = 0; pointer < 25; pointer++){
 					records.push("null");
@@ -55,11 +54,9 @@ package Common{
 		/** method to write array from memory to disk **/
 		private function Save():void{
 			var stream:FileStream = new FileStream();
-			var pathToFile:String = File.applicationStorageDirectory.resolvePath('Storage/highscoreShadowCopy.save').nativePath;
-			var pathToDestination:String = File.applicationStorageDirectory.resolvePath('Storage/highscore.save').nativePath;
 			
-			var sourceFile:File = new File(pathToFile);
-			var destinationFile:File = new File(pathToDestination); 
+			var sourceFile:File = File.userDirectory.resolvePath("DISEASY/highscoreShadowCopy.save");
+			var destinationFile:File = File.userDirectory.resolvePath("DISEASY/highscore.save");
 			
 			if(!sourceFile.exists){
 				stream.open(sourceFile, FileMode.WRITE);
