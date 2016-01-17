@@ -364,6 +364,10 @@ package InfantScreen
 				Infant.texture = assetManager.getTexture("babyface1_neonatalsepsis");
 				currentState = "neonatalsepsis";
 			}
+			if(state.search("hiv") >= 0){
+				Infant.texture = assetManager.getTexture("babyface1_hiv");
+				currentState = "hiv";
+			}
 		}
 		
 		public function Destroy():void{

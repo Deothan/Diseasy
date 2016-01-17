@@ -46,6 +46,7 @@ package Menu
 		}
 		
 		private function Start():void{
+			IO.GetInstance().reset();
 			View.GetInstance().getSoundControl();
 			View.GetInstance().SetLastScreen("Menu");
 			

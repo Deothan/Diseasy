@@ -87,6 +87,9 @@ package Common
 		 * @param param: the name of the character to load
 		 */
 		public function loadUserProfile(param:String):void{
+			trace(param);
+			trace(View.GetInstance().GetPlayer().GetName());
+			if(param == View.GetInstance().GetPlayer().GetName()) return;
 			var pointer:int = 0;
 			var loop:int = 0;
 			for (var i:int =0; i < profileNames.length; i++){
@@ -174,38 +177,43 @@ package Common
 			var foo:int = 0;
 			
 			_file = File.userDirectory.resolvePath("DISEASY/memoryShadowCopy.save");
+			var destinationFile:File = File.userDirectory.resolvePath("DISEASY/memory.save");
 			
 			//first time use
 			if(!_file.exists){
 				stream.open(_file, FileMode.WRITE);
-				stream.writeUTFBytes("");
+				//stream.writeUTFBytes("");
 				stream.close();	
 			}
 			
 			stream.open(_file, FileMode.WRITE);
+			var flag:Boolean = false;
 			for (var i:int = 0; i < profiles.length; i++){
-				/**
-				 * if pointer in array holding all users information = playerPointer set in load and user is loaded not created.
-				 * write current progress rather then array
-				 **/
-				if(i >= playerPointer && i<= (playerPointer + SIZEOFRECORDS) && playerPointer != -1){
-					stream.writeUTFBytes(currentUser[foo] + "\r\n");
-					foo++;
+				if(destinationFile.size == 0){
+					
 				}
-				/**
-				 * but if no pointer is found (i.e.: user is created) do write other profiles
-				 */
-				else {
-						if(profiles.length >= 5){
-							if(profiles[i].match('<PROFILE>')) stream.writeUTFBytes(profiles[i] + "\r\n");
-							else if(i == profiles.length - 1)stream.writeUTFBytes(profiles[i]);
-							else stream.writeUTFBytes(profiles[i] + "\r\n");
-						}
+				else{
+					if(profiles.length < 5){
+						stream.writeUTFBytes(profiles[i]  + "\r\n");
+					}
+					else{
+						if(i == (profiles.length - 1)) stream.writeUTFBytes(profiles[i]);
+						else stream.writeUTFBytes(profiles[i]  + "\r\n");
+					}
 				}
 			}
 			if(playerPointer == -1){
-				if(profiles.length >= 5)stream.writeUTFBytes("\r\n" + currentUser[0]  + "\r\n");
-				else stream.writeUTFBytes(currentUser[0]  + "\r\n");
+				trace('playerPointer == -1');
+				if(destinationFile.size == 0){
+					trace('true == 0');
+					var tmp:String = currentUser[0].replace("\r\n", "");
+					trace(tmp);
+					stream.writeUTFBytes(tmp  + "\r\n");
+				}
+				else {
+					trace('false!!');
+					stream.writeUTFBytes("\r\n" + currentUser[0]  + "\r\n");
+				}
 				stream.writeUTFBytes(currentUser[1]  + "\r\n");
 				stream.writeUTFBytes(currentUser[2]  + "\r\n");
 				stream.writeUTFBytes(currentUser[3]  + "\r\n");
@@ -219,7 +227,7 @@ package Common
 			stream.close();
 			
 			var sourceFile:File = File.userDirectory.resolvePath("DISEASY/memoryShadowCopy.save");
-			var destinationFile:File = File.userDirectory.resolvePath("DISEASY/memory.save");
+
 			
 			/**
 			 * replace shadowcopy with origin
@@ -230,7 +238,6 @@ package Common
 			catch (error:Error){
 				trace("[IO] Cannot replace save file. Contact HelpHeal" + error.message);
 			}
-			
 		}
 		
 		/**
