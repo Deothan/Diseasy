@@ -67,6 +67,7 @@ package Viruses{
 				Destroy();
 				View.GetInstance().GetInfant().setHealth(-2);
 				View.GetInstance().GetInfant().setTemperature(-4);
+				View.GetInstance().GetInfant().setState("cold");
 				View.GetInstance().GetPlayer().loseLife();
 			}
 		}
