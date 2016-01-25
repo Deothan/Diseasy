@@ -39,8 +39,7 @@ package InformationScreen
 		
 		private function Progress(ratio:Number):void
 		{
-			if(ratio == 1)
-			{
+			if(ratio == 1){
 				Start();
 			}
 		}
@@ -107,9 +106,8 @@ package InformationScreen
 			addChild(diarrheaInformation); 
 		}
 		
-		public function Speaker():void
-		{
-			
+		public function Speaker():void{
+			View.GetInstance().getSoundControl().playDiarrhoea();
 		}
 		
 		public function Update():void

@@ -109,7 +109,7 @@ package InformationScreen
 		
 		public function Speaker():void
 		{
-			
+			View.GetInstance().getSoundControl().playPnuemonia();
 		}
 		
 		public function Update():void

@@ -62,5 +62,25 @@ package Common{
 			sound = assetManager.getSound('startgame');
 			Channel = sound.play();
 		}
+		
+		public function playHiv():void{
+			assetManager.getSound('hiv').play();
+		}
+		
+		public function playDiarrhoea():void{
+			assetManager.getSound('diarrhoea').play();
+		}
+		
+		public function playMalaria():void{
+			assetManager.getSound('malaria').play();
+		}
+		
+		public function playPnuemonia():void{
+			assetManager.getSound('pnuemonia').play();
+		}
+		
+		public function playSepsis():void{
+			assetManager.getSound('sepsis').play();
+		}
 	}
 }

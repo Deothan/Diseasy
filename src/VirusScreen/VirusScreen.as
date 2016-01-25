@@ -179,7 +179,7 @@ package VirusScreen
 				else View.GetInstance().LoadScreen(InfantScreen);	
 			}
 		}
-		
+		 
 		public function NeonatalsepsisTriggered():void
 		{
 			View.GetInstance().getSoundControl().playButton();
