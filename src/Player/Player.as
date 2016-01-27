@@ -20,9 +20,7 @@ package Player
     import Items.Medicine;
     import Items.Towel;
     import Items.WaterBottle;
-    
-    import Main.View;
-    
+
     import starling.core.Starling;
     import starling.display.Image;
     import starling.display.MovieClip;
@@ -80,18 +78,20 @@ package Player
 			unlock[4] = false;
 			unlock[5] = false;
 			
-			tutorials[0] = false;
-			tutorials[1] = false;
-			tutorials[2] = false;
-			tutorials[3] = false;
-			tutorials[4] = false;
-			tutorials[5] = false;
-			
 			Highscores.push(0);
 			Highscores.push(0);
 			Highscores.push(0);
 			Highscores.push(0);
 			Highscores.push(0);
+
+			tutorials[0] = false; //Customize
+			tutorials[1] = false; //Map
+			tutorials[2] = false; //Level
+			tutorials[3] = false; //Shop
+			tutorials[4] = false; //VirusScreen
+			tutorials[5] = false; //InformationScreen
+			tutorials[6] = false; //InfantCare
+
 		}
 		
 		private function loadAnimations():void{
@@ -103,7 +103,6 @@ package Player
 			
 			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("women_jump_1"), 24);
 			_animations["jump"] = jump_animation;
-			
 		}
 				
 		private function Initialize():void{

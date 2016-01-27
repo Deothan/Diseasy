@@ -436,11 +436,8 @@ package Customize{
 			View.GetInstance().GetPlayer().SetName(nameText.text);
 			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			IO.GetInstance().Save();
-			
-			Destroy();
-			var unlocked:Array = View.GetInstance().GetPlayer().getLevels();
-			if(unlocked[2] == false) View.GetInstance().LoadScreen(Map.Tutorial);
-			else View.GetInstance().LoadScreen(Map);
+
+			View.GetInstance().LoadScreen(Map);
 		}
 		
 		private function BackButtonTriggered():void{
@@ -458,12 +455,7 @@ package Customize{
 		
 		public function Destroy():void{
 			removeEventListeners(null);
-			//for(var loop:int =0; loop < this.keyboardButton.length; loop++){
-			//	keyboardButton[loop].removeFromParent(true);
-			//}
-			for each(var instanceOfButton:Button in keyboardButton){
-				instanceOfButton.removeFromParent(true);
-			}
+
 			assetManager.dispose();
 		}
 	}

@@ -1,23 +1,17 @@
 package VirusScreen
 {
-	import flash.events.TimerEvent;
 	import flash.filesystem.File;
-	import flash.utils.Timer;
 	
 	import Common.IO;
 	import Common.Screen;
 	
 	import InfantScreen.InfantScreen;
-	import InfantScreen.Tutorial;
 	
 	import InformationScreen.DiarrheaInformation;
 	import InformationScreen.HivInformation;
 	import InformationScreen.MalariaInformation;
 	import InformationScreen.NeonatalSepsisInformation;
 	import InformationScreen.PneumoniaInformation;
-	import InformationScreen.Tutorial;
-	
-	import Levels.Level_1;
 	
 	import Main.View;
 	
@@ -25,6 +19,8 @@ package VirusScreen
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 
 	public class VirusScreen extends Sprite implements Screen
@@ -39,18 +35,14 @@ package VirusScreen
 		private var neonatalsepsis:Button;
 		private var checkedArray:Array = View.GetInstance().GetPlayer().GetCheckedViruses();
 		private var loaded:Boolean = false;
-		
+		private var tutorial0:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;		
+		private var tutorial3:Image;
 		
 		public function VirusScreen()
 		{
-			if(!View.GetInstance().gettutorialVirusScreen()){
-				View.GetInstance().settutorialVirusScreen(true);
-				// !BUG! null pointer when VirusScreen gets loaded again. Tutorial working fine
-				View.GetInstance().LoadScreen(VirusScreen.Tutorial);
-			}
-			else{
-				addEventListener(Event.ADDED_TO_STAGE, Initialize);
-			}
+			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
 		private function Initialize() :void
@@ -165,9 +157,49 @@ package VirusScreen
 				addChild(pneumonia);
 			}
 			
-			View.GetInstance().startVirusScreenUnlockTimer();
-			
-			loaded = true;
+			if(!View.GetInstance().GetPlayer().GetTutorials()[4]){
+				tutorial0 = new Image(assetManager.getTexture("gradient"));
+				addChild(tutorial0);
+				
+				tutorial1 = new Image(assetManager.getTexture("cutscene_virusscreen1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}
+			else{
+				View.GetInstance().startVirusScreenUnlockTimer();
+				loaded = true;
+			}
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("cutscene_virusscreen2"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					tutorial3 = new Image(assetManager.getTexture("cutscene_virusscreen3"));
+					tutorial3.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial3);
+				}
+				else if(event.target == tutorial3){
+					tutorial3.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial3);
+					removeChild(tutorial0);
+					
+					View.GetInstance().GetPlayer().setTutorials(4, true);
+					
+					View.GetInstance().startVirusScreenUnlockTimer();
+					
+					loaded = true;
+				}
+			}				
 		}
 		
 		public function ContinueButtonTriggered():void
@@ -175,7 +207,7 @@ package VirusScreen
 			if(!View.GetInstance().getLockInformationScreen()){
 				View.GetInstance().getSoundControl().playButton();
 				var firstTime:Array = View.GetInstance().GetPlayer().getLevels();
-				if(firstTime[2] == false) View.GetInstance().LoadScreen(InfantScreen.Tutorial);
+				if(firstTime[2] == false) View.GetInstance().LoadScreen(InfantScreen);
 				else View.GetInstance().LoadScreen(InfantScreen);	
 			}
 		}
@@ -187,7 +219,7 @@ package VirusScreen
 			{
 				checkedArray[0] = true;
 			}
-			View.GetInstance().LoadScreen(InformationScreen.Tutorial);
+			View.GetInstance().LoadScreen(NeonatalSepsisInformation);
 		}
 		
 		public function HivTriggered():void

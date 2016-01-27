@@ -14,8 +14,6 @@ package InfantScreen
 	import Items.Towel;
 	import Items.WaterBottle;
 	
-	import Levels.Level_1;
-	
 	import Main.View;
 	
 	import Shop.Shop;
@@ -25,6 +23,8 @@ package InfantScreen
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
@@ -60,7 +60,11 @@ package InfantScreen
 		private var scenes:Array = new Array();
 		private var currentScene:int = 0;
 		private var currentState:String = "normal";
-		
+		private var tutorial0:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;
+		private var tutorial3:Image;
+		private var tutorial4:Image;
 		
 		public function InfantScreen(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -197,6 +201,48 @@ package InfantScreen
 			Infant.y = 50;
 			addChild(Infant);
 			
+			if(!View.GetInstance().GetPlayer().GetTutorials()[6]){
+				tutorial0 = new Image(assetManager.getTexture("gradient"));
+				addChild(tutorial0);
+				
+				tutorial1 = new Image(assetManager.getTexture("cutscene_infantcare1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("cutscene_infantcare2"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					tutorial3 = new Image(assetManager.getTexture("cutscene_infantcare3"));
+					tutorial3.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial3);
+				}
+				else if(event.target == tutorial3){
+					tutorial3.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial3);
+					tutorial4 = new Image(assetManager.getTexture("cutscene_infantcare4"));
+					tutorial4.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial4);
+				}
+				else if(event.target == tutorial4){
+					tutorial4.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial4);
+					removeChild(tutorial0);
+					
+					View.GetInstance().GetPlayer().setTutorials(6, true);
+				}
+			}				
 		}
 		
 		private function waterButtonTriggered():void{

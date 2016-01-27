@@ -107,14 +107,14 @@ package Common
 				trace("[IO] Cannot replace save file. Contact HelpHeal" + error.message);
 			}
 			
-				function writeArray(_array:Array):Boolean{
-					if(_array == null || _array.length == 0) return true;
-					for(var pointer:int = 0; pointer < _array.length; pointer++){
-						if(pointer == _array.length - 1) stream.writeUTFBytes(_array[pointer] + '\r\n');
-						else stream.writeUTFBytes(_array[pointer] + ',');
-					}
-					return false;
+			function writeArray(_array:Array):Boolean{
+				if(_array == null || _array.length == 0) return true;
+				for(var pointer:int = 0; pointer < _array.length; pointer++){
+					if(pointer == _array.length - 1) stream.writeUTFBytes(_array[pointer] + '\r\n');
+					else stream.writeUTFBytes(_array[pointer] + ',');
 				}
+				return false;
+			}
 		}
 		
 		public function loadUserProfile(_profileName:String):void{
