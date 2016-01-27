@@ -54,6 +54,7 @@ package Player
 		private var tutorials:Array = new Array();
 		private var playerIdle:Image;
 		private var idle:Boolean = false;
+		private var Highscores:Array = new Array();
         
         /**
         * Class constructor sets stage, desired position x and desired position y
@@ -77,6 +78,7 @@ package Player
 			unlock[2] = false;
 			unlock[3] = false;
 			unlock[4] = false;
+			unlock[5] = false;
 			
 			tutorials[0] = false;
 			tutorials[1] = false;
@@ -84,6 +86,12 @@ package Player
 			tutorials[3] = false;
 			tutorials[4] = false;
 			tutorials[5] = false;
+			
+			Highscores.push(0);
+			Highscores.push(0);
+			Highscores.push(0);
+			Highscores.push(0);
+			Highscores.push(0);
 		}
 		
 		private function loadAnimations():void{
@@ -126,6 +134,10 @@ package Player
 		public function setTutorials(tutorial:int, value:Boolean):void{
 			tutorials[tutorial] = value;
 		}
+		
+		public function overWriteSetTutorials(_tutorials:Array):void{
+			tutorials = _tutorials;
+		}
 
 		public function getLife():int{
 			return this.life;
@@ -163,17 +175,16 @@ package Player
 			return checkedViruses;
 		}
 		
-		public function SetCheckedViruses(checkedViruses:Array):void{
-			if(checkedViruses == null){
+		public function SetCheckedViruses(_checkedViruses:Array):void{
+			if(_checkedViruses == null){
 				this.checkedViruses = new Array();
 				this.checkedViruses.push(false);
 				this.checkedViruses.push(false);
 				this.checkedViruses.push(false);
 				this.checkedViruses.push(false);
 				this.checkedViruses.push(false);
-				return;
 			}
-			this.checkedViruses = checkedViruses;
+			else this.checkedViruses = _checkedViruses;
 		}
 		
 		/**
@@ -272,6 +283,10 @@ package Player
 			return this.unlock;
 		}
 		
+		public function setUnlock(_unlock:Array):void{
+			this.unlock = _unlock;
+		}
+		
 		public function addItem(_item:Item):void{
 			items.push(_item);
 		}
@@ -310,6 +325,10 @@ package Player
 		public function RemoveItem(element:Item):void{
 			if(element == null){
 				items = new Array();
+				items.push(0);
+				items.push(0);
+				items.push(0);
+				items.push(0);
 				return;
 			}
 			
@@ -349,6 +368,27 @@ package Player
 		
 		public function getIdleFlag():Boolean{
 			return idle;
+		}
+		
+		public function getHighscore():Array{
+			return Highscores;
+		}
+		
+		/** start with level 1 **/
+		public function setHighscore(level:int, score:int):void{
+			if(Math.ceil(score /24) < Highscores[level-1] || Highscores[level-1] == null) Highscores[level-1] = Math.ceil(score /24);
+		}
+		
+		public function overWriteSetHighscore(_highscore:Array):void{
+			if(_highscore == null){
+				Highscores.push(0);
+				Highscores.push(0);
+				Highscores.push(0);
+				Highscores.push(0);
+				Highscores.push(0);
+				return;
+			}
+			else this.Highscores = _highscore;
 		}
     }
 }

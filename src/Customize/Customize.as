@@ -426,7 +426,7 @@ package Customize{
 			if(nameText.text.length == 0 || nameText.text.match('Enter Name')) return;
 			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
 			for each(var currentName:String in namesAlreadyUsed){
-				if(nameText.text.match(currentName) && IO.GetInstance().getPlayerPointer() == -1){
+				if(nameText.text.match(currentName)){
 					nameText.text = 'name taken'
 					return;
 				}

@@ -5,6 +5,7 @@ package Menu
 	
 	import Common.Screen;
 	import Common.IO;
+	import Common.Highscore;
 	
 	import Customize.Customize;
 	
@@ -86,6 +87,7 @@ package Menu
 		 */
 		private function LoadButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();	
+			/** set back before commit **/
 			View.GetInstance().LoadScreen(Load);
 		}
 		
@@ -94,25 +96,14 @@ package Menu
 		 */
 		private function MapButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();
+			
 			//set player to default
-			IO.GetInstance().setNewPlayerPointer();
 			View.GetInstance().GetPlayer().SetName('Enter Name');
-			View.GetInstance().GetPlayer().setLevel(1, true);
-			View.GetInstance().GetPlayer().setLevel(2, false);
-			View.GetInstance().GetPlayer().setLevel(3, false);
-			View.GetInstance().GetPlayer().setLevel(4, false);
-			View.GetInstance().GetPlayer().setLevel(5, false);
 			View.GetInstance().GetPlayer().setCoin(0);
 			View.GetInstance().GetPlayer().setLife(5);
 			View.GetInstance().GetPlayer().SetLooks(0);
-			View.GetInstance().GetPlayer().setTutorials(0, false);
-			View.GetInstance().GetPlayer().setTutorials(1, false);
-			View.GetInstance().GetPlayer().setTutorials(2, false);
-			View.GetInstance().GetPlayer().setTutorials(3, false);
-			View.GetInstance().GetPlayer().setTutorials(4, false);
-			View.GetInstance().GetPlayer().setTutorials(5, false);
-			View.GetInstance().GetPlayer().SetCheckedViruses(null);
 			View.GetInstance().GetPlayer().RemoveItem(null);
+			View.GetInstance().GetPlayer().overWriteSetHighscore(null);
 			
 			View.GetInstance().LoadScreen(Customize);
 		}

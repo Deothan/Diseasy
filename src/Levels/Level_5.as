@@ -4,6 +4,7 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Highscore;
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
@@ -358,7 +359,9 @@ package Levels{
 		 * Continues to next screen.
 		 */
 		private function Continue(event:TimerEvent):void{
-			View.GetInstance().LoadScreen(VirusScreen);
+			View.GetInstance().GetPlayer().setHighscore(5, View.GetInstance().GetTime());
+			View.GetInstance().setCurrentLevel(5);
+			View.GetInstance().LoadScreen(Highscore);
 		}
 
 		/**

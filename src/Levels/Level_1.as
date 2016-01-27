@@ -7,6 +7,7 @@ package Levels{
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
+	import Common.Highscore;
 	
 	import Items.Coin;
 	import Items.Heart;
@@ -326,7 +327,9 @@ package Levels{
 		 * Continues to next screen.
 		 */
 		private function Continue(event:TimerEvent):void{
-			View.GetInstance().LoadScreen(VirusScreen);
+			View.GetInstance().GetPlayer().setHighscore(1, View.GetInstance().GetTime());
+			View.GetInstance().setCurrentLevel(1);
+			View.GetInstance().LoadScreen(Highscore);
 		}
 		
 		/**

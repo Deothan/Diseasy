@@ -42,6 +42,7 @@ package Main{
 		private var defaultSpeed:int = 2;
 		private var Tutorial:Boolean = false;
 		private var tutorialVirusScreen:Boolean = false;
+		private var currentLevel:int = 0;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -64,6 +65,14 @@ package Main{
 		
 		private function Update(event:Event):void{
 			(screen as Screen).Update();
+		}
+		
+		public function setCurrentLevel(_level:int):void{
+			currentLevel = _level;
+		}
+		
+		public function getCurrentLevel():int{
+			return currentLevel;
 		}
 		
 		public function setSpeed(_speed:int):void{
