@@ -7,29 +7,21 @@ package Map{
 	
 	import Cutscene.Cutscene;
 	
-	import InformationScreen.Tutorial;
-	
-	import Levels.Level_1;
 	import Levels.Level_2;
 	import Levels.Level_3;
 	import Levels.Level_4;
 	import Levels.Level_5;
-	import Levels.Tutorial;
 	
 	import Main.View;
 	
-	import Map.Tutorial;
-	
 	import Menu.Menu;
-	
-	import Shop.Shop;
-	
-	import VirusScreen.VirusScreen;
 	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 
 	public class Map extends Sprite implements Screen{
@@ -44,6 +36,11 @@ package Map{
 		private var level5Button:Button;
 		private var loaded:Boolean = false;
 		private var unlocks:Array;
+		private var tutorial0:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;
+		private var tutorial3:Image;
+		private var tutorial4:Image;
 		
 		public function Map(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -132,13 +129,48 @@ package Map{
 			customizeButton.x = 200;
 			customizeButton.y = 265;
 			addChild(customizeButton);
+			
+			if(!View.GetInstance().GetPlayer().GetTutorials()[1]){
+				tutorial0 = new Image(assetManager.getTexture("gradient"));
+				addChild(tutorial0);
+				
+				tutorial1 = new Image(assetManager.getTexture("cutscene_map1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("cutscene_map3"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					tutorial3 = new Image(assetManager.getTexture("cutscene_map4"));
+					tutorial3.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial3);
+				}
+				else if(event.target == tutorial3){
+					tutorial3.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial3);
+					removeChild(tutorial0);
+					
+					View.GetInstance().GetPlayer().setTutorials(1, true);
+				}
+			}				
 		}
 		
 		private function LevelButtonTriggered(event:Event):void{
 			View.GetInstance().getSoundControl().playButton();
 			if(event.target == level1Button && unlocks[0]){
-				//View.GetInstance().LoadScreen(Cutscene);
-				View.GetInstance().LoadScreen(Levels.Tutorial);
+				View.GetInstance().LoadScreen(Cutscene);
 			}
 			else if(event.target == level2Button && unlocks[1]){
 				View.GetInstance().LoadScreen(Level_2);

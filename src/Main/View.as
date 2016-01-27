@@ -164,15 +164,7 @@ package Main{
 			}
 			return soundtrack;
 		}
-		
-		public function setTutorial(value:Boolean):void{
-			Tutorial = value;
-		}
-		
-		public function getTutorial():Boolean{
-			return Tutorial;
-		}
-		
+
 		public function settutorialVirusScreen(value:Boolean):void{
 			tutorialVirusScreen = value;
 		}

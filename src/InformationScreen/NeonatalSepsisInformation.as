@@ -12,6 +12,8 @@ package InformationScreen
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 
 	public class NeonatalSepsisInformation extends Sprite implements Screen
@@ -78,8 +80,12 @@ package InformationScreen
 			speakerButton.x = 380;
 			speakerButton.y = 45;
 			addChild(speakerButton);
+			
+			if(!View.GetInstance().GetPlayer().GetTutorials()[5]){
+				addChild(new InformationScreen.Tutorial());
+			}
 		}
-		
+
 		public function OkButtonTriggered():void
 		{
 			View.GetInstance().LoadScreen(VirusScreen);

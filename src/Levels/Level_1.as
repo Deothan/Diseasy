@@ -25,6 +25,8 @@ package Levels{
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 	
 	public class Level_1 extends Sprite implements Screen{
@@ -45,6 +47,9 @@ package Levels{
 		private var spawned38:Boolean = false;
 		private var spawned19:Boolean = false;
 		private var spawned0:Boolean = false;
+		private var tutorial0:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;
 		
 		//Changeable variables
 		private var widthOfLevelInPixels:int = 6150;
@@ -90,13 +95,47 @@ package Levels{
 			bottom.SetWidthOfLevelInPixels(widthOfLevelInPixels);
 			addChild(bottom);
 			
-			AddEntities();
-			
 			addChild(jumpLayer);
 			
-			View.GetInstance().GetPlayer().Run();
-			
-			loaded = true;
+			if(!View.GetInstance().GetPlayer().GetTutorials()[2]){
+				tutorial0 = new Image(assetManager.getTexture("gradient"));
+				addChild(tutorial0);
+				
+				tutorial1 = new Image(assetManager.getTexture("cutscene_platform1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}
+			else{
+				AddEntities();
+				View.GetInstance().GetPlayer().Run();
+				
+				loaded = true;
+			}
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("cutscene_platform2"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					removeChild(tutorial0);
+					
+					AddEntities();
+					View.GetInstance().GetPlayer().Run();
+					
+					loaded = true;
+					
+					View.GetInstance().GetPlayer().setTutorials(2, true);
+				}
+			}				
 		}
 		
 		/**

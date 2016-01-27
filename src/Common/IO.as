@@ -307,7 +307,7 @@ package Common
 			foo[5] = "VIRUSSES:" + virusses[0] + "," + virusses[1] + "," + virusses[2] + "," +  virusses[3] + "," + virusses[4];
 			foo[6] = "LEVELS:" + unlock[0] + "," + unlock[1] + "," + unlock[2] + "," +  unlock[3] + "," + unlock[4];
 			foo[7] = "ITEMS:" + items[0] + "," + items[1] + "," + items[2] + "," + items[3];
-			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5];
+			foo[8] = "TUTORIALS:" + tutorials[0] + "," + tutorials[1] + "," + tutorials[2] + "," + tutorials[3] + "," + tutorials[4] + "," + tutorials[5] + ", " + tutorials[6];
 			foo[9] = "</PROFILE>";
 			
 			return foo;

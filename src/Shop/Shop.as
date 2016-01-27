@@ -20,6 +20,8 @@ package Shop
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 
@@ -41,15 +43,12 @@ package Shop
 		private var blanketPrice:int = 3;
 		private var waterPrice:int =4
 		private var textField1:TextField;
+		private var tutorial0:Image;
+		private var tutorial1:Image;
+		private var tutorial2:Image;
 			
 		public function Shop(){
-			if(!View.GetInstance().getTutorial()){
-				View.GetInstance().setTutorial(true);
-				View.GetInstance().LoadScreen(Shop.Tutorial);
-			}
-			else{
-				addEventListener(Event.ADDED_TO_STAGE, Initialize);
-			}
+			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
 		private function Initialize():void{
@@ -66,7 +65,6 @@ package Shop
 		}
 		
 		private function Start():void{
-			
 			coins = View.GetInstance().GetPlayer().getCoins();
 			
 			background = new Image(assetManager.getTexture("shop_screen"));
@@ -172,6 +170,35 @@ package Shop
 			buyWaterBottleButton.y = 234;
 			addChild(buyWaterBottleButton);
 			
+			if(!View.GetInstance().GetPlayer().GetTutorials()[3]){
+				tutorial0 = new Image(assetManager.getTexture("gradient"));
+				tutorial0.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial0);
+				
+				tutorial0.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+				tutorial1 = new Image(assetManager.getTexture("cutscene_shop1"));
+				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+				addChild(tutorial1);
+			}			
+		}
+		
+		private function TutorialTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				View.GetInstance().getSoundControl().playButton();
+				if(event.target == tutorial1){
+					tutorial1.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial1);
+					tutorial2 = new Image(assetManager.getTexture("cutscene_shop2"));
+					tutorial2.addEventListener(TouchEvent.TOUCH, TutorialTouch);
+					addChild(tutorial2);
+				}
+				else if(event.target == tutorial2){
+					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+					removeChild(tutorial2);
+					
+					View.GetInstance().GetPlayer().setTutorials(3, true);
+				}
+			}				
 		}
 		
 		private function BuyMedicineButtonTriggered():void{

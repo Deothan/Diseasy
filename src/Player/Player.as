@@ -20,9 +20,7 @@ package Player
     import Items.Medicine;
     import Items.Towel;
     import Items.WaterBottle;
-    
-    import Main.View;
-    
+
     import starling.core.Starling;
     import starling.display.Image;
     import starling.display.MovieClip;
@@ -78,12 +76,13 @@ package Player
 			unlock[3] = false;
 			unlock[4] = false;
 			
-			tutorials[0] = false;
-			tutorials[1] = false;
-			tutorials[2] = false;
-			tutorials[3] = false;
-			tutorials[4] = false;
-			tutorials[5] = false;
+			tutorials[0] = false; //Customize
+			tutorials[1] = false; //Map
+			tutorials[2] = false; //Level
+			tutorials[3] = false; //Shop
+			tutorials[4] = false; //VirusScreen
+			tutorials[5] = false; //InformationScreen
+			tutorials[6] = false; //InfantCare
 		}
 		
 		private function loadAnimations():void{
