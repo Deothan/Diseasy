@@ -7,11 +7,12 @@ package Main{
 	import Common.SoundControl;
 	
 	import InfantScreen.Infant;
-
+	import InfantScreen.InfantScreen;
+	
 	import Menu.Menu;
 	
 	import Player.Player;
-		
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -37,7 +38,7 @@ package Main{
 		private var tutorialVirusScreen:Boolean = false;
 		private var currentLevel:int = 0;
 		//The first Screen to load
-		private var firstScreen:Class = Menu;
+		private var firstScreen:Class = InfantScreen;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
