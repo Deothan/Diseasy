@@ -127,6 +127,10 @@ package Customize{
 			
 			initializeKeyboard();
 			generateKeyboard(0,185,60);
+			for each(var currentButton:Button in keyboardButton){
+				currentButton.alpha = 0;
+				addChild(currentButton);
+			}
 
 			if(!View.GetInstance().GetPlayer().GetTutorials()[0]){
 				tutorial1 = new Image(assetManager.getTexture("tutorial1"));
@@ -137,17 +141,16 @@ package Customize{
 		}
 		
 		private function onTouch(event:TouchEvent):void{			
-			if(!nameText.text.match('Enter Name')) return;
 			if(event.getTouch(this, TouchPhase.BEGAN)){
 				if(showKeyboard){
 					for each(var currentButton:Button in keyboardButton){
-						removeChild(currentButton);
+						currentButton.alpha = 0;
 					}
 					showKeyboard = false;
 				}
 				else{
 					for each(var currentButton2:Button in keyboardButton){
-						addChild(currentButton2);
+						currentButton2.alpha = 1;
 					}
 					if(nameText.text.match('Enter Name') || nameText.text.match('name taken')) nameText.text = '';
 					showKeyboard = true;
@@ -175,7 +178,6 @@ package Customize{
 			keyboardButton[_index].x = _x;
 			keyboardButton[_index].y = _y;
 			keyboardButton[_index].useHandCursor = true;
-			//addChild(keyboardButton[_index]);
 			generateKeyboard((_index + 1), (_x + 30), _y);
 		}
 		
