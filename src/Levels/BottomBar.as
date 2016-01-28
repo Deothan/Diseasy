@@ -11,6 +11,8 @@ package Levels{
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
 	import starling.utils.Color;
@@ -101,7 +103,7 @@ package Levels{
 				removeChild(hearts.pop());
 			}
 			if(View.GetInstance().GetPlayer().getLife() <= 0){
-				View.GetInstance().LoadScreen(Map);
+				View.GetInstance().LoadScreen(GameOver);
 			}
 		}
 		

@@ -4,9 +4,7 @@ package Shop
 	
 	import Common.IO;
 	import Common.Screen;
-	
-	import Cutscene.Cutscene;
-	
+
 	import InfantScreen.InfantScreen;
 	
 	import Items.Blanket;
