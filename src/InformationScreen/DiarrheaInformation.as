@@ -27,6 +27,7 @@ package InformationScreen
 		
 		public function DiarrheaInformation()
 		{
+			View.GetInstance().getSoundControl().removeBackground();
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		

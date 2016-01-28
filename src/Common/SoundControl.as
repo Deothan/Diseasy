@@ -5,12 +5,15 @@ package Common{
 	import flash.media.SoundChannel;
 	
 	import starling.utils.AssetManager;
+	import Main.View;
 	
 	public class SoundControl
 	{
 		private var assetManager:AssetManager;
 		private var Channel:SoundChannel = new SoundChannel;
+		private var BackgroundChannel:SoundChannel = new SoundChannel;
 		private var sound:Sound;
+		private var Backgroundsound:Sound;
 		private var playing:Boolean = false;
 		
 		public function SoundControl(){
@@ -19,7 +22,7 @@ package Common{
 		
 		private function Initialize():void{
 			assetManager = new AssetManager();
-			var folder:File = File.applicationDirectory.resolvePath("Common/assets");
+			var folder:File = File.applicationDirectory.resolvePath("Common/sounds");
 			assetManager.enqueue(folder);
 			assetManager.verbose = true;
 			assetManager.loadQueue(Progress);
@@ -131,6 +134,31 @@ package Common{
 			sound = assetManager.getSound('sepsis_En');
 			Channel.stop();
 			Channel = sound.play();
+		}
+		
+		public function playLevel():void{
+			Backgroundsound = assetManager.getSound('levels');
+			BackgroundChannel.stop();
+			BackgroundChannel = Backgroundsound.play();
+		}
+		
+		public function playInfant():void{
+			Backgroundsound = assetManager.getSound('infantscreen');
+			BackgroundChannel.stop();
+			BackgroundChannel = Backgroundsound.play();
+		}
+		
+		public function playDefault():void{
+			if(Backgroundsound != null){
+				if(Backgroundsound.length == assetManager.getSound('highscore').length) return;
+			}
+			Backgroundsound = assetManager.getSound('highscore');
+			BackgroundChannel.stop();
+			BackgroundChannel = Backgroundsound.play();
+		}
+		
+		public function removeBackground():void{
+			BackgroundChannel.stop();
 		}
 	}
 }

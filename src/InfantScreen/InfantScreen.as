@@ -86,6 +86,7 @@ package InfantScreen
 		}
 		
 		private function Start():void{
+			View.GetInstance().getSoundControl().playInfant();
 			var items:Array = View.GetInstance().GetPlayer().getItems();
 			background = new Image(assetManager.getTexture("infantcare_background"));
 			View.GetInstance().AddEntity(background);

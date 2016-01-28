@@ -78,7 +78,7 @@ package Common{
 						}
 						if(entity is Item && !entity.Destroyed()){
 							entity.Use();
-							View.GetInstance().getSoundControl().playcollide();
+							View.GetInstance().getSoundControl().playCoin();
 							View.GetInstance().setSpeedBackToDefault();
 							View.GetInstance().GetPlayer().Run();
 						}

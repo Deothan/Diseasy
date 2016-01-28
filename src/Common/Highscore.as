@@ -83,6 +83,7 @@ package Common{
 		}
 		
 		private function draw():void{
+			View.GetInstance().getSoundControl().playDefault();
 			var background:Image = new Image(assetManager.getTexture('backgroundscore'));
 			addChild(background);
 			

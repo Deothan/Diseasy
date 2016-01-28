@@ -27,6 +27,7 @@ package InformationScreen
 		
 		public function HivInformation()
 		{
+				View.GetInstance().getSoundControl().removeBackground();
 				addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		

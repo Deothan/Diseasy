@@ -27,6 +27,7 @@ package InformationScreen
 		
 		public function PneumoniaInformation()
 		{
+			View.GetInstance().getSoundControl().removeBackground();
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 			

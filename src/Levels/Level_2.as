@@ -160,7 +160,7 @@ package Levels{
 		
 		private function SpawnAll(interval:int):void{
 			if(bottom.GetProgress() == 19 && !spawned19 || bottom.GetProgress() == 0 && !spawned0 || bottom.GetProgress() == 38 && !spawned38 || bottom.GetProgress() == 57 && !spawned57 || bottom.GetProgress() == 76 && !spawned76){
-				
+		
 				var nextEnemyX:int = 500;
 				var nextEnemy:int = Math.floor(Math.random()*5);
 				SpawnEnemies(nextEnemy, nextEnemyX);

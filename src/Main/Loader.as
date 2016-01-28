@@ -38,7 +38,10 @@ package Main
 			timer = new Timer(2500, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, Continue);
 			timer.start();
+			
+			View.GetInstance().getSoundControl();
 		}
+		
 		
 		private function Continue(e:TimerEvent):void{
 			removeChild(load);			

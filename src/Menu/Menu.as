@@ -49,7 +49,7 @@ package Menu
 		
 		private function Start():void{
 			IO.GetInstance().reset();
-			View.GetInstance().getSoundControl();
+			View.GetInstance().getSoundControl().playDefault();
 			View.GetInstance().SetLastScreen("Menu");
 			
 			background = new Image(assetManager.getTexture("background"));
@@ -133,7 +133,7 @@ package Menu
 		}
 		
 		public function Update():void{
-
+			
 		}
 		
 		public function Destroy():void{
