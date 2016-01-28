@@ -4,10 +4,12 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Highscore;
 	import Common.IO;
+	import Common.Obstacle;
 	import Common.Physicus;
 	import Common.Screen;
-	import Common.Highscore;
+	import Common.Virus;
 	
 	import Items.Coin;
 	import Items.Heart;
@@ -23,12 +25,14 @@ package Levels{
 	
 	import Viruses.NeonatalSepsis;
 	
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
+	import starling.filters.ColorMatrixFilter;
 	
 	public class Level_1 extends Sprite implements Screen{
 		private var assetManager:AssetManager;
@@ -56,6 +60,10 @@ package Levels{
 		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = View.GetInstance().getSpeed();
 		private var spawnTimeInSeconds:int = 18;
+		//identifier for shrinking or growing
+		private var increasePulse:Boolean = true;
+		//timer to switch
+		private var pulseCounter:int = 0;
 		
 		public function Level_1(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
