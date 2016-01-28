@@ -63,7 +63,6 @@ package Customize{
 		private var YButton:Button;
 		private var ZButton:Button;
 		private var BACKButton:Button;
-		private var showKeyboard:Boolean = true;
 		private var keyboardButton:Array = new Array();
 		
 		public function Customize(){
@@ -116,13 +115,12 @@ package Customize{
 			look.y = 10;
 			addChild(look);
 			
-			if(View.GetInstance().GetPlayer().name != 'Mother') nameText = new TextField(200,25,View.GetInstance().GetPlayer().GetName()); 
+			if(View.GetInstance().GetPlayer().name != '') nameText = new TextField(200,25,View.GetInstance().GetPlayer().GetName()); 
 			else nameText = new TextField(200,25, '');
 			nameText.fontSize = nameText.fontSize * 1.5; 
 			nameText.x = 275;
 			nameText.y = 26;
 			nameText.autoScale = true;
-			nameText.addEventListener(TouchEvent.TOUCH, onTouch);
 			addChild(nameText);
 			
 			initializeKeyboard();
@@ -135,27 +133,7 @@ package Customize{
 				tutorial1 = new Image(assetManager.getTexture("tutorial1"));
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial1);
-			}
-			
-			
-		}
-		
-		private function onTouch(event:TouchEvent):void{			
-			if(event.getTouch(this, TouchPhase.BEGAN)){
-				if(showKeyboard){
-					for each(var currentButton:Button in keyboardButton){
-						currentButton.alpha = 0;
-					}
-					showKeyboard = false;
-				}
-				else{
-					for each(var currentButton2:Button in keyboardButton){
-						currentButton2.alpha = 1;
-					}
-					if(nameText.text.match('Enter Name') || nameText.text.match('name taken')) nameText.text = '';
-					showKeyboard = true;
-				}
-			}
+			}			
 		}
 		
 		/** 
@@ -431,7 +409,7 @@ package Customize{
 				View.GetInstance().LoadScreen(Map);
 				return;
 			}
-			if(nameText.text.length == 0 || nameText.text.match('Enter Name')) return;
+			if(nameText.text.length == 0 || nameText.text.match('')) return;
 			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
 			for each(var currentName:String in namesAlreadyUsed){
 				if(nameText.text.match(currentName)){

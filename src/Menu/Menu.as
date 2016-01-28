@@ -112,15 +112,6 @@ package Menu
 		 */
 		private function MapButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();
-			
-			//set player to default
-			View.GetInstance().GetPlayer().SetName('Enter Name');
-			View.GetInstance().GetPlayer().setCoin(0);
-			View.GetInstance().GetPlayer().setLife(5);
-			View.GetInstance().GetPlayer().SetLooks(0);
-			View.GetInstance().GetPlayer().RemoveItem(null);
-			View.GetInstance().GetPlayer().overWriteSetHighscore(null);
-			
 			View.GetInstance().LoadScreen(Customize);
 		}
 		
