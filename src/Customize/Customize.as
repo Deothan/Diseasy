@@ -63,7 +63,7 @@ package Customize{
 		private var YButton:Button;
 		private var ZButton:Button;
 		private var BACKButton:Button;
-		private var showKeyboard:Boolean = false;
+		private var showKeyboard:Boolean = true;
 		private var keyboardButton:Array = new Array();
 		
 		public function Customize(){
@@ -128,7 +128,6 @@ package Customize{
 			initializeKeyboard();
 			generateKeyboard(0,185,60);
 			for each(var currentButton:Button in keyboardButton){
-				currentButton.alpha = 0;
 				addChild(currentButton);
 			}
 
@@ -137,7 +136,8 @@ package Customize{
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial1);
 			}
-				
+			
+			
 		}
 		
 		private function onTouch(event:TouchEvent):void{			
