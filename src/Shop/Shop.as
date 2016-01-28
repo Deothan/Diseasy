@@ -46,6 +46,8 @@ package Shop
 		private var tutorial0:Image;
 		private var tutorial1:Image;
 		private var tutorial2:Image;
+		private var notEnoughCoins:Image;
+		private var notEnoughCoinsGradient:Image;
 			
 		public function Shop(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -172,14 +174,28 @@ package Shop
 			
 			if(!View.GetInstance().GetPlayer().GetTutorials()[3]){
 				tutorial0 = new Image(assetManager.getTexture("gradient"));
-				tutorial0.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial0);
-				
-				tutorial0.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
+
 				tutorial1 = new Image(assetManager.getTexture("cutscene_shop1"));
 				tutorial1.addEventListener(TouchEvent.TOUCH, TutorialTouch);
 				addChild(tutorial1);
 			}			
+		}
+		
+		private function NotEnoughCoins():void{
+			notEnoughCoinsGradient = new Image(assetManager.getTexture("gradient"));
+			addChild(notEnoughCoinsGradient)
+			
+			notEnoughCoins = new Image(assetManager.getTexture("not_enough_coins"));
+			notEnoughCoins.addEventListener(TouchEvent.TOUCH, NotEnoughCoinsTouch);
+			addChild(notEnoughCoins);
+		}
+		
+		private function NotEnoughCoinsTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				removeChild(notEnoughCoins);
+				removeChild(notEnoughCoinsGradient)
+			}
 		}
 		
 		private function TutorialTouch(event:TouchEvent):void{
@@ -195,6 +211,7 @@ package Shop
 				else if(event.target == tutorial2){
 					tutorial2.removeEventListener(TouchEvent.TOUCH, TutorialTouch);
 					removeChild(tutorial2);
+					removeChild(tutorial0);
 					
 					View.GetInstance().GetPlayer().setTutorials(3, true);
 				}
@@ -209,6 +226,8 @@ package Shop
 				View.GetInstance().GetPlayer().addItem(new Medicine());
 				textField1.text = coins.toString();
 			}
+			else
+				NotEnoughCoins();
 		}
 		
 		private function BuyTowelButtonTriggered():void{
@@ -219,6 +238,8 @@ package Shop
 				View.GetInstance().GetPlayer().addItem(new Towel());
 				textField1.text = coins.toString();
 			}
+			else
+				NotEnoughCoins();
 		}
 		
 		private function BuyBlanketButtonTriggered():void{
@@ -229,6 +250,8 @@ package Shop
 				View.GetInstance().GetPlayer().addItem(new Blanket());
 				textField1.text = coins.toString();
 			}
+			else
+				NotEnoughCoins();
 		}
 		
 		private function BuyWaterBottleButtonTriggered():void{
@@ -239,6 +262,8 @@ package Shop
 				View.GetInstance().GetPlayer().addItem(new WaterBottle());
 				textField1.text = coins.toString();
 			}
+			else
+				NotEnoughCoins();
 		}
 		
 		private function BackButtonTriggered():void{

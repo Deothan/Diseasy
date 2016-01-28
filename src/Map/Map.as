@@ -11,6 +11,7 @@ package Map{
 	import Levels.Level_3;
 	import Levels.Level_4;
 	import Levels.Level_5;
+	import Levels.SpeedScreen;
 	
 	import Main.View;
 	
@@ -170,19 +171,24 @@ package Map{
 		private function LevelButtonTriggered(event:Event):void{
 			View.GetInstance().getSoundControl().playButton();
 			if(event.target == level1Button && unlocks[0]){
-				View.GetInstance().LoadScreen(Cutscene);
+				View.GetInstance().SetLevel(Cutscene);
+				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 			else if(event.target == level2Button && unlocks[1]){
-				View.GetInstance().LoadScreen(Level_2);
+				View.GetInstance().SetLevel(Level_2);
+				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 			else if(event.target == level3Button && unlocks[2]){
-				View.GetInstance().LoadScreen(Level_3);
+				View.GetInstance().SetLevel(Level_3);
+				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 			else if(event.target == level4Button && unlocks[3]){
-				View.GetInstance().LoadScreen(Level_4);
+				View.GetInstance().SetLevel(Level_4);
+				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 			else if(event.target == level5Button && unlocks[4]){
-				View.GetInstance().LoadScreen(Level_5);
+				View.GetInstance().SetLevel(Level_5);
+				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 		}
 		
