@@ -1,4 +1,5 @@
 package Common{
+	import flash.events.Event;
 	import flash.filesystem.File;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -8,8 +9,9 @@ package Common{
 	public class SoundControl
 	{
 		private var assetManager:AssetManager;
-		private var Channel:SoundChannel =  new SoundChannel();
+		private var Channel:SoundChannel = new SoundChannel;
 		private var sound:Sound;
+		private var playing:Boolean = false;
 		
 		public function SoundControl(){
 			Initialize();
@@ -28,80 +30,107 @@ package Common{
 				trace("[AssetManager] MUSIC LOADED");
 			}
 		}
-		
+
 		public function playSad():void{
-			if (Channel != null) Channel.stop();
 			sound = assetManager.getSound('sadtheme');
+			Channel.stop();
 			Channel = sound.play();
 		}
 		
 		public function playClock():void{
-			if (Channel != null) Channel.stop();
 			sound = assetManager.getSound('sound_ticking');
+			Channel.stop();
 			Channel = sound.play();
 		}
 		
 		public function playButton():void{
-			assetManager.getSound('button').play();
+			sound = assetManager.getSound('button');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playCoin():void{
-			assetManager.getSound('coin').play();
+			sound = assetManager.getSound('coin');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playcollide():void{
-			assetManager.getSound('collide').play();
+			sound = assetManager.getSound('collide');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playjump():void{
-			Channel.stop()
-			assetManager.getSound('jump').play();
+			sound = assetManager.getSound('jump');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playStartGame():void{
-			if (Channel != null) Channel.stop();
 			sound = assetManager.getSound('startgame');
+			Channel.stop();
 			Channel = sound.play();
 		}
 		
 		public function playHiv():void{
-			assetManager.getSound('hiv').play();
+			sound = assetManager.getSound('hiv');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playHiv_En():void{
-			assetManager.getSound('hiv_En').play();
+			sound = assetManager.getSound('hiv_En');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playDiarrhea():void{
-			assetManager.getSound('diarrhea').play();
+			sound = assetManager.getSound('diarrhea');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playDiarrhea_En():void{
-			assetManager.getSound('diarrhea_En').play();
+			sound = assetManager.getSound('diarrhea_En');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playMalaria():void{
-			assetManager.getSound('malaria').play();
+			sound = assetManager.getSound('malaria');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playMalaria_En():void{
-			assetManager.getSound('malaria_En').play();
+			sound = assetManager.getSound('malaria_En');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playPnuemonia():void{
-			assetManager.getSound('pnuemonia').play();
+			sound = assetManager.getSound('pnuemonia');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playPnuemonia_En():void{
-			assetManager.getSound('pnuemonia_En').play();
+			sound = assetManager.getSound('pnuemonia_En');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playSepsis():void{
-			assetManager.getSound('sepsis').play();
+			sound = assetManager.getSound('sepsis');
+			Channel.stop();
+			Channel = sound.play();
 		}
 		
 		public function playSepsis_En():void{
-			assetManager.getSound('sepsis_En').play();
+			sound = assetManager.getSound('sepsis_En');
+			Channel.stop();
+			Channel = sound.play();
 		}
 	}
 }

@@ -8,8 +8,6 @@ package Main{
 	
 	import InfantScreen.Infant;
 	
-	import InformationScreen.DiarrheaInformation;
-	
 	import Menu.Menu;
 	
 	import Player.Player;
