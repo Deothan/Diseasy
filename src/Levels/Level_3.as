@@ -8,26 +8,21 @@ package Levels{
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
+	import Common.Virus;
 	
 	import Items.Blanket;
 	import Items.Coin;
 	import Items.Heart;
 	import Items.Medicine;
-	import Items.Towel;
 	import Items.Watch;
-	import Items.WaterBottle;
 	
 	import Main.View;
 	
-	import Obstacles.Rock;
 	import Obstacles.WaterPit;
 	
 	import Platforms.Platform;
 	
-	import VirusScreen.VirusScreen;
-	
 	import Viruses.Diarrhea;
-	import Viruses.Malaria;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -52,8 +47,11 @@ package Levels{
 		private var spawned38:Boolean = false;
 		private var spawned19:Boolean = false;
 		private var spawned0:Boolean = false;
+		private var pulseTracker:int = 0;
+		private var pulseGoingUp:Boolean = true;
 		
 		//Changeable variables
+		private var pulseSize:int = 15;
 		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = View.GetInstance().getSpeed();
 		private var spawnTimeInSeconds:int = 13;
@@ -320,6 +318,35 @@ package Levels{
 		}
 		
 		/**
+		 * This function decides how much the virus pulses in this level.
+		 * By changing the pulseSize integer in the top, the level of the pulse can be changed for this level.
+		 */
+		private function VirusPulse():void{
+			for(var i:int = 0; i < View.GetInstance().GetEntities().length; i++){
+				if(View.GetInstance().GetEntities()[i] is Virus){
+					if(pulseTracker < pulseSize && pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseTracker++;
+					}
+					else if(pulseTracker == pulseSize && pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseGoingUp = false;
+						pulseTracker--;
+					}
+					else if(pulseTracker > 0 && !pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseTracker--;
+					}
+					else if(pulseTracker == 0 && !pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseGoingUp = true;
+						pulseTracker++;
+					}
+				}
+			}
+		}
+		
+		/**
 		 * Updates the screen.
 		 */
 		public function Update():void{
@@ -331,7 +358,7 @@ package Levels{
 				top.Update();
 				ScreenProgression();
 				bottom.Update();
-				
+				VirusPulse();
 			}
 			if(View.GetInstance().GetPlayer().getSpawned()){
 				Common.Physicus.GetInstance().Collision();

@@ -7,18 +7,11 @@ package Main{
 	import Common.SoundControl;
 	
 	import InfantScreen.Infant;
-	
-	import Levels.Level_2;
-	import Levels.Level_3;
-	import Levels.Level_4;
-	import Levels.Level_5;
-	
+
 	import Menu.Menu;
 	
 	import Player.Player;
-	
-	import VirusScreen.VirusScreen;
-	
+		
 	import starling.display.Sprite;
 	import starling.events.Event;
 
@@ -43,6 +36,8 @@ package Main{
 		private var Tutorial:Boolean = false;
 		private var tutorialVirusScreen:Boolean = false;
 		private var currentLevel:int = 0;
+		//The first Screen to load
+		private var firstScreen:Class = Menu;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -57,7 +52,7 @@ package Main{
 		}
 		
 		private function Initialize(event:Event):void{
-			LoadScreen(Menu);
+			LoadScreen(firstScreen);
 			
 			timer = new Timer((delay*1000), 1);
 			timer.addEventListener(TimerEvent.TIMER, Unlock);
