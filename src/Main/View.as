@@ -7,8 +7,7 @@ package Main{
 	import Common.SoundControl;
 	
 	import InfantScreen.Infant;
-	import InfantScreen.InfantScreen;
-	
+
 	import Menu.Menu;
 	
 	import Player.Player;
@@ -38,7 +37,8 @@ package Main{
 		private var tutorialVirusScreen:Boolean = false;
 		private var currentLevel:int = 0;
 		//The first Screen to load
-		private var firstScreen:Class = InfantScreen;
+		private var firstScreen:Class = Menu;
+		private var level:Class;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -61,6 +61,14 @@ package Main{
 		
 		private function Update(event:Event):void{
 			(screen as Screen).Update();
+		}
+		
+		public function GetLevel():Class{
+			return level;
+		}
+		
+		public function SetLevel(level:Class):void{
+			this.level = level;
 		}
 		
 		public function setCurrentLevel(_level:int):void{

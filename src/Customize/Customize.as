@@ -449,7 +449,6 @@ package Customize{
 		}
 		
 		private function BackButtonTriggered():void{
-			Destroy();
 			if(View.GetInstance().GetLastScreen() == "Menu"){
 				View.GetInstance().getSoundControl().playButton();
 				View.GetInstance().LoadScreen(Menu);
