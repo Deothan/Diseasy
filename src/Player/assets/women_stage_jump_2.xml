@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="women_stage_jump_2.png">
+	<!-- Created with Adobe Flash Professional version 14.0.0.110 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="women_jump_2 instance 10000" x="0" y="0" width="28" height="49" pivotX="16.8" pivotY="0" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10001" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10002" x="56" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10003" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10004" x="0" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10005" x="28" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10006" x="56" y="50" width="29" height="48" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10007" x="85" y="50" width="30" height="47" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10008" x="0" y="99" width="31" height="46" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10009" x="31" y="99" width="31" height="45" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10010" x="62" y="99" width="32" height="44" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10011" x="31" y="99" width="31" height="45" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10012" x="0" y="99" width="31" height="46" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10013" x="85" y="50" width="30" height="47" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10014" x="56" y="50" width="29" height="48" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10015" x="28" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10016" x="0" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10017" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10018" x="56" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10019" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+	<SubTexture name="women_jump_2 instance 10020" x="0" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
+</TextureAtlas>

@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="women_stage.png">
-	<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+	<!-- Created with Adobe Flash Professional version 14.0.0.110 -->
 	<!-- http://www.adobe.com/products/flash.html -->
-	<SubTexture name="body instance 10000" x="0" y="0" width="28" height="49" pivotX="16.8" pivotY="0" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10001" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10002" x="56" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10003" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10004" x="112" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10005" x="140" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10006" x="168" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10007" x="196" y="0" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10008" x="224" y="0" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10009" x="0" y="50" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10010" x="29" y="50" width="30" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10011" x="0" y="50" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10012" x="224" y="0" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10013" x="196" y="0" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10014" x="168" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10015" x="140" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10016" x="112" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10017" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10018" x="56" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10019" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10020" x="0" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10021" x="59" y="50" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10022" x="87" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10023" x="115" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10024" x="143" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10025" x="171" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10026" x="199" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10027" x="227" y="50" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10028" x="0" y="100" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10029" x="29" y="100" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10030" x="58" y="100" width="30" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10031" x="29" y="100" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10032" x="88" y="100" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10033" x="227" y="50" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10034" x="199" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10035" x="171" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10036" x="143" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10037" x="115" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10038" x="87" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10039" x="59" y="50" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
-	<SubTexture name="body instance 10040" x="0" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10000" x="0" y="0" width="28" height="49" pivotX="16.8" pivotY="0" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10001" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10002" x="56" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10003" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10004" x="112" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10005" x="140" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10006" x="168" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10007" x="196" y="0" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10008" x="224" y="0" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10009" x="0" y="50" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10010" x="29" y="50" width="30" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10011" x="0" y="50" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10012" x="224" y="0" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10013" x="196" y="0" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10014" x="168" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10015" x="140" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10016" x="112" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10017" x="84" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10018" x="56" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10019" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10020" x="0" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10021" x="59" y="50" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10022" x="87" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10023" x="115" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10024" x="143" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10025" x="171" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10026" x="199" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10027" x="227" y="50" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10028" x="0" y="100" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10029" x="29" y="100" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10030" x="58" y="100" width="30" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10031" x="29" y="100" width="29" height="47" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10032" x="88" y="100" width="29" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10033" x="227" y="50" width="28" height="48" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10034" x="199" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10035" x="171" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10036" x="143" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10037" x="115" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10038" x="87" y="50" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10039" x="59" y="50" width="28" height="50" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
+	<SubTexture name="women_walk_1 instance 10040" x="0" y="0" width="28" height="49" frameX="0" frameY="0" frameWidth="30" frameHeight="50"/>
 </TextureAtlas>

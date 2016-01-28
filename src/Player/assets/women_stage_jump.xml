@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="women_stage_jump.png">
-	<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+	<!-- Created with Adobe Flash Professional version 14.0.0.110 -->
 	<!-- http://www.adobe.com/products/flash.html -->
 	<SubTexture name="women_jump_1 instance 10000" x="0" y="0" width="28" height="49" pivotX="16.8" pivotY="0" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>
 	<SubTexture name="women_jump_1 instance 10001" x="28" y="0" width="28" height="50" frameX="0" frameY="0" frameWidth="32" frameHeight="50"/>

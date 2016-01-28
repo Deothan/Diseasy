@@ -46,7 +46,7 @@ package Hospital{
 			
 			background = new Image(assetManager.getTexture("hospital_animation"));
 			addChild(background);
-			player = new MovieClip(assetManager.getTextures("body instance"), 34);
+			player = new MovieClip(assetManager.getTextures("women_walk_"+(View.GetInstance().GetPlayer().GetLooks() + 1)), 34);
 			Starling.juggler.add(player);
 			player.x = -10;
 			player.y = 205;

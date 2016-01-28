@@ -95,13 +95,13 @@ package Player
 		}
 		
 		private function loadAnimations():void{
-			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 34);
+			var run_animation:MovieClip = new MovieClip(assetManager.getTextures("women_walk_"+(looks +1)), 34);
 			_animations["run"] = run_animation;
 			
-			var idle_animation:MovieClip = new MovieClip(assetManager.getTextures("body instance"), 1);
+			var idle_animation:MovieClip = new MovieClip(assetManager.getTextures("women_walk_"+(looks +1)), 1);
 			_animations["idle"] = idle_animation;
 			
-			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("women_jump_1"), 24);
+			var jump_animation:MovieClip = new MovieClip(assetManager.getTextures("women_jump_"+(looks +1)), 24);
 			_animations["jump"] = jump_animation;
 		}
 				
