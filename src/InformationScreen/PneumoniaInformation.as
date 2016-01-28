@@ -23,6 +23,7 @@ package InformationScreen
 		private var englishButton:Button;
 		private var luoButton:Button;
 		private var speakerButton:Button;
+		private var luoIsChosen:Boolean = false;
 		
 		public function PneumoniaInformation()
 		{
@@ -98,6 +99,7 @@ package InformationScreen
 			pneumoniaInformation.x = 15;
 			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);
+			luoIsChosen = false;
 		}	
 		
 		public function LuoLanguage():void
@@ -109,11 +111,15 @@ package InformationScreen
 			pneumoniaInformation.x = 15;
 			pneumoniaInformation.y = 20;
 			addChild(pneumoniaInformation);
+			luoIsChosen = true;
 		}
 		
 		public function Speaker():void
 		{
-			View.GetInstance().getSoundControl().playPnuemonia();
+			if(luoIsChosen)
+				View.GetInstance().getSoundControl().playPnuemonia();
+			else
+				View.GetInstance().getSoundControl().playPnuemonia_En();
 		}
 		
 		public function Update():void

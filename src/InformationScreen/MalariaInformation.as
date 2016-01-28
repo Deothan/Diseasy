@@ -23,6 +23,7 @@ package InformationScreen
 		private var englishButton:Button;
 		private var luoButton:Button;
 		private var speakerButton:Button;
+		private var luoIsChosen:Boolean = false;
 		
 		public function MalariaInformation()
 		{
@@ -98,6 +99,7 @@ package InformationScreen
 			malariaInformation.x = 15;
 			malariaInformation.y = 20;
 			addChild(malariaInformation);
+			luoIsChosen = false;
 		}	
 		
 		public function LuoLanguage():void
@@ -109,11 +111,15 @@ package InformationScreen
 			malariaInformation.x = 15;
 			malariaInformation.y = 20;
 			addChild(malariaInformation);
+			luoIsChosen = true;
 		}
 		
 		public function Speaker():void
 		{
-			View.GetInstance().getSoundControl().playMalaria();
+			if(luoIsChosen)
+				View.GetInstance().getSoundControl().playMalaria();
+			else
+				View.GetInstance().getSoundControl().playMalaria_En();
 		}
 		
 		public function Update():void

@@ -23,6 +23,7 @@ package InformationScreen
 		private var englishButton:Button;
 		private var luoButton:Button;
 		private var speakerButton:Button;
+		private var luoIsChosen:Boolean = false;
 		
 		public function DiarrheaInformation()
 		{
@@ -97,6 +98,7 @@ package InformationScreen
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation);
+			luoIsChosen = false;
 		}	
 		
 		public function LuoLanguage():void
@@ -108,10 +110,14 @@ package InformationScreen
 			diarrheaInformation.x = 15;
 			diarrheaInformation.y = 20;
 			addChild(diarrheaInformation); 
+			luoIsChosen = true;
 		}
 		
 		public function Speaker():void{
-			View.GetInstance().getSoundControl().playDiarrhoea();
+			if(luoIsChosen)
+				View.GetInstance().getSoundControl().playDiarrhea();
+			else
+				View.GetInstance().getSoundControl().playDiarrhea_En();
 		}
 		
 		public function Update():void

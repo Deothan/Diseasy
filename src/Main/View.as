@@ -7,7 +7,9 @@ package Main{
 	import Common.SoundControl;
 	
 	import InfantScreen.Infant;
-
+	
+	import InformationScreen.DiarrheaInformation;
+	
 	import Menu.Menu;
 	
 	import Player.Player;
@@ -37,7 +39,7 @@ package Main{
 		private var tutorialVirusScreen:Boolean = false;
 		private var currentLevel:int = 0;
 		//The first Screen to load
-		private var firstScreen:Class = Menu;
+		private var firstScreen:Class = DiarrheaInformation;
 		private var level:Class;
 		
 		public function View(){
