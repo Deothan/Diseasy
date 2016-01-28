@@ -265,6 +265,10 @@ package Player
 			this.coins = param;
 		}
 		
+		public function changeCoins(param:int):void{
+			this.coins += param;
+		}
+		
 		/**
 		 * method to set a level to a current state. 
 		 * @param level: the level to set (1-5)

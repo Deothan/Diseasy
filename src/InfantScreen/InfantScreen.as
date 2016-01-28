@@ -9,6 +9,8 @@ package InfantScreen
 	import Common.Item;
 	import Common.Screen;
 	
+	import Hospital.Hospital;
+	
 	import Items.Blanket;
 	import Items.Medicine;
 	import Items.Towel;
@@ -54,7 +56,6 @@ package InfantScreen
 		private var TemperatureRED:Quad;
 		private var Infant:Image;
 		private var ready:Boolean = false;
-		private var coins:int;
 		private var hospitalPrice:int = 15;
 		private var timer:Timer;
 		private var scenes:Array = new Array();
@@ -65,6 +66,7 @@ package InfantScreen
 		private var tutorial2:Image;
 		private var tutorial3:Image;
 		private var tutorial4:Image;
+		private var noMoney:Image;
 		
 		public function InfantScreen(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -84,7 +86,6 @@ package InfantScreen
 		}
 		
 		private function Start():void{
-			coins = View.GetInstance().GetPlayer().getCoins();
 			var items:Array = View.GetInstance().GetPlayer().getItems();
 			background = new Image(assetManager.getTexture("infantcare_background"));
 			View.GetInstance().AddEntity(background);
@@ -309,27 +310,27 @@ package InfantScreen
 		
 		private function hospitalButtonTriggered():void
 		{
-			if(coins>hospitalPrice){
-				coins -= hospitalPrice;
-				View.GetInstance().GetPlayer().setCoin(coins);
-				timer = new Timer(3000, 6);
-				timer.addEventListener(TimerEvent.TIMER, NextScene);
-				View.GetInstance().getSoundControl().playSad();
-				scenes[0] = new Image(assetManager.getTexture("storyscene1"));
-				scenes[1] = new Image(assetManager.getTexture("storyscene2"));
-				scenes[2] = new Image(assetManager.getTexture("storyscene3"));
-				scenes[3] = new Image(assetManager.getTexture("storyscene4"));
-				scenes[4] = new Image(assetManager.getTexture("storyscene5"));
-				scenes[5] = new Image(assetManager.getTexture("storyscene6"));
+			View.GetInstance().GetPlayer().setCoin(100);
+			if(View.GetInstance().GetPlayer().getCoins() > hospitalPrice){
+				View.GetInstance().GetPlayer().changeCoins(-hospitalPrice);
 				
-				currentScene = 0;
-				addChild(scenes[currentScene]);
-				
-				timer.start();
 				View.GetInstance().GetInfant().setHealth(100);
 				View.GetInstance().GetInfant().setHydration(100);
 				View.GetInstance().GetInfant().setHygiene(100);
 				View.GetInstance().GetInfant().setTemperature(100);
+				
+				View.GetInstance().LoadScreen(Hospital);
+			}
+			else{
+				noMoney = new Image(assetManager.getTexture("no_money_hospital"));
+				noMoney.addEventListener(TouchEvent.TOUCH, NoMoneyTouch);
+				addChild(noMoney);
+			}
+		}
+		
+		private function NoMoneyTouch(event:TouchEvent):void{
+			if(event.getTouch(this, TouchPhase.BEGAN)){
+				removeChild(noMoney);
 			}
 		}
 		
