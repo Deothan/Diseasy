@@ -46,7 +46,7 @@ package Player
 		private var unlock:Array = new Array;
 		private var looks:int = 0;
 		private var items:Array = new Array();
-		private var name:String = 'Mother';
+		private var name:String = '';
 		private var spawned:Boolean = false;
 		private var checkedViruses:Array = new Array();
 		private var tutorials:Array = new Array();
@@ -62,9 +62,7 @@ package Player
 			animations = new Array();
 			unlock[1] = true;
         	addEventListener(Event.ADDED_TO_STAGE, Initialize);
-			
-			name = "Enter Name";
-			
+
 			checkedViruses[0] = false;
 			checkedViruses[1] = false;
 			checkedViruses[2] = false;
