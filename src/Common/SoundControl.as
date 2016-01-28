@@ -73,7 +73,7 @@ package Common{
 		public function playStartGame():void{
 			sound = assetManager.getSound('startgame');
 			Channel.stop();
-			Channel = sound.play();
+			Channel = sound.play();			
 		}
 		
 		public function playHiv():void{
