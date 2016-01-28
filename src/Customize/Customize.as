@@ -407,9 +407,10 @@ package Customize{
 				View.GetInstance().getSoundControl().playButton();
 				IO.GetInstance().Save();
 				View.GetInstance().LoadScreen(Map);
+			}
+			if(nameText.text.length == 0){ 
 				return;
 			}
-			if(nameText.text.length == 0 || nameText.text.match('')) return;
 			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
 			for each(var currentName:String in namesAlreadyUsed){
 				if(nameText.text.match(currentName)){
