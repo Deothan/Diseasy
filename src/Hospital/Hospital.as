@@ -9,7 +9,9 @@ package Hospital{
 	
 	import Main.View;
 	
+	import starling.core.Starling;
 	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
@@ -19,6 +21,7 @@ package Hospital{
 		private var background:Image;
 		private var timer:Timer;
 		private var delayDone:Boolean = false;
+		private var player:MovieClip;
 		
 		public function Hospital(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);
@@ -43,10 +46,11 @@ package Hospital{
 			
 			background = new Image(assetManager.getTexture("hospital_animation"));
 			addChild(background);
-			addChild(View.GetInstance().GetPlayer());
-			View.GetInstance().GetPlayer().x = -10;
-			View.GetInstance().GetPlayer().y = 205;
-			View.GetInstance().GetPlayer().Run();
+			player = new MovieClip(assetManager.getTextures("body instance"), 34);
+			Starling.juggler.add(player);
+			player.x = -10;
+			player.y = 205;
+			addChild(player);
 		}
 		
 		private function Timed(event:TimerEvent):void{
@@ -54,18 +58,18 @@ package Hospital{
 		}
 		
 		private function movePlayer():void{
-			if(View.GetInstance().GetPlayer().x < 400){
-				View.GetInstance().GetPlayer().x += 2;
+			if(player.x < 300){
+				player.x += 2;
 			}
 			else{
-				View.GetInstance().GetPlayer().Stop();
+				Starling.juggler.remove(player);
+				removeChild(player);
 				timer.start();
 			}
 		}
 		
 		public function Update():void{
-			if(View.GetInstance().GetPlayer().getSpawned())
-				movePlayer();
+				if(player != null) movePlayer();
 		}
 		
 		public function Destroy():void{
