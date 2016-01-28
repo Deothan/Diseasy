@@ -6,6 +6,7 @@ package Common{
 	import flash.text.TextFormat;
 	
 	import Main.View;
+	import Menu.Menu;
 	
 	import VirusScreen.VirusScreen;
 	
@@ -54,10 +55,17 @@ package Common{
 		private var assetManager:AssetManager;
 		private var continueButton:Button;
 		
+		private var Level1Button:Button;
+		private var Level2Button:Button;
+		private var Level3Button:Button;
+		private var Level4Button:Button;
+		private var Level5Button:Button;
+		private var HighscoreOKButton:Button;
+		
 		public function Highscore(){
 			records = new Array();
-			Load();
-			HighscoreCheck();
+			if(View.GetInstance().getCurrentLevel() != -1)Load();
+			if(View.GetInstance().getCurrentLevel() != -1)HighscoreCheck();
 			this.addEventListener(Event.ADDED_TO_STAGE, Initialize);
 		}
 		
@@ -77,6 +85,45 @@ package Common{
 		private function draw():void{
 			var background:Image = new Image(assetManager.getTexture('backgroundscore'));
 			addChild(background);
+			
+			if(View.GetInstance().getCurrentLevel() == -1){
+				Level1Button = new Button(assetManager.getTexture('highscore1'));
+				Level1Button.x = 40;
+				Level1Button.y = 130;
+				addChild(Level1Button);
+				Level1Button.addEventListener(Event.TRIGGERED, LevelButton);
+				
+				Level2Button = new Button(assetManager.getTexture('highscore2'));
+				Level2Button.x = 180;
+				Level2Button.y = 130;
+				addChild(Level2Button);
+				Level2Button.addEventListener(Event.TRIGGERED, LevelButton);
+				
+				Level3Button = new Button(assetManager.getTexture('highscore3'));
+				Level3Button.x = 320;
+				Level3Button.y = 130;
+				addChild(Level3Button);
+				Level3Button.addEventListener(Event.TRIGGERED, LevelButton);
+				
+				Level4Button = new Button(assetManager.getTexture('highscore4'));
+				Level4Button.x = 40;
+				Level4Button.y = 230;
+				addChild(Level4Button);
+				Level4Button.addEventListener(Event.TRIGGERED, LevelButton);
+				
+				Level5Button = new Button(assetManager.getTexture('highscore5'));
+				Level5Button.x = 180;
+				Level5Button.y = 230;
+				addChild(Level5Button);
+				Level5Button.addEventListener(Event.TRIGGERED, LevelButton);
+				
+				HighscoreOKButton = new Button(assetManager.getTexture('button_ok'));
+				HighscoreOKButton.x = 320;
+				HighscoreOKButton.y = 230;
+				addChild(HighscoreOKButton);
+				HighscoreOKButton.addEventListener(Event.TRIGGERED, LevelButton);
+				return;
+			}
 			
 			continueButton = new Button(assetManager.getTexture('button_ok'));
 			continueButton.x = 340;
@@ -164,7 +211,37 @@ package Common{
 		}
 		
 		private function Continue():void{
-			View.GetInstance().LoadScreen(VirusScreen);
+			if(View.GetInstance().GetLastScreen() == "Menu"){
+				View.GetInstance().setCurrentLevel(-1);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			else View.GetInstance().LoadScreen(VirusScreen);
+		}
+		
+		private function LevelButton(e:Event):void{
+			if(e.target == Level1Button){
+				View.GetInstance().setCurrentLevel(1);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			if(e.target == Level2Button){
+				View.GetInstance().setCurrentLevel(2);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			if(e.target == Level3Button){
+				View.GetInstance().setCurrentLevel(3);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			if(e.target == Level4Button){
+				View.GetInstance().setCurrentLevel(4);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			if(e.target == Level5Button){
+				View.GetInstance().setCurrentLevel(5);
+				View.GetInstance().LoadScreen(Highscore);
+			}
+			if(e.target == HighscoreOKButton){
+				View.GetInstance().LoadScreen(Menu);
+			}
 		}
 		
 		/** method to read array from disk to memory **/
@@ -264,15 +341,16 @@ package Common{
 					splitRecord = tmp[loop].split(":");
 				}
 				if(tmp[loop] == 'null'){
-					tmp[loop] = "" + playername +":" + time;
+					if(time != 0)tmp[loop] = "" + playername +":" + time;
 					break;
 				}	
-				else if(time < splitRecord[1]){
+				else if(time < splitRecord[1] && time != 0){
 					tmp.splice(loop, 0,  "" + playername +":" + time);
 					//records[((level - 1)*5) + loop] = "" + playername +":" + time;
 					break;
 				}
 			}
+			
 			records[((level - 1)*5)] = tmp[0].toString();
 			records[((level - 1)*5) +1] = tmp[1].toString();
 			records[((level - 1)*5) +2] = tmp[2].toString();

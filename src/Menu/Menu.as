@@ -3,9 +3,9 @@ package Menu
 	import flash.desktop.NativeApplication;
 	import flash.filesystem.File;
 	
-	import Common.Screen;
-	import Common.IO;
 	import Common.Highscore;
+	import Common.IO;
+	import Common.Screen;
 	
 	import Customize.Customize;
 	
@@ -27,6 +27,7 @@ package Menu
 		private var settingsButton:Button;
 		private var loadButton:Button;
 		private var exitButton:Button;
+		private var highscoreButton:Button;
 		private var background:Image;
 		
 		public function Menu(){
@@ -72,6 +73,12 @@ package Menu
 			exitButton.y = 220;
 			addChild(exitButton);
 			
+			highscoreButton = new Button(assetManager.getTexture("button_highscore"));
+			highscoreButton.addEventListener(Event.TRIGGERED, highscoreTriggered);
+			highscoreButton.x = 280;
+			highscoreButton.y = 220;
+			addChild(highscoreButton);
+			
 		}
 		
 		/**
@@ -80,6 +87,15 @@ package Menu
 		private function ExitButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();
 			NativeApplication.nativeApplication.exit();
+		}
+		
+		/**
+		 * Opens the Highscore screen
+		 */
+		private function highscoreTriggered():void{
+			View.GetInstance().getSoundControl().playButton();
+			View.GetInstance().setCurrentLevel(-1);
+			View.GetInstance().LoadScreen(Highscore);
 		}
 		
 		/**
