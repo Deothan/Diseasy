@@ -62,6 +62,11 @@ package Viruses{
 				return this.height;
 			}
 			
+			public function Pulse(state:int):void{
+				this.scaleX = 1 + (state/100);
+				this.scaleY = 1 + (state/100);
+			}
+			
 			public function Encounter():void{
 				Destroy();
 				View.GetInstance().GetInfant().setHealth(-2);

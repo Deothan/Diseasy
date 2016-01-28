@@ -4,10 +4,11 @@ package Levels{
 	import flash.utils.Timer;
 	
 	import Common.Entity;
+	import Common.Highscore;
 	import Common.IO;
 	import Common.Physicus;
 	import Common.Screen;
-	import Common.Highscore;
+	import Common.Virus;
 	
 	import Items.Coin;
 	import Items.Heart;
@@ -18,8 +19,6 @@ package Levels{
 	import Main.View;
 	
 	import Platforms.Platform;
-	
-	import VirusScreen.VirusScreen;
 	
 	import Viruses.NeonatalSepsis;
 	
@@ -51,8 +50,11 @@ package Levels{
 		private var tutorial0:Image;
 		private var tutorial1:Image;
 		private var tutorial2:Image;
+		private var pulseTracker:int = 0;
+		private var pulseGoingUp:Boolean = true;
 		
 		//Changeable variables
+		private var pulseSize:int = 15;
 		private var widthOfLevelInPixels:int = 6150;
 		private var speed:int = View.GetInstance().getSpeed();
 		private var spawnTimeInSeconds:int = 18;
@@ -326,6 +328,35 @@ package Levels{
 		}
 		
 		/**
+		 * This function decides how much the virus pulses in this level.
+		 * By changing the pulseSize integer in the top, the level of the pulse can be changed for this level.
+		 */
+		private function VirusPulse():void{
+			for(var i:int = 0; i < View.GetInstance().GetEntities().length; i++){
+				if(View.GetInstance().GetEntities()[i] is Virus){
+					if(pulseTracker < pulseSize && pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseTracker++;
+					}
+					else if(pulseTracker == pulseSize && pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseGoingUp = false;
+						pulseTracker--;
+					}
+					else if(pulseTracker > 0 && !pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseTracker--;
+					}
+					else if(pulseTracker == 0 && !pulseGoingUp){
+						(View.GetInstance().GetEntities()[i] as Virus).Pulse(pulseTracker);
+						pulseGoingUp = true;
+						pulseTracker++;
+					}
+				}
+			}
+		}
+		
+		/**
 		 * Updates the screen.
 		 */
 		public function Update():void{
@@ -337,7 +368,7 @@ package Levels{
 				top.Update();
 				ScreenProgression();
 				bottom.Update();
-				
+				VirusPulse();
 			}
 			if(View.GetInstance().GetPlayer().getSpawned()){
 				Common.Physicus.GetInstance().Collision();
