@@ -25,6 +25,7 @@ package InformationScreen
 		private var englishButton:Button;
 		private var luoButton:Button;
 		private var speakerButton:Button;
+		private var luoIsChosen:Boolean = false;
 		
 		public function NeonatalSepsisInformation()
 		{
@@ -100,6 +101,7 @@ package InformationScreen
 			neonatalsepsisInformation.x = 15;
 			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);
+			luoIsChosen = false;
 		}	
 		
 		public function LuoLanguage():void
@@ -111,11 +113,15 @@ package InformationScreen
 			neonatalsepsisInformation.x = 15;
 			neonatalsepsisInformation.y = 20;
 			addChild(neonatalsepsisInformation);
+			luoIsChosen = true;
 		}
 		
 		public function Speaker():void
 		{
-			View.GetInstance().getSoundControl().playSepsis();
+			if(luoIsChosen)
+				View.GetInstance().getSoundControl().playSepsis();
+			else
+				View.GetInstance().getSoundControl().playSepsis_En();
 		}
 		
 		public function Update():void

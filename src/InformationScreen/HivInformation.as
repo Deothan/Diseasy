@@ -23,6 +23,7 @@ package InformationScreen
 		private var englishButton:Button;
 		private var luoButton:Button;
 		private var speakerButton:Button;
+		private var luoIsChosen:Boolean = false;
 		
 		public function HivInformation()
 		{
@@ -98,6 +99,7 @@ package InformationScreen
 			hivInformation.x = 15;
 			hivInformation.y = 20;
 			addChild(hivInformation);
+			luoIsChosen = false;
 		}
 		
 		public function LuoLanguage():void
@@ -109,11 +111,15 @@ package InformationScreen
 			hivInformation.x = 15;
 			hivInformation.y = 20;
 			addChild(hivInformation);
+			luoIsChosen = true;
 		}
 		
 		public function Speaker():void
 		{
-			View.GetInstance().getSoundControl().playHiv();
+			if(luoIsChosen)
+				View.GetInstance().getSoundControl().playHiv();
+			else
+				View.GetInstance().getSoundControl().playHiv_En();
 		}
 		
 		public function Update():void

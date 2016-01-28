@@ -54,6 +54,7 @@ package Common{
 		}
 		
 		public function playjump():void{
+			Channel.stop()
 			assetManager.getSound('jump').play();
 		}
 		
@@ -67,20 +68,40 @@ package Common{
 			assetManager.getSound('hiv').play();
 		}
 		
-		public function playDiarrhoea():void{
-			assetManager.getSound('diarrhoea').play();
+		public function playHiv_En():void{
+			assetManager.getSound('hiv_En').play();
+		}
+		
+		public function playDiarrhea():void{
+			assetManager.getSound('diarrhea').play();
+		}
+		
+		public function playDiarrhea_En():void{
+			assetManager.getSound('diarrhea_En').play();
 		}
 		
 		public function playMalaria():void{
 			assetManager.getSound('malaria').play();
 		}
 		
+		public function playMalaria_En():void{
+			assetManager.getSound('malaria_En').play();
+		}
+		
 		public function playPnuemonia():void{
 			assetManager.getSound('pnuemonia').play();
 		}
 		
+		public function playPnuemonia_En():void{
+			assetManager.getSound('pnuemonia_En').play();
+		}
+		
 		public function playSepsis():void{
 			assetManager.getSound('sepsis').play();
+		}
+		
+		public function playSepsis_En():void{
+			assetManager.getSound('sepsis_En').play();
 		}
 	}
 }
