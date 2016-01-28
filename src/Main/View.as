@@ -6,9 +6,11 @@ package Main{
 	import Common.Screen;
 	import Common.SoundControl;
 	
-	import Levels.Level_1;
-	
 	import InfantScreen.Infant;
+	
+	import InformationScreen.HivInformation;
+	
+	import Levels.Level_1;
 	
 	import Menu.Menu;
 	

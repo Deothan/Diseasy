@@ -37,6 +37,7 @@ package Common{
 		public function playSad():void{
 			sound = assetManager.getSound('sadtheme');
 			Channel.stop();
+			BackgroundChannel.stop();
 			Channel = sound.play();
 		}
 		

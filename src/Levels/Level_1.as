@@ -86,6 +86,7 @@ package Levels{
 		}
 		
 		private function Start():void{
+			View.GetInstance().getSoundControl().playLevel();
 			View.GetInstance().GetPlayer().setLife(5);
 			View.GetInstance().SetTime(0);
 			View.GetInstance().getSoundControl().playStartGame();

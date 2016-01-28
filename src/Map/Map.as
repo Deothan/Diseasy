@@ -172,8 +172,7 @@ package Map{
 			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().getSoundControl().playLevel();
 			if(event.target == level1Button && unlocks[0]){
-				//View.GetInstance().SetLevel(Cutscene);
-				View.GetInstance().SetLevel(Levels.Level_1);
+				View.GetInstance().SetLevel(Cutscene);
 				View.GetInstance().LoadScreen(SpeedScreen);
 			}
 			else if(event.target == level2Button && unlocks[1]){
