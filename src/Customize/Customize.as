@@ -1,5 +1,4 @@
 package Customize{
-
 	import flash.filesystem.File;
 	
 	import Common.IO;
@@ -19,6 +18,8 @@ package Customize{
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.utils.AssetManager;
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 
 	public class Customize extends Sprite implements Screen{
 		private var assetManager:AssetManager = new AssetManager();
@@ -35,8 +36,6 @@ package Customize{
 		private var nameText:TextField;
 		
 		/** keyboard **/
-		import starling.utils.HAlign;
-		import starling.utils.VAlign;
 		private var AButton:Button;
 		private var BButton:Button;
 		private var CButton:Button;
