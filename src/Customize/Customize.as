@@ -417,12 +417,19 @@ package Customize{
 			removeChild(look);
 			
 			look = looks[currentLook];
+			View.GetInstance().GetPlayer().SetLooks(currentLook);
 			look.x = 10;
 			look.y = 10;
 			addChild(look);
 		}
 		
 		private function OkButtonTriggered():void{
+			if(View.GetInstance().GetLastScreen() == "Map"){
+				View.GetInstance().getSoundControl().playButton();
+				IO.GetInstance().Save();
+				View.GetInstance().LoadScreen(Map);
+				return;
+			}
 			if(nameText.text.length == 0 || nameText.text.match('Enter Name')) return;
 			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
 			for each(var currentName:String in namesAlreadyUsed){

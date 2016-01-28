@@ -38,7 +38,7 @@ package Main{
 		private var tutorialVirusScreen:Boolean = false;
 		private var currentLevel:int = 0;
 		//The first Screen to load
-		private var firstScreen:Class = InfantScreen;
+		private var firstScreen:Class = Menu;
 		
 		public function View(){
 			addEventListener(Event.ADDED_TO_STAGE, Initialize);

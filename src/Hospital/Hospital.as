@@ -43,12 +43,10 @@ package Hospital{
 			
 			background = new Image(assetManager.getTexture("hospital_animation"));
 			addChild(background);
-			
+			addChild(View.GetInstance().GetPlayer());
 			View.GetInstance().GetPlayer().x = -10;
 			View.GetInstance().GetPlayer().y = 205;
 			View.GetInstance().GetPlayer().Run();
-			addChild(View.GetInstance().GetPlayer());
-		
 		}
 		
 		private function Timed(event:TimerEvent):void{
