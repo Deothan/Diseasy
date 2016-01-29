@@ -409,11 +409,16 @@ package Customize{
 				View.GetInstance().LoadScreen(Map);
 				return;
 			}
-			if(nameText.text.length == 0 || nameText.text.match('')) return;
+			if(nameText.text.length == 0) {
+				trace('name null');
+				trace(nameText.text.length);
+				return;
+			}
 			var namesAlreadyUsed:Array = IO.GetInstance().getNames();
 			for each(var currentName:String in namesAlreadyUsed){
 				if(nameText.text.match(currentName)){
 					nameText.text = 'name taken'
+						trace('name taken');
 					return;
 				}
 			}

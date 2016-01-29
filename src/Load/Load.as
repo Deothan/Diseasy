@@ -270,6 +270,7 @@ package Load
 		}
 		
 		private function LoadButtonTriggered():void{
+			if(IO.GetInstance().getNames().length < 1 || View.GetInstance().GetPlayer().GetName() == '') return ;
 			View.GetInstance().getSoundControl().playButton();
 			View.GetInstance().LoadScreen(Map);
 		}

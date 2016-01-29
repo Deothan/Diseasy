@@ -104,6 +104,7 @@ package Menu
 		private function LoadButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();	
 			/** set back before commit **/
+			View.GetInstance().GetPlayer().createNewPlayer();
 			View.GetInstance().LoadScreen(Load);
 		}
 		
@@ -112,6 +113,7 @@ package Menu
 		 */
 		private function MapButtonTriggered():void{
 			View.GetInstance().getSoundControl().playButton();
+			View.GetInstance().GetPlayer().createNewPlayer();
 			View.GetInstance().LoadScreen(Customize);
 		}
 		

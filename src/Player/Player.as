@@ -391,5 +391,37 @@ package Player
 			}
 			else this.Highscores = _highscore;
 		}
+		
+		public function createNewPlayer():void{
+			checkedViruses[0] = false;
+			checkedViruses[1] = false;
+			checkedViruses[2] = false;
+			checkedViruses[3] = false;
+			checkedViruses[4] = false;
+			
+			unlock[0] = true;
+			unlock[1] = false;
+			unlock[2] = false;
+			unlock[3] = false;
+			unlock[4] = false;
+			unlock[5] = false;
+			
+			Highscores[0] = 0;
+			Highscores[1] = 0;
+			Highscores[2] = 0;
+			Highscores[3] = 0;
+			Highscores[4] = 0;
+			
+			tutorials[0] = false; //Customize
+			tutorials[1] = false; //Map
+			tutorials[2] = false; //Level
+			tutorials[3] = false; //Shop
+			tutorials[4] = false; //VirusScreen
+			tutorials[5] = false; //InformationScreen
+			tutorials[6] = false; //InfantCare
+			
+			looks = 0;
+			name = '';
+		}
     }
 }
